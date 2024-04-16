@@ -5,7 +5,7 @@ import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 function SubAdminMainProfile() {
   const navigate = useNavigate();
-  const handleMe = () => {
+  const handleMe = ()=>{
     navigate("../CreateSubAdmin");
   };
   return (
