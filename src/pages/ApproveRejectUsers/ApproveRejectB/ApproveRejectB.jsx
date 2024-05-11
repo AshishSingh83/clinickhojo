@@ -91,9 +91,14 @@ function ApproveRejectB() {
       <div className="flex flex-row gap-16 ms-44">
         <div className="flex flex-col mt-5">
           <div className="flex flex-row justify-between">
-            <div className="bg-[#D9D9D9] h-14 w-52">
-              <p className="text-black mt-4 ms-7 ">Approve/Reject User</p>
+            <div className="bg-[#FF0B0B] h-14 w-52">
+              <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
             </div>
+          </div>
+
+          <div>
+
+
           </div>
 
           <div className=" m-8">
@@ -137,6 +142,9 @@ function ApproveRejectB() {
             radioData={formData.doctorRegistration}
           />
         </div>
+
+
+        
         <div className="flex flex-row mt-[640px] me-10 ms-[-60px]">
           <div className="w-28">
             <Button
@@ -147,7 +155,7 @@ function ApproveRejectB() {
             />
           </div>
           <div className="w-32 mt-2 ms-[-10px]">
-            <span className="text-black  font-medium">Clinic Detail</span>
+            <span className="text-white  font-medium">Clinic Detail</span>
           </div>
         </div>
       </div>

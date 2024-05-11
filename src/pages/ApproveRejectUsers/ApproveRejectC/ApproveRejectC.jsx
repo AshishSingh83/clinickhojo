@@ -207,18 +207,17 @@ function ApproveRejectC() {
                 </div>
                 <div className=" flex flex-col">
                   <div className="      flex flex-row justify-between ms-14 mt-5 ">
-                    <div className=" bg-[#D9D9D9] h-14 w-52">
-                      <p className=" text-black mt-4 ms-7  ">
+                    <div className=" bg-[#FF0B0B] h-14 w-52 ms-5">
+                      <p className=" text-white mt-4 ms-7  ">
                         Approve/Reject User
                       </p>
                     </div>
                     <div>
-                      <p className=" text-black text-2xl underline mt-5 me-[800px]">
+                      <p className=" text-white text-2xl underline mt-5 me-[800px]">
                         Clinic Detail
                       </p>
                     </div>
                   </div>
-
                   <div className="flex flex-row   ">
                     <div className="flex flex-col  ms-16">
                       <div className="m-10">

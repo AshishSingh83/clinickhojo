@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateManagementData } from "../../../data/features/registerSlice";
 import Input from "../../../components/ui/Input";
+import InputWithIcon from "../../../components/ui/InputWithIcon";
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -48,27 +49,21 @@ const Demo = ({
     update.fullName.toLowerCase().includes(search.toLowerCase())
   );
   return (
-    <div className={` ${Width} ${Height} bg-[#D9D9D9]  `}>
-      <div className={`bg-[#D9D9D9] mt-[-12px] text-black`}>
-        <h3 className={`${text1} font-medium ${p1} ${m1}  underline `}>
+    <div className={` ${Width} ${Height} bg-[#03229F]  `}>
+      <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col`}>
+
+
+      <div className=" h-14 flex items-center ">
+      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
           {text}
         </h3>
+      </div>
 
         {sortedData.length === 0 ? "" : (
-          <div className="ms-6 flex flex-row">
-            <div>
-              <select
-                value={sortOption}
-                onChange={(e) => filterChange(e)}
-                className="bg-white h-8 ps-3 text-black"
-              >
-                <option value="namee">Sort by</option>
-                <option value="name">Sort by Name</option>
-                <option value="recent">Sort by Recent</option>
-              </select>
-            </div>
-            <div className="ms-16 w-64">
-              <Input
+          <div className=" flex flex-row bg-[#03229F] gap-3">
+           
+            <div className="ms-4 mt-3 w-64">
+              <InputWithIcon
                 labelText="Search Profiles"
                 labelFor="searchProfiles"
                 type="text"
@@ -76,7 +71,21 @@ const Demo = ({
                 placeholder="Search Profiles"
                 bg1="bg-[#F2EFEF]"
                 handleChange={(e) => setSearch(e.target.value)}
+                iconData="BiSearch"
               />
+              {/* <InputWithIcon/> */}
+            </div>
+
+            <div className=" mt-6">
+              <select
+                value={sortOption}
+                onChange={(e) => filterChange(e)}
+                className="bg-white h-8 ps-3 text-black mt-3"
+              >
+                <option value="namee">Sort by</option>
+                <option value="name">Sort by Name</option>
+                <option value="recent">Sort by Recent</option>
+              </select>
             </div>
           </div>
         )}
@@ -84,7 +93,7 @@ const Demo = ({
       <div className={`overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-black  mt-44 text-2xl font-medium">
+            <p className="text-white  mt-44 text-2xl font-medium">
               No data available
             </p>
           </div>
@@ -104,7 +113,7 @@ const Demo = ({
               </p>
               <span
                 className="inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2"
-                style={{ backgroundColor: "#4575f7" }}
+                style={{ backgroundColor: "#03229F" }}
                 onClick={() => handleMe(update)}
               >
                 View...

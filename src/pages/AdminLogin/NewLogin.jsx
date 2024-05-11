@@ -62,7 +62,7 @@ export default function NewLogin() {
           label: "Username",
         };
         const currentTime = new Date().getTime();
-        const newTime = currentTime + (10 * 1000);
+        const newTime = currentTime + (100 * 1000);
         saveDataToLocalStorage('myData', { dataa, expiry: newTime });
         setMessage("");
         navigate("../AdminHome");
@@ -109,7 +109,7 @@ export default function NewLogin() {
             label: "Email",
           };
           const currentTime = new Date().getTime();
-          const newTime = currentTime + (10 * 1000);
+          const newTime = currentTime + (100 * 1000);
           saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
           setMessage("");
           navigate("../AdminHome");

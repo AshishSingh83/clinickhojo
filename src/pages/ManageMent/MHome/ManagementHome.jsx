@@ -41,7 +41,7 @@ function ManagementHome() {
   }
 
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-white">
+    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
           <Sidebar someData={{'index':6}}/>
@@ -74,7 +74,7 @@ function ManagementHome() {
               bg1="bg-[#845BB3]"
               bg2="bg-blue-300"
               bg3="bg-[#f089a4]"
-              text="approved management profiles which are updated..."
+              text="approved management updated profiles ..."
               showData={changed}
             />
           </div>

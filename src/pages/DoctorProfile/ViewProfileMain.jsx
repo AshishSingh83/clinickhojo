@@ -41,7 +41,7 @@ function ViewProfileMain() {
    console.log('okay');
   }
   return (
-    <div className="flex flex-row justify-between  w-screen bg-white">
+    <div className="flex flex-row justify-between  w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
           <Sidebar someData={{'index':5}}/>
@@ -52,17 +52,17 @@ function ViewProfileMain() {
       </div>
       <div>
         <div className="   mt-14   flex flex-row justify-between ">
-         <div className=" bg-[#D9D9D9] h-14 w-44 ms-[-80px]">
-         <p className=" text-black mt-4 ms-10  ">View Profile</p>
+         <div className=" bg-[#FF0B0B] h-14 w-44 ">
+         <p className=" text-white mt-4 ms-10  ">View Profile</p>
          </div>
         </div>
         <div>
         <div className="flex flex-row gap-28 mt-16">
         <div className="  ">
-            <Demo bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='All verified Doctors Profiles' showData={approveDoctors} normalVerified={true} />
+            <Demo bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='All verified Doctors Profiles ...' showData={approveDoctors} normalVerified={true} />
           </div>
           <div className="  me-32">
-            <DemoUser bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='All Users' showData={allUsers} />
+            <DemoUser bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='Profiles of All Users ...' showData={allUsers} />
           </div>
         </div>
         <div className="flex flex-row gap-28 mt-16">

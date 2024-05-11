@@ -2,6 +2,7 @@ import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { FiKey } from 'react-icons/fi';
+import { BiSearch } from 'react-icons/bi';
 const InputWithIcon = ({
     handleChange,
     value,

@@ -67,10 +67,11 @@ import { IconContext } from "react-icons";
 import { SidebarData } from "./SidebarData.jsx";
 import { FaSignOutAlt } from "react-icons/fa";
 import Button from "../../../components/ui/Button.jsx";
-
+import { useNavigate } from "react-router-dom";
 function Sidebar({ someData }) {
   const [sidebar, setSidebar] = useState(true);
   const [activeItem, setActiveItem] = useState(2);
+  const navigate = useNavigate() ;
   const memoizedSidebarData = useMemo(() => SidebarData, []);
   console.log(someData);
   const showSidebar = () => setSidebar(sidebar);
@@ -82,7 +83,15 @@ function Sidebar({ someData }) {
   };
 
   const handleSubmit = () => {};
-
+  const handleLogout = () => {
+    if (localStorage.getItem("myDataAdmin") !== null) {
+      localStorage.removeItem("myDataAdmin");
+    }
+    if (localStorage.getItem("myData") !== null) {
+      localStorage.removeItem("myData");
+    }
+    navigate("../");
+  }
   return (
     <>
       <IconContext.Provider value={{ color: "#061ba1", size: "40px" }}>
@@ -121,7 +130,7 @@ function Sidebar({ someData }) {
                 );
               })}
             </div>
-            <div className="flex flex-row text-black gap-12 mb-10 ms-7">
+            <div className="flex flex-row text-black gap-12 mb-10 ms-7 " onClick={handleLogout}>
               <p className=" h-4 w-4">
                 <FaSignOutAlt />
               </p>

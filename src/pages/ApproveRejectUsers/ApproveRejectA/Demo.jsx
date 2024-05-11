@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { updateDoctorData } from "../../../data/features/registerSlice";
+import InputWithIcon from "../../../components/ui/InputWithIcon";
 
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
@@ -54,15 +55,18 @@ const Demo = ({
 
   return (
     <div className={` ${Width} ${Height} bg-[#03229F]  `}>
-      <div className={`bg-[#FFFFFF] mt-[-12px] text-black`}>
-        <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
+      <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col  `}>
+
+      <div className=" h-14 flex items-center ">
+      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
           {text}
         </h3>
+      </div>
 
         {sortedData.length === 0 ? "" : (
-          <div className="ms-14 flex flex-row">
-          <div className="ms-16 w-64">
-              <Input
+          <div className=" flex flex-row bg-[#03229F] gap-3 ">
+          <div className=" ms-4 mt-3 ">
+              <InputWithIcon
                 labelText="Search Profiles"
                 labelFor="searchProfiles"
                 type="text"
@@ -70,9 +74,10 @@ const Demo = ({
                 placeholder="Search Profiles"
                 bg1="bg-[#F2EFEF]"
                 handleChange={(e) => setSearch(e.target.value)}
+                iconData="BiSearch"
               />
             </div>
-            <div>
+            <div className=" mt-6">
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}
@@ -83,7 +88,6 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            
           </div>
         )}
       </div>
