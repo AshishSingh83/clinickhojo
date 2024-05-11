@@ -77,8 +77,7 @@ export default function NewLogin() {
     }
   }
     useEffect(() => {
-    const savedData = getDataFromLocalStorage('myData');
-    console.log('okaaaaa');
+    const savedData = getDataFromLocalStorage('myDataAdmin');
     if (savedData){
       if(new Date().getTime() < savedData.expiry) {
               console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
@@ -88,11 +87,10 @@ export default function NewLogin() {
               handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
       }else{
         console.log('data experied');
-        deleteDataFromLocalStorage('myData');
+        deleteDataFromLocalStorage('myDataAdmin');
         setLoginEmailVal('');
         setLoginPasswordVal('');
       }
-      
     }
   }, []);
   
@@ -105,17 +103,14 @@ export default function NewLogin() {
           password: loginPasswordVal,
         });
         if (response.data.user){
-          console.log(response.data);
           const dataa = {
             userName: loginEmailVal,
             password: loginPasswordVal,
-            label: "Username",
+            label: "Email",
           };
           const currentTime = new Date().getTime();
           const newTime = currentTime + (10 * 1000);
-          console.log(newTime);
-          console.log('not calleddddd');
-          saveDataToLocalStorage('myData', { dataa, expiry: newTime });
+          saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
           setMessage("");
           navigate("../AdminHome");
         }
@@ -141,6 +136,9 @@ export default function NewLogin() {
   };
   function handleMe(){
     navigate("../EnterPassword")
+   }
+   function handleMea(){
+    navigate("../SubAdminLogin")
    }
   return (
     <div>
@@ -168,9 +166,14 @@ export default function NewLogin() {
             iconData="FiKey"
           />
         </div>
-        <a href="#" onClick={handleMe} className=" ms-64 text-[#E1E0E0] hover:text-blue-300">
+          <div className="text-sm  flex flex-row justify-between  ">
+          <a href="#" onClick={handleMea} className="font-medium text-[#E1E0E0] hover:text-blue-300">
+            Subadmin Login
+          </a>
+          <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
             Forgot password?
           </a>
+        </div>
         <div className=" text-red-500 ms-16">{message}</div>
         <Button 
         handleSubmit={handleSubmit}

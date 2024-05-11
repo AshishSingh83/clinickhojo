@@ -8,7 +8,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AdminLogin from "./pages/AdminLogin/AdminLogin.jsx";
+import AdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 import EnterPhone from "./pages/ForgetPassword/EnterPhone.jsx";
 import EnterOtp from "./pages/ForgetPassword/EnterOtp.jsx";
 import EnterPassword from "./pages/ForgetPassword/EnterPassword.jsx";
@@ -34,6 +34,7 @@ import UserProfile from "./pages/DoctorProfile/UserProfile.jsx";
 import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.jsx";
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
 import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
+import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 
 
 let persistor = persistStore(store);
@@ -41,7 +42,7 @@ let persistor = persistStore(store);
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="" element={<AdminLogin />} />
+      <Route path="" element={<MainAdminLogin />} />
       <Route path="EnterPhone" element={<EnterPhone />} />
       <Route path="EnterOtp" element={<EnterOtp />} />
       <Route path="EnterPassword" element={<EnterPassword />} />
@@ -61,7 +62,7 @@ const router = createBrowserRouter(
       <Route path="AllInOne" element={<AllInOne />} />
       <Route path="MHomeC" element={<MHomeC />} />
       <Route path="UserProfile" element={<UserProfile />} />
-      <Route path="MainAdminLogin" element={<MainAdminLogin />} />
+      <Route path="SubAdminLogin" element={<SubAdminLogin />} />
      
 
       <Route path="SubAdminMainProfile" element={<SubAdminMainProfile />} />

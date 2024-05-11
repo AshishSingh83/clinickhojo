@@ -6,7 +6,10 @@ export default function FormExtra(){
   }
     return(
         
-        <div className="text-sm ms-64 ">
+        <div className="text-sm ms-64 flex flex-row ">
+          <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
+            Subadmin Login
+          </a>
           <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
             Forgot password?
           </a>

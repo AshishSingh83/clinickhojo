@@ -7,6 +7,7 @@ import Button from "../../components/ui/Button";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import InputWithIcon from "../../components/ui/InputWithIcon";
 
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -125,8 +126,6 @@ export default function Login() {
   
   const authenticateUser = async()=>{
     console.log('called',loginEmailVal,loginPasswordVal);
-    if (emailLabel == "Username" || data?.dataa?.label === "Username"){
-      console.log('1');
       try{
         const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
@@ -154,9 +153,6 @@ export default function Login() {
           setMessage("Internal Server Error");
         }
       }
-    } else {
-      //navigate("../AdminHome");
-    }
   };
 
   const handleSubAdminClick = () => {
@@ -171,42 +167,45 @@ export default function Login() {
   function handleMe(){
     navigate("../EnterPassword")
    }
+   function handleMea(){
+    navigate("../")
+   }
   return (
     <div >
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div className=" flex flex-row gap-28 text-white text-xl">
-          <div>
-            <button onClick={handleSubAdminClick}>Subadmin Login</button>
-          </div>
-          <div>
-            <button onClick={handleSubAdminClickB}>Admin Login</button>
-          </div>
-        </div>
+        
         <div className="-space-y-px">
-          <Input
+          <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
-            type="email"
-            placeholder={emailLabel}
+            type="UserName"
+            placeholder="UserName"
             labelText={emailLabel}
             labelFor="Email"
-            my1="my-5"
+            my1="my-3"
             bg1="bg-[#FAEBEB]"
+            iconData="FaUser"
           />
-          <Input
+
+          <InputWithIcon
             handleChange={handleChangePassword}
             value={loginPasswordVal}
             type="password"
             placeholder="Password"
             labelText="Enter Password"
             labelFor="Password"
-            my1="my-5"
             bg1="bg-[#FAEBEB]"
+            iconData="FiKey"
           />
         </div>
-        <a href="#" onClick={handleMe} className=" ms-64 text-[#E1E0E0] hover:text-blue-300">
+        <div className="text-sm  flex flex-row justify-between  ">
+          <a href="#" onClick={handleMea} className="font-medium text-[#E1E0E0] hover:text-blue-300">
+            Admin Login
+          </a>
+          <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
             Forgot password?
           </a>
+        </div>
         <div className=" text-red-500 ms-16">{message}</div>
         <Button
          handleSubmit={handleSubmit}
