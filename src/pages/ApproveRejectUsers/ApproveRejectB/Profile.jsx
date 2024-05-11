@@ -7,8 +7,8 @@ function Profile({
   bool,
 }) {
   return (
-    <div className={` flex flex-row gap-6 text-white`}>
-      <div className=" w-20 h-20 bg-[#0529BB] flex justify-center items-center ">
+    <div className={` flex flex-row gap-12 text-white `}>
+      <div className=" w-20 h-20 bg-[#03229F] flex justify-center items-center ">
         <img
           src={profileImage}
           alt="Placeholder"
@@ -16,16 +16,16 @@ function Profile({
         />
       </div>
 
-      <div className="text-white font-medium  ">
-        <span className=" font-medium " style={{ fontSize: "20px" }}>
-          {fullName}{" "}
+      <div className="text-white font-normal   ">
+        <span className=" font-medium " style={{ fontSize: "25px" }}>
+          Dr.{fullName}{" "}
         </span>
         <br />
-        <span>UniqueId : </span>
-        {uniqueDoctorId} <br />
+        <span className=" opacity-80">UniqueId : </span>
+        #{uniqueDoctorId} <br />
         {bool && (
           <div>
-            <span>Account added by: </span>
+            <span className=" opacity-80">Account added by: </span>
             {accountAddedBy || 'null'}
             <br />
           </div>

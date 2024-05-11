@@ -24,10 +24,27 @@
 // };
 
 // export default NewUpdates;
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { updateConstant } from "./updateConstant";
+const NewUpdates =()=>{
+  const [loading, setLoading] = useState(true);
+  const [updates,setUpdates] = useState([]) ;
 
-const NewUpdates = () => {
+  // useEffect(() => {
+  //   async function getRecentUpdates() {
+  //     try {
+  //       const response = await axios.get("api/admin/getAllSubAdmins");
+  //       setUpdates(response.data);
+  //       setLoading(false)
+  //     } catch (error){
+  //       setLoading(false)
+  //     }
+  //   }
+  //   getRecentUpdates();
+  // }, []);
+
+
+
   return (
     <div style={{ overflow: "scroll", position: "relative" }} className="bg-[#03229F]">
       <div style={{ position: "sticky", top: 0, zIndex: 1 }}>

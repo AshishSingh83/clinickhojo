@@ -52,9 +52,9 @@ const BasicDetails = ({
   ];
 
   return (
-    <div className="bg-[#D9D9D9] w-[500px] h-[390px] mb-4 rounded-sm">
+    <div className="bg-[#03229F] w-[500px] h-[360px] mb-4 rounded-sm text-white ">
       <div className="flex flex-row gap-20">
-        <h1 className="text-lg  text-black font-semibold ms-6">
+        <h1 className="text-lg   font-semibold ms-6">
           Basic Details :
         </h1>
         <div className="mt-1">
@@ -64,11 +64,11 @@ const BasicDetails = ({
           />
         </div>
       </div>
-      <div className=" ">
-        <div className="text-black font-medium  ms-2 mb-5">
+      <div className="opacity-75 ">
+        <div className=" font-medium  ms-2 mb-5">
           {renderDetails(BasicDetailConstant)}
           <span className="flex flex-row ">
-            <p className="text-lg">Provide Rating :</p>
+            <p className="text-lg mt-1">Provide Rating :</p>
             <div className="ms-10">
               <NumberSelect onSelect={handleRatingSelect} rating={rating} />
             </div>

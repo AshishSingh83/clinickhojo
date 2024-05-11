@@ -92,7 +92,7 @@ const DemoUser = ({
           filteredData.map((user, index) => (
             <div
               key={index}
-              className={`p-4 mb-4 bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer`}
+              className={`p-4 mb-4 bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer overflow-auto`}
             >
               <p className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>

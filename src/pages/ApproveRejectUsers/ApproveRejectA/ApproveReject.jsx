@@ -51,10 +51,10 @@ function ApproveReject() {
         </div>
         <div className="flex flex-row gap-28 mt-16">
           <div className=" bg-[#D9D9D9]">
-            <Demo bg1="bg-[#F75990]" bg2="bg-[#bf9ee6]" bg3="bg-blue-200" showData={pending} />
+            <Demo bg1="bg-[#F75990]" bg2="bg-[#bf9ee6]" bg3="bg-blue-200" showData={pending} newBg="bg-[#0032FF]" newBga="#0032FF" />
           </div>
           <div className="  me-32">
-            <Demo bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='approved Doctors who updated profiles...' showData={changed} />
+            <Demo bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='approved Doctors who updated profiles...' showData={changed} newBg="bg-[#229649]" newBga="#229649" />
           </div>
         </div>
       </div>

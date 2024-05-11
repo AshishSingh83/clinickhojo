@@ -88,21 +88,18 @@ function ApproveRejectB() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-16 ms-44">
-        <div className="flex flex-col mt-5">
+      <div className="flex flex-row me-32 ">
+        <div className="flex flex-col ">
           <div className="flex flex-row justify-between">
             <div className="bg-[#FF0B0B] h-14 w-52">
               <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
             </div>
           </div>
 
-          <div>
-
-
-          </div>
-
-          <div className=" m-8">
-            <Profile
+          <div className=" flex flex-row bg-[#03229F] mt-14 ">
+          <div className="    ">
+          <div className="  mb-7 ms-6 bg-[#03229F] mt-5">
+          <Profile
               fullName={fullName}
               profileImage={profileImage}
               uniqueDoctorId={uniqueDoctorId}
@@ -110,7 +107,8 @@ function ApproveRejectB() {
               bool={true}
             />
           </div>
-          <BasicDetails
+           
+            <BasicDetails
             BasicDetail={update}
             onRadioChange={(option) =>
               handleRadioChange("doctorBasicDetail", option)
@@ -118,6 +116,8 @@ function ApproveRejectB() {
             onRatingChange={handleRatingChange}
             radioData={formData.doctorBasicDetail}
           />
+          <hr/>
+          <div className=" mt-5">
           <IdentityProof
             BasicDetail={update.identityDetails}
             onRadioChange={(option) =>
@@ -125,8 +125,11 @@ function ApproveRejectB() {
             }
             radioData={formData.doctorIdentityProof}
           />
-        </div>
-        <div className="me-8 flex flex-col gap-4 mt-56">
+          </div>
+          
+          </div>
+
+          <div className=" flex flex-col gap-4 mt-[142px] ms-16">
           <Educationdetail
             BasicDetail={update.education}
             onRadioChange={(option) =>
@@ -134,6 +137,7 @@ function ApproveRejectB() {
             }
             radioData={formData.doctorEducationDetail}
           />
+          <hr/>
           <RegistrationDetail
             BasicDetail={update.registration}
             onRadioChange={(option) =>
@@ -143,10 +147,10 @@ function ApproveRejectB() {
           />
         </div>
 
+          </div>
 
-        
-        <div className="flex flex-row mt-[640px] me-10 ms-[-60px]">
-          <div className="w-28">
+          <div className="flex flex-row mt-9 ms-80 mb-5 ">
+          <div className="">
             <Button
               text=" Next >> "
               bgColor="bg-[#24C70A]"
@@ -154,10 +158,22 @@ function ApproveRejectB() {
               handleSubmit={manageme}
             />
           </div>
-          <div className="w-32 mt-2 ms-[-10px]">
-            <span className="text-white  font-medium">Clinic Detail</span>
+          <div className=" ">
+            <span className="text-white   text-3xl">Clinic Detail</span>
           </div>
         </div>
+
+
+
+
+          
+          
+        </div>
+       
+
+
+        
+        
       </div>
     </div>
   );

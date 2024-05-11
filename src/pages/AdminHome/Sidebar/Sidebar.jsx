@@ -65,7 +65,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 import { IconContext } from "react-icons";
 import { SidebarData } from "./SidebarData.jsx";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import Button from "../../../components/ui/Button.jsx";
 import { useNavigate } from "react-router-dom";
 function Sidebar({ someData }) {
@@ -87,14 +87,14 @@ function Sidebar({ someData }) {
     if (localStorage.getItem("myDataAdmin") !== null) {
       localStorage.removeItem("myDataAdmin");
     }
-    if (localStorage.getItem("myData") !== null) {
-      localStorage.removeItem("myData");
+    if (localStorage.getItem("SubAdminToken") !== null) {
+      localStorage.removeItem("SubAdminToken");
     }
     navigate("../");
   }
   return (
     <>
-      <IconContext.Provider value={{ color: "#061ba1", size: "40px" }}>
+      <IconContext.Provider value={{ color: "#000000", size: "35px" }}>
         <div className="navbar ml-auto ps-0">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
@@ -130,11 +130,11 @@ function Sidebar({ someData }) {
                 );
               })}
             </div>
-            <div className="flex flex-row text-black gap-12 mb-10 ms-7 " onClick={handleLogout}>
+            <div className="flex flex-row text-black gap-7 mb-10 ms-7 " onClick={handleLogout}>
               <p className=" h-4 w-4">
-                <FaSignOutAlt />
+                <FiLogOut color="#FF0B0B"/>
               </p>
-              <p className=" font-medium mt-2">Log Out</p>
+              <p className=" font-medium mt-1 text-lg text-[#FF0B0B]">Log Out</p>
             </div>
             
           </ul>

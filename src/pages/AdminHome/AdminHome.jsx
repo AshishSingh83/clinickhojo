@@ -22,8 +22,8 @@ function AdminHome(){
         </div>
       </div>
 
-      <div className="flex flex-row gap-80">
-        <div className=" flex flex-col">
+      <div className="flex flex-row ">
+        <div className=" flex flex-col me-60 ">
           <div
             className=" bg-[#FF0B0B]  w-52 mt-10   "
           >
@@ -40,7 +40,7 @@ function AdminHome(){
             <div class="background"></div>
             <p class="text">HOME</p>
           </div> */}
-          <div className=" mt-[-40px]">
+          <div className=" mt-[-40px]  ">
             <Lists />
           </div>
         </div>

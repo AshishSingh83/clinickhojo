@@ -8,7 +8,6 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
-
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -77,73 +76,50 @@ export default function Login() {
     }
   }
     useEffect(() => {
-    const savedData = getDataFromLocalStorage('myData');
-    console.log('okaaaaa');
+    const savedData = getDataFromLocalStorage('SubAdminToken');
     if (savedData){
-      // console.log('save upar',savedData);
-      // setData(savedData);
-      // setExpiryTime(savedData.expiry);
-      if(new Date().getTime() < savedData.expiry) {
-              console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
-              setLoginEmailVal(savedData.dataa.userName );
-              setLoginPasswordVal(savedData.dataa.password);
-              setLabel(savedData.dataa.label);
-              //authenticateUser()
-              handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
-      }else{
-        console.log('data experied');
-        deleteDataFromLocalStorage('myData');
-        setLoginEmailVal('');
-        setLoginPasswordVal('');
-      }
-      
+      //send token to backend and verify
+      // if(new Date().getTime() < savedData.expiry) {
+      //         console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
+      //         setLoginEmailVal(savedData.dataa.userName );
+      //         setLoginPasswordVal(savedData.dataa.password);
+      //         setLabel(savedData.dataa.label);
+      //         //authenticateUser()
+      //         handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
+      // }else{
+      //   console.log('data experied');
+      //   deleteDataFromLocalStorage('myData');
+      //   setLoginEmailVal('');
+      //   setLoginPasswordVal('');
+      // } 
+      console.log(savedData);
+      navigate('../AdminHome')
     }
   }, []);
-  // useEffect(() => {
-  //   console.log('hi',new Date().getTime(),data);
-  //     if (new Date().getTime() > expiryTime) {
-  //       console.log('upar nhi beta');
-  //       deleteDataFromLocalStorage('myData');
-  //       setData({
-  //         userName: '',
-  //         password: '',
-  //         label:'',
-  //       });
-  //       setExpiryTime(0);
-  //     }
-  //     else if(new Date().getTime() < expiryTime) {
-  //       console.log('yahan bhi kyun');
-  //       setLoginEmailVal(data.dataa.userName );
-  //       setLoginPasswordVal(data.dataa.password);
-  //       setLabel(data.dataa.label);
-  //       authenticateUser()
-  //     }
-  //     else{
-  //       console.log('nothing else');
-  //     }
-  
-  // }, []);
+ 
   
   const authenticateUser = async()=>{
-    console.log('called',loginEmailVal,loginPasswordVal);
       try{
         const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
           password: loginPasswordVal,
         });
-        console.log('2');
-        if (response.data.user){
-          const dataa = {
-            userName: loginEmailVal,
-            password: loginPasswordVal,
-            label: "Username",
-          };
-          const currentTime = new Date().getTime();
-          const newTime = currentTime + (100 * 1000);
-          saveDataToLocalStorage('myData', { dataa, expiry: newTime });
-          setMessage("");
-          navigate("../AdminHome");
-        }
+        const accessToken = response.data.token ;
+        const secretKey = "CLINICKHOJO_ADMIN_LOGIN"
+        saveDataToLocalStorage('SubAdminToken', accessToken);
+        navigate("../AdminHome");
+        // if (response.data.user){
+        //   const dataa = {
+        //     userName: loginEmailVal,
+        //     password: loginPasswordVal,
+        //     label: "Username",
+        //   };
+        //   const currentTime = new Date().getTime();
+        //   const newTime = currentTime + (100 * 1000);
+        //   saveDataToLocalStorage('myData', { dataa, expiry: newTime });
+        //   setMessage("");
+        //   navigate("../AdminHome");
+        // }
       } catch (error) {
         console.log('hereee');
         console.error("Error fetching data:", error.response.status);

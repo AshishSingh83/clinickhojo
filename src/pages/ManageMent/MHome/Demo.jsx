@@ -76,7 +76,7 @@ const Demo = ({
               {/* <InputWithIcon/> */}
             </div>
 
-            <div className=" mt-6">
+            <div className=" mt-3">
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}

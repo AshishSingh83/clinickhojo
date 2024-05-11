@@ -1,12 +1,11 @@
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
-
+import { BiSolidUserDetail } from "react-icons/bi";
+import { FaMapMarkerAlt } from 'react-icons/fa';
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -17,15 +16,18 @@ const Demo = ({
   mh2 = "max-h-[400px]",
   mw3 = "max-w-[450px]",
   showData,
-  normalVerified
+  normalVerified,
+  newBg="bg-[#229649]",
+  newBga,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [sortedData, setSortedData] = useState([...showData]); 
-  const [sortOption, setSortOption] = useState(""); 
-  const [search, setSearch] = useState(""); 
+  const [sortedData, setSortedData] = useState([...showData]);
+  const [sortOption, setSortOption] = useState("");
+  const [search, setSearch] = useState("");
+  console.log('object',showData);
   const filterChange = (e) => {
-    setSortOption(e.target.value)
+    setSortOption(e.target.value);
     let sorted = [...showData];
     if (e.target.value === "name") {
       sorted.sort((a, b) => a.name.localeCompare(b.name));
@@ -35,16 +37,15 @@ const Demo = ({
     setSortedData(sorted);
   };
 
-  const handleMe = (update) =>{
+  const handleMe = (update) => {
     dispatch(updateDoctorData(update));
-    if(normalVerified){
+    if (normalVerified) {
       navigate("../VerifiedDoctorProfile");
-    }else{
-      if(localStorage.getItem(`${update.uniqueDoctorId}a`)===null){
-        const myVal = 'ashish'
-        localStorage.setItem(`${update.uniqueDoctorId}a`,myVal)
-        localStorage.setItem(`${update.uniqueDoctorId}b`,myVal)
-  
+    } else {
+      if (localStorage.getItem(`${update.uniqueDoctorId}a`) === null) {
+        const myVal = "ashish";
+        localStorage.setItem(`${update.uniqueDoctorId}a`, myVal);
+        localStorage.setItem(`${update.uniqueDoctorId}b`, myVal);
       }
       navigate("../ApproveRejectB", { state: { update } });
     }
@@ -56,16 +57,19 @@ const Demo = ({
   return (
     <div className={` ${Width} ${Height} bg-[#03229F]  `}>
       <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col  `}>
+        <div className=" h-14 flex items-center ">
+          <h3
+            className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}
+          >
+            {text}
+          </h3>
+        </div>
 
-      <div className=" h-14 flex items-center ">
-      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
-          {text}
-        </h3>
-      </div>
-
-        {sortedData.length === 0 ? "" : (
+        {sortedData.length === 0 ? (
+          ""
+        ) : (
           <div className=" flex flex-row bg-[#03229F] gap-3 ">
-          <div className=" ms-4 mt-3 ">
+            <div className=" ms-4 mt-3 ">
               <InputWithIcon
                 labelText="Search Profiles"
                 labelFor="searchProfiles"
@@ -107,14 +111,25 @@ const Demo = ({
               <p className="text-black font-semibold ">
                 <span className="font-bold ">{index + 1}. </span>
                 {update.name} <br />
-                <span className=" font-medium ">UniqueId : </span>
-                {update.uniqueDoctorId} <br />
-                <span className="font-medium ">City : </span>
-                {update.address.city}
+                <div className=" flex flex-row ms-7 gap-2">
+                  <p>
+                    <BiSolidUserDetail size="25px" color={`${newBga}`}  />
+                  </p>
+                  <p className=" font-medium text-[#535252] "> #{update.uniqueDoctorId}</p>
+                </div>
+               
+                <div className=" flex flex-row ms-7 gap-2 mt-">
+                  <p className=" mt-[7px]">
+                    <FaMapMarkerAlt size="15px" color="red" />
+                  </p>
+                  <p className=" font-medium text-[#535252]  "> {update.address.locality}</p>
+                </div>
+                {/* <span className="font-medium ">City : </span>
+                {update.address.city} */}
               </p>
               <span
-                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2"
-                style={{ backgroundColor: "#03229F" }}
+                className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}
+                
                 onClick={() => handleMe(update)}
               >
                 View...
