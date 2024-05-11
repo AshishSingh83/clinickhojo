@@ -132,7 +132,6 @@ export default function Login() {
           password: loginPasswordVal,
         });
         if (response.data.user){
-          console.log(response.data);
           const dataa = {
             userName: loginEmailVal,
             password: loginPasswordVal,
@@ -140,8 +139,6 @@ export default function Login() {
           };
           const currentTime = new Date().getTime();
           const newTime = currentTime + (10 * 1000);
-          console.log(newTime);
-          console.log('not calleddddd');
           saveDataToLocalStorage('myData', { dataa, expiry: newTime });
           setMessage("");
           navigate("../AdminHome");
