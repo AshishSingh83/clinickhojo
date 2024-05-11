@@ -126,11 +126,13 @@ export default function Login() {
   const authenticateUser = async()=>{
     console.log('called',loginEmailVal,loginPasswordVal);
     if (emailLabel == "Username" || data?.dataa?.label === "Username"){
+      console.log('1');
       try{
         const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
           password: loginPasswordVal,
         });
+        console.log('2');
         if (response.data.user){
           const dataa = {
             userName: loginEmailVal,
@@ -144,11 +146,12 @@ export default function Login() {
           navigate("../AdminHome");
         }
       } catch (error) {
+        console.log('hereee');
         console.error("Error fetching data:", error.response.status);
         if (error.response.status == 404) {
           setMessage("User Not Found .....");
         } else {
-          setEmailLabel("Internal Server Error");
+          setMessage("Internal Server Error");
         }
       }
     } else {
