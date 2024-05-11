@@ -99,7 +99,6 @@ export default function NewLogin() {
   
   const authenticateUser = async()=>{
     console.log('called',loginEmailVal,loginPasswordVal);
-    if (emailLabel == "Username" || data?.dataa?.label === "Username"){
       try{
         const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
@@ -128,9 +127,7 @@ export default function NewLogin() {
           setEmailLabel("Internal Server Error");
         }
       }
-    } else {
-      //navigate("../AdminHome");
-    }
+   
   };
 
   const handleSubAdminClick = () => {
@@ -149,34 +146,16 @@ export default function NewLogin() {
     <div>
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div className="-space-y-px">
-          {/* <Input
-            handleChange={handleChangeEmail}
-            value={loginEmailVal}
-            type="email"
-            placeholder="Username"
-            labelText={emailLabel}
-            labelFor="Email"
-            my1="my-5"
-            bg1="bg-[#FAEBEB]"
-          /> */}
+         
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
             type="email"
-            placeholder="Username"
+            placeholder="Email"
             my1="my-3"
             bg1="bg-[#FAEBEB]"
+            iconData="MdEmail"
           />
-          {/* <Input
-            handleChange={handleChangePassword}
-            value={loginPasswordVal}
-            type="password"
-            placeholder="Password"
-            labelText="Enter Password"
-            labelFor="Password"
-            my1="my-5"
-            bg1="bg-[#FAEBEB]"
-          /> */}
           <InputWithIcon
             handleChange={handleChangePassword}
             value={loginPasswordVal}
@@ -186,6 +165,7 @@ export default function NewLogin() {
             labelFor="Password"
             // my1="my-0"
             bg1="bg-[#FAEBEB]"
+            iconData="FiKey"
           />
         </div>
         <a href="#" onClick={handleMe} className=" ms-64 text-[#E1E0E0] hover:text-blue-300">

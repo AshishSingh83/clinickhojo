@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
-
+import { MdEmail } from 'react-icons/md';
+import { FiKey } from 'react-icons/fi';
 const InputWithIcon = ({
     handleChange,
     value,
@@ -8,9 +9,11 @@ const InputWithIcon = ({
     isRequired = true,
     placeholder,
     my1,
-    bg1
+    bg1,
+    iconData,
   }) => {
     const inputClass = "w-full py-2 pl-10 pr-3 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none text-black"
+    const IconComponent = eval(iconData);
   return (
     <div className="relative p-2">
       <input
@@ -21,7 +24,9 @@ const InputWithIcon = ({
         className={`${inputClass} ${bg1} ${my1}`}
         placeholder={placeholder}
       />
-      <FaUser className="h-6 w-6 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 ps-2 " />
+      <IconComponent 
+      className="h-6 w-6 absolute left-3 top-1/2
+       transform -translate-y-1/2 text-gray-400 ps-2 " />
     </div>
   );
 };
