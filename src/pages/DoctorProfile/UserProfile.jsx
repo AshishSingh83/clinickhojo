@@ -36,7 +36,7 @@ function UserProfile() {
     <div className="flex flex-row justify-between h-screen w-screen bg-white">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={{'index':5}}/>
         </div>
         <div>
           <FiLogOut

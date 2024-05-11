@@ -33,6 +33,8 @@ import MHomeC from "./pages/ManageMent/MHomeC.jsx/MHomeC.jsx";
 import UserProfile from "./pages/DoctorProfile/UserProfile.jsx";
 import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.jsx";
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
+import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
+
 
 let persistor = persistStore(store);
 
@@ -54,10 +56,13 @@ const router = createBrowserRouter(
       <Route path="ViewProfileMain" element={<ViewProfileMain />} />
       <Route path="VerifiedClinic" element={<VerifiedClinic />} />
       <Route path="VerifiedDoctorProfile" element={<VerifiedDoctorProfile />} />
+  
 
       <Route path="AllInOne" element={<AllInOne />} />
       <Route path="MHomeC" element={<MHomeC />} />
       <Route path="UserProfile" element={<UserProfile />} />
+      <Route path="MainAdminLogin" element={<MainAdminLogin />} />
+     
 
       <Route path="SubAdminMainProfile" element={<SubAdminMainProfile />} />
       <Route path="SubAdminEdit" element={<SubAdminEdit />} />

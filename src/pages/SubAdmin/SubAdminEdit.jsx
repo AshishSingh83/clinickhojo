@@ -21,8 +21,8 @@ function SubAdminEdit() {
       </div>
       <div className=" flex flex-col ">
         <div className=" flex flex-row ms-14 mt-5 gap-64">
-          <div className="bg-[#D9D9D9] h-14 w-48 mt-3 ms-[-220px] ">
-            <p className="text-black mt-4 ms-7 ">User Management</p>
+          <div className="bg-[#FF0B0B] h-14 w-48 mt-3 ms-[-220px] ">
+            <p className="text-white mt-4 ms-7 ">User Management</p>
           </div>
 
           <div className="bg-[#D9D9D9] h-14 w-48 mt-3 ms-[-220px] ">

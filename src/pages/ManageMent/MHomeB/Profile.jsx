@@ -8,8 +8,8 @@ function Profile({
   bool,
 }) {
   return (
-    <div className={` flex flex-row gap-6`}>
-      <div className=" w-20 h-20 bg-white flex justify-center items-center ">
+    <div className={` flex flex-row gap-6 text-white`}>
+      <div className=" w-20 h-20 bg-[#0529BB] flex justify-center items-center ">
         <img
           src={profileImage}
           alt="Placeholder"

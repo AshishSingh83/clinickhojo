@@ -44,7 +44,7 @@ function ViewProfileMain() {
     <div className="flex flex-row justify-between  w-screen bg-white">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={{'index':5}}/>
         </div>
         <div>
           <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />

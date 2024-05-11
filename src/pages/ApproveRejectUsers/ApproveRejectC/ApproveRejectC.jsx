@@ -46,9 +46,10 @@ function ApproveRejectC() {
     const savedDataString = localStorage.getItem(`${uniqueDoctorId}b`);
     if (savedDataString != "ashish") {
       const savedData = JSON.parse(savedDataString);
+      const aaa = JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`));
       setFormDataC({
-        ...JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)),
         ...savedData,
+        ...JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)),
       });
     } else {
       setFormDataC(JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)));
@@ -161,7 +162,7 @@ function ApproveRejectC() {
               style={{ backgroundColor: "#c2c0bc" }}
             >
               <div className="me-7">
-                <Sidebar />
+                <Sidebar someData={{ index: 2 }} />
               </div>
               <div>
                 <FiLogOut
@@ -170,23 +171,32 @@ function ApproveRejectC() {
                 />
               </div>
             </div>
-            <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
+            <div className=" flex flex-col gap-9">
+            <div className="text-black  font-medium text-3xl flex justify-center items-center  me-[600px]">
               No clinic is available.
+            </div>
+              <div className=" ">
+                <Buttons
+                  bg="bg-white"
+                  handleSubmita={() => handleSubmit(true)}
+                  handleSubmitb={() => handleSubmit(false)}
+                />
+              </div>
             </div>
           </div>
         ) : (
           response && (
             <>
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen "
-                style={{ backgroundColor: "white" }}
+                className="flex flex-row justify-between max-h-[1500px] w-screen ms-44 "
+                style={{ backgroundColor: "#0529BB" }}
               >
                 <div
                   className=" bg-white flex flex-col justify-between"
                   style={{ backgroundColor: "#c2c0bc" }}
                 >
                   <div className="me-7">
-                    <Sidebar />
+                    <Sidebar someData={{ index: 2 }} />
                   </div>
                   <div>
                     <FiLogOut
@@ -289,9 +299,9 @@ function ApproveRejectC() {
                           radioData={formDataC.HospitalPhotos}
                         />
 
-                        <div className=" mt-28 ms-44">
+                        <div className=" mt-28 ms-44 bg-[#0529BB]">
                           <Buttons
-                            bg="bg-white"
+                            bg="bg-[#0529BB]"
                             handleSubmita={() => handleSubmit(true)}
                             handleSubmitb={() => handleSubmit(false)}
                           />

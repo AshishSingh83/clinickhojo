@@ -7,7 +7,7 @@ function Lists() {
   <div className="flex flex-wrap   w-[550px] h-[400px] gap-8 mt-28">
     {constant.map((field, index) => (
       <div
-        className="max-w-sm w-64 rounded overflow-hidden shadow-lg h-40 bg-[#D9D9D9] hover:opacity-75 cursor-pointer"
+        className="max-w-sm w-64 rounded-lg overflow-hidden shadow-lg h-40 bg-[#FFFFFF] hover:opacity-75 cursor-pointer"
         key={index}
       >
       <Link to={field.path}>

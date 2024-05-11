@@ -53,14 +53,25 @@ const Demo = ({
   );
 
   return (
-    <div className={` ${Width} ${Height} bg-[#D9D9D9]  `}>
-      <div className={`bg-[#D9D9D9] mt-[-12px] text-black`}>
-        <h3 className={`${text1} font-medium ${p1} ${m1}  underline `}>
+    <div className={` ${Width} ${Height} bg-[#03229F]  `}>
+      <div className={`bg-[#FFFFFF] mt-[-12px] text-black`}>
+        <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
           {text}
         </h3>
 
         {sortedData.length === 0 ? "" : (
-          <div className="ms-6 flex flex-row">
+          <div className="ms-14 flex flex-row">
+          <div className="ms-16 w-64">
+              <Input
+                labelText="Search Profiles"
+                labelFor="searchProfiles"
+                type="text"
+                autoComplete="off"
+                placeholder="Search Profiles"
+                bg1="bg-[#F2EFEF]"
+                handleChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
             <div>
               <select
                 value={sortOption}
@@ -72,24 +83,14 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            <div className="ms-16 w-64">
-              <Input
-                labelText="Search Profiles"
-                labelFor="searchProfiles"
-                type="text"
-                autoComplete="off"
-                placeholder="Search Profiles"
-                bg1="bg-[#F2EFEF]"
-                handleChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
+            
           </div>
         )}
       </div>
       <div className={`overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-black  mt-44 text-2xl font-medium">
+            <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
               No data available
             </p>
           </div>
@@ -97,7 +98,7 @@ const Demo = ({
           filteredData.map((update, index) => (
             <div
               key={index}
-              className={`p-4 mb-4  bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer`}
+              className={`p-4 mb-4  bg-[#E7ECFF] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer`}
             >
               <p className="text-black font-semibold ">
                 <span className="font-bold ">{index + 1}. </span>
@@ -109,7 +110,7 @@ const Demo = ({
               </p>
               <span
                 className="inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2"
-                style={{ backgroundColor: "#4575f7" }}
+                style={{ backgroundColor: "#03229F" }}
                 onClick={() => handleMe(update)}
               >
                 View...

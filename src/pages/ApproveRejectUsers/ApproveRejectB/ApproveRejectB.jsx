@@ -45,7 +45,7 @@ function ApproveRejectB() {
   };
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${uniqueDoctorId}a`);
-    if (savedDataString != "ashish") {
+    if (savedDataString != "ashish"){
       const savedData = JSON.parse(savedDataString);
       setFormData(savedData);
     }
@@ -53,30 +53,32 @@ function ApproveRejectB() {
   useEffect(() => {
     localStorage.setItem(`${uniqueDoctorId}a`, JSON.stringify(formData));
   }, [formData]);
-
   const manageme = async () => {
     const ratingToUse = ratingg === "" ? rating : ratingg;
     dispatch(updateDoctorEmail(email));
     dispatch(updateUniqueClinicId(clinicUniqueId[0]));
     dispatch(updateUniqueDoctorId(uniqueDoctorId));
-    try {
-      await axios.post("api/admin/doctors/setRatings", {
-        doctorEmail: email,
-        rating: ratingToUse,
-      });
-      navigate("../ApproveRejectC");
-    } catch (e) {
-      console.log(e.message);
+    if (ratingg != "" && rating != ratingg){
+      try{
+        await axios.post("api/admin/doctors/setRatings", {
+          doctorEmail: email,
+          rating: ratingToUse,
+        });
+        navigate("../ApproveRejectC");
+      } catch (e) {
+        console.log(e.message);
+      }
     }
+    navigate("../ApproveRejectC");
   };
   return (
-    <div className="flex flex-row justify-between w-screen">
+    <div className="flex flex-row justify-between w-screen bg-[#0529BB] ">
       <div
-        className="bg-white flex flex-col justify-between"
+        className="bg-[#0529BB] flex flex-col justify-between"
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={{'index':2}}/>
         </div>
         <div>
           <FiLogOut
@@ -86,7 +88,7 @@ function ApproveRejectB() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-16 ms-24">
+      <div className="flex flex-row gap-16 ms-44">
         <div className="flex flex-col mt-5">
           <div className="flex flex-row justify-between">
             <div className="bg-[#D9D9D9] h-14 w-52">
@@ -135,7 +137,7 @@ function ApproveRejectB() {
             radioData={formData.doctorRegistration}
           />
         </div>
-        <div className="flex flex-row mt-[640px] me-10">
+        <div className="flex flex-row mt-[640px] me-10 ms-[-60px]">
           <div className="w-28">
             <Button
               text=" Next >> "
@@ -144,7 +146,7 @@ function ApproveRejectB() {
               handleSubmit={manageme}
             />
           </div>
-          <div className="w-32 mt-2">
+          <div className="w-32 mt-2 ms-[-10px]">
             <span className="text-black  font-medium">Clinic Detail</span>
           </div>
         </div>

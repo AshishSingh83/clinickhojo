@@ -86,7 +86,7 @@ const SubAdminProfileItem = ({ update, index }) => {
         {update.contactNumber}
       </p>
       <span
-        className="ms-32 rounded-md cursor-pointer h-9 px-7 py-1 text-sm  text-white mt-5 pt-2 bg-green-600"
+        className="ms-32 rounded-md cursor-pointer h-9 px-7 py-1 text-sm  text-white mt-5 pt-2 bg-[#0032FF]"
         onClick={handleEdit}
       >
         View / Edit Profile

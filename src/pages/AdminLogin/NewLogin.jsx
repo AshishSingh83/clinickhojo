@@ -7,8 +7,9 @@ import Button from "../../components/ui/Button";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import InputWithIcon from "../../components/ui/InputWithIcon";
 
-export default function Login() {
+export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
   const [emailLabel, setEmailLabel] = useState("Email Address");
@@ -79,15 +80,11 @@ export default function Login() {
     const savedData = getDataFromLocalStorage('myData');
     console.log('okaaaaa');
     if (savedData){
-      // console.log('save upar',savedData);
-      // setData(savedData);
-      // setExpiryTime(savedData.expiry);
       if(new Date().getTime() < savedData.expiry) {
               console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
               setLoginEmailVal(savedData.dataa.userName );
               setLoginPasswordVal(savedData.dataa.password);
               setLabel(savedData.dataa.label);
-              //authenticateUser()
               handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
       }else{
         console.log('data experied');
@@ -98,30 +95,7 @@ export default function Login() {
       
     }
   }, []);
-  // useEffect(() => {
-  //   console.log('hi',new Date().getTime(),data);
-  //     if (new Date().getTime() > expiryTime) {
-  //       console.log('upar nhi beta');
-  //       deleteDataFromLocalStorage('myData');
-  //       setData({
-  //         userName: '',
-  //         password: '',
-  //         label:'',
-  //       });
-  //       setExpiryTime(0);
-  //     }
-  //     else if(new Date().getTime() < expiryTime) {
-  //       console.log('yahan bhi kyun');
-  //       setLoginEmailVal(data.dataa.userName );
-  //       setLoginPasswordVal(data.dataa.password);
-  //       setLabel(data.dataa.label);
-  //       authenticateUser()
-  //     }
-  //     else{
-  //       console.log('nothing else');
-  //     }
   
-  // }, []);
   
   const authenticateUser = async()=>{
     console.log('called',loginEmailVal,loginPasswordVal);
@@ -172,28 +146,28 @@ export default function Login() {
     navigate("../EnterPassword")
    }
   return (
-    <div >
+    <div>
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div className=" flex flex-row gap-28 text-white text-xl">
-          <div>
-            <button onClick={handleSubAdminClick}>Subadmin Login</button>
-          </div>
-          <div>
-            <button onClick={handleSubAdminClickB}>Admin Login</button>
-          </div>
-        </div>
         <div className="-space-y-px">
-          <Input
+          {/* <Input
             handleChange={handleChangeEmail}
             value={loginEmailVal}
             type="email"
-            placeholder={emailLabel}
+            placeholder="Username"
             labelText={emailLabel}
             labelFor="Email"
             my1="my-5"
             bg1="bg-[#FAEBEB]"
+          /> */}
+          <InputWithIcon
+            handleChange={handleChangeEmail}
+            value={loginEmailVal}
+            type="email"
+            placeholder="Username"
+            my1="my-3"
+            bg1="bg-[#FAEBEB]"
           />
-          <Input
+          {/* <Input
             handleChange={handleChangePassword}
             value={loginPasswordVal}
             type="password"
@@ -202,16 +176,26 @@ export default function Login() {
             labelFor="Password"
             my1="my-5"
             bg1="bg-[#FAEBEB]"
+          /> */}
+          <InputWithIcon
+            handleChange={handleChangePassword}
+            value={loginPasswordVal}
+            type="password"
+            placeholder="Password"
+            labelText="Enter Password"
+            labelFor="Password"
+            // my1="my-0"
+            bg1="bg-[#FAEBEB]"
           />
         </div>
         <a href="#" onClick={handleMe} className=" ms-64 text-[#E1E0E0] hover:text-blue-300">
             Forgot password?
           </a>
         <div className=" text-red-500 ms-16">{message}</div>
-        <Button
-         handleSubmit={handleSubmit}
-          text="Login" 
-          bgColor="bg-[#FFFFFF]"
+        <Button 
+        handleSubmit={handleSubmit}
+         text="Login"
+         bgColor="bg-[#FFFFFF]"
          textColor="text-[#FA0808]"
          hoverColor = "hover:bg-blue-200"
           />

@@ -34,10 +34,13 @@ function MHomeB() {
   const handleRadioChange = (name, option) => {
     setFormData((prevData) => ({ ...prevData, [name]: option }));
   };
+
   const navigate = useNavigate();
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
+    console.log(ratingValue,ratingg);
   };
+  console.log('new rating',ratingg);
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${contactNumber}a`);
     if (savedDataString != "ashish") {
@@ -48,14 +51,14 @@ function MHomeB() {
   useEffect(() => {
     localStorage.setItem(`${contactNumber}a`, JSON.stringify(formData));
   }, [formData]);
-
   const manageme = async () => {
     const ratingToUse = ratingg === "" ? rating : ratingg;
     dispatch(updateManagementEmail(email));
     dispatch(updateManagementContactNumber(contactNumber));
     dispatch(updateManagementContactNumber(contactNumber));
-    if (ratingg != "" && rating != ratingg) {
-      try {
+    if (ratingg !== "" && rating !== ratingg){
+      console.log('mai andar kyun',rating,ratingToUse,ratingg);
+      try{
         await axios.post("api/admin/managementPersonnel/setRatings", {
           managementUniqueId: email,
           rating: ratingToUse,
@@ -74,7 +77,7 @@ function MHomeB() {
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={{'index':6}}/>
         </div>
         <div>
           <FiLogOut

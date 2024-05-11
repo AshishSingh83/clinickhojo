@@ -9,6 +9,9 @@ function ApproveReject() {
   const [pending, setPending] = useState([]);
   const [changed, setChanged] = useState([]);
   const [loading, setLoading] = useState(true);
+  const mydata = {
+    index:2 ,
+  }
   useEffect(() => {
     async function fetchData() {
       try {
@@ -30,10 +33,10 @@ function ApproveReject() {
     return <div className=" text-black  font-medium text-3xl">Loading...</div>;
   }
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-white">
+    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={mydata}/>
         </div>
         <div>
           <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
@@ -41,8 +44,8 @@ function ApproveReject() {
       </div>
       <div>
         <div className="   mt-14   flex flex-row justify-between ">
-         <div className=" bg-[#D9D9D9] h-14 w-52">
-         <p className=" text-black mt-4 ms-7  ">Approve/Reject User</p>
+         <div className=" bg-[#FF0B0B] h-14 w-52">
+         <p className=" text-white mt-4 ms-7  ">Approve/Reject User</p>
          </div>
          
         </div>
