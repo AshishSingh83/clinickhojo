@@ -138,7 +138,11 @@ function CreateSubAdminForm({ formDataa }) {
           />
 
           <div className="w-44 mt-9 ms-auto me-28 mb-">
-            <Button text="Save Profile" handleSubmit={createAdminButton} />
+            <Button 
+            text="Save Profile"
+            handleSubmit={createAdminButton}
+            bgColor="bg-[#229649]"
+             />
           </div>
         </div>
       </div>

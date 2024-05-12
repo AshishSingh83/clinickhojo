@@ -153,7 +153,6 @@ function ApproveRejectC() {
           <p>Loading...</p>
         </div>
       )}
-
       {!loading &&
         (noClinic ? (
           <div className="flex flex-row justify-between max-h-[1500px] w-screen">
@@ -218,9 +217,11 @@ function ApproveRejectC() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-row me-20  ">
+                  <div className="flex flex-row me-20 mt-6 bg-[#03229F]  ">
+
+
                     <div className="flex flex-col  ">
-                      <div className="m-10">
+                      <div className="m-11">
                         <Profile
                           fullName={response.name}
                           profileImage={response.profilePhoto}
@@ -229,6 +230,7 @@ function ApproveRejectC() {
                           bool={true}
                         />
                       </div>
+                     
                       <Hbasicdetail
                         BasicDetail={response}
                         onRadioChange={(option) =>
@@ -236,6 +238,7 @@ function ApproveRejectC() {
                         }
                         radioData={formDataC.HospitalBasicDetail}
                       />
+                      <hr/>
                       <AppoitmentFee
                         normalFee={normalFee}
                         setNormalFee={setNormalFee}
@@ -244,6 +247,7 @@ function ApproveRejectC() {
                         BasicDetail={response.ratings}
                         onRatingChange={handleRatingChange}
                       />
+                      <hr/>
 
                       <HregistartionDetail
                         BasicDetail={response.registration}
@@ -252,23 +256,30 @@ function ApproveRejectC() {
                         }
                         radioData={formDataC.HospitalRegistration}
                       />
+                      <hr/>
                       <WrongInfo data={formDataC} />
+                     
+
                       <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-12">
-                        <div className="h-[130px] ">
+                        <div className="h-[130px] border-zinc-100 ">
                           <textarea
                             id="inputTextArea"
                             name="remark"
-                            className=" placeholder-black w-full h-full p-2 resize-none bg-[#a9a9ab]"
+                            className=" placeholder-white w-full h-full p-2 resize-none bg-[#335af2] text-white border-white" 
                             placeholder="Add Remark..."
-                            style={{ color: "black" }}
+                            style={{ color: "white",borderColor: "white"  }}
                             value={formData.remark}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
+
+
                     </div>
 
-                    <div className=" me-5 flex flex-col gap-4 mt-20 ">
+
+
+                    <div className=" me-5 flex flex-col gap-4 mt-[157px] ">
                       <div className=" flex flex-row gap-2 ms-[-20px]  ">
                         <div>
                           <Address
@@ -289,7 +300,7 @@ function ApproveRejectC() {
                           />
                         </div>
                       </div>
-
+                      <hr/>
                       <div className=" ms-[-20px]">
                         <Photos
                           onRadioChange={(option) =>
@@ -297,17 +308,23 @@ function ApproveRejectC() {
                           }
                           radioData={formDataC.HospitalPhotos}
                         />
+                        <hr/>
+                      </div>
 
-                        <div className=" mt-28 ms-44 bg-[#0529BB]">
+
+
+                    </div>
+
+                  </div>
+
+
+                  <div className=" mt-5 mb-5 ms-80 bg-[#0529BB]">
                           <Buttons
                             bg="bg-[#0529BB]"
                             handleSubmita={() => handleSubmit(true)}
                             handleSubmitb={() => handleSubmit(false)}
                           />
                         </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </>

@@ -14,8 +14,7 @@ function CreateSubAdmin() {
   }, []);
   return (
     <div
-      className="flex flex-row justify-between h-screen w-screen "
-      style={{ backgroundColor: "white" }}
+      className="flex flex-row justify-between h-screen w-screen bg-[#0529BB] "
     >
       <div
         className=" bg-white flex flex-col justify-between"
@@ -34,12 +33,12 @@ function CreateSubAdmin() {
 
       <div className=" flex flex-col">
         <div className=" flex flex-row ms-8 mt-5 gap-64">
-          <div className="bg-[#D9D9D9] h-14 w-48 mt-3 ms-[-300px] ">
-            <p className="text-black mt-4 ms-7 ">User Management</p>
+          <div className="bg-[#D9D9D9] h-12 w-48 mt-3 ms-[-300px] ">
+            <p className="text-black mt-3 ms-7 ">User Management</p>
           </div>
 
-          <div className="bg-[#D9D9D9] h-14 w-64 mt-3 ms-[-220px] ">
-            <p className="text-black mt-4 ms-7 ">
+          <div className="bg-[#229649] h-12 w-64 mt-3 ms-[-220px] rounded-2xl">
+            <p className="text-black mt-3 ms-7 ">
               Create Additional User Profile
             </p>
           </div>

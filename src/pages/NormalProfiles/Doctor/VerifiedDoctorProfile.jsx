@@ -53,13 +53,13 @@ function VerifiedDoctorProfile() {
     navigate("../VerifiedClinic");
   };
   return (
-    <div className="flex flex-row justify-between w-screen">
+    <div className="flex flex-row justify-between w-screen bg-[#0529BB]">
       <div
-        className="bg-white flex flex-col justify-between"
+        className="bg-[#0529BB] flex flex-col justify-between"
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar />
+          <Sidebar someData={{ index: 5 }}/>
         </div>
         <div>
           <FiLogOut
@@ -69,15 +69,21 @@ function VerifiedDoctorProfile() {
         </div>
       </div>
 
-      <div className="flex flex-row gap-16 ms-24">
-        <div className="flex flex-col mt-5">
+      {/* <div className="flex flex-row  "> */}
+
+
+        <div className="flex flex-col me-36   ">
+
+
           <div className="flex flex-row justify-between">
-            <div className="bg-[#D9D9D9] h-14 w-52">
-              <p className="text-black mt-4 ms-7 ">Approve/Reject User</p>
+            <div className="bg-[#FF0B0B] h-14 w-52">
+              <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
             </div>
           </div>
 
-          <div className=" m-8">
+          <div className="bg-[#03229F] mt-16 ">
+
+          <div className=" mb-7 ms-6 bg-[#03229F] mt-5">
             <Profile
               fullName={fullName}
               profileImage={profileImage}
@@ -86,19 +92,32 @@ function VerifiedDoctorProfile() {
               bool={true}
             />
           </div>
+
+          <div className=" flex flex-row gap-24">
+
+          <div className=" flex flex-col">
           <BasicDetails
             BasicDetail={update}
             onRatingChange={handleRatingChange}
           />
-
+          <hr/>
           <IdentityProof BasicDetail={update.identityDetails} />
-        </div>
-        <div className="me-8 flex flex-col gap-4 mt-56">
+          </div>
+          <div className=" flex flex-col">
           <Educationdetail BasicDetail={update.education} />
+          <hr/>
           <RegistrationDetail BasicDetail={update.registration} />
-        </div>
-        <div className="flex flex-row mt-[640px] me-10">
-          <div className="w-28">
+          </div>
+
+          </div>
+
+          </div>
+
+         
+
+
+          <div className="flex flex-row mt-9 ms-80 mb-5 ">
+          <div className="">
             <Button
               text=" Next >> "
               bgColor="bg-[#24C70A]"
@@ -106,12 +125,20 @@ function VerifiedDoctorProfile() {
               handleSubmit={manageme}
             />
           </div>
-          <div className="w-32 mt-2">
-            <span className="text-black  font-medium">Clinic Detail</span>
+          <div className=" ">
+            <span className="text-white   text-3xl">Clinic Detail</span>
           </div>
         </div>
+
+          
+        </div>
+        {/* <div className="me-8 flex flex-col gap-4 mt-56">
+          <Educationdetail BasicDetail={update.education} />
+          <RegistrationDetail BasicDetail={update.registration} />
+        </div> */}
+        
       </div>
-    </div>
+    // </div>
   );
 }
 

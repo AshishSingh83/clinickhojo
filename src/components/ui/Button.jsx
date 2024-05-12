@@ -2,8 +2,8 @@ export default function Button({
   handleSubmit,
   text,
   minw,
-  bgColor = "bg-blue-800",
-  hoverColor = "hover:bg-blue-700",
+  bgColor = "bg-[#229649]",
+  hoverColor = "hover:bg-green-700",
   textColor="text-white"
 }) {
   return (

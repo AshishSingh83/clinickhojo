@@ -14,14 +14,14 @@ const IdentityProof = ({ BasicDetail }) => {
   };
 
   return (
-    <div className="bg-[#D9D9D9] w-[500px] h-[158px] mb-4 rounded-sm">
+    <div className="bg-[#03229F] w-[500px] h-[158px] mb-4 rounded-sm text-white">
       <div className="flex flex-row">
-        <h1 className="text-lg ms-5  text-black font-semibold mt-1">
+        <h1 className="text-lg ms-5   font-semibold mt-1">
           Identity Proof :
         </h1>
       </div>
       <div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           <div className="mt-3">
             <span className="font-sm p">Type of Id : </span>
             {BasicDetail.identityType || "null"}
@@ -35,8 +35,7 @@ const IdentityProof = ({ BasicDetail }) => {
 
           <div className="justify-end">
             <span
-              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#4575f7] `}
-              style={{ backgroundColor: "#4575f7" }}
+              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF] `}
               onClick={handleViewProofClick}
             >
               View Proof

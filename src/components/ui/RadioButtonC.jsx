@@ -38,18 +38,18 @@ function RadioButtonsC({ handleChange, selectedOption }) {
   ];
 
   return (
-    <div className="flex items-center justify-center bg-[#D9D9D9] text-black">
+    <div className="flex items-center justify-center bg-[#D9D9D9] text-black opacity-75">
       <div className='flex flex-row font-serif gap-'>
         
         {options.map(option => (
-          <div className="flex items-center mx-2" key={option.value}>
+          <div className="flex items-center mx-2 bg-[#D9D9D9]" key={option.value}>
             <input
               type="radio"
               id={option.value}
               value={option.value}
               checked={selectedOption === option.value}
               onChange={handleChange} // Pass the handleChange function
-              className="mr-2"
+              className="mr-2 "
             />
             <label htmlFor={option.value}>{option.label}</label>
           </div>

@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import FormExtra from "./FormExtra";
 import Input from "../../components/ui/Input";
@@ -15,11 +13,11 @@ export default function Login() {
   const [message, setMessage] = useState("");
   const [expiryTime, setExpiryTime] = useState(0);
   const [data, setData] = useState({
-    userName: '',
-    password: '',
-    label:'',
+    userName: "",
+    password: "",
+    label: "",
   });
-  const [label,setLabel] = useState('');
+  const [label, setLabel] = useState("");
   const navigate = useNavigate();
   const saveDataToLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
@@ -48,21 +46,23 @@ export default function Login() {
     e.preventDefault();
     authenticateUser();
   };
-  const handleAutoLogin = async(a,b)=>{
-    try{
+  const handleAutoLogin = async (a, b) => {
+    try {
       const response = await axios.post("api/admin/login/subAdmin", {
         userName: a,
         password: b,
       });
-      if (response.data.user){
-        const dataa={
+      if (response.data.user) {
+        console.log(response.data);
+       
+        const dataa = {
           userName: a,
           password: b,
           label: "Username",
         };
         const currentTime = new Date().getTime();
-        const newTime = currentTime + (100 * 1000);
-        saveDataToLocalStorage('myData', { dataa, expiry: newTime });
+        const newTime = currentTime + 100 * 1000;
+        saveDataToLocalStorage("myData", { dataa, expiry: newTime });
         setMessage("");
         navigate("../AdminHome");
       }
@@ -74,10 +74,10 @@ export default function Login() {
         setEmailLabel("Internal Server Error");
       }
     }
-  }
-    useEffect(() => {
-    const savedData = getDataFromLocalStorage('SubAdminToken');
-    if (savedData){
+  };
+  useEffect(() => {
+    const savedData = getDataFromLocalStorage("SubAdminToken");
+    if (savedData) {
       //send token to backend and verify
       // if(new Date().getTime() < savedData.expiry) {
       //         console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
@@ -91,44 +91,74 @@ export default function Login() {
       //   deleteDataFromLocalStorage('myData');
       //   setLoginEmailVal('');
       //   setLoginPasswordVal('');
-      // } 
-      console.log(savedData);
-      navigate('../AdminHome')
-    }
-  }, []);
- 
-  
-  const authenticateUser = async()=>{
-      try{
-        const response = await axios.post("api/admin/login/subAdmin", {
-          userName: loginEmailVal,
-          password: loginPasswordVal,
-        });
-        const accessToken = response.data.token ;
-        const secretKey = "CLINICKHOJO_ADMIN_LOGIN"
-        saveDataToLocalStorage('SubAdminToken', accessToken);
-        navigate("../AdminHome");
-        // if (response.data.user){
-        //   const dataa = {
-        //     userName: loginEmailVal,
-        //     password: loginPasswordVal,
-        //     label: "Username",
-        //   };
-        //   const currentTime = new Date().getTime();
-        //   const newTime = currentTime + (100 * 1000);
-        //   saveDataToLocalStorage('myData', { dataa, expiry: newTime });
-        //   setMessage("");
-        //   navigate("../AdminHome");
-        // }
-      } catch (error) {
-        console.log('hereee');
-        console.error("Error fetching data:", error.response.status);
-        if (error.response.status == 404) {
-          setMessage("User Not Found .....");
-        } else {
-          setMessage("Internal Server Error");
+      // }
+      const verifyToken = async()=>{
+        try {
+          const response = await axios.post("api/admin/profile/subAdmin", {
+            headers: {
+              "authorization ": savedData,
+            },
+          });
+          console.log(response.data);
+          saveDataToLocalStorage("SubAdminToken", response.data.token);
+          if(response.data){
+            navigate("../AdminHome");
+          }
+        } catch (e) {
+          console.log('e hai',e.message);
         }
       }
+      //  verifyToken()
+      console.log(savedData);
+      navigate("../AdminHome");
+    }
+  }, []);
+
+  const authenticateUser = async () => {
+    try {
+      const response = await axios.post("api/admin/login/subAdmin", {
+        userName: loginEmailVal,
+        password: loginPasswordVal,
+      });
+      const accessToken = response.data.token;
+      const secretKey = "CLINICKHOJO_ADMIN_LOGIN";
+      saveDataToLocalStorage("SubAdminToken", accessToken);
+      console.log(accessToken);
+      const customData = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjNmODM3OTczZjUwYWZmMTNiNmVhYjEiLCJpYXQiOjE3MTU0ODA3OTQsImV4cCI6MTcxNTczOTk5NH0.Y8fcQzRhKQsFGqj14ny8_fGnDptjdnt4OxNbKNCPzGU'
+      try {
+        const response = await axios.post("api/admin/profile/subAdmin", {
+          headers: {
+            "authorization ": accessToken,
+          },
+        });
+        console.log(response.data);
+      } catch (e) {
+        console.log('e hai',e.message);
+      }
+
+
+      navigate("../AdminHome");
+      // if (response.data.user){
+      //   const dataa = {
+      //     userName: loginEmailVal,
+      //     password: loginPasswordVal,
+      //     label: "Username",
+      //   };
+      //   const currentTime = new Date().getTime();
+      //   const newTime = currentTime + (100 * 1000);
+      //   saveDataToLocalStorage('myData', { dataa, expiry: newTime });
+      //   setMessage("");
+      //   navigate("../AdminHome");
+      // }
+    } catch (error) {
+      console.log("hereee");
+      console.error("Error fetching data:", error.response.status);
+      if (error.response.status == 404) {
+        setMessage("User Not Found .....");
+      } else {
+        setMessage("Internal Server Error");
+      }
+    }
   };
 
   const handleSubAdminClick = () => {
@@ -140,16 +170,15 @@ export default function Login() {
     setEmailLabel("Email Address");
     setMessage("");
   };
-  function handleMe(){
-    navigate("../EnterPassword")
-   }
-   function handleMea(){
-    navigate("../")
-   }
+  function handleMe() {
+    navigate("../EnterPassword");
+  }
+  function handleMea() {
+    navigate("../");
+  }
   return (
-    <div >
+    <div>
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        
         <div className="-space-y-px">
           <InputWithIcon
             handleChange={handleChangeEmail}
@@ -175,21 +204,29 @@ export default function Login() {
           />
         </div>
         <div className="text-sm  flex flex-row justify-between  ">
-          <a href="#" onClick={handleMea} className="font-medium text-[#E1E0E0] hover:text-blue-300">
+          <a
+            href="#"
+            onClick={handleMea}
+            className="font-medium text-[#E1E0E0] hover:text-blue-300"
+          >
             Admin Login
           </a>
-          <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
+          <a
+            href="#"
+            onClick={handleMe}
+            className="font-medium text-[#E1E0E0] hover:text-blue-300"
+          >
             Forgot password?
           </a>
         </div>
         <div className=" text-red-500 ms-16">{message}</div>
         <Button
-         handleSubmit={handleSubmit}
-          text="Login" 
+          handleSubmit={handleSubmit}
+          text="Login"
           bgColor="bg-[#FFFFFF]"
-         textColor="text-[#FA0808]"
-         hoverColor = "hover:bg-blue-200"
-          />
+          textColor="text-[#FA0808]"
+          hoverColor="hover:bg-blue-200"
+        />
       </form>
     </div>
   );

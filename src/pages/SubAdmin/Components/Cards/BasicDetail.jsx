@@ -53,13 +53,13 @@ const BasicDetail = ({ data }) => {
   };
   return (
     <>
-      <div className="bg-[#D9D9D9] w-[450px] h-[430px] mb-4 rounded-sm">
+      <div className="bg-[#03229F] w-[500px] h-[430px] mb-4 rounded-sm text-white">
         <div className="p-1">
-          <h1 className="text-lg ms-5 m-1  text-black font-semibold">
+          <h1 className="text-lg ms-5 m-1   font-semibold">
             Basic Details :
           </h1>
         </div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           <DetailItem label="Full Name" value={data.fullName} />
           <DetailItem label="Contact Number" value={data.contactNumber} />
           <DetailItem label="Email Id" value={data.email} />
@@ -73,9 +73,9 @@ const BasicDetail = ({ data }) => {
             value={data.assignedUserPassword}
           />
         </div>
-        <div className="mt-6 ms-14 bg-[#D9D9D9]">
+        <div className="mt-6 ms-14 bg-[#03229F]">
           <Buttons
-            bg="bg-[#D9D9D9]"
+            bg="bg-[#03229F]"
             texta="Edit Profile"
             textb="Delete Profile"
             handleSubmita={handleSubmitaa}

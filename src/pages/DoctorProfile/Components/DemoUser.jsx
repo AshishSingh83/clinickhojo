@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateUserData } from "../../../data/features/registerSlice";
 import Input from "../../../components/ui/Input";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
+import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 
 const DemoUser = ({
   text = "All Users ...",
@@ -97,8 +98,14 @@ const DemoUser = ({
               <p className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
                 Name: {user.name} <br />
-                Mobile No. : {user.mobileNumber} <br />
-                Email : {user.email}
+                <div className=" flex flex-row ms-3 gap-3">
+                <AiOutlinePhone size="25px" color="green" /> <p className="text-[#535252]">{user.mobileNumber}</p> 
+                </div>
+
+                <div className=" flex flex-row ms-3 gap-3">
+                <AiOutlineMail size="25px" color="red" /> <p className="text-[#535252]">{user.email}</p> 
+                </div>
+                
               </p>
               <span
                 className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 text-sm text-white mt-5 pt-2"

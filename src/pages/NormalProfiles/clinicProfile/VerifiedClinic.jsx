@@ -121,7 +121,7 @@ function VerifiedClinic() {
               style={{ backgroundColor: "#c2c0bc" }}
             >
               <div className="me-7">
-                <Sidebar />
+                <Sidebar someData={{ index: 5 }}/>
               </div>
               <div>
                 <FiLogOut
@@ -146,7 +146,7 @@ function VerifiedClinic() {
                   style={{ backgroundColor: "#c2c0bc" }}
                 >
                   <div className="me-7">
-                    <Sidebar />
+                    <Sidebar someData={{ index: 5 }}/>
                   </div>
                   <div>
                     <FiLogOut

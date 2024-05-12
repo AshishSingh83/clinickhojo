@@ -25,11 +25,11 @@ const HregistartionDetail = React.memo(
     };
     return (
       <div
-        className="bg-[#D9D9D9] w-[437px] h-[180px] mb-4 rounded-sm"
+        className="bg-[#03229F] w-[437px] h-[180px] mb-4 rounded-sm text-white"
         style={{ width: `${BasicDetail.boxWidth}` }}
       >
         <div className="flex flex-row">
-          <h1 className="text-lg ms-4  text-black font-semibold">
+          <h1 className="text-lg ms-4   font-semibold">
             Registration Detail :
           </h1>
           <div className="mt-1 ms-3">
@@ -40,7 +40,7 @@ const HregistartionDetail = React.memo(
           </div>
         </div>
         <div>
-          <div className="text-black font-medium  ms-2 mb-5">
+          <div className=" font-medium  ms-2 mb-5 opacity-75">
             <div className="mt-3">
               <span className="font-sm p">Registration Number: </span>
               {BasicDetail.registrationNumber || "null"}
@@ -58,7 +58,7 @@ const HregistartionDetail = React.memo(
             </div>
             <div className="justify-end">
               <span
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#4575f7] `}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF] `}
                 onClick={handleViewProofClick}
               >
                 View Proof

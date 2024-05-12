@@ -27,20 +27,26 @@ function SubAdminMainProfile() {
 
       <div className="flex flex-col me-56 gap-16 mt-12 ">
         <div className="   flex flex-row justify-between">
-          <div className="bg-[#FF0B0B] h-12 w-48 mt-3 ms-[-100px]  ">
+          <div className="bg-[#FF0B0B] h-12 w-48  ms-[200px]  ">
             <p className="text-white mt-3 ms-7 mb-3 ">User Management</p>
           </div>
           <div
-            className="  rounded-md cursor-pointer px-7 py-1  text-sm   text-white mt-5 pt-4 pb-3 bg-[#229649]
+            className=" h-12 px-7 rounded-3xl cursor-pointer  text-sm   text-white bg-[#229649] flex items-center text-opacity-75 me-20
           "
             onClick={handleMe}
           >
             Create Additional User Profile
           </div>
         </div>
-        <div className=" me-16">
+
+
+
+        <div className=" me-16 bg-[#0529BB]">
           <SubAdminProfile />
         </div>
+
+
+
       </div>
     </div>
   );

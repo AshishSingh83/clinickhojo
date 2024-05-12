@@ -8,16 +8,16 @@ const Educationdetail = ({ BasicDetail }) => {
   };
   const renderDetails =
     BasicDetail.length === 0 ? (
-      <div className="flex justify-center items-center h-[200px]">
-        <p className=" text-xl  text-black">No education details available</p>
+      <div className="flex justify-center items-center h-[200px] bg-[#03229F] text-white">
+        <p className=" text-xl  ">No education details available</p>
       </div>
     ) : BasicDetail.length === 1 ? (
-      <div className=" h-[240px] items-center    ">
+      <div className=" h-[240px] items-center bg-[#03229F] opacity-75   ">
         <div
           key={BasicDetail[0].degreeName}
-          className="bg-[#FDFAFA] w-[420px] h-[185px] mb-4 rounded-sm ms-3 mt-14  "
+          className="bg-[#03229F] w-[420px] h-[185px] mb-4 rounded-sm ms-3 mt-14  "
         >
-          <div className="text-black font-medium  ms-2 mb-5 bg-[#FDFAFA] ">
+          <div className=" font-medium  ms-2 mb-5 bg-[#03229F] ">
             <div className="mt-1">
               <span className="font-sm">College:</span>{" "}
               {BasicDetail[0].collegeName}
@@ -45,8 +45,7 @@ const Educationdetail = ({ BasicDetail }) => {
             </div>
             <div>
               <span
-                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2"
-                style={{ backgroundColor: "#4575f7" }}
+                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF]"
                 onClick={() =>
                   handleViewProofClick(BasicDetail[0].certificates[0])
                 }
@@ -61,9 +60,9 @@ const Educationdetail = ({ BasicDetail }) => {
       BasicDetail.map((update) => (
         <div
           key={update.degreeName}
-          className="bg-[#FDFAFA] w-[420px] h-[185px] mb-4 rounded-sm ms-3"
+          className="bg-[#03229F] w-[420px] h-[185px] mb-4 rounded-sm ms-3 opacity-75"
         >
-          <div className="text-black font-medium  ms-2 mb-5 bg-[#FDFAFA]">
+          <div className=" font-medium  ms-2 mb-5 bg-[#03229F]">
             <div className="mt-1">
               <span className="font-sm">College:</span> {update.collegeName}
               <br />
@@ -87,8 +86,8 @@ const Educationdetail = ({ BasicDetail }) => {
             </div>
             <div>
               <span
-                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2"
-                style={{ backgroundColor: "#4575f7" }}
+                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF]"
+                style={{ backgroundColor: "#03229F" }}
                 onClick={() => handleViewProofClick(update.certificates[0])}
               >
                 View Proof
@@ -100,11 +99,11 @@ const Educationdetail = ({ BasicDetail }) => {
     );
 
   return (
-    <div style={{ backgroundColor: "#D9D9D9", width: "450px" }}>
-      <div className="bg-[#b187e0] mt-[-12px] rounded-md flex flex-row gap-14">
-        <h2 className="text-lg p-2  font-medium">Education Details</h2>
+    <div style={{ backgroundColor: "03229F", width: "450px" }}>
+      <div className="bg-[#03229F] mt-[-12px] rounded-md flex flex-row gap-14">
+        <h2 className="text-lg p-2 font-semibold">Education Details :</h2>
       </div>
-      <div style={{ overflow: "auto", maxHeight: "425px" }}>
+      <div style={{ overflow: "auto", maxHeight: "425px" }} className=" bg-[#03229F]">
         {renderDetails}
       </div>
     </div>

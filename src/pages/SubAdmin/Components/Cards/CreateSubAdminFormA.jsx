@@ -7,9 +7,9 @@ import RadioButtonsC from "../../../../components/ui/RadioButtonC";
 
 function FormGroup({ label, placeholder, type = "text", value, onChange }) {
   return (
-    <div className="flex flex-row mt-2 p-2 ">
+    <div className="flex flex-row mt-2 p-2 opacity-80 ">
       <label
-        className="block text-black text-xl font-medium mt-1  ms-6"
+        className="block  text-xl font-medium mt-1  ms-6"
         htmlFor={placeholder}
       >
         {label} :
@@ -21,7 +21,7 @@ function FormGroup({ label, placeholder, type = "text", value, onChange }) {
             type="date"
             value={value}
             onChange={onChange}
-            className="rounded-md appearance-none relative block w-full px-3 py-2 border border-blue-600 placeholder-black text-black focus:outline-none focus:ring-blue-700 focus:border-blue-700 focus:z-10 sm:text-sm bg-[#D9D9D9]"
+            className="rounded-md appearance-none bg-[#F2EFEF] relative block w-full px-3 py-2 border border-blue-600 placeholder-black  focus:outline-none focus:ring-blue-700 focus:border-blue-700 focus:z-10 sm:text-sm text-black "
           />
         ) : (
           <Input
@@ -93,16 +93,16 @@ function CreateSubAdminFormA({ formDataa }) {
   };
 
   return (
-    <div className="bg-[#D9D9D9] w-[750px] h-[610px] rounded-sm flex justify-center items-center">
+    <div className="bg-[#03229F] w-[750px] h-[610px] rounded-sm flex justify-center items-center text-white">
       <div>
         <div className="p-1">
-          <h1 className="text-lg ms-5 m-1  text-black font-medium underline shadow-sm">
+          <h1 className="text-lg ms-5 m-1   font-medium underline shadow-sm">
             Create SubAdmin Profile :
           </h1>
         </div>
 
         <div className="w-[750px]">
-          <div className="bg-[#D9D9D9] rounded">
+          <div className=" rounded">
             <FormGroup
               label="Full Name"
               placeholder="Full Name"
@@ -123,12 +123,12 @@ function CreateSubAdminFormA({ formDataa }) {
             />
             <div
               label="Gender "
-              className=" bg-[#D9D9D9] flex flex-row gap-48 m-3"
+              className="  flex flex-row gap-48 m-3"
             >
-              <div className=" text-black text-xl font-medium   ms-3">
-                <p>Gender :</p>
+              <div className="  text-xl font-medium   ms-3">
+                <p className=" opacity-75 ms-2">Gender :</p>
               </div>
-              <div className="bg-[#D9D9D9]">
+              <div className=" ms-1">
                 <RadioButtonsC
                   handleChange={handleChange}
                   selectedOption={selectedOption}
@@ -162,8 +162,12 @@ function CreateSubAdminFormA({ formDataa }) {
               onChange={(e) => setAssignedUserPassword(e.target.value)}
             />
 
-            <div className="w-44 mt-6 ms-auto me-28 mb-2">
-              <Button text="Save Profile" handleSubmit={createAdminButton} />
+            <div className="w-44 mt-6 ms-auto me-28 mb-2 ]">
+              <Button 
+              text="Save Profile" 
+              handleSubmit={createAdminButton}
+              bg="bg-[#229649]"
+               />
             </div>
           </div>
         </div>
