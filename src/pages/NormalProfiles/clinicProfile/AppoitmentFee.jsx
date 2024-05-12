@@ -24,14 +24,14 @@ const AppoitmentFee = ({
     setEmergencyFee(emergencyFee);
   }, []);
   return (
-    <div className=" bg-[#D9D9D9] w-[435px] h-[185] mb-4 rounded-sm">
+    <div className=" bg-[#03229F] w-[435px] h-[185] mb-4 rounded-sm">
       <div>
-        <h1 className=" text-lg ms-5 m-2   text-black font-semibold ">
+        <h1 className=" text-lg ms-5 m-2    font-semibold ">
           Appoitment Fee Detail :
         </h1>
       </div>
       <div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           <div className="mt-3 flex flex-row">
             <span className=" font-sm   ">
               Normal Appointment Booking Fee : Rs.

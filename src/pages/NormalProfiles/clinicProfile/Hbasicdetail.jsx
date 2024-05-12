@@ -38,14 +38,14 @@ const Hbasicdetail = ({ BasicDetail }) => {
     { "Clinic Description": `${BasicDetail.description}` },
   ];
   return (
-    <div className="bg-[#D9D9D9] w-[435px] min-h-[310px]  mb-4 rounded-sm">
+    <div className="bg-[#03229F] w-[435px] min-h-[310px]  mb-4 rounded-sm">
       <div className="flex flex-row">
-        <h1 className="text-lg ms-5 m-1  text-black font-semibold">
+        <h1 className="text-lg ms-5 m-1   font-semibold">
           Basic Details :
         </h1>
       </div>
       <div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           {renderDetails(Hbasicdetailconst)}
         </div>
       </div>

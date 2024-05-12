@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 const Address = ({ addData }) => {
   const [hAddressOption, setHAddressOption] = useState("");
   return (
-    <div className=" bg-[#D9D9D9] w-[430px] h-[310px] mb-4 rounded-sm">
+    <div className=" bg-[#03229F] w-[380px] h-[310px] mb-4 rounded-sm">
       <div className=" flex flex-row ">
-        <h1 className=" text-lg ms-5 m-2   text-black font-semibold ">
+        <h1 className=" text-lg ms-5 m-2    font-semibold ">
           Address :
         </h1>
       </div>
       <div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           <div className="mt-3">
             <span className=" font-sm p  ">Street : </span>
             {addData.streetAddress}

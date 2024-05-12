@@ -2,15 +2,15 @@ import React from "react";
 
 const SessionTimings = ({ SessionTimings }) => {
   return (
-    <div className=" bg-[#D9D9D9] w-[420px] h-[310px] mb-4 rounded-sm">
+    <div className=" bg-[#03229F] w-[390px] h-[310px] mb-4 rounded-sm">
       <div className="flex flex-row ">
-        <h1 className="text-lg ms-2 m-1   text-black font-semibold ">
+        <h1 className="text-lg ms-2 m-1    font-semibold ">
           Session Timings :
         </h1>
       </div>
 
       <div>
-        <div className="text-black font-medium   mb-5">
+        <div className=" font-medium   mb-5 opacity-75">
           {SessionTimings.map((day) => (
             <div key={day._id}>
               <div className="mt-3">

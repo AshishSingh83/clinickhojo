@@ -59,7 +59,7 @@ function BroadCastMessage() {
   };
 
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-white">
+    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
           <Sidebar someData={{'index':3}}/>
@@ -71,10 +71,10 @@ function BroadCastMessage() {
           />
         </div>
       </div>
-      <div className=" mt-40 me-96">
+      <div className=" mt-40 me-96 bg-[#03229F] h-[450px]">
         <div>
-          <div className="flex  bg-white text-black">
-            <div className="flex flex-row text-xl  gap-2 bg-[#D9D9D9] p-3 mb-10">
+          <div className="flex  bg-[#03229F] text-black">
+            <div className="flex flex-row text-xl   bg-[#D9D9D9] p-3 mb-10">
               <div className="">
                 <span>Send Broadcast Message to :</span>
               </div>
@@ -99,9 +99,9 @@ function BroadCastMessage() {
             <textarea
               id="inputTextArea"
               name="remark"
-              className=" placeholder-black w-full h-full p-2 resize-none bg-[#D9D9D9] "
+              className=" placeholder-white w-full h-full p-2 resize-none bg-[#03229F] "
               placeholder="Draft Your Message"
-              style={{ color: "black" }}
+              style={{ color: "white", borderColor:'white' }}
               value={formData.remark}
               onChange={handleChangeTextArea}
             />

@@ -115,7 +115,7 @@ function ApproveRejectC() {
     if (choose) {
       if (1) {
         try {
-          const response = await axios.put("api/admin/approveDoctors", {
+          const response = await axios.put("api/admin/approveDoctors",{
             doctorsUniqueId: uniqueDoctorId,
             approvedBy: "Rahul123",
             isApproved: approved,
@@ -189,11 +189,12 @@ function ApproveRejectC() {
           response && (
             <>
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen ms-44 "
-                style={{ backgroundColor: "#0529BB" }}
+                className="flex flex-row justify-between max-h-[1500px] w-screen ms-44 bg-[#0529BB] "
+                
               >
+
                 <div
-                  className=" bg-white flex flex-col justify-between"
+                  className=" bg-[#03229F] flex flex-col justify-between"
                   style={{ backgroundColor: "#c2c0bc" }}
                 >
                   <div className="me-7">
@@ -206,6 +207,7 @@ function ApproveRejectC() {
                     />
                   </div>
                 </div>
+
                 <div className=" flex flex-col">
                   <div className="      flex flex-row justify-between ms-14 mt-5 ">
                     <div className=" bg-[#FF0B0B] h-14 w-52 ms-5">
@@ -220,8 +222,6 @@ function ApproveRejectC() {
                     </div>
                   </div>
                   <div className="flex flex-row me-20 mt-6 bg-[#03229F]  ">
-
-
                     <div className="flex flex-col  ">
                       <div className="m-11">
                         <Profile

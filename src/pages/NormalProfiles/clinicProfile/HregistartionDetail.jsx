@@ -15,16 +15,16 @@ const HregistartionDetail = React.memo(({ BasicDetail }) => {
   };
   return (
     <div
-      className="bg-[#D9D9D9] w-[450px] h-[180px] mb-4 rounded-sm"
+      className="bg-[#03229F] w-[450px] h-[180px] mb-4 rounded-sm"
       style={{ width: `${BasicDetail.boxWidth}` }}
     >
       <div className="flex flex-row">
-        <h1 className="text-lg ms-4  text-black font-semibold">
+        <h1 className="text-lg ms-4   font-semibold">
           Registration Detail :
         </h1>
       </div>
       <div>
-        <div className="text-black font-medium  ms-2 mb-5">
+        <div className=" font-medium  ms-2 mb-5 opacity-75">
           <div className="mt-3">
             <span className="font-sm p">Registration Number: </span>
             {BasicDetail.registrationNumber || "null"}

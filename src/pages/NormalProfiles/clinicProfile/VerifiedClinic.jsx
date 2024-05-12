@@ -68,11 +68,11 @@ function VerifiedClinic() {
   const handleSubmit = async (isApproved) => {
     if (isApproved == true) {
       setApproved(isApproved);
-      handleDialog("Are you sure you want to Approve?", true);
+      handleDialog("Are you sure you want to Delete Account?", true);
     }
     if (isApproved == false) {
       setApproved(isApproved);
-      handleDialog("Are you sure you want to Reject?", true);
+      handleDialog("Are you sure you want to Suspend Account?", true);
     }
   };
 
@@ -115,10 +115,9 @@ function VerifiedClinic() {
       )}
       {!loading &&
         (noClinic ? (
-          <div className="flex flex-row justify-between max-h-[1500px] w-screen">
+          <div className="flex flex-row justify-between h-screen w-screen bg-[#03229F]">
             <div
-              className=" bg-white flex flex-col justify-between"
-              style={{ backgroundColor: "#c2c0bc" }}
+              className="  flex flex-col justify-between bg-[#03229F]"
             >
               <div className="me-7">
                 <Sidebar someData={{ index: 5 }}/>
@@ -130,16 +129,15 @@ function VerifiedClinic() {
                 />
               </div>
             </div>
-            <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
+            <div className="text-white  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
               No clinic is available.
             </div>
           </div>
         ) : (
-          response && (
+          response && ( 
             <>
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen "
-                style={{ backgroundColor: "white" }}
+                className="flex flex-row justify-between max-h-[1500px] w-screen bg-[#0529BB]"
               >
                 <div
                   className=" bg-white flex flex-col justify-between"
@@ -155,21 +153,22 @@ function VerifiedClinic() {
                     />
                   </div>
                 </div>
-                <div className=" flex flex-col">
+                <div className=" flex flex-col ms-52 bg-[#0529BB]">
                   <div className="      flex flex-row justify-between ms-14 mt-5 ">
-                    <div className=" bg-[#D9D9D9] h-14 w-44">
-                      <p className=" text-black mt-4 ms-7  ">Clinic Details</p>
+                    <div className=" bg-[#FF0B0B] h-14 w-44">
+                      <p className=" text-white mt-4 ms-7  ">Clinic Details</p>
                     </div>
                     <div>
-                      <p className=" text-black text-2xl underline mt-5 me-[800px]">
+                      <p className=" text-white text-2xl underline mt-5 me-[800px]">
                         Clinic Detail
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex flex-row   ">
-                    <div className="flex flex-col me-10 mt-12">
-                      <div className="m-10">
+                  <div className="flex flex-row  mt-6 bg-[#03229F]">
+                    <div className="flex flex-col ">
+
+                      <div className="m-11">
                         <Profile
                           fullName={response.name}
                           profileImage={response.profilePhoto}
@@ -178,7 +177,11 @@ function VerifiedClinic() {
                           bool={true}
                         />
                       </div>
-                      <Hbasicdetail BasicDetail={response} />
+
+                      <div className=" flex flex-row">
+                        <div className=" flex flex-col">
+                        <Hbasicdetail BasicDetail={response} />
+                        <hr/>
                       <AppoitmentFee
                         normalFee={normalFee}
                         setNormalFee={setNormalFee}
@@ -188,40 +191,45 @@ function VerifiedClinic() {
                         onRatingChange={handleRatingChange}
                         rating={ratingg}
                       />
+                      <hr/>
                       <HregistartionDetail
                         BasicDetail={response.registration}
                       />
-                    </div>
-
-                    <div className=" me-5 flex flex-col gap-4 mt-20 ">
-                      <div className=" flex flex-row gap-4 ms-[-20px]  ">
-                        <div>
-                          <Address addData={response.address} />
+                      <hr/>
+                        
                         </div>
-                        <div>
-                          <SessionTimings
+                        
+                        <div className=" flex flex-col">
+                        <div className=" flex flex-row gap-12">
+
+                        <Address addData={response.address} />
+                        <SessionTimings
                             SessionTimings={response.timingsSlots}
                           />
                         </div>
+                        <hr/>
+                        <div>
+                        <Photos />
+                        </div>
+                        </div>
                       </div>
 
-                      <div className=" ms-[-20px]">
-                        <Photos />
+                  
+                    </div>
 
-                        <div className="  ms-44 mb-10">
+                    </div>
+                    <div className=" ms-56 mb-10 mt-7 ">
                           <Buttons
-                            bg="bg-white"
+                            bg="bg-[#0529BB]"
                             handleSubmita={() => handleSubmit(true)}
                             handleSubmitb={() => handleSubmit(false)}
                             texta="Delete Account"
                             textb="Suspend Account"
                           />
                         </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
-              </div>
+              
             </>
           )
         ))}

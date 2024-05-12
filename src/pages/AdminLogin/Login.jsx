@@ -125,14 +125,13 @@ export default function Login() {
       const secretKey = "CLINICKHOJO_ADMIN_LOGIN";
       saveDataToLocalStorage("SubAdminToken", accessToken);
       console.log(accessToken);
-      const customData = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjNmODM3OTczZjUwYWZmMTNiNmVhYjEiLCJpYXQiOjE3MTU0ODA3OTQsImV4cCI6MTcxNTczOTk5NH0.Y8fcQzRhKQsFGqj14ny8_fGnDptjdnt4OxNbKNCPzGU'
+      const customData = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjNmODM3OTczZjUwYWZmMTNiNmVhYjEiLCJpYXQiOjE3MTU1MjUxODUsImV4cCI6MTcxNTc4NDM4NX0.hgZYHJmZYU7Lv1_YWwpDxgKiOJ9SFRc9IgmGQ3DQUSY'
       try {
-        const response = await axios.post("api/admin/profile/subAdmin", {
+        const response = await axios.get("api/admin/profile/subAdmin", {
           headers: {
-            "authorization ": accessToken,
+            "authorization ": `Bearer${accessToken}`,
           },
         });
-        console.log(response.data);
       } catch (e) {
         console.log('e hai',e.message);
       }
