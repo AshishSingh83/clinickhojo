@@ -51,8 +51,8 @@ function MHomeC() {
     if (savedDataString != "ashish") {
       const savedData = JSON.parse(savedDataString);
       setFormDataC({
-        ...JSON.parse(localStorage.getItem(`${managementContactNumber}a`)),
         ...savedData,
+        ...JSON.parse(localStorage.getItem(`${managementContactNumber}a`)),
       });
     } else {
       setFormDataC(
@@ -88,7 +88,7 @@ function MHomeC() {
           "api/admin/whileApproval/getParticular/hospital",
           {
             managementEmail: managementEmail,
-            hospitalClinicKhojoId: "117192",
+            hospitalClinicKhojoId: "941887",
           }
         );
         setResponse(response.data.hospital);
@@ -170,7 +170,7 @@ function MHomeC() {
             style={{ backgroundColor: "#c2c0bc" }}
           >
             <div className="me-7">
-              <Sidebar />
+              <Sidebar someData={{'index':6}}/>
             </div>
             <div>
               <FiLogOut
@@ -179,9 +179,21 @@ function MHomeC() {
               />
             </div>
           </div>
-          <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
+          {/* <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
             No Hospital is available.
-          </div>
+          </div> */}
+          <div className=" flex flex-col gap-9">
+            <div className="text-black  font-medium text-3xl flex justify-center items-center  me-[600px]">
+            No Hospital is available.
+            </div>
+              <div className=" ">
+                <Buttons
+                  bg="bg-white"
+                  handleSubmita={() => handleSubmit(true)}
+                  handleSubmitb={() => handleSubmit(false)}
+                />
+              </div>
+            </div>
         </div>
       ) : (
         response && (
@@ -195,7 +207,7 @@ function MHomeC() {
                 style={{ backgroundColor: "#c2c0bc" }}
               >
                 <div className="me-7">
-                  <Sidebar />
+                  <Sidebar someData={{'index':6}}/>
                 </div>
                 <div>
                   <FiLogOut

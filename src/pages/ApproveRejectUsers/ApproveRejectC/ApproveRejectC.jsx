@@ -46,9 +46,10 @@ function ApproveRejectC() {
     const savedDataString = localStorage.getItem(`${uniqueDoctorId}b`);
     if (savedDataString != "ashish") {
       const savedData = JSON.parse(savedDataString);
+      const aaa = JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`));
       setFormDataC({
-        ...JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)),
         ...savedData,
+        ...JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)),
       });
     } else {
       setFormDataC(JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)));
@@ -161,7 +162,7 @@ function ApproveRejectC() {
               style={{ backgroundColor: "#c2c0bc" }}
             >
               <div className="me-7">
-                <Sidebar />
+                <Sidebar someData={{ index: 2 }} />
               </div>
               <div>
                 <FiLogOut
@@ -170,23 +171,32 @@ function ApproveRejectC() {
                 />
               </div>
             </div>
-            <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
+            <div className=" flex flex-col gap-9">
+            <div className="text-black  font-medium text-3xl flex justify-center items-center  me-[600px]">
               No clinic is available.
+            </div>
+              <div className=" ">
+                <Buttons
+                  bg="bg-white"
+                  handleSubmita={() => handleSubmit(true)}
+                  handleSubmitb={() => handleSubmit(false)}
+                />
+              </div>
             </div>
           </div>
         ) : (
           response && (
             <>
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen "
-                style={{ backgroundColor: "white" }}
+                className="flex flex-row justify-between max-h-[1500px] w-screen ms-44 "
+                style={{ backgroundColor: "#0529BB" }}
               >
                 <div
                   className=" bg-white flex flex-col justify-between"
                   style={{ backgroundColor: "#c2c0bc" }}
                 >
                   <div className="me-7">
-                    <Sidebar />
+                    <Sidebar someData={{ index: 2 }} />
                   </div>
                   <div>
                     <FiLogOut
@@ -197,20 +207,19 @@ function ApproveRejectC() {
                 </div>
                 <div className=" flex flex-col">
                   <div className="      flex flex-row justify-between ms-14 mt-5 ">
-                    <div className=" bg-[#D9D9D9] h-14 w-52">
-                      <p className=" text-black mt-4 ms-7  ">
+                    <div className=" bg-[#FF0B0B] h-14 w-52 ms-5">
+                      <p className=" text-white mt-4 ms-7  ">
                         Approve/Reject User
                       </p>
                     </div>
                     <div>
-                      <p className=" text-black text-2xl underline mt-5 me-[800px]">
+                      <p className=" text-white text-2xl underline mt-5 me-[800px]">
                         Clinic Detail
                       </p>
                     </div>
                   </div>
-
-                  <div className="flex flex-row   ">
-                    <div className="flex flex-col  ms-16">
+                  <div className="flex flex-row me-20  ">
+                    <div className="flex flex-col  ">
                       <div className="m-10">
                         <Profile
                           fullName={response.name}
@@ -244,7 +253,7 @@ function ApproveRejectC() {
                         radioData={formDataC.HospitalRegistration}
                       />
                       <WrongInfo data={formDataC} />
-                      <div className=" bg-[#a9a9ab] w-[500px] h-[130px] mb-4 rounded-sm">
+                      <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-12">
                         <div className="h-[130px] ">
                           <textarea
                             id="inputTextArea"
@@ -260,7 +269,7 @@ function ApproveRejectC() {
                     </div>
 
                     <div className=" me-5 flex flex-col gap-4 mt-20 ">
-                      <div className=" flex flex-row gap-4 ms-[-20px]  ">
+                      <div className=" flex flex-row gap-2 ms-[-20px]  ">
                         <div>
                           <Address
                             addData={response.address}
@@ -289,9 +298,9 @@ function ApproveRejectC() {
                           radioData={formDataC.HospitalPhotos}
                         />
 
-                        <div className=" mt-28 ms-44">
+                        <div className=" mt-28 ms-44 bg-[#0529BB]">
                           <Buttons
-                            bg="bg-white"
+                            bg="bg-[#0529BB]"
                             handleSubmita={() => handleSubmit(true)}
                             handleSubmitb={() => handleSubmit(false)}
                           />

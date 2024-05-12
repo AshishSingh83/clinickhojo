@@ -25,7 +25,7 @@ const HregistartionDetail = React.memo(
     };
     return (
       <div
-        className="bg-[#D9D9D9] w-[450px] h-[180px] mb-4 rounded-sm"
+        className="bg-[#D9D9D9] w-[437px] h-[180px] mb-4 rounded-sm"
         style={{ width: `${BasicDetail.boxWidth}` }}
       >
         <div className="flex flex-row">

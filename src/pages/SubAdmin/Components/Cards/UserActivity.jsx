@@ -2,7 +2,7 @@ import React from "react";
 
 const UserActivity = ({ UserActivities }) => {
   return (
-    <div className="bg-[#D9D9D9] w-[500px] min-h-[380px] mb-4 rounded-sm">
+    <div className="bg-[#D9D9D9] w-[500px] min-h-[430px] mb-4 rounded-sm">
       <div className="p-1">
         <h1 className="text-lg ms-5 m-1  text-black font-semibold">
           User Activity :

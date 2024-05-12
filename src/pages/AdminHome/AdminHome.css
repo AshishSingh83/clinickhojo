@@ -1,0 +1,30 @@
+
+.container {
+  margin-top: 20px;
+  margin-left: 60px;
+  position: relative;
+  width: 60px; /* Adjust according to your needs */
+  height: 180px; /* Adjust according to your needs */
+}
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px; 
+    background-color: #FF0B0B;
+    clip-path: polygon(0 0, 100% 0, 85% 40%, 15% 40%);
+    border-bottom-left-radius: 100px;
+
+  }
+  
+  .text {
+    bottom:0px; /* Adjust according to your needs */
+    left: 1000%;
+    /* transform: translateX(-50%); */
+    font-size: 24px; /* Adjust according to your needs */
+    font-weight: bold;
+    color: white;
+    /* transform: rotate(90deg);  */
+  }
+  

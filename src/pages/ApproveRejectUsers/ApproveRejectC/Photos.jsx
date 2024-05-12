@@ -14,7 +14,7 @@ const Photos = ({ onRadioChange, radioData }) => {
     setHPhotosOption(selectedOption);
   };
   return (
-    <div className=" bg-[#D9D9D9] w-[865px] h-[510px] mb-4 rounded-sm">
+    <div className=" bg-[#D9D9D9] w-[777px] h-[510px] mb-4 rounded-sm">
       <div className=" flex flex-row ">
         <h1 className=" text-lg ms-5 m-2   text-black font-medium ">
           View Photos :

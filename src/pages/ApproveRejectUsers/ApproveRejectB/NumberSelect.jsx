@@ -12,7 +12,7 @@ function NumberSelect({ onSelect,rating }) {
     }
   },[rating])
   return (
-    <div className="flex items-center justify-center  bg-white text-center">
+    <div className="flex items-center justify-center  bg-[#03229F] text-center">
       <select
         className="px-4 py-2 border border-white rounded-md shadow-sm focus:outline-none focus:border-blue-500 bg-white text-black text-center"
         value={selectedNumber}

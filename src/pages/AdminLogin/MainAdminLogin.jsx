@@ -1,17 +1,20 @@
 import Header from "../../components/ui/Header";
 import Login from "./Login";
-export default function AdminLogin() {
+import NewLogin from "./NewLogin";
+export default function MainAdminLogin() {
   return (
-    <div  className=" bg-[#D9D9D9]" >
+    <div className=" w-screen h-screen flex justify-center items-center bg-[#0529BB]">
+    <div  className="bg-[#0529BB] w-[600px] " >
       <div className="m-20 pt-12 pb-12 p-5 ">
       <Header
-          heading="Login to your account"
+          heading="Admin Login"
           paragraph="Don't have an account yet? "
           linkName="Signup"
           linkUrl="/signup"
         />
-        <Login />
+        <NewLogin />
       </div>
+    </div>
     </div>
   );
 }

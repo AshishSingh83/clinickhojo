@@ -33,17 +33,17 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
       <div className=" h-[240px] items-center    ">
         <div
           key={BasicDetail[0].degreeName}
-          className="bg-[#FDFAFA] w-[420px] h-[185px] mb-4 rounded-sm ms-3 mt-14  "
+          className=" w-[420px] h-[185px] mb-4 rounded-sm ms-3 mt-5 text-white opacity-75  "
         >
-          <div className="text-black font-medium  ms-2 mb-5 bg-[#FDFAFA] ">
+          <div className=" font-medium  ms-2 mb-5  ">
             <div className="mt-1">
               <span className="font-sm">College:</span>{" "}
               {BasicDetail[0].collegeName}
               <br />
             </div>
             <div className="mt-1">
-              <span className="font-sm">Degree:</span>{" "}
-              {BasicDetail[0].degreeName}
+              <span className="font-sm">Degree:</span>{"           "}
+                   {BasicDetail[0].degreeName}
               <br />
             </div>
             <div className="mt-1">
@@ -63,8 +63,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
             </div>
             <div>
               <span
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 `}
-                style={{ backgroundColor: "#4575f7" }}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF] `}
                 onClick={() =>
                   handleViewProofClick(BasicDetail[0].certificates[0])
                 }
@@ -79,9 +78,9 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
       BasicDetail.map((update) => (
         <div
           key={update.degreeName}
-          className="bg-[#FDFAFA] w-[420px] h-[185px] mb-4 rounded-sm ms-3"
+          className=" w-[420px] h-[185px] mb-4 rounded-sm ms-3 text-white"
         >
-          <div className="text-black font-medium  ms-2 mb-5 bg-[#FDFAFA]">
+          <div className=" font-medium  ms-2 mb-5 ">
             <div className="mt-1">
               <span className="font-sm">College:</span> {update.collegeName}
               <br />
@@ -105,8 +104,8 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
             </div>
             <div>
               <span
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 `}
-                style={{ backgroundColor: "#4575f7" }}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm  text-white pt-2 bg-[#0032FF] `}
+              
                 onClick={() => handleViewProofClick(update.certificates[0])}
               >
                 View Proof
@@ -118,8 +117,8 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
     );
 
   return (
-    <div style={{ backgroundColor: "#D9D9D9", width: "450px" }}>
-      <div className="bg-[#b187e0] mt-[-12px] rounded-md flex flex-row gap-14">
+    <div style={{width: "450px" }} className=" bg-[#03229F] text-white">
+      <div className=" mt-[-12px] rounded-md flex flex-row gap-14">
         <h2 className="text-lg p-2  font-medium">Education Details</h2>
         <div className="mt-3">
           <RadioButtons

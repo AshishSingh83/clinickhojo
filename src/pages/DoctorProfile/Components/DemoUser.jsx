@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "../../../data/features/registerSlice";
 import Input from "../../../components/ui/Input";
+import InputWithIcon from "../../../components/ui/InputWithIcon";
 
 const DemoUser = ({
   text = "All Users ...",
@@ -43,14 +44,29 @@ const DemoUser = ({
   );
 
   return (
-    <div className={`${Width} ${Height} bg-[#D9D9D9]`}>
-      <div className={`bg-[#D9D9D9] mt-[-12px] text-black`}>
-        <h3 className={`${text1} font-medium ${p1} ${m1} underline`}>
+    <div className={`${Width} ${Height} bg-[#03229F]`}>
+      <div className={`bg-[#D9D9D9] mt-[-12px] text-black flex flex-col`}>
+
+      <div className=" h-14 flex items-center">
+      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808]`}>
           {text}
         </h3>
+      </div>
         {showData.length !== 0 && (
-          <div className="ms-6 flex flex-row">
-            <div>
+          <div className=" flex flex-row bg-[#03229F] gap-3">
+          <div className="ms-4 mt-3 w-64">
+              <InputWithIcon
+                labelText="Search Profiles"
+                labelFor="searchProfiles"
+                type="text"
+                autoComplete="off"
+                placeholder="Search Profiles"
+                bg1="bg-[#F2EFEF]"
+                handleChange={(e) => setSearch(e.target.value)}
+                iconData="BiSearch"
+              />
+            </div>
+            <div className=" mt-6">
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}
@@ -61,17 +77,7 @@ const DemoUser = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            <div className="ms-16 w-64">
-              <Input
-                labelText="Search Profiles"
-                labelFor="searchProfiles"
-                type="text"
-                autoComplete="off"
-                placeholder="Search Profiles"
-                bg1="bg-[#F2EFEF]"
-                handleChange={(e) => setSearch(e.target.value)}
-              />
-            </div>
+            
           </div>
         )}
       </div>
@@ -86,7 +92,7 @@ const DemoUser = ({
           filteredData.map((user, index) => (
             <div
               key={index}
-              className={`p-4 mb-4 bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer`}
+              className={`p-4 mb-4 bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer overflow-auto`}
             >
               <p className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
@@ -96,7 +102,7 @@ const DemoUser = ({
               </p>
               <span
                 className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 text-sm text-white mt-5 pt-2"
-                style={{ backgroundColor: "#4575f7" }}
+                style={{ backgroundColor: "#03229F" }}
                 onClick={() => handleViewProfile(user)}
               >
                 View...

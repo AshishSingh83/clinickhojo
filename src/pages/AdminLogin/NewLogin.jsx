@@ -6,9 +6,10 @@ import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import instance from "../../axios";
+import axios from "axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
-export default function Login() {
+
+export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
   const [emailLabel, setEmailLabel] = useState("Email Address");
@@ -76,59 +77,52 @@ export default function Login() {
     }
   }
     useEffect(() => {
-    const savedData = getDataFromLocalStorage('SubAdminToken');
+    const savedData = getDataFromLocalStorage('myDataAdmin');
     if (savedData){
-      //send token to backend and verify
-      // if(new Date().getTime() < savedData.expiry) {
-      //         console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
-      //         setLoginEmailVal(savedData.dataa.userName );
-      //         setLoginPasswordVal(savedData.dataa.password);
-      //         setLabel(savedData.dataa.label);
-      //         //authenticateUser()
-      //         handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
-      // }else{
-      //   console.log('data experied');
-      //   deleteDataFromLocalStorage('myData');
-      //   setLoginEmailVal('');
-      //   setLoginPasswordVal('');
-      // } 
-      console.log(savedData);
-      navigate('../AdminHome')
+      if(new Date().getTime() < savedData.expiry) {
+              console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
+              setLoginEmailVal(savedData.dataa.userName );
+              setLoginPasswordVal(savedData.dataa.password);
+              setLabel(savedData.dataa.label);
+              handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
+      }else{
+        console.log('data experied');
+        deleteDataFromLocalStorage('myDataAdmin');
+        setLoginEmailVal('');
+        setLoginPasswordVal('');
+      }
     }
   }, []);
- 
+  
   
   const authenticateUser = async()=>{
+    console.log('called',loginEmailVal,loginPasswordVal);
       try{
-        const response = await instance.post("api/admin/login/subAdmin", {
+        const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
           password: loginPasswordVal,
         });
-        const accessToken = response.data.token ;
-        const secretKey = "CLINICKHOJO_ADMIN_LOGIN"
-        saveDataToLocalStorage('SubAdminToken', accessToken);
-        navigate("../AdminHome");
-        // if (response.data.user){
-        //   const dataa = {
-        //     userName: loginEmailVal,
-        //     password: loginPasswordVal,
-        //     label: "Username",
-        //   };
-        //   const currentTime = new Date().getTime();
-        //   const newTime = currentTime + (100 * 1000);
-        //   saveDataToLocalStorage('myData', { dataa, expiry: newTime });
-        //   setMessage("");
-        //   navigate("../AdminHome");
-        // }
+        if (response.data.user){
+          const dataa = {
+            userName: loginEmailVal,
+            password: loginPasswordVal,
+            label: "Email",
+          };
+          const currentTime = new Date().getTime();
+          const newTime = currentTime + (100 * 1000);
+          saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
+          setMessage("");
+          navigate("../AdminHome");
+        }
       } catch (error) {
-        console.log('hereee');
         console.error("Error fetching data:", error.response.status);
         if (error.response.status == 404) {
           setMessage("User Not Found .....");
         } else {
-          setMessage("Internal Server Error");
+          setEmailLabel("Internal Server Error");
         }
       }
+   
   };
 
   const handleSubAdminClick = () => {
@@ -144,25 +138,22 @@ export default function Login() {
     navigate("../EnterPassword")
    }
    function handleMea(){
-    navigate("../")
+    navigate("../SubAdminLogin")
    }
   return (
-    <div >
+    <div>
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        
         <div className="-space-y-px">
+         
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
-            type="UserName"
-            placeholder="UserName"
-            labelText={emailLabel}
-            labelFor="Email"
+            type="email"
+            placeholder="Email"
             my1="my-3"
             bg1="bg-[#FAEBEB]"
-            iconData="FaUser"
+            iconData="MdEmail"
           />
-
           <InputWithIcon
             handleChange={handleChangePassword}
             value={loginPasswordVal}
@@ -170,23 +161,24 @@ export default function Login() {
             placeholder="Password"
             labelText="Enter Password"
             labelFor="Password"
+            // my1="my-0"
             bg1="bg-[#FAEBEB]"
             iconData="FiKey"
           />
         </div>
-        <div className="text-sm  flex flex-row justify-between  ">
+          <div className="text-sm  flex flex-row justify-between  ">
           <a href="#" onClick={handleMea} className="font-medium text-[#E1E0E0] hover:text-blue-300">
-            Admin Login
+            Subadmin Login
           </a>
           <a href="#" onClick={handleMe} className="font-medium text-[#E1E0E0] hover:text-blue-300">
             Forgot password?
           </a>
         </div>
         <div className=" text-red-500 ms-16">{message}</div>
-        <Button
-         handleSubmit={handleSubmit}
-          text="Login" 
-          bgColor="bg-[#FFFFFF]"
+        <Button 
+        handleSubmit={handleSubmit}
+         text="Login"
+         bgColor="bg-[#FFFFFF]"
          textColor="text-[#FA0808]"
          hoverColor = "hover:bg-blue-200"
           />

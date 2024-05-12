@@ -11,7 +11,7 @@ const Address = ({ addData, onRadioChange, radioData }) => {
     setHAddressOption(radioData);
   }, [radioData]);
   return (
-    <div className=" bg-[#D9D9D9] w-[430px] h-[310px] mb-4 rounded-sm">
+    <div className=" bg-[#D9D9D9] w-[380px] h-[310px] mb-4 rounded-sm">
       <div className=" flex flex-row ">
         <h1 className=" text-lg ms-5 m-2   text-black font-semibold ">
           Address :
@@ -46,7 +46,7 @@ const Address = ({ addData, onRadioChange, radioData }) => {
           </div>
 
           <div className="mt-2 ms-4">
-            <div className="w-[380px] h-[120px] bg-[#F2EFEF] rounded-md"></div>
+            <div className="w-[340px] h-[120px] bg-[#F2EFEF] rounded-md"></div>
           </div>
         </div>
       </div>
