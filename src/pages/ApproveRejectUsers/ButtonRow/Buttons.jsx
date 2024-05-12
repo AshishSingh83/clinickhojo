@@ -17,6 +17,7 @@ const Buttons = ({
           minw="min-w-[95px]"
           bgColor="bg-[#24C70A]"
           hoverColor="hover:bg-green-700"
+          
         />
       </div>
 

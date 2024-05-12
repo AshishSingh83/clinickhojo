@@ -121,19 +121,21 @@ function ApproveRejectC() {
             isApproved: approved,
             addRemark: formData.remark,
           });
-          if (approved) {
-            await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
-              clinicKhojoAppointmentFeeNormal: normalFee,
-              clinicKhojoAppointmentFeeEmergency: emergencyFee,
-              clinicUniqueId: uniqueClinicId,
-              doctorEmail: doctorEemail,
-            });
-          }
-          if (approved) {
-            await axios.post("api/admin/doctors/clinic/setRatings", {
-              clinicUniqueId: uniqueClinicId,
-              rating: rating,
-            });
+          if(!noClinic){
+            if (approved){
+              await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
+                clinicKhojoAppointmentFeeNormal: normalFee,
+                clinicKhojoAppointmentFeeEmergency: emergencyFee,
+                clinicUniqueId: uniqueClinicId,
+                doctorEmail: doctorEemail,
+              });
+            }
+            if (approved) {
+              await axios.post("api/admin/doctors/clinic/setRatings", {
+                clinicUniqueId: uniqueClinicId,
+                rating: rating,
+              });
+            }
           }
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
@@ -155,10 +157,10 @@ function ApproveRejectC() {
       )}
       {!loading &&
         (noClinic ? (
-          <div className="flex flex-row justify-between max-h-[1500px] w-screen">
+          <div className="flex flex-row justify-between h-screen w-screen bg-[#03229F] ">
             <div
-              className=" bg-white flex flex-col justify-between"
-              style={{ backgroundColor: "#c2c0bc" }}
+              className="  flex flex-col justify-between bg-[#03229F]"
+              
             >
               <div className="me-7">
                 <Sidebar someData={{ index: 2 }} />
@@ -170,13 +172,13 @@ function ApproveRejectC() {
                 />
               </div>
             </div>
-            <div className=" flex flex-col gap-9">
-            <div className="text-black  font-medium text-3xl flex justify-center items-center  me-[600px]">
+            <div className=" flex flex-col gap-9 self-center">
+            <div className="text-white  font-medium text-3xl flex justify-center items-center  me-[600px]">
               No clinic is available.
             </div>
-              <div className=" ">
+              <div className=" ms-5">
                 <Buttons
-                  bg="bg-white"
+                  bg="bg-[#03229F]"
                   handleSubmita={() => handleSubmit(true)}
                   handleSubmitb={() => handleSubmit(false)}
                 />
