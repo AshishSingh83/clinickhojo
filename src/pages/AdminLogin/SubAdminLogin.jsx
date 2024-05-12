@@ -7,7 +7,7 @@ export default function SubAdminLogin() {
       <div className="m-20 pt- pb-12 p-5 ">
       <Header
           heading="Subadmin Login"
-          paragraph="Don't have an account yet? "
+          paragraph="Don't have an account yet?"
           linkName="Signup"
           linkUrl="/signup"
         />

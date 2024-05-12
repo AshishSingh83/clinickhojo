@@ -6,6 +6,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
+import axios from "axios";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -135,8 +136,6 @@ export default function Login() {
       } catch (e) {
         console.log('e hai',e.message);
       }
-
-
       navigate("../AdminHome");
       // if (response.data.user){
       //   const dataa = {
@@ -151,7 +150,7 @@ export default function Login() {
       //   navigate("../AdminHome");
       // }
     } catch (error) {
-      console.error("Error fetching data:", error.response.status);
+      console.error("Error fetching data:", error);
       if (error.response.status == 404) {
         setMessage("User Not Found .....");
       } else {
@@ -164,15 +163,14 @@ export default function Login() {
     setEmailLabel("Username");
     setMessage("");
   };
-
   const handleSubAdminClickB = () => {
     setEmailLabel("Email Address");
     setMessage("");
   };
-  function handleMe() {
+  function handleMe(){
     navigate("../EnterPassword");
   }
-  function handleMe() {
+  function handleMe(){
     navigate("../");
   }
   return (
@@ -205,7 +203,7 @@ export default function Login() {
         <div className="text-sm  flex flex-row justify-between  ">
           <a
             href="#"
-            onClick={handleMea}
+            onClick={handleMe}
             className="font-medium text-[#E1E0E0] hover:text-blue-300"
           >
             Admin Login
