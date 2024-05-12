@@ -5,7 +5,7 @@ import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import instance from "../../axios";
 
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -30,7 +30,7 @@ export default function Login() {
   const authenticateUser = async() => {
     if(emailLabel=="Username"){
       try{
-        const response = await axios.post("api/admin/login/subAdmin",{
+        const response = await instance.post("api/admin/login/subAdmin",{
           "userName":"ASA",
           "password":"sdfsdfgsdfgg"
       });
