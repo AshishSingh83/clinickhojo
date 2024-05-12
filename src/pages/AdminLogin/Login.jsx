@@ -151,7 +151,6 @@ export default function Login() {
       //   navigate("../AdminHome");
       // }
     } catch (error) {
-      console.log("hereee");
       console.error("Error fetching data:", error.response.status);
       if (error.response.status == 404) {
         setMessage("User Not Found .....");
@@ -173,7 +172,7 @@ export default function Login() {
   function handleMe() {
     navigate("../EnterPassword");
   }
-  function handleMea() {
+  function handleMe() {
     navigate("../");
   }
   return (
