@@ -4,7 +4,7 @@ import Sidebar from "../../AdminHome/Sidebar/Sidebar";
 import { FiLogOut } from "react-icons/fi";
 import Demo from "./Demo";
 import Input from "../../../components/ui/Input";
-import axios from 'axios';
+import instance from '../../../axios';
 function ApproveReject() {
   const [pending, setPending] = useState([]);
   const [changed, setChanged] = useState([]);
@@ -16,8 +16,8 @@ function ApproveReject() {
     async function fetchData() {
       try {
         const [pendingResponse, changedResponse] = await Promise.all([
-          axios.get('api/admin/getToBeApprovedDoctors'),
-          axios.get('api/admin/doctors/approved/updated')
+          instance.get('api/admin/getToBeApprovedDoctors'),
+          instance.get('api/admin/doctors/approved/updated')
         ]);
         setPending(pendingResponse.data.doctors || []);
         setChanged(changedResponse.data || []);

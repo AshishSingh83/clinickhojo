@@ -4,7 +4,7 @@ import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
