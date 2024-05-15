@@ -99,7 +99,7 @@ function BroadCastMessage() {
             <textarea
               id="inputTextArea"
               name="remark"
-              className=" placeholder-white w-full h-full p-2 resize-none bg-[#03229F] "
+              className=" placeholder-white w-full h-full p-2 resize-none bg-[#1c1f73]  "
               placeholder="Draft Your Message"
               style={{ color: "white", borderColor:'white' }}
               value={formData.remark}

@@ -8,7 +8,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 import EnterPhone from "./pages/ForgetPassword/EnterPhone.jsx";
 import EnterOtp from "./pages/ForgetPassword/EnterOtp.jsx";
 import EnterPassword from "./pages/ForgetPassword/EnterPassword.jsx";
@@ -35,6 +34,9 @@ import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
 import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
 import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
+import ClipBg from "./components/ui/clipPath/ClipBg.jsx";
+import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
+
 
 
 let persistor = persistStore(store);
@@ -71,6 +73,8 @@ const router = createBrowserRouter(
       <Route path="ManagementHome" element={<ManagementHome />} />
       <Route path="MHomeB" element={<MHomeB />} />
       <Route path="BarChartD" element={<BarChartD />} />
+      <Route path="Skeletonn" element={<Skeletonn/>} />
+
     </Route>
   )
 );

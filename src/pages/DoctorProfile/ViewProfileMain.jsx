@@ -6,6 +6,7 @@ import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import Demo from "../ApproveRejectUsers/ApproveRejectA/Demo";
 import Input from "../../components/ui/Input";
 import DemoUser from "./Components/DemoUser";
+import Skeletonn from "../../components/ui/SkeletonPage.jsx/Skeletonn";
 
 function ViewProfileMain() {
   const [allUsers, setAllUsers] = useState([]);
@@ -33,9 +34,28 @@ function ViewProfileMain() {
     fetchData();
   }, []);
   
-
   if (loading) {
-    return <div className=" text-black  font-medium text-3xl">Loading...</div>;
+    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600">
+    <div className="flex flex-col justify-between ">
+        <div className="me-7">
+          <Sidebar someData={{'index':5}}/>
+        </div>
+        <div>
+          <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
+        </div>
+      </div>
+      <div className=" flex flex-row justify-center items-center ms-36 mt-16 gap-28 ">
+      <Skeletonn 
+      count="9" 
+      width={400}
+    />
+     <Skeletonn 
+      count="9" 
+      width={400}
+    />
+      </div>
+    
+    </div>;
   }
   function deleteUser() {
    console.log('okay');

@@ -2,7 +2,7 @@ import React from "react";
 
 const SessionTimings = ({ SessionTimings }) => {
   return (
-    <div className=" bg-[#03229F] w-[390px] h-[310px] mb-4 rounded-sm">
+    <div className=" bg-[#03229F]  w-[390px] h-[310px] mb-4 rounded-sm">
       <div className="flex flex-row ">
         <h1 className="text-lg ms-2 m-1    font-semibold ">
           Session Timings :

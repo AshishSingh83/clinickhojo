@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import axios from "axios";
+import InputWithPassword from "../../components/ui/InputWithPassword";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -173,9 +174,9 @@ export default function Login() {
     navigate("../");
   }
   return (
-    <div>
-      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-        <div className="-space-y-px">
+    <div >
+      <form  onSubmit={handleSubmit} className=" overflow-hidden">
+        <div>
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
@@ -183,12 +184,12 @@ export default function Login() {
             placeholder="UserName"
             labelText={emailLabel}
             labelFor="Email"
-            my1="my-3"
+            my1="my-0"
             bg1="bg-[#FAEBEB]"
             iconData="FaUser"
           />
 
-          <InputWithIcon
+          <InputWithPassword
             handleChange={handleChangePassword}
             value={loginPasswordVal}
             type="password"
@@ -215,7 +216,7 @@ export default function Login() {
             Forgot password?
           </a>
         </div>
-        <div className=" text-red-500 ms-16">{message}</div>
+        <div className=" text-red-500 ms-16 mt-12 ">{message}</div>
         <Button
           handleSubmit={handleSubmit}
           text="Login"

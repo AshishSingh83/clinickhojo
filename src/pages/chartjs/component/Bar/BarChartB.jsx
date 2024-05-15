@@ -61,7 +61,7 @@ function BarChartB({ userData, ylabel, xlabel, xxlabel, title }) {
   };
 
   return (
-    <div className=" w-[500px] h-[300px] bg-white">
+    <div className=" w-[980px] h-[580px] bg-white">
       <div className=" p-5   ">
         <Bar data={barChartData} options={options} />
       </div>

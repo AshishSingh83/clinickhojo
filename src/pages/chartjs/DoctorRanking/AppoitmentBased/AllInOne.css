@@ -1,0 +1,22 @@
+.custom-select {
+    background-color: #E7ECFF;
+    height: 32px; /* Adjust the height as needed */
+    padding: 20px; /* Adjust the padding as needed */
+    color: black;
+    position: relative; /* Set position to relative for absolute positioning of icon */
+  }
+  
+  /* Styling the dropdown arrow icon */
+  .custom-select::after {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the position of the icon */
+    transform: translateY(-50%);
+    pointer-events: none; /* This ensures that clicking on the icon doesn't trigger the select */
+  }
+  
+  .custom-select::after > svg {
+    fill: #333; /* Adjust icon color as needed */
+  }
+  

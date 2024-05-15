@@ -5,7 +5,10 @@ import { FiLogOut } from "react-icons/fi";
 import Demo from "./Demo";
 import Input from "../../../components/ui/Input";
 import instance from '../../../axios';
+
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn";
 function ApproveReject() {
   const [pending, setPending] = useState([]);
   const [changed, setChanged] = useState([]);
@@ -31,7 +34,27 @@ function ApproveReject() {
   }, []);
 
   if (loading) {
-    return <div className=" text-black  font-medium text-3xl">Loading...</div>;
+    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600 ">
+    <div className="flex flex-col justify-between ">
+        <div className="me-7">
+          <Sidebar someData={mydata}/>
+        </div>
+        <div>
+          <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
+        </div>
+      </div>
+      <div className=" flex flex-row justify-center items-center ms-36 mt-16 gap-28   opacity-65 ">
+      <Skeletonn 
+      count="9" 
+      width={400}
+    />
+     <Skeletonn 
+      count="9" 
+      width={400}
+    />
+      </div>
+    
+    </div>;
   }
   return (
     <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">

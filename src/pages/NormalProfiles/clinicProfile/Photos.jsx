@@ -5,7 +5,7 @@ import ImageGrid from "../../ApproveRejectUsers/ButtonRow/ImageGrid";
 const Photos = () => {
   
   return (
-    <div className=" bg-[#03229F] w-[865px] h-[510px] mb-4 rounded-sm">
+    <div className=" bg-[#03229F] w-[777px] h-[510px] mb-4 rounded-sm">
       <div className=" flex flex-row ">
         <h1 className=" text-lg ms-5 m-2    font-medium ">
           View Photos :
