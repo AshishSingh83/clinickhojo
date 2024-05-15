@@ -23,7 +23,7 @@ import SubAdminEdit from "./pages/SubAdmin/SubAdminEdit.jsx";
 import BroadCastMessage from "./pages/BroadCast/BroadCastMessage.jsx";
 import AllInOne from "./pages/chartjs/DoctorRanking/AppoitmentBased/AllInOne.jsx";
 import { store } from "./app/store.js";
-import persistStore from "redux-persist/es/persistStore.js";
+import persistStore from "redux-persist/es/persistStore";
 import ViewProfileMain from "./pages/DoctorProfile/ViewProfileMain.jsx";
 import ManagementHome from "./pages/ManageMent/MHome/ManagementHome.jsx";
 import MHomeB from "./pages/ManageMent/MHomeB/MHomeB.jsx";
@@ -36,6 +36,8 @@ import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
 import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 import ClipBg from "./components/ui/clipPath/ClipBg.jsx";
 import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
+import { PersistGate } from "redux-persist/integration/react";
+
 
 
 
@@ -80,6 +82,8 @@ const router = createBrowserRouter(
 );
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+  <PersistGate persistor={persistor}>
+  <RouterProvider router={router} />
+  </PersistGate>
   </Provider>
 );
