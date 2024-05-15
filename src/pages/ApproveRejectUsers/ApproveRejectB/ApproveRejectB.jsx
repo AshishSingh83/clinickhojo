@@ -92,7 +92,7 @@ function ApproveRejectB() {
           </div>
 
           <div className=" flex flex-row bg-[#03229F] mt-14  ">
-          <div >
+          <div className=" ms-9">
           <div className="  mb-7 ms-6 bg-[#03229F] mt-5">
           <Profile
               fullName={fullName}

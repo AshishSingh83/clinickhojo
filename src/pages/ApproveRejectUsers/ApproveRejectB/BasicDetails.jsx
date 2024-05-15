@@ -140,7 +140,7 @@ const BasicDetails = ({
   ];
 
   return (
-    <div className="bg-[#03229F] w-[500px] h-[360px] mb-4 rounded-sm text-white ">
+    <div className="bg-[#03229F] w-[500px] h-[360px] mb-4 rounded-sm text-white  ">
       <div className="flex flex-row gap-20">
         <h1 className="text-lg font-semibold ms-6">Basic Details :</h1>
         <div className="mt-1">

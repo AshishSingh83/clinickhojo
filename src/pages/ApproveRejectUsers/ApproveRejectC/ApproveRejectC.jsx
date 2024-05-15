@@ -267,7 +267,7 @@ function ApproveRejectC() {
                     </div>
                   </div>
                   <div className="flex flex-row  mt-6 bg-[#03229F] me-3  ">
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col ms-3 ">
                       <div className="m-11">
                         <Profile
                           fullName={response.name}
