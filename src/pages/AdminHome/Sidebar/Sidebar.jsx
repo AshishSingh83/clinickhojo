@@ -96,9 +96,6 @@ function Sidebar({ someData }) {
     <>
       <IconContext.Provider value={{ color: "#000000", size: "35px" }}>
         <div className="navbar ml-auto ps-0">
-          <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul
@@ -106,8 +103,8 @@ function Sidebar({ someData }) {
             onClick={showSidebar}
           >
             <div>
-              <div className="flex justify-center rounded-none bg-white h-32 ">
-                <div className=" h-[70px] w-[116px]">
+              <div className="flex items-center justify-center rounded-none bg-white h-32 ">
+                <div className="  w-[180px]">
                   <img alt="" className="" src="whitecliniclogo.png" />
                 </div>
               </div>
@@ -130,12 +127,19 @@ function Sidebar({ someData }) {
                 );
               })}
             </div>
-            <div className="flex flex-row text-black gap-7 mb-10 ms-7 " onClick={handleLogout}>
+            <div className=" flex flex-col">
+            <div className="flex flex-row text-black gap-7 mb-10  " onClick={handleLogout}>
               <p className=" h-4 w-4">
                 <FiLogOut color="#FF0B0B"/>
               </p>
               <p className=" font-medium mt-1 text-lg text-[#FF0B0B]">Log Out</p>
             </div>
+            <div className="  h-[62px] bg-[#0529BB] text-sm bg-opacity-90 text-opacity-80  flex justify-center items-center flex-col ">
+            <p>Shamyani health services Pvt Ltd</p>
+            <p>An ISO 9001:2015 certified company</p>
+            </div>
+            </div>
+           
             
           </ul>
         </nav>

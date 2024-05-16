@@ -107,7 +107,7 @@ function BarChartC() {
 
   return (
     <div className=" bg-white">
-      <div className="   w-[500px] h-[300px] ">
+      <div className="   w-[980px] h-[580px] ">
         <Bar data={LineChartData} options={options} />
       </div>
       <div>

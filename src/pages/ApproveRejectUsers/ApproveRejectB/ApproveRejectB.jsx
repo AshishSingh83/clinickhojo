@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar";
-import { FiLogOut } from "react-icons/fi";
 import Profile from "./Profile";
 import BasicDetails from "./BasicDetails";
 import IdentityProof from "./IdentityProof";
@@ -13,6 +12,7 @@ import {
   updateDoctorEmail,
   updateUniqueClinicId,
   updateUniqueDoctorId,
+  updateDoctorName
 } from "../../../data/features/registerSlice.js";
 import axios from "axios";
 function ApproveRejectB() {
@@ -58,6 +58,7 @@ function ApproveRejectB() {
     dispatch(updateDoctorEmail(email));
     dispatch(updateUniqueClinicId(clinicUniqueId[0]));
     dispatch(updateUniqueDoctorId(uniqueDoctorId));
+    dispatch(updateDoctorName(fullName));
     if (ratingg != "" && rating != ratingg){
       try{
         await axios.post("api/admin/doctors/setRatings", {
@@ -72,23 +73,17 @@ function ApproveRejectB() {
     navigate("../ApproveRejectC");
   };
   return (
-    <div className="flex flex-row justify-between w-screen bg-[#0529BB] ">
+    <div className="flex flex-row   bg-[#0529BB] w-screen justify-end  ">
       <div
-        className="bg-[#0529BB] flex flex-col justify-between"
-        style={{ backgroundColor: "#c2c0bc" }}
+        className="bg-[#0529BB] w-96"
       >
         <div className="me-7">
           <Sidebar someData={{'index':2}}/>
         </div>
-        <div>
-          <FiLogOut
-            className="ms-8"
-            style={{ color: "#061ba1", fontSize: "40px" }}
-          />
-        </div>
+        
       </div>
 
-      <div className="flex flex-row me-32 ">
+      <div className="flex flex-row  bg-[#0529BB] me-28">
         <div className="flex flex-col ">
           <div className="flex flex-row justify-between">
             <div className="bg-[#FF0B0B] h-14 w-52">
@@ -96,8 +91,8 @@ function ApproveRejectB() {
             </div>
           </div>
 
-          <div className=" flex flex-row bg-[#03229F] mt-14 ">
-          <div className="    ">
+          <div className=" flex flex-row bg-[#03229F] mt-14  ">
+          <div className=" ms-9">
           <div className="  mb-7 ms-6 bg-[#03229F] mt-5">
           <Profile
               fullName={fullName}
@@ -116,8 +111,11 @@ function ApproveRejectB() {
             onRatingChange={handleRatingChange}
             radioData={formData.doctorBasicDetail}
           />
+
+          <div className=" mt-14">
           <hr/>
-          <div className=" mt-5">
+          </div>
+          <div className=" mt-9">
           <IdentityProof
             BasicDetail={update.identityDetails}
             onRadioChange={(option) =>

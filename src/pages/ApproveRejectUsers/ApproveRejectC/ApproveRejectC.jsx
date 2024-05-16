@@ -14,6 +14,8 @@ import WrongInfo from "../ApproveRejectD/WrongInfo";
 import { useSelector, useDispatch } from "react-redux";
 import HregistartionDetail from "./HregistrationDetail";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
+import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
+import emailjs from '@emailjs/browser';
 function ApproveRejectC() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -42,6 +44,7 @@ function ApproveRejectC() {
   const uniqueClinicId = useSelector((state) => state.register.uniqueClinicId);
   const doctorEemail = useSelector((state) => state.register.doctorEmail);
   const uniqueDoctorId = useSelector((state) => state.register.uniqueDoctorId);
+  const doctorName = useSelector((state) => state.register.doctorName);
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${uniqueDoctorId}b`);
     if (savedDataString != "ashish") {
@@ -55,6 +58,8 @@ function ApproveRejectC() {
       setFormDataC(JSON.parse(localStorage.getItem(`${uniqueDoctorId}a`)));
     }
   }, []);
+
+
   useEffect(() => {
     if (formDataC !== null) {
       localStorage.setItem(`${uniqueDoctorId}b`, JSON.stringify(formDataC));
@@ -65,24 +70,28 @@ function ApproveRejectC() {
     setFormDataC((prevData) => ({ ...prevData, [name]: option }));
   };
   const handleChange = (event) => {
+    console.log(formData);
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
   };
+
+
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
+        console.log(doctorEemail,uniqueClinicId);
         const response = await axios.post("api/admin/getParticularClinic", {
           doctorEmail: doctorEemail,
           clinicUniqueId: uniqueClinicId,
         });
         setResponse(response.data);
         setLoading(false);
-      } catch (error) {
+      } catch (error){
         console.error("Error fetching data:", error);
         setLoading(false);
         setNoClinic(true);
@@ -110,17 +119,39 @@ function ApproveRejectC() {
       handleDialog("Are you sure you want to Reject?", true);
     }
   };
-
-  const areUSureDelete = async (choose) => {
+  const areUSureDelete = async (choose) =>{
+    const serviceId = 'service_om433u9' ;
+    const templateId = 'template_zzith2l';
+    const publicKey = '9BN6G8lDUWm0rzkqZ';
+    const keysWithNo = Object.keys(formDataC).filter(key => formDataC[key] === "No");
+    const message = `You provided wrong ${keysWithNo.join(', ')} so your account is rejected.`;
+    const templateParams={
+      to_name:doctorName,
+      from_name:'ClinicKhojo',
+      message:message,
+      to_email:doctorEemail
+    }
     if (choose) {
+      console.log(choose,approved);
       if (1) {
-        try {
+        try{
           const response = await axios.put("api/admin/approveDoctors",{
             doctorsUniqueId: uniqueDoctorId,
             approvedBy: "Rahul123",
             isApproved: approved,
             addRemark: formData.remark,
           });
+          if(!approved){
+            console.log('email bhej');
+            try{
+              const eres = await emailjs.send(serviceId,templateId,templateParams,publicKey)
+              console.log(eres);
+            }catch(e){
+              console.log('error sending email',e);
+            }
+          }else{
+            console.log('sent some good gmail');
+          }
           if(!noClinic){
             if (approved){
               await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
@@ -151,9 +182,23 @@ function ApproveRejectC() {
   return (
     <>
       {loading && (
-        <div className="flex justify-center items-center h-screen text-black  text-3xl">
-          <p>Loading...</p>
+        <div className=" text-black  font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600 ">
+    <div className="flex flex-col justify-between ">
+        <div className="me-7">
+          <Sidebar someData={{ index: 2 }}/>
         </div>
+        <div>
+          <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
+        </div>
+      </div>
+      <div className=" flex  items-center ms-60 mt-16 opacity-60 ">
+      <Skeletonn 
+      count="9" 
+      width={800}
+    />
+      </div>
+    
+    </div>
       )}
       {!loading &&
         (noClinic ? (
@@ -189,7 +234,7 @@ function ApproveRejectC() {
           response && (
             <>
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen ms-44 bg-[#0529BB] "
+                className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] "
                 
               >
 
@@ -221,8 +266,8 @@ function ApproveRejectC() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex flex-row me-20 mt-6 bg-[#03229F]  ">
-                    <div className="flex flex-col  ">
+                  <div className="flex flex-row  mt-6 bg-[#03229F] me-3  ">
+                    <div className="flex flex-col ms-3 ">
                       <div className="m-11">
                         <Profile
                           fullName={response.name}
@@ -281,8 +326,8 @@ function ApproveRejectC() {
 
 
 
-                    <div className=" me-5 flex flex-col gap-4 mt-[157px] ">
-                      <div className=" flex flex-row gap-2 ms-[-20px]  ">
+                    <div className="  flex flex-col gap-4 mt-[157px] ">
+                      <div className=" flex flex-row gap- ms-[-20px]  ">
                         <div>
                           <Address
                             addData={response.address}
@@ -341,6 +386,6 @@ function ApproveRejectC() {
         />
       )}
     </>
-  );
+  )
 }
 export default ApproveRejectC;

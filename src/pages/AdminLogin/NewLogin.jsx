@@ -8,6 +8,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
+import InputWithPassword from "../../components/ui/InputWithPassword";
 
 export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -142,19 +143,18 @@ export default function NewLogin() {
    }
   return (
     <div>
-      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <form className=" " onSubmit={handleSubmit}>
         <div className="-space-y-px">
-         
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
             type="email"
             placeholder="Email"
-            my1="my-3"
+            my1="my-0"
             bg1="bg-[#FAEBEB]"
             iconData="MdEmail"
           />
-          <InputWithIcon
+          <InputWithPassword
             handleChange={handleChangePassword}
             value={loginPasswordVal}
             type="password"
@@ -174,7 +174,7 @@ export default function NewLogin() {
             Forgot password?
           </a>
         </div>
-        <div className=" text-red-500 ms-16">{message}</div>
+        <div className=" text-red-500 ms-16 mt-12">{message}</div>
         <Button 
         handleSubmit={handleSubmit}
          text="Login"

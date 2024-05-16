@@ -5,14 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateSubAdminData } from "../../../data/features/registerSlice.js";
 import InputWithIcon from "../../../components/ui/InputWithIcon.jsx"
+import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
+import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
+import { FiLogOut } from "react-icons/fi";
 const SubAdminProfile = () => {
   const [demoConstant, setDemoConstant] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function getAllSubAdmins() {
       try {
         const response = await axios.get("api/admin/getAllSubAdmins");
         setDemoConstant(response.data.subAdmins);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching sub admins:", error);
       }
@@ -30,6 +35,26 @@ const SubAdminProfile = () => {
         <SubAdminProfileItem key={index} update={update} index={index} />
       ));
   }, [demoConstant, search]);
+
+  if (loading) {
+    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-600 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
+      <div className=" flex flex-row justify-center items-center  gap-28 ms-10 mt-[-70px] opacity-65 ">
+      <Skeletonn 
+      count="6" 
+      width={200}
+    />
+     <Skeletonn 
+      count="6" 
+      width={200}
+    />
+    <Skeletonn 
+      count="6" 
+      width={200}
+    />
+      </div>
+    
+    </div>;
+  }
   return (
     <div
       style={{ backgroundColor: "#494D5F", width: "1080px", height: "450px" }}

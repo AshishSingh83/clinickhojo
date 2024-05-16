@@ -76,11 +76,12 @@ function CreateSubAdminFormA({ formDataa }) {
       assignedUserPassword,
     };
     if (formDataa.length != 0) {
+      console.log(formData);
       try {
         const response = await axios.put("api/admin/editSubAdmin", formData);
         navigate("../SubAdminMainProfile");
       } catch (error) {
-        console.error("Error creating sub-admin:", error);
+        console.error("Error editing sub-admin:", error.message);
       }
     } else {
       try {

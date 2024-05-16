@@ -8,7 +8,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import AdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 import EnterPhone from "./pages/ForgetPassword/EnterPhone.jsx";
 import EnterOtp from "./pages/ForgetPassword/EnterOtp.jsx";
 import EnterPassword from "./pages/ForgetPassword/EnterPassword.jsx";
@@ -24,7 +23,7 @@ import SubAdminEdit from "./pages/SubAdmin/SubAdminEdit.jsx";
 import BroadCastMessage from "./pages/BroadCast/BroadCastMessage.jsx";
 import AllInOne from "./pages/chartjs/DoctorRanking/AppoitmentBased/AllInOne.jsx";
 import { store } from "./app/store.js";
-import persistStore from "redux-persist/es/persistStore.js";
+import persistStore from "redux-persist/es/persistStore";
 import ViewProfileMain from "./pages/DoctorProfile/ViewProfileMain.jsx";
 import ManagementHome from "./pages/ManageMent/MHome/ManagementHome.jsx";
 import MHomeB from "./pages/ManageMent/MHomeB/MHomeB.jsx";
@@ -35,6 +34,11 @@ import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
 import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
 import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
+import ClipBg from "./components/ui/clipPath/ClipBg.jsx";
+import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
+import { PersistGate } from "redux-persist/integration/react";
+
+
 
 
 let persistor = persistStore(store);
@@ -71,11 +75,15 @@ const router = createBrowserRouter(
       <Route path="ManagementHome" element={<ManagementHome />} />
       <Route path="MHomeB" element={<MHomeB />} />
       <Route path="BarChartD" element={<BarChartD />} />
+      <Route path="Skeletonn" element={<Skeletonn/>} />
+
     </Route>
   )
 );
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+  <PersistGate persistor={persistor}>
+  <RouterProvider router={router} />
+  </PersistGate>
   </Provider>
 );

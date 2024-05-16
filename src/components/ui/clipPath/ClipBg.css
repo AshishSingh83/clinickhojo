@@ -1,0 +1,9 @@
+.trapezoid {
+    width: 200px; /* Width of the trapezoid */
+    height: 0; /* Height of the trapezoid */
+    border-bottom: 100px solid #008080; /* Height of the trapezoid */
+    border-left: 50px solid transparent; /* Width of the top edge */
+    border-right: 50px solid transparent; /* Width of the top edge */
+    border-top-left-radius: 25px; /* Border radius for top left corner */
+    border-top-right-radius: 25px; /* Border radius for top right corner */
+  }

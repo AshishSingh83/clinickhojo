@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaFilter } from 'react-icons/fa';
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -17,7 +18,7 @@ const Demo = ({
   mw3 = "max-w-[450px]",
   showData,
   normalVerified,
-  newBg="bg-[#229649]",
+  newBg = "bg-[#229649]",
   newBga,
 }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Demo = ({
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
   const [search, setSearch] = useState("");
-  console.log('object',showData);
+  console.log("object", showData);
   const filterChange = (e) => {
     setSortOption(e.target.value);
     let sorted = [...showData];
@@ -85,13 +86,14 @@ const Demo = ({
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}
-                className="bg-white h-8 ps-3 text-black"
+                className="bg-white h-8 ps-3 text-black rounded-lg"
               >
                 <option value="namee">Sort by</option>
                 <option value="name">Sort by Name</option>
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
+            
           </div>
         )}
       </div>
@@ -113,23 +115,27 @@ const Demo = ({
                 {update.name} <br />
                 <div className=" flex flex-row ms-7 gap-2">
                   <p>
-                    <BiSolidUserDetail size="25px" color={`${newBga}`}  />
+                    <BiSolidUserDetail size="25px" color={`${newBga}`} />
                   </p>
-                  <p className=" font-medium text-[#535252] "> #{update.uniqueDoctorId}</p>
+                  <p className=" font-medium text-[#535252] ">
+                    {" "}
+                    #{update.uniqueDoctorId}
+                  </p>
                 </div>
-               
                 <div className=" flex flex-row ms-7 gap-2 mt-">
                   <p className=" mt-[7px]">
                     <FaMapMarkerAlt size="15px" color="red" />
                   </p>
-                  <p className=" font-medium text-[#535252]  "> {update.address.locality}</p>
+                  <p className=" font-medium text-[#535252]  ">
+                    {" "}
+                    {update.address.locality}
+                  </p>
                 </div>
                 {/* <span className="font-medium ">City : </span>
                 {update.address.city} */}
               </p>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}
-                
                 onClick={() => handleMe(update)}
               >
                 View...
