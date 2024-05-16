@@ -12,6 +12,8 @@ const initialStateValue = {
   managementContactNumber:'',
   userData:'',
   doctorName:'',
+  hospitalData:'',
+  approvedHospitals:'',
 }
 
 export const registerSlice = createSlice({
@@ -54,12 +56,18 @@ export const registerSlice = createSlice({
     updateDoctorName: (state,action) => {
       state.doctorName = action.payload
     },
+    updateHospitalData: (state,action) => {
+      state.hospitalData = action.payload
+    },
+    updateApprovedHospitals: (state,action) => {
+      state.approvedHospitals = action.payload
+    },
     
   },
 })
 export const { updateDoctorRadioInputData,updateDoctorRadioInputDataCC,updateDoctorData,
   updateSubAdminData,updateDoctorEmail,
   updateUniqueClinicId,updateUniqueDoctorId,
-  updateManagementData,updateManagementEmail,updateManagementContactNumber,updateUserData,updateDoctorName,
+  updateManagementData,updateManagementEmail,updateManagementContactNumber,updateUserData,updateDoctorName,updateHospitalData,updateApprovedHospitals,
 } = registerSlice.actions
 export default registerSlice.reducer ;

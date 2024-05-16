@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
-import { updateDoctorData } from "../../../data/features/registerSlice";
+import { updateHospitalData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaFilter } from 'react-icons/fa';
-const Demo = ({
+const DemoHospital = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
   Height = "w-[500px]",
@@ -22,7 +22,9 @@ const Demo = ({
   newBga,
 }) => {
   const dispatch = useDispatch();
+  console.log('demo hos',showData);
   const navigate = useNavigate();
+  console.log(showData);
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
   const [search, setSearch] = useState("");
@@ -37,23 +39,35 @@ const Demo = ({
     }
     setSortedData(sorted);
   };
-
   const handleMe = (update) => {
-    dispatch(updateDoctorData(update));
-    if (normalVerified) {
-      navigate("../VerifiedDoctorProfile");
-    } else {
-      if (localStorage.getItem(`${update.uniqueDoctorId}a`) === null) {
+    console.log('normal verified',normalVerified);
+    dispatch(updateHospitalData(update));
+    if(normalVerified=='true'){
+      console.log('nanananaaaaah');
+      navigate("../VerifiedHospital");
+    }else{
+      if (localStorage.getItem(`${update.hospitalClinicKhojoId}a`) === null) {
         const myVal = "ashish";
-        localStorage.setItem(`${update.uniqueDoctorId}a`, myVal);
-        localStorage.setItem(`${update.uniqueDoctorId}b`, myVal);
+        localStorage.setItem(`${update.hospitalClinicKhojoId}a`, myVal);
+        localStorage.setItem(`${update.hospitalClinicKhojoId}b`, myVal);
       }
-      navigate("../ApproveRejectB", { state: { update } });
+      navigate("../ApproveRejectHospital");
     }
   };
-  const filteredData = sortedData.filter((update) =>
-    update.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // const filteredData = sortedData.filter((update) =>
+  //   update.name.toLowerCase().includes(search.toLowerCase())
+  // );
+
+  const filteredData = useMemo(() => {
+    if(search!=''){
+      console.log('andar bandar',search);
+      return sortedData.filter((update) =>
+        update.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }else{
+      return sortedData
+    }
+  }, [sortedData, search]);
 
   return (
     <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
@@ -93,7 +107,6 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            
           </div>
         )}
       </div>
@@ -119,7 +132,7 @@ const Demo = ({
                   </p>
                   <p className=" font-medium text-[#535252] ">
                     {" "}
-                    #{update.uniqueDoctorId}
+                    #{update.hospitalClinicKhojoId}
                   </p>
                 </div>
                 <div className=" flex flex-row ms-7 gap-2 mt-">
@@ -128,7 +141,7 @@ const Demo = ({
                   </p>
                   <p className=" font-medium text-[#535252]  ">
                     {" "}
-                    {update.address.locality}
+                    {update.address.city}
                   </p>
                 </div>
                 {/* <span className="font-medium ">City : </span>
@@ -148,4 +161,4 @@ const Demo = ({
   );
 };
 
-export default Demo;
+export default DemoHospital;

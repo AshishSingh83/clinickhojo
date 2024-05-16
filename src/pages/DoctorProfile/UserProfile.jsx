@@ -11,15 +11,14 @@ function UserProfile() {
   const [appoitments, setAppoitments] = useState([]);
   const [loading, setLoading] = useState(true);
   const update = useSelector((state) => state.register.userData);
-
   const { name, profilePicture, mobileNumber, email } = update;
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.post("api/admin/user-getAllAppointments", {
-          userMobileNumber: mobileNumber,
+          userMobileNumber: '243',
         });
-        console.log(response.data);
+        console.log('appoitments hahahahaaaaa',response.data);
         setAppoitments(response.data);
         setLoading(false);
       } catch (error) {
@@ -33,7 +32,7 @@ function UserProfile() {
     return <div>Loading...</div>;
   }
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-white">
+    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
           <Sidebar someData={{'index':5}}/>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { FaUser } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
-import { FiKey } from 'react-icons/fi';
-import { BiSearch } from 'react-icons/bi';
+// import { FaUser } from 'react-icons/fa';
+// import { MdEmail } from 'react-icons/md';
+// import { FiKey } from 'react-icons/fi';
+// import { BiSearch } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const InputWithPassword = ({

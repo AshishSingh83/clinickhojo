@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import InputWithPassword from "../../components/ui/InputWithPassword";
+import { MdEmail } from 'react-icons/md';
+import { FiKey } from 'react-icons/fi';
+
 
 export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -152,7 +155,7 @@ export default function NewLogin() {
             placeholder="Email"
             my1="my-0"
             bg1="bg-[#FAEBEB]"
-            iconData="MdEmail"
+            iconData= {MdEmail}
           />
           <InputWithPassword
             handleChange={handleChangePassword}
@@ -163,7 +166,7 @@ export default function NewLogin() {
             labelFor="Password"
             // my1="my-0"
             bg1="bg-[#FAEBEB]"
-            iconData="FiKey"
+            iconData={FiKey}
           />
         </div>
           <div className="text-sm  flex flex-row justify-between  ">

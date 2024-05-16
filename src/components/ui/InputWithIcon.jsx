@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaUser } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
-import { FiKey } from 'react-icons/fi';
-import { BiSearch } from 'react-icons/bi';
+// import { FaUser } from 'react-icons/fa';
+// import { MdEmail } from 'react-icons/md';
+// import { FiKey } from 'react-icons/fi';
+// import { BiSearch } from 'react-icons/bi';
 const InputWithIcon = ({
     handleChange,
     value,
@@ -14,7 +14,7 @@ const InputWithIcon = ({
     iconData,
   }) => {
     const inputClass = "w-full py-2 pl-10 pr-3 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none text-black"
-    const IconComponent = eval(iconData);
+    const IconComponent = iconData ;
   return (
     <div className="relative p-2">
       <input

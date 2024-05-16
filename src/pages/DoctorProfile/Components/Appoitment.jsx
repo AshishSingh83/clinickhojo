@@ -8,20 +8,27 @@ const Appoiment = ({dataa}) => {
       <div
         key={index}
         className={`p-4 mb-4 ${
-          update.emergency === "true" ? "bg-[#f089a4]" : "bg-blue-100"
-        } flex flex-row justify-between ml-5 `}
+          update.emergency === "true" ? "bg-[#E7ECFF]" : "bg-[#E7ECFF]"
+        } flex flex-row justify-between ml-5 rounded-xl `}
         style={{ maxWidth: "480px" }}
       >
         <p className="text-black font-medium ">
-          <span className=" font-medium ">{index + 1}. Name : </span>
-          {update.patient.name} <br />
-          <div className=" flex flex-row">
-            <p className=" font-medium ">Age : {update.patient.age}</p>
-            <span className=" font-medium ">Gender : </span>{update.patient.gender}
-            <span className=" font-medium ">Location : </span>Bhopal
+        <div className=" flex flex-row text-xl">
+        <p className=" text-xl ">{index + 1}. Name : </p>
+        <p className="">{update.patient.name}</p>
+        </div>
+        <div className=" opacity-75">
+        <div className=" flex flex-row font-medium mt-1">
+            <p >Age : {update.patient.age}</p>
+            <span >Gender : </span>{update.patient.gender}
+            <span >Location : </span>Bhopal
           </div>
-          <span className="font-medium ">Appoitment Booked On : {update.timing} </span>
+          <div className=" flex flex-row font-medium mt-1 ">
+          <p >Appoitment Booked On : {update.timing} </p>
+          </div>
           {update.BookedOn}
+        </div>
+         
         </p>
         {update.type === "emergency" && (
           <span
@@ -37,12 +44,13 @@ const Appoiment = ({dataa}) => {
 
   return (
     <div
-      style={{ backgroundColor: "#494D5F", width: "530px", height: "470px" }}
+      style={{ backgroundColor: "#03229F", width: "530px", height: "470px" }}
     >
-      <div className="bg-[#845BB3] mt-[-12px] rounded-md">
-        <h2 className="text-xl  p-1 m-1 ml-5  font-medium">
-          Appoiment Booked :
-        </h2>
+     
+      <div className=" h-14 flex items-center bg-[#FFFFFF] text-[#FA0808] text-2xl justify-center font-medium ">
+      <h3 >
+      Appoiment Booked :
+        </h3>
       </div>
       <div style={{ overflow: "auto", maxHeight: "400px" }} className=" mt-4">
         {memoizedAppointments()}

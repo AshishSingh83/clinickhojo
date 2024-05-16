@@ -160,7 +160,6 @@ function MHomeC() {
       handleDialog("", false);
     }
   };
-
   return (
     <>
       {noClinic ? (

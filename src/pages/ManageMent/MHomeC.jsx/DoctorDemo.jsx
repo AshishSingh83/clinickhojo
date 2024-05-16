@@ -22,6 +22,7 @@ const Demo = ({
   newBga,
 }) => {
   const dispatch = useDispatch();
+  console.log('hos data',showData);
   const navigate = useNavigate();
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
@@ -112,17 +113,17 @@ const Demo = ({
             >
               <p className="text-black font-semibold ">
                 <span className="font-bold ">{index + 1}. </span>
-                {update.name} <br />
+                {update.doctorName} <br />
                 <div className=" flex flex-row ms-7 gap-2">
                   <p>
                     <BiSolidUserDetail size="25px" color={`${newBga}`} />
                   </p>
                   <p className=" font-medium text-[#535252] ">
                     {" "}
-                    #{update.uniqueDoctorId}
+                    #{update.doctorsClinicKhojoId}
                   </p>
                 </div>
-                <div className=" flex flex-row ms-7 gap-2 mt-">
+                {/* <div className=" flex flex-row ms-7 gap-2 mt-">
                   <p className=" mt-[7px]">
                     <FaMapMarkerAlt size="15px" color="red" />
                   </p>
@@ -130,7 +131,7 @@ const Demo = ({
                     {" "}
                     {update.address.locality}
                   </p>
-                </div>
+                </div> */}
                 {/* <span className="font-medium ">City : </span>
                 {update.address.city} */}
               </p>
@@ -147,5 +148,4 @@ const Demo = ({
     </div>
   );
 };
-
 export default Demo;

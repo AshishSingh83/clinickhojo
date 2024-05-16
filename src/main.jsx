@@ -37,6 +37,8 @@ import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
 import ClipBg from "./components/ui/clipPath/ClipBg.jsx";
 import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import { PersistGate } from "redux-persist/integration/react";
+import ApproveRejectHospital from "./pages/ApproveRejectUsers/ApproveRejectC/ApproverRejectHospital.jsx";
+import VerifiedHospital from "./pages/NormalProfiles/clinicProfile/verifiedHospital.jsx";
 
 
 
@@ -61,6 +63,7 @@ const router = createBrowserRouter(
       <Route path="ViewProfileMain" element={<ViewProfileMain />} />
       <Route path="VerifiedClinic" element={<VerifiedClinic />} />
       <Route path="VerifiedDoctorProfile" element={<VerifiedDoctorProfile />} />
+      <Route path="ApproveRejectHospital" element={<ApproveRejectHospital />} />
   
 
       <Route path="AllInOne" element={<AllInOne />} />
@@ -75,7 +78,9 @@ const router = createBrowserRouter(
       <Route path="ManagementHome" element={<ManagementHome />} />
       <Route path="MHomeB" element={<MHomeB />} />
       <Route path="BarChartD" element={<BarChartD />} />
-      <Route path="Skeletonn" element={<Skeletonn/>} />
+
+
+      <Route path="VerifiedHospital" element={<VerifiedHospital/>}/>
 
     </Route>
   )

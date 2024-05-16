@@ -8,6 +8,10 @@ import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import axios from "axios";
 import InputWithPassword from "../../components/ui/InputWithPassword";
+import { BiSearch } from 'react-icons/bi';
+import { FaUser } from 'react-icons/fa';
+import { FiKey } from "react-icons/fi";
+import apiClient from "./api";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -96,9 +100,9 @@ export default function Login() {
       // }
       const verifyToken = async()=>{
         try {
-          const response = await axios.post("api/admin/profile/subAdmin", {
+          const response = await axios.get("/api/admin/profile/subAdmin", {
             headers: {
-              "authorization ": savedData,
+              "Authorization": `Bearer ${accessToken}`,
             },
           });
           console.log(response.data);
@@ -186,7 +190,7 @@ export default function Login() {
             labelFor="Email"
             my1="my-0"
             bg1="bg-[#FAEBEB]"
-            iconData="FaUser"
+            iconData={FaUser}
           />
 
           <InputWithPassword
@@ -197,7 +201,7 @@ export default function Login() {
             labelText="Enter Password"
             labelFor="Password"
             bg1="bg-[#FAEBEB]"
-            iconData="FiKey"
+            iconData={FiKey}
           />
         </div>
         <div className="text-sm  flex flex-row justify-between  ">
