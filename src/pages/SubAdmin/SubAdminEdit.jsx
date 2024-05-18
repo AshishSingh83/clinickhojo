@@ -30,7 +30,7 @@ function SubAdminEdit() {
          />
         </div>
 
-        <div className="flex flex-row gap-20 mt-28">
+        <div className="flex flex-row gap-20 mt-28 justify-center items-center">
           <div>
             <BasicDetail data={update} />
           </div>
@@ -38,7 +38,7 @@ function SubAdminEdit() {
             {update.userActivity ? (
               <UserActivity UserActivities={update.userActivity} />
             ) : (
-              <div className=" text-black  mt-20 h-11 w-28">not found</div>
+              <div className=" text-white  mt-20 h-11 w-28">not found</div>
             )}
           </div>
         </div>

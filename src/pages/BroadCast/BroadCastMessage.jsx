@@ -136,7 +136,6 @@ function BroadCastMessage() {
                 text="Send Message"
                 bgColor="bg-[#24C70A]"
                 hoverColor="hover:bg-[#39bd41]"
-                textColor="text-[#FA0808]"
                 handleSubmit={sendMessage}
                 disabled={disabled}
               />

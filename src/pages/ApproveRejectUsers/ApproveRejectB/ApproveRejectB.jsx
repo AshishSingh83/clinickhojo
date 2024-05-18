@@ -27,6 +27,7 @@ function ApproveRejectB() {
     doctorEducationDetail: "",
     doctorRegistration: "",
   });
+  const [sniper,setSniper] = useState(false) ;
   const update = useSelector((state) => state.register.doctorData);
   const {
     fullName,
@@ -116,17 +117,16 @@ function ApproveRejectB() {
       to_email: email,
     };
     if (choose) {
-      console.log(choose, approved);
+      setSniper(true)
       if (1) {
-        try {
+        try{
           const response = await axios.put("api/admin/approveDoctors", {
             doctorsUniqueId: uniqueDoctorId,
-            approvedBy: "Rahul123",
+            approvedBy: "Test123",
             isApproved: approved,
-            addRemark: "accoud rejected",
+            addRemark: "account rejected",
           });
-          if (!approved) {
-            console.log("email bhej");
+          if (!approved){
             try {
               const eres = await emailjs.send(
                 serviceId,
@@ -134,35 +134,31 @@ function ApproveRejectB() {
                 templateParams,
                 publicKey
               );
-              console.log(eres);
-            } catch (e) {
+
+            }catch (e){
               console.log("error sending email", e);
             }
           } else {
             console.log("sent some good gmail");
+            //set ratings 
+            try{
+              await axios.post("api/admin/doctors/setRatings", {
+                doctorEmail : email,
+                rating: rating,
+              });
+              setSniper(false)
+              navigate("../ApproveReject");
+            } catch (e){
+              console.log(e.message);
+            }
           }
-          // if(!noClinic){
-          //   if (approved){
-          //     await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
-          //       clinicKhojoAppointmentFeeNormal: normalFee,
-          //       clinicKhojoAppointmentFeeEmergency: emergencyFee,
-          //       clinicUniqueId: uniqueClinicId,
-          //       doctorEmail: doctorEemail,
-          //     });
-          //   }
-          //   if (approved) {
-          //     await axios.post("api/admin/doctors/clinic/setRatings", {
-          //       clinicUniqueId: uniqueClinicId,
-          //       rating: rating,
-          //     });
-          //   }
-          // }
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
           navigate("../ApproveReject");
         } catch (error) {
           console.error("Error:", error);
         }
+        setSniper(false)
       }
     } else {
       handleDialog("", false);
@@ -269,6 +265,7 @@ function ApproveRejectB() {
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
           message={dialog.message}
+          sniper={sniper}
         />
       )}
     </div>

@@ -69,7 +69,7 @@ const SubAdminProfile = () => {
   }
   return (
     <div
-      style={{ backgroundColor: "#494D5F", width: "1080px", height: "450px" }}
+      style={{ width: "1080px", height: "450px" }}
       className=" ms-64 bg-[#0529BB] mt-[-30px]"
     >
       <div className="bg-[#0529BB]  rounded-md flex flex-row justify-between ">

@@ -37,6 +37,7 @@ function VerifiedDoctorProfile() {
   });
   const [ratingg, setRating] = useState("");
   const [approved, setApproved] = useState("");
+  const [sniper,setSniper] = useState(false) ;
 
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
@@ -78,6 +79,7 @@ function VerifiedDoctorProfile() {
   };
 
   const areUSureDelete = async (choose) => {
+    setSniper(true)
     if (choose) {
       if (approved == true) {
         try {
@@ -93,8 +95,8 @@ function VerifiedDoctorProfile() {
       }
       if (approved == false) {
         try {
-          await axios.post("api/admin/delete/doctor", {
-            doctorUniqueId: uniqueDoctorId,
+          await axios.post("api/admin/doctors/suspend", {
+            uniqueDoctorId: uniqueDoctorId,
           });
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
@@ -106,6 +108,7 @@ function VerifiedDoctorProfile() {
     } else {
       handleDialog("", false);
     }
+    setSniper(false)
   };
   return (
     <div className="flex flex-row justify-between w-screen bg-[#0529BB]">
@@ -184,7 +187,7 @@ function VerifiedDoctorProfile() {
                             textb="Suspend Account"
                           />
                         </div>
-          <div className=" flex flex-row gap-5 mt-7 ms-24">
+          {/* <div className=" flex flex-row gap-5 mt-7 ms-24">
           <div>
           <Button
               text=" Next >> "
@@ -195,7 +198,7 @@ function VerifiedDoctorProfile() {
           </div>
             <div className="text-white   text-3xl">Hospital Detail</div>
           </div>
-          
+           */}
         </div>
 
           
@@ -205,6 +208,7 @@ function VerifiedDoctorProfile() {
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
           message={dialog.message}
+          sniper={sniper}
         />
       )}
       </div>

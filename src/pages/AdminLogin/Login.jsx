@@ -8,8 +8,8 @@ import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import axios from "axios";
 import InputWithPassword from "../../components/ui/InputWithPassword";
-import { BiSearch } from 'react-icons/bi';
-import { FaUser } from 'react-icons/fa';
+import { BiSearch } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -17,7 +17,7 @@ export default function Login() {
   const [emailLabel, setEmailLabel] = useState("Email Address");
   const [message, setMessage] = useState("");
   const [expiryTime, setExpiryTime] = useState(0);
-  const [disabled,setDisabled] = useState(false) ;
+  const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState({
     userName: "",
     password: "",
@@ -52,85 +52,48 @@ export default function Login() {
     e.preventDefault();
     authenticateUser();
   };
-  const handleAutoLogin = async (a, b) => {
-    try {
-      const response = await axios.post("api/admin/login/subAdmin", {
-        userName: a,
-        password: b,
-      });
-      if (response.data.user) {
-        console.log(response.data);
-       
-        const dataa = {
-          userName: a,
-          password: b,
-          label: "Username",
-        };
-        const currentTime = new Date().getTime();
-        const newTime = currentTime + 100 * 1000;
-        saveDataToLocalStorage("myData", { dataa, expiry: newTime });
-        setMessage("");
-        navigate("../AdminHome");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error.response.status);
-      if (error.response.status == 404) {
-        setMessage("User Not Found .....");
-      } else {
-        setEmailLabel("Internal Server Error");
-      }
-    }
-  };
+
   useEffect(() => {
     const savedData = getDataFromLocalStorage("SubAdminToken");
+    console.log("helo", savedData);
     if (savedData) {
-      //send token to backend and verify
-      // if(new Date().getTime() < savedData.expiry) {
-      //         console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
-      //         setLoginEmailVal(savedData.dataa.userName );
-      //         setLoginPasswordVal(savedData.dataa.password);
-      //         setLabel(savedData.dataa.label);
-      //         //authenticateUser()
-      //         handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
-      // }else{
-      //   console.log('data experied');
-      //   deleteDataFromLocalStorage('myData');
-      //   setLoginEmailVal('');
-      //   setLoginPasswordVal('');
-      // }
-      const verifyToken = async()=>{
+      console.log(savedData);
+      setDisabled(true);
+      const verifyToken = async () => {
         try {
           const response = await axios.post(
-            'api/admin/profile/subAdmin', 
+            "api/admin/profile/subAdmin",
             {},
             {
               headers: {
-                'Authorization': `Bearer ${savedData}`
-              }
+                Authorization: `Bearer ${savedData}`,
+              },
             }
           );
-          console.log(response.data);
-          navigate("../AdminHome");
+          setDisabled(false);
+          if (response.data.authData.userData.user_role == "subAdmin") {
+            navigate("../AdminHome");
+          }
         } catch (error) {
-          console.log('Error:', error.message);
+          setDisabled(false);
+          console.log("Error:", error.message);
         }
-      }
-      verifyToken()
-      console.log(savedData);
-      
+      };
+      verifyToken();
     }
   }, []);
 
-  const authenticateUser = async () =>{
-    setDisabled(true)
+  const authenticateUser = async () => {
+    setDisabled(true);
     try {
       const response = await axios.post("api/admin/login/subAdmin", {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
+      console.log(response);
       const accessToken = response.data.token;
       saveDataToLocalStorage("SubAdminToken", accessToken);
-      setDisabled(false)
+      setDisabled(false);
       navigate("../AdminHome");
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -139,10 +102,8 @@ export default function Login() {
       } else {
         setMessage("Internal Server Error");
       }
-      setDisabled(false)
+      setDisabled(false);
     }
-   
-    
   };
 
   const handleSubAdminClick = () => {
@@ -153,15 +114,15 @@ export default function Login() {
     setEmailLabel("Email Address");
     setMessage("");
   };
-  function handleMe(){
+  function handleMe() {
     navigate("../EnterPassword");
   }
-  function handleMe(){
+  function handleMe() {
     navigate("../");
   }
   return (
-    <div >
-      <form  onSubmit={handleSubmit} className=" overflow-hidden">
+    <div>
+      <form onSubmit={handleSubmit} className=" overflow-hidden">
         <div>
           <InputWithIcon
             handleChange={handleChangeEmail}

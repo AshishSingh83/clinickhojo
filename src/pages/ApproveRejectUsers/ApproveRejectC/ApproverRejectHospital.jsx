@@ -43,6 +43,7 @@ function ApproveRejectHospital() {
   const [rating, setRating] = useState("");
   const [loading, setLoading] = useState(false);
   const [approved, setApproved] = useState("");
+  const [sniper,setSniper] = useState(false) ;
   // const [response, setResponse] = useState(null);
 
 
@@ -145,6 +146,7 @@ function ApproveRejectHospital() {
     }
   };
   const areUSureDelete = async (choose) =>{
+    setSniper(true)
     const serviceId = 'service_om433u9' ;
     const templateId = 'template_zzith2l';
     const publicKey = '9BN6G8lDUWm0rzkqZ';
@@ -156,14 +158,14 @@ function ApproveRejectHospital() {
       message:message,
       to_email:managementEmail
     }
-    if (choose) {
+    if (choose){
       console.log(choose,approved);
       if (1) {
         try{
           const response = await axios.post("api/admin/hospital/approve",{
             isApproved: approved,
             hospitalClinicKhojoId: hospitalClinicKhojoId,
-            approvedBy: "Rahul123",
+            approvedBy: "Test123",
             addRemark: formData.remark,
           });
           if(!approved){
@@ -201,6 +203,7 @@ function ApproveRejectHospital() {
     } else {
       handleDialog("", false);
     }
+    setSniper(false)
   };
   return(
     <>
@@ -378,6 +381,7 @@ function ApproveRejectHospital() {
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
           message={dialog.message}
+          sniper={sniper}
         />
       )}
     </>

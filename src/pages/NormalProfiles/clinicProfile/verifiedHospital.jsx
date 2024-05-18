@@ -28,9 +28,13 @@ function VerifiedHospital() {
   const [noClinic, setNoClinic] = useState(false);
   const [rating, setRating] = useState("");
   const [loading, setLoading] = useState(false);
-  const [approved, setApproved] = useState("");
+  const [approved, setApproved] = useState(""); 
+  const [sniper,setSniper] = useState(false)
 
   const response = useSelector((state) => state.register.hospitalData);
+  console.log('hos res',response);
+  const hospitalClinicKhojoId = response.hospitalClinicKhojoId ;
+  const managementEmail = response.managementEmail ;
   //   const uniqueClinicId = useSelector((state) => state.register.uniqueClinicId);
   //   const doctorEemail = useSelector((state) => state.register.doctorEmail);
   //   const uniqueDoctorId = useSelector((state) => state.register.uniqueDoctorId);
@@ -79,23 +83,27 @@ function VerifiedHospital() {
   };
 
   const areUSureDelete = async (choose) => {
+    console.log(hospitalClinicKhojoId,managementEmail);
+    setSniper(true)
     if (choose) {
       if (approved == true) {
         try {
-          await axios.post("api/admin/delete/doctor", {
-            doctorUniqueId: uniqueDoctorId,
-          });
+          await axios.post("api/admin/hospitals/delete", {
+            "hospitalClinicKhojoId":"094210",
+        "managementEmail":"johndoe@hospital27.com"
+        });
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
           navigate("../ViewProfileMain");
         } catch (error) {
-          console.error("Error:", error);
+          console.error("Error:", error.message);
         }
       }
       if (approved == false) {
         try {
-          await axios.post("api/admin/delete/doctor", {
-            doctorUniqueId: uniqueDoctorId,
+          await axios.post("api/admin/hospitals/suspend", {
+            hospitalClinicKhojoId,
+            managementEmail,
           });
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
@@ -107,6 +115,7 @@ function VerifiedHospital() {
     } else {
       handleDialog("", false);
     }
+    setSniper(false)
   };
   return (
     <>
@@ -207,6 +216,7 @@ function VerifiedHospital() {
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
           message={dialog.message}
+          sniper={sniper}
         />
       )}
     </>

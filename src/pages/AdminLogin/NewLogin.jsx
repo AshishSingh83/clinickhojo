@@ -54,81 +54,89 @@ export default function NewLogin() {
     e.preventDefault();
     authenticateUser();
   };
-  const handleAutoLogin = async(a,b)=>{
-    try{
-      const response = await axios.post("api/admin/login/subAdmin", {
-        userName: a,
-        password: b,
-      });
-      if (response.data.user){
-        const dataa={
-          userName: a,
-          password: b,
-          label: "Username",
-        };
-        const currentTime = new Date().getTime();
-        const newTime = currentTime + (100 * 1000);
-        saveDataToLocalStorage('myData', { dataa, expiry: newTime });
-        setMessage("");
-        navigate("../AdminHome");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error.response.status);
-      if (error.response.status == 404) {
-        setMessage("User Not Found .....");
-      } else {
-        setEmailLabel("Internal Server Error");
-      }
-    }
-  }
+ 
     useEffect(() => {
-    const savedData = getDataFromLocalStorage('myDataAdmin');
-    if (savedData){
-      if(new Date().getTime() < savedData.expiry) {
-              console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
-              setLoginEmailVal(savedData.dataa.userName );
-              setLoginPasswordVal(savedData.dataa.password);
-              setLabel(savedData.dataa.label);
-              handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
-      }else{
-        console.log('data experied');
-        deleteDataFromLocalStorage('myDataAdmin');
-        setLoginEmailVal('');
-        setLoginPasswordVal('');
+      const savedData = getDataFromLocalStorage("AdminToken");
+      if (savedData) {
+        setDisabled(true)
+        const verifyToken = async()=>{
+          try {
+            const response = await axios.post(
+              'api/admin/profile/subAdmin', 
+              {},
+              {
+                headers: {
+                  'Authorization': `Bearer ${savedData}`
+                }
+              }
+            );
+            console.log(response);
+            setDisabled(false)
+            if(response.data.authData.userData.user_role=="admin"){
+              navigate("../AdminHome");
+            }
+          } catch (error) {
+            setDisabled(false)
+            console.log('Error:', error.message);
+          }
+        }
+        verifyToken()
+        console.log(savedData);
+        
       }
-    }
   }, []);
   
   
   const authenticateUser = async()=>{
+    // setDisabled(true)
+    //   try{
+    //     const response = await axios.post("api/admin/login/subAdmin", {
+    //       userName: loginEmailVal,
+    //       password: loginPasswordVal,
+    //     });
+    //     if (response.data.user){
+    //       const dataa = {
+    //         userName: loginEmailVal,
+    //         password: loginPasswordVal,
+    //         label: "Email",
+    //       };
+    //       const currentTime = new Date().getTime();
+    //       const newTime = currentTime + (100 * 1000);
+    //       saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
+    //       setMessage("");
+    //       setDisabled(false)
+    //       navigate("../AdminHome");
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching data:", error.response.status);
+    //     if (error.response.status == 404) {
+    //       setMessage("User Not Found .....");
+    //     } else {
+    //       setEmailLabel("Internal Server Error");
+    //     }
+    //     setDisabled(false)
+    //   }
     setDisabled(true)
-      try{
-        const response = await axios.post("api/admin/login/subAdmin", {
-          userName: loginEmailVal,
-          password: loginPasswordVal,
-        });
-        if (response.data.user){
-          const dataa = {
-            userName: loginEmailVal,
-            password: loginPasswordVal,
-            label: "Email",
-          };
-          const currentTime = new Date().getTime();
-          const newTime = currentTime + (100 * 1000);
-          saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
-          setMessage("");
-          setDisabled(false)
-          navigate("../AdminHome");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error.response.status);
-        if (error.response.status == 404) {
-          setMessage("User Not Found .....");
-        } else {
-          setEmailLabel("Internal Server Error");
-        }
-        setDisabled(false)
+    try {
+      const response = await axios.post("api/admin/login/subAdmin", {
+        userName: loginEmailVal,
+        password: loginPasswordVal,
+      });
+      console.log(response);
+      const accessToken = response.data.token;
+      saveDataToLocalStorage("AdminToken", accessToken);
+      setDisabled(false)
+      navigate("../AdminHome");
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      if (error.response.status == 404) {
+        setMessage("User Not Found .....");
+      } else {
+        setMessage("Internal Server Error");
       }
+      setDisabled(false)
+    }
+   
    
   };
 
