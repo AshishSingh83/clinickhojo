@@ -5,7 +5,9 @@ import { updateUserData } from "../../../data/features/registerSlice";
 import Input from "../../../components/ui/Input";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
-
+import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
+import { BiSearch } from 'react-icons/bi';
+import Spinner from "../../../components/ui/clipPath/Spinner";
 const DemoUser = ({
   text = "All Users ...",
   Width = "h-[500px]",
@@ -16,6 +18,9 @@ const DemoUser = ({
   mh2 = "max-h-[400px]",
   mw3 = "max-w-[450px]",
   showData,
+  hwidth= 'w-[380px]',
+  hrad='35px',
+  spinner=false
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,12 +51,10 @@ const DemoUser = ({
 
   return (
     <div className={`${Width} ${Height} bg-[#03229F]`}>
-      <div className={`bg-[#D9D9D9] mt-[-12px] text-black flex flex-col`}>
+      <div className={`  text-black flex flex-col`}>
 
-      <div className=" h-14 flex items-center">
-      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808]`}>
-          {text}
-        </h3>
+      <div className=" flex items-center justify-center">
+        <ClipBgB width={hwidth} height='h-[50px]'  bardervar={hrad} bg='bg-[#FFFFFF]' textColor="text-[#FA0808]"  textSize="text-2xl"  mt='mt-0' text={text}/>
       </div>
         {showData.length !== 0 && (
           <div className=" flex flex-row bg-[#03229F] gap-3">
@@ -64,7 +67,7 @@ const DemoUser = ({
                 placeholder="Search Profiles"
                 bg1="bg-[#F2EFEF]"
                 handleChange={(e) => setSearch(e.target.value)}
-                iconData="BiSearch"
+                iconData={BiSearch}
               />
             </div>
             <div className=" mt-6">
@@ -85,8 +88,10 @@ const DemoUser = ({
       <div className={`overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-black mt-44 text-2xl font-medium">
-              No data available
+            <p className="text-white mt-44 text-2xl font-medium">
+            {
+              spinner?<Spinner height="h-[70px]" width="w-[70px]" fontSize="text-[.9rem]"/>:'No Data Available'
+            }
             </p>
           </div>
         ) : (

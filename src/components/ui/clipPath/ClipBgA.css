@@ -1,0 +1,31 @@
+
+.a-custom-button {
+  background-color: #0032FF; /* Red background */
+  color: #FFFFFF; /* White text */
+  border-radius: 32px 32px 0 0; /* Rounded top corners */
+  position: relative; /* Needed for the pseudo-elements */
+  font-size: 14px; /* Text size */
+  font-weight: normal; /* Bold text */
+  text-align: center; /* Center the text */
+}
+
+.a-custom-button::before,
+.a-custom-button::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 20px; /* Width of the triangles */
+  height: 20px; /* Height of the triangles */
+  background-color: inherit; /* Same background color as the button */
+  z-index: -1; /* Place it behind the button */
+}
+
+.a-custom-button::before {
+  left: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.a-custom-button::after {
+  right: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}

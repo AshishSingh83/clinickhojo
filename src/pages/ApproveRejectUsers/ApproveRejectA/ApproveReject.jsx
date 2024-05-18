@@ -117,6 +117,8 @@ import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn";
 import DemoHospital from "./DemoHospital";
 import { updateApprovedHospitals } from "../../../data/features/registerSlice";
 import { useDispatch } from "react-redux";
+import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
+
 function ApproveReject() {
   const [pending, setPending] = useState([]);
   const [notApprovedHospitals, setNotApprovedHospitals] = useState([]);
@@ -167,6 +169,8 @@ function ApproveReject() {
   if (loading) {
     return (
       <div className="text-black font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600">
+
+
         <div className="flex flex-col justify-between">
           <div className="me-7">
             <Sidebar someData={mydata} />
@@ -175,14 +179,23 @@ function ApproveReject() {
             <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center ms-36 mt-16 gap-28 opacity-65">
-          <Skeletonn count="9" width={400} />
-          <Skeletonn count="9" width={400} />
+
+        
+        <div >
+          {/* <Skeletonn count="9" width={400} />
+          <Skeletonn count="9" width={400} /> */}
+          <div className="flex flex-row gap-28 mt-32 ms-28">
+          <div className="bg-[#D9D9D9] ">
+            <Demo bg1="bg-[#F75990]" bg2="bg-[#bf9ee6]" bg3="bg-blue-200" showData={[]} newBg="bg-[#0032FF]" newBga="#0032FF" spinner={true} />
+          </div>
+          <div className="me-32">
+            <DemoHospital bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='Pending Profiles Of Hospital ...' showData={[]} newBg="bg-[#229649]" newBga="#229649" spinner={true} />
+          </div>
+        </div>
         </div>
       </div>
     );
   }
-
   return (
     <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
@@ -194,17 +207,18 @@ function ApproveReject() {
         </div>
       </div>
       <div>
-        <div className="mt-14 flex flex-row justify-between">
-          <div className="bg-[#FF0B0B] h-14 w-52">
+        <div className=" flex flex-row justify-between">
+          {/* <div className="bg-[#FF0B0B] h-14 w-52">
             <p className="text-white mt-4 ms-7">Approve/Reject User</p>
-          </div>
+          </div> */}
+          <ClipBgB width='w-[340px]' height='h-[65px]'  bardervar="37px" />
         </div>
         <div className="flex flex-row gap-28 mt-16">
           <div className="bg-[#D9D9D9]">
-            <Demo bg1="bg-[#F75990]" bg2="bg-[#bf9ee6]" bg3="bg-blue-200" showData={pending} newBg="bg-[#0032FF]" newBga="#0032FF" />
+            <Demo bg1="bg-[#F75990]" bg2="bg-[#bf9ee6]" bg3="bg-blue-200" showData={pending} newBg="bg-[#0032FF]" newBga="#0032FF" spinner={false} />
           </div>
           <div className="me-32">
-            <DemoHospital bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='Pending Profiles Of Hospital ...' showData={notApprovedHospitals} newBg="bg-[#229649]" newBga="#229649" />
+            <DemoHospital bg1="bg-[#845BB3]" bg2="bg-blue-300" bg3="bg-[#f089a4]" text='Pending Profiles Of Hospital ...' showData={notApprovedHospitals} newBg="bg-[#229649]" newBga="#229649" spinner={false} />
           </div>
         </div>
       </div>

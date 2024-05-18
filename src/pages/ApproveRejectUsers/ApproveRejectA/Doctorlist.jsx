@@ -1,15 +1,13 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
-import { updateHospitalData } from "../../../data/features/registerSlice";
+import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaFilter } from 'react-icons/fa';
-import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
-import Spinner from "../../../components/ui/clipPath/Spinner";
-const DemoHospital = ({
+const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
   Height = "w-[500px]",
@@ -22,14 +20,9 @@ const DemoHospital = ({
   normalVerified,
   newBg = "bg-[#229649]",
   newBga,
-  hwidth= 'w-[380px]',
-  hrad='35px',
-  spinner=false
 }) => {
   const dispatch = useDispatch();
-  console.log('demo hos',showData);
   const navigate = useNavigate();
-  console.log(showData);
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
   const [search, setSearch] = useState("");
@@ -45,40 +38,31 @@ const DemoHospital = ({
     setSortedData(sorted);
   };
   const handleMe = (update) => {
-    console.log('normal verified',normalVerified);
-    dispatch(updateHospitalData(update));
-    if(normalVerified=='true'){
-      console.log('nanananaaaaah');
-      navigate("../VerifiedHospital");
-    }else{
-      if (localStorage.getItem(`${update.hospitalClinicKhojoId}a`) === null) {
+    dispatch(updateDoctorData(update));
+    if (normalVerified) {
+      navigate("../VerifiedDoctorProfile");
+    } else {
+      if (localStorage.getItem(`${update.uniqueDoctorId}a`) === null) {
         const myVal = "ashish";
-        localStorage.setItem(`${update.hospitalClinicKhojoId}a`, myVal);
-        localStorage.setItem(`${update.hospitalClinicKhojoId}b`, myVal);
+        localStorage.setItem(`${update.uniqueDoctorId}a`, myVal);
+        localStorage.setItem(`${update.uniqueDoctorId}b`, myVal);
       }
-      navigate("../ApproveRejectHospital");
+      navigate("../ApproveRejectB", { state: { update } });
     }
   };
-  // const filteredData = sortedData.filter((update) =>
-  //   update.name.toLowerCase().includes(search.toLowerCase())
-  // );
-
-  const filteredData = useMemo(() => {
-    if(search!=''){
-      console.log('andar bandar',search);
-      return sortedData.filter((update) =>
-        update.name.toLowerCase().includes(search.toLowerCase())
-      );
-    }else{
-      return sortedData
-    }
-  }, [sortedData, search]);
+  const filteredData = sortedData.filter((update) =>
+    update.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
-      <div className={` mt-[-12px] text-black flex flex-col `}>
-        <div className=" h-14 flex items-center justify-center ">
-        <ClipBgB width={hwidth} height='h-[55px]'  bardervar={hrad} bg='bg-[#FFFFFF]' textColor="text-[#FA0808]"  textSize="text-2xl"  mt='mt-2' text={text}/>
+      <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col  `}>
+        <div className=" h-14 flex items-center ">
+          <h3
+            className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}
+          >
+            {text}
+          </h3>
         </div>
 
         {sortedData.length === 0 ? (
@@ -108,6 +92,7 @@ const DemoHospital = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
+            
           </div>
         )}
       </div>
@@ -115,9 +100,7 @@ const DemoHospital = ({
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
             <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
-            {
-              spinner?<Spinner height="h-[70px]" width="w-[70px]" fontSize="text-[.9rem]"/>:'No Data Available'
-            }
+              No data available
             </p>
           </div>
         ) : (
@@ -135,7 +118,7 @@ const DemoHospital = ({
                   </p>
                   <p className=" font-medium text-[#535252] ">
                     {" "}
-                    #{update.hospitalClinicKhojoId}
+                    #{update.uniqueDoctorId}
                   </p>
                 </div>
                 <div className=" flex flex-row ms-7 gap-2 mt-">
@@ -144,7 +127,7 @@ const DemoHospital = ({
                   </p>
                   <p className=" font-medium text-[#535252]  ">
                     {" "}
-                    {update.address.city}
+                    {update.address.locality}
                   </p>
                 </div>
                 {/* <span className="font-medium ">City : </span>
@@ -164,4 +147,4 @@ const DemoHospital = ({
   );
 };
 
-export default DemoHospital;
+export default Demo;

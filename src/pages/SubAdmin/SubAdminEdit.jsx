@@ -4,6 +4,7 @@ import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import BasicDetail from "./Components/Cards/BasicDetail";
 import UserActivity from "./Components/Cards/UserActivity";
 import { useSelector } from "react-redux";
+import ClipBgB from "../../components/ui/clipPath/ClipBgB";
 function SubAdminEdit() {
   const update = useSelector((state) => state.register.subAdminData);
   return (
@@ -20,10 +21,13 @@ function SubAdminEdit() {
         </div>
       </div>
       <div className=" flex flex-col ">
-        <div className=" flex flex-row ms-14 mt-5 gap-64">
-          <div className="bg-[#FF0B0B] h-14 w-48 mt-3 ms-[-60px] ">
+        <div className=" flex flex-row ms-14  gap-64">
+          {/* <div className="bg-[#FF0B0B] h-14 w-48 mt-3 ms-[-60px] ">
             <p className="text-white mt-4 ms-7 ">User Management</p>
-          </div>
+          </div> */}
+          <ClipBgB width='w-[290px]' height='h-[55px]'  bardervar="32px" 
+           text="User Management" 
+         />
         </div>
 
         <div className="flex flex-row gap-20 mt-28">

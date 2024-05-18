@@ -8,6 +8,7 @@ import InputWithIcon from "../../../components/ui/InputWithIcon.jsx"
 import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
 import { FiLogOut } from "react-icons/fi";
+import Spinner from "../../../components/ui/clipPath/Spinner.jsx";
 const SubAdminProfile = () => {
   const [demoConstant, setDemoConstant] = useState([]);
   const [search, setSearch] = useState("");
@@ -37,9 +38,9 @@ const SubAdminProfile = () => {
   }, [demoConstant, search]);
 
   if (loading) {
-    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-600 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
+    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-700 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
       <div className=" flex flex-row justify-center items-center  gap-28 ms-10 mt-[-70px] opacity-65 ">
-      <Skeletonn 
+      {/* <Skeletonn 
       count="6" 
       width={200}
     />
@@ -50,7 +51,18 @@ const SubAdminProfile = () => {
     <Skeletonn 
       count="6" 
       width={200}
-    />
+    /> */}
+    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
+    </div>
+    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
+    </div>
+    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
+    </div>
+
+
       </div>
     
     </div>;

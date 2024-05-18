@@ -7,6 +7,8 @@ import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaFilter } from 'react-icons/fa';
+import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
+import Spinner from "../../../components/ui/clipPath/Spinner";
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -20,7 +22,11 @@ const Demo = ({
   normalVerified,
   newBg = "bg-[#229649]",
   newBga,
+  hwidth= 'w-[380px]',
+  hrad='35px',
+  spinner=false
 }) => {
+  console.log(spinner);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sortedData, setSortedData] = useState([...showData]);
@@ -57,14 +63,11 @@ const Demo = ({
 
   return (
     <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
-      <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col  `}>
-        <div className=" h-14 flex items-center ">
-          <h3
-            className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}
-          >
-            {text}
-          </h3>
+      <div className={` mt-[-12px] text-black flex flex-col   `}>
+        <div className=" h-14 flex items-center justify-center ">
+        <ClipBgB width={hwidth} height='h-[55px]'  bardervar={hrad} bg='bg-[#FFFFFF]' textColor="text-[#FA0808]"  textSize="text-2xl"  mt='mt-2' text={text}/>
         </div>
+       
 
         {sortedData.length === 0 ? (
           ""
@@ -99,9 +102,12 @@ const Demo = ({
       </div>
       <div className={`overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
+
           <div className="flex justify-center items-center h-full">
             <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
-              No data available
+            {
+              spinner?<Spinner height="h-[70px]" width="w-[70px]" fontSize="text-[.9rem]"/>:'No Data Available'
+            }
             </p>
           </div>
         ) : (

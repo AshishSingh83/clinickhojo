@@ -18,6 +18,7 @@ import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import emailjs from '@emailjs/browser';
 import Hbasicdetail from "../../ManageMent/MHomeC.jsx/Hbasicdetail.jsx";
 import Profile from "../../ManageMent/MHomeB/Profile.jsx";
+import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 function ApproveRejectHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -150,19 +151,19 @@ function ApproveRejectHospital() {
     const keysWithNo = Object.keys(formDataC).filter(key => formDataC[key] === "No");
     const message = `You provided wrong ${keysWithNo.join(', ')} so your account is rejected.`;
     const templateParams={
-      to_name:doctorName,
+      to_name:name,
       from_name:'ClinicKhojo',
       message:message,
-      to_email:doctorEemail
+      to_email:managementEmail
     }
     if (choose) {
       console.log(choose,approved);
       if (1) {
         try{
-          const response = await axios.put("api/admin/approveDoctors",{
-            doctorsUniqueId: uniqueDoctorId,
-            approvedBy: "Rahul123",
+          const response = await axios.post("api/admin/hospital/approve",{
             isApproved: approved,
+            hospitalClinicKhojoId: hospitalClinicKhojoId,
+            approvedBy: "Rahul123",
             addRemark: formData.remark,
           });
           if(!approved){
@@ -176,22 +177,20 @@ function ApproveRejectHospital() {
           }else{
             console.log('sent some good gmail');
           }
-          if(!noClinic){
             if (approved){
-              await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
-                clinicKhojoAppointmentFeeNormal: normalFee,
-                clinicKhojoAppointmentFeeEmergency: emergencyFee,
-                clinicUniqueId: uniqueClinicId,
-                doctorEmail: doctorEemail,
+              await axios.post("api/admin/hospitals/setAppointmentFee", {
+               hospitalClinicKhojoId:hospitalClinicKhojoId,
+               managementEmail:managementEmail,
+               clinicKhojoAppointmentFeeNormal:emergencyFee,
+               clinicKhojoAppointmentFeeEmergency:normalFee
               });
             }
             if (approved) {
-              await axios.post("api/admin/doctors/clinic/setRatings", {
-                clinicUniqueId: uniqueClinicId,
+              await axios.post("api/admin/hospitals/setRatings", {
+                hospitalClinicKhojoId: hospitalClinicKhojoId,
                 rating: rating,
               });
             }
-          }
           localStorage.removeItem(`${hospitalClinicKhojoId}a`);
           // localStorage.removeItem(`${hospitalClinicKhojoId}b`);
           navigate("../ApproveReject");
@@ -226,15 +225,13 @@ function ApproveRejectHospital() {
       )} */}
      
               <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] "
+                className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] gap-9 "
                 
               >
-
                 <div
-                  className=" bg-[#03229F] flex flex-col justify-between"
-                  style={{ backgroundColor: "#c2c0bc" }}
+                  className=" bg-[#03229F] flex flex-col justify-between "
                 >
-                  <div className="me-7">
+                  <div className="">
                     <Sidebar someData={{ index: 2 }} />
                   </div>
                   <div>
@@ -245,17 +242,27 @@ function ApproveRejectHospital() {
                   </div>
                 </div>
 
-                <div className=" flex flex-col">
-                  <div className="      flex flex-row justify-between ms-14 mt-5 ">
-                    <div className=" bg-[#FF0B0B] h-14 w-52 ms-5">
+                <div className=" flex flex-col gap-8 ">
+                  <div className="      flex flex-row justify-between   ">
+                    {/* <div className=" bg-[#FF0B0B] h-14 w-52 ms-5">
                       <p className=" text-white mt-4 ms-7  ">
                         Approve/Reject User
                       </p>
+                    </div> */}
+                    {/* <ClipBgB width='w-[340px]' height='h-[65px]'  bardervar="37px" /> */}
+                    <div className=" flex flex-row gap-5">
+
+                    <div className="">
+                    <ClipBgB width='w-[340px]' height='h-[65px]'  bardervar="37px" />
                     </div>
+
                     <div>
-                      <p className=" text-white text-2xl underline mt-5 me-[800px]">
+                      <p className=" text-white text-2xl underline mt-5 ms-24 ">
                         Hospital Detail
                       </p>
+                    </div>
+                   
+                     
                     </div>
                   </div>
                   <div className="flex flex-row  mt-6 bg-[#03229F] me-3  ">

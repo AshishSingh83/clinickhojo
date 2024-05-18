@@ -48,7 +48,7 @@ function CreateSubAdminFormA({ formDataa }) {
   const [assignedUserId, setAssignedUserId] = useState("");
   const [assignedUserPassword, setAssignedUserPassword] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-
+  const [disabled,setDisabled] = useState(false) ;
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -76,18 +76,23 @@ function CreateSubAdminFormA({ formDataa }) {
       assignedUserPassword,
     };
     if (formDataa.length != 0) {
-      console.log(formData);
+      setDisabled(true)
       try {
         const response = await axios.put("api/admin/editSubAdmin", formData);
+        setDisabled(false)
         navigate("../SubAdminMainProfile");
       } catch (error) {
+        setDisabled(false)
         console.error("Error editing sub-admin:", error.message);
       }
     } else {
+      setDisabled(true)
       try {
         const response = await axios.post("api/admin/createSubAdmin", formData);
+        setDisabled(false)
         navigate("../SubAdminMainProfile");
       } catch (error) {
+        setDisabled(false)
         console.error("Error creating sub-admin:", error);
       }
     }
@@ -168,6 +173,7 @@ function CreateSubAdminFormA({ formDataa }) {
               text="Save Profile" 
               handleSubmit={createAdminButton}
               bg="bg-[#229649]"
+              disabled={disabled}
                />
             </div>
           </div>

@@ -3,6 +3,7 @@ import { FiLogOut } from "react-icons/fi";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
 import CreateSubAdminFormA from "./Cards/CreateSubAdminFormA";
+import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
 function CreateSubAdmin() {
   const [formData, setFormData] = useState([]);
   const location = useLocation();
@@ -32,10 +33,16 @@ function CreateSubAdmin() {
       </div>
 
       <div className=" flex flex-col">
-        <div className=" flex flex-row ms-8 mt-5 gap-64">
-          <div className="bg-[#D9D9D9] h-12 w-48 mt-3 ms-[-300px] ">
+        <div className=" flex flex-row gap-80">
+          {/* <div className="bg-[#D9D9D9] h-12 w-48 mt-3 ms-[-300px] ">
             <p className="text-black mt-3 ms-7 ">User Management</p>
+          </div> */}
+          <div className=" ms-[-200px]">
+          <ClipBgB width='w-[290px]' height='h-[55px]'  bardervar="32px" 
+           text="User Management" 
+         />
           </div>
+         
 
           <div className="bg-[#229649] h-12 w-64 mt-3 ms-[-220px] rounded-2xl">
             <p className="text-black mt-3 ms-7 ">

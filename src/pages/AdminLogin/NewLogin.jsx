@@ -19,6 +19,7 @@ export default function NewLogin() {
   const [emailLabel, setEmailLabel] = useState("Email Address");
   const [message, setMessage] = useState("");
   const [expiryTime, setExpiryTime] = useState(0);
+  const [disabled,setDisabled] = useState(false)
   const [data, setData] = useState({
     userName: '',
     password: '',
@@ -100,7 +101,7 @@ export default function NewLogin() {
   
   
   const authenticateUser = async()=>{
-    console.log('called',loginEmailVal,loginPasswordVal);
+    setDisabled(true)
       try{
         const response = await axios.post("api/admin/login/subAdmin", {
           userName: loginEmailVal,
@@ -116,6 +117,7 @@ export default function NewLogin() {
           const newTime = currentTime + (100 * 1000);
           saveDataToLocalStorage('myDataAdmin', { dataa, expiry: newTime });
           setMessage("");
+          setDisabled(false)
           navigate("../AdminHome");
         }
       } catch (error) {
@@ -125,6 +127,7 @@ export default function NewLogin() {
         } else {
           setEmailLabel("Internal Server Error");
         }
+        setDisabled(false)
       }
    
   };
@@ -184,6 +187,7 @@ export default function NewLogin() {
          bgColor="bg-[#FFFFFF]"
          textColor="text-[#FA0808]"
          hoverColor = "hover:bg-blue-200"
+         disabled={disabled}
           />
       </form>
     </div>

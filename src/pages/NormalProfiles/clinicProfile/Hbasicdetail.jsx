@@ -33,9 +33,9 @@ const Hbasicdetail = ({ BasicDetail }) => {
     { "Alternate Contact Number": `${BasicDetail.alternateContactNumber}` },
     { "Email Id": `${BasicDetail.doctorEmail}` },
     { "Year of Establishment": `${BasicDetail.yearOfEstablishment}` },
-    { "Primary Specialization": formattedPrimarySpecialization },
+    // { "Primary Specialization": formattedPrimarySpecialization },
     // { "Other Specializations": formattedOtherSpecializations.join(" / ") },
-    // { "Clinic Description": `${BasicDetail.description}` },
+    { "Clinic Description": `${BasicDetail.description}` },
   ];
   return (
     <div className="bg-[#03229F] w-[435px] min-h-[310px]  mb-4 rounded-sm">

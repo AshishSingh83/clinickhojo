@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Profile from "../ApproveRejectUsers/ApproveRejectB/Profile";
 import ProfileUser from "./Components/ProfileUser";
 import Appoiment from "./Components/Appoitment";
+import ClipBgB from "../../components/ui/clipPath/ClipBgB";
 function UserProfile() {
   const [appoitments, setAppoitments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,15 +48,25 @@ function UserProfile() {
       <div className=" flex flex-col">
 
         <div
-          className="text-black mt-20   font-medium flex flex-row justify-between w-screen "
+          className="text-black   font-medium flex flex-row justify-between gap-36  "
           style={{ fontSize: "18px" }}
         >
-          <div className="bg-[#D9D9D9] h-14 w-52 ms-40 mt-[-20px]  ">
-              <p className="text-black mt-3 ms-12   ">
+          <div className=" flex flex-row gap-24  ">
+
+          <div>
+          <ClipBgB
+              width="w-[290px]"
+              height="h-[55px]"
+              bardervar="32px"
+              text="View Profile"
+            />
+          </div>
+
+              <p className="text-black mt-3    ">
                 User Profile
               </p>
             </div>
-            <div className=" me-44 mt-[-20px]">
+            <div className=" me-44 ">
             <ProfileUser
               fullName={name}
               profileImage={profilePicture}
@@ -64,7 +75,7 @@ function UserProfile() {
             />
           </div>
         </div>
-        <div className=" mt-9 ms-96">
+        <div className=" mt-9 ">
 
           <div className=" ">
             <Appoiment dataa={appoitments} />
