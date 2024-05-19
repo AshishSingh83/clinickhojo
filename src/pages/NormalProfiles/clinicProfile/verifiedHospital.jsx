@@ -36,6 +36,7 @@ function VerifiedHospital() {
   console.log("hos res", response);
   const hospitalClinicKhojoId = response.hospitalClinicKhojoId;
   const managementEmail = response.managementEmail;
+
   //   const uniqueClinicId = useSelector((state) => state.register.uniqueClinicId);
   //   const doctorEemail = useSelector((state) => state.register.doctorEmail);
   //   const uniqueDoctorId = useSelector((state) => state.register.uniqueDoctorId);
@@ -62,6 +63,11 @@ function VerifiedHospital() {
   //     }
   //     fetchData();
   //   }, []);
+  useEffect(() => {
+    setNormalFee(response.clinicKhojoAppointmentFeeNormal);
+    setEmergencyFee(response.clinicKhojoAppointmentFeeEmergency);
+    setRatingg(response.rating);
+  }, []);
   const navigate = useNavigate();
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
@@ -108,11 +114,11 @@ function VerifiedHospital() {
           });
           if (localStorage.getItem(`${hospitalClinicKhojoId}a`) !== null) {
             localStorage.removeItem(`${hospitalClinicKhojoId}a`);
-        }
-        
-        if (localStorage.getItem(`${hospitalClinicKhojoId}b`) !== null) {
+          }
+
+          if (localStorage.getItem(`${hospitalClinicKhojoId}b`) !== null) {
             localStorage.removeItem(`${hospitalClinicKhojoId}b`);
-        }
+          }
           navigate("../ViewProfileMain");
         } catch (error) {
           console.error("Error:", error);
@@ -196,7 +202,7 @@ function VerifiedHospital() {
                     {/* <SessionTimings
                             SessionTimings={response.timingsSlots}
                           /> */}
-                          <DoctorSessions  showData={response.doctorSessions || []}/>
+                    <DoctorSessions showData={response.doctorSessions || []} />
                   </div>
                   <hr />
                   <div>

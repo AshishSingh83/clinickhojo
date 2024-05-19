@@ -9,7 +9,8 @@ export default function Input({
   placeholder,
   customClass,
   my1,
-  bg1
+  bg1,
+  disabled=false
 }) {
   const inputClass = `${fixedInputClass} ${customClass || ""}`.trim();
 
@@ -22,6 +23,7 @@ export default function Input({
         required={isRequired}
         className={`${inputClass} ${bg1}`}
         placeholder={placeholder}
+        disabled={disabled}
       />
     </div>
   );

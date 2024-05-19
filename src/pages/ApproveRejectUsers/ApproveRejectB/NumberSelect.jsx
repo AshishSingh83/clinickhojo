@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-function NumberSelect({ onSelect,rating }) {
+function NumberSelect({ onSelect,rating,disabled=false}) {
   const [selectedNumber, setSelectedNumber] = useState("");
   const handleChange = (event) => {
     const number = event.target.value;
@@ -17,6 +17,7 @@ function NumberSelect({ onSelect,rating }) {
         className="px-4 py-2 border border-white rounded-md shadow-sm focus:outline-none focus:border-blue-500 bg-white text-black text-center"
         value={selectedNumber}
         onChange={handleChange}
+        disabled={disabled}
       >
         <option value="">Choose Rating</option>
         {[...Array(10).keys()].map((num) => (
