@@ -146,14 +146,23 @@ function ApproveReject() {
         const notApproved = [];
         
         hospitals.forEach(update => {
-          if (update.requestForApproval) {
-            if (update.isApproved) {
-              approved.push(update);
-            } else {
-              notApproved.push(update);
-            }
+          // if (update.requestForApproval) {
+          //   if (update.isApproved) {
+          //     approved.push(update);
+          //   } else {
+          //     notApproved.push(update);
+          //   }
+          // }
+          console.log(update);
+          if(update.requestForApproval && !update.isApproved && !update.isSuspended){
+            notApproved.push(update);
           }
-        });
+          if(update.isApproved && !update.isSuspended){
+            approved.push(update);
+          }
+        }
+      
+      );
 
         setNotApprovedHospitals(notApproved);
         dispatch(updateApprovedHospitals(approved));

@@ -90,11 +90,15 @@ export default function Login() {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
-      console.log(response);
-      const accessToken = response.data.token;
-      saveDataToLocalStorage("SubAdminToken", accessToken);
+      if(response.data.role=='subAdmin'){
+        const accessToken = response.data.token;
+        saveDataToLocalStorage("SubAdminToken", accessToken);
+        setDisabled(false);
+        navigate("../AdminHome");
+      }else{
+        setMessage('This userId related to Admin') ;
+      }
       setDisabled(false);
-      navigate("../AdminHome");
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response.status == 404) {

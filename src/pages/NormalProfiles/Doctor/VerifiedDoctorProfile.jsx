@@ -86,8 +86,12 @@ function VerifiedDoctorProfile() {
           await axios.post("api/admin/delete/doctor", {
             doctorUniqueId: uniqueDoctorId,
           });
-          localStorage.removeItem(`${uniqueDoctorId}a`);
-          localStorage.removeItem(`${uniqueDoctorId}b`);
+          if (localStorage.getItem(`${uniqueDoctorId}a`) !== null) {
+            localStorage.removeItem(`${uniqueDoctorId}a`);
+        }
+        if (localStorage.getItem(`${uniqueDoctorId}b`) !== null) {
+            localStorage.removeItem(`${uniqueDoctorId}b`);
+        }
           navigate("../ViewProfileMain");
         } catch (error) {
           console.error("Error:", error);

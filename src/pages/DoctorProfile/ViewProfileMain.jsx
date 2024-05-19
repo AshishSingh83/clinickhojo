@@ -186,11 +186,11 @@ function ViewProfileMain() {
         setApproveDoctors(changedResponse.data.doctors || []);
         setDeleteRequest(doctorDeleteRequest.data.doctors || []);
 
-        if (ApprovedHospitals === "") {
+        if (ApprovedHospitals === ""){
           const dataa = await axios.get("api/admin/getAll/hospitals");
           const hospitals = dataa.data || [];
           const approved = hospitals.filter(
-            (update) => update.requestForApproval && update.isApproved
+            (update) => update.isApproved && !update.isSuspended
           );
           setApprovedHospital(approved);
         } else {

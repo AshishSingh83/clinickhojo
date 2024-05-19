@@ -43,6 +43,7 @@ import ClipBgA from "./components/ui/clipPath/ClipBgA.jsx";
 import ClipBgB from "./components/ui/clipPath/ClipBgB.jsx";
 import ClipBgC from "./components/ui/clipPath/ClipBgC.jsx";
 import Spinner from "./components/ui/clipPath/Spinner.jsx";
+import NewPopup from "./components/ui/NewPopup.jsx";
 
 
 
@@ -86,6 +87,7 @@ const router = createBrowserRouter(
       <Route path="ClipBgB" element={<ClipBgB />} />
       <Route path="ClipBgC" element={<ClipBgC />} />
       <Route path="Spinner" element={<Spinner />} />
+      <Route path="NewPopup" element={<NewPopup />} />
 
 
       <Route path="VerifiedHospital" element={<VerifiedHospital/>}/>

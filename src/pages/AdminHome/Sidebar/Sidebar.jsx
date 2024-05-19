@@ -86,8 +86,8 @@ function Sidebar({ someData }) {
 
   const handleSubmit = () => {};
   const handleLogout = () => {
-    if (localStorage.getItem("myDataAdmin") !== null) {
-      localStorage.removeItem("myDataAdmin");
+    if (localStorage.getItem("AdminToken") !== null) {
+      localStorage.removeItem("AdminToken");
     }
     if (localStorage.getItem("SubAdminToken") !== null) {
       localStorage.removeItem("SubAdminToken");

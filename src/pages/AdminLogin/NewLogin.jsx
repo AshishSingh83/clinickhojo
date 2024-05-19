@@ -11,6 +11,7 @@ import InputWithIcon from "../../components/ui/InputWithIcon";
 import InputWithPassword from "../../components/ui/InputWithPassword";
 import { MdEmail } from 'react-icons/md';
 import { FiKey } from 'react-icons/fi';
+import { FaUber, FaUser } from "react-icons/fa";
 
 
 export default function NewLogin() {
@@ -123,16 +124,22 @@ export default function NewLogin() {
         password: loginPasswordVal,
       });
       console.log(response);
-      const accessToken = response.data.token;
-      saveDataToLocalStorage("AdminToken", accessToken);
-      setDisabled(false)
-      navigate("../AdminHome");
+      if(response.data.role=='admin'){
+        const accessToken = response.data.token;
+        saveDataToLocalStorage("AdminToken", accessToken);
+        setMessage('');
+        setDisabled(false);
+        navigate("../AdminHome");
+      }else{
+        setMessage('This userId related to subAdmin')
+      }
+      setDisabled(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response.status == 404) {
         setMessage("User Not Found .....");
       } else {
-        setMessage("Internal Server Error");
+        setMessage("Wrong UserId or Password");
       }
       setDisabled(false)
     }
@@ -162,11 +169,11 @@ export default function NewLogin() {
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
-            type="email"
-            placeholder="Email"
+            type="username"
+            placeholder="UserName"
             my1="my-0"
             bg1="bg-[#FAEBEB]"
-            iconData= {MdEmail}
+            iconData= {FaUser}
           />
           <InputWithPassword
             handleChange={handleChangePassword}
@@ -188,7 +195,7 @@ export default function NewLogin() {
             Forgot password?
           </a>
         </div>
-        <div className=" text-red-500 ms-16 mt-12">{message}</div>
+        <div className=" text-red-500 ms-16 mt-4 mb-4">{message}</div>
         <Button 
         handleSubmit={handleSubmit}
          text="Login"

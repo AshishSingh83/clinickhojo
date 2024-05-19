@@ -48,7 +48,7 @@ function AdminHome(){
             <Lists />
           </div>
         </div>
-
+        
         <NewUpdates />
       </div>
     </div>

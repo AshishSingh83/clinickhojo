@@ -17,7 +17,7 @@ export default function SubAdminLogin() {
         <Login />
       </div>
     </div>
-    <div className=" mb-7 text-[#FFFFFF] font-normal opacity-80">
+    <div className=" mb-6 text-[#FFFFFF] font-normal opacity-80">
       <p className=" ms-4">Shamyani health services Pvt Ltd </p>
       <p>An ISO 9001:2015 certified company</p>
     </div>

@@ -15,6 +15,7 @@ import HregistartionDetail from "./HregistartionDetail.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
+import DoctorSessions from "../../ApproveRejectUsers/ApproveRejectC/DoctorSessions.jsx";
 function VerifiedHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -28,13 +29,13 @@ function VerifiedHospital() {
   const [noClinic, setNoClinic] = useState(false);
   const [rating, setRating] = useState("");
   const [loading, setLoading] = useState(false);
-  const [approved, setApproved] = useState(""); 
-  const [sniper,setSniper] = useState(false)
+  const [approved, setApproved] = useState("");
+  const [sniper, setSniper] = useState(false);
 
   const response = useSelector((state) => state.register.hospitalData);
-  console.log('hos res',response);
-  const hospitalClinicKhojoId = response.hospitalClinicKhojoId ;
-  const managementEmail = response.managementEmail ;
+  console.log("hos res", response);
+  const hospitalClinicKhojoId = response.hospitalClinicKhojoId;
+  const managementEmail = response.managementEmail;
   //   const uniqueClinicId = useSelector((state) => state.register.uniqueClinicId);
   //   const doctorEemail = useSelector((state) => state.register.doctorEmail);
   //   const uniqueDoctorId = useSelector((state) => state.register.uniqueDoctorId);
@@ -83,17 +84,17 @@ function VerifiedHospital() {
   };
 
   const areUSureDelete = async (choose) => {
-    console.log(hospitalClinicKhojoId,managementEmail);
-    setSniper(true)
+    console.log(hospitalClinicKhojoId, managementEmail);
+    setSniper(true);
     if (choose) {
       if (approved == true) {
         try {
           await axios.post("api/admin/hospitals/delete", {
-            "hospitalClinicKhojoId":"094210",
-        "managementEmail":"johndoe@hospital27.com"
-        });
-          localStorage.removeItem(`${uniqueDoctorId}a`);
-          localStorage.removeItem(`${uniqueDoctorId}b`);
+            hospitalClinicKhojoId: hospitalClinicKhojoId,
+            managementEmail: managementEmail,
+          });
+          localStorage.removeItem(`${hospitalClinicKhojoId}a`);
+          localStorage.removeItem(`${hospitalClinicKhojoId}b`);
           navigate("../ViewProfileMain");
         } catch (error) {
           console.error("Error:", error.message);
@@ -105,8 +106,13 @@ function VerifiedHospital() {
             hospitalClinicKhojoId,
             managementEmail,
           });
-          localStorage.removeItem(`${uniqueDoctorId}a`);
-          localStorage.removeItem(`${uniqueDoctorId}b`);
+          if (localStorage.getItem(`${hospitalClinicKhojoId}a`) !== null) {
+            localStorage.removeItem(`${hospitalClinicKhojoId}a`);
+        }
+        
+        if (localStorage.getItem(`${hospitalClinicKhojoId}b`) !== null) {
+            localStorage.removeItem(`${hospitalClinicKhojoId}b`);
+        }
           navigate("../ViewProfileMain");
         } catch (error) {
           console.error("Error:", error);
@@ -115,7 +121,7 @@ function VerifiedHospital() {
     } else {
       handleDialog("", false);
     }
-    setSniper(false)
+    setSniper(false);
   };
   return (
     <>
@@ -145,7 +151,7 @@ function VerifiedHospital() {
               bardervar="32px"
               text="View Profile"
             />
-            <div >
+            <div>
               <p className=" text-white text-2xl underline mt-5 ms-20">
                 Hospital Detail
               </p>
@@ -190,6 +196,7 @@ function VerifiedHospital() {
                     {/* <SessionTimings
                             SessionTimings={response.timingsSlots}
                           /> */}
+                          <DoctorSessions  showData={response.doctorSessions || []}/>
                   </div>
                   <hr />
                   <div>

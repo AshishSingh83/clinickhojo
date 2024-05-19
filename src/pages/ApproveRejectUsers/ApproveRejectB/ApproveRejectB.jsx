@@ -27,7 +27,10 @@ function ApproveRejectB() {
     doctorEducationDetail: "",
     doctorRegistration: "",
   });
-  const [sniper,setSniper] = useState(false) ;
+  const [textArea, setTextArea] = useState({
+    remark: "",
+  });
+  const [sniper, setSniper] = useState(false);
   const update = useSelector((state) => state.register.doctorData);
   const {
     fullName,
@@ -89,6 +92,13 @@ function ApproveRejectB() {
       isLoading,
     });
   };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setTextArea((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
   const handleSubmit = async (isApproved) => {
     if (isApproved == true) {
       setApproved(isApproved);
@@ -117,16 +127,16 @@ function ApproveRejectB() {
       to_email: email,
     };
     if (choose) {
-      setSniper(true)
+      setSniper(true);
       if (1) {
-        try{
+        try {
           const response = await axios.put("api/admin/approveDoctors", {
             doctorsUniqueId: uniqueDoctorId,
             approvedBy: "Test123",
             isApproved: approved,
-            addRemark: "account rejected",
+            addRemark: textArea.remark,
           });
-          if (!approved){
+          if (!approved) {
             try {
               const eres = await emailjs.send(
                 serviceId,
@@ -134,21 +144,20 @@ function ApproveRejectB() {
                 templateParams,
                 publicKey
               );
-
-            }catch (e){
+            } catch (e) {
               console.log("error sending email", e);
             }
           } else {
             console.log("sent some good gmail");
-            //set ratings 
-            try{
+            //set ratings
+            try {
               await axios.post("api/admin/doctors/setRatings", {
-                doctorEmail : email,
+                doctorEmail: email,
                 rating: rating,
               });
-              setSniper(false)
+              setSniper(false);
               navigate("../ApproveReject");
-            } catch (e){
+            } catch (e) {
               console.log(e.message);
             }
           }
@@ -158,7 +167,7 @@ function ApproveRejectB() {
         } catch (error) {
           console.error("Error:", error);
         }
-        setSniper(false)
+        setSniper(false);
       }
     } else {
       handleDialog("", false);
@@ -174,11 +183,11 @@ function ApproveRejectB() {
 
       <div className="flex flex-row  bg-[#0529BB] me-28">
         <div className="flex flex-col h-auto ">
-        <div className=" ">
+          <div className=" ">
             {/* <div className="bg-[#FF0B0B] h-14 w-52 ">
               <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
             </div> */}
-            <ClipBgB width='w-[340px]' height='h-[65px]'  bardervar="37px" />
+            <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
           </div>
 
           <div className=" flex flex-row bg-[#03229F] mt-14  ">
@@ -232,6 +241,20 @@ function ApproveRejectB() {
                 }
                 radioData={formData.doctorRegistration}
               />
+              <hr/>
+              <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-">
+                <div className="h-[130px] border-zinc-100  ">
+                  <textarea
+                    id="inputTextArea"
+                    name="remark"
+                    className=" placeholder-white w-full h-full p-2 resize-none bg-[#335af2] text-white border-white"
+                    placeholder="Add Remark..."
+                    style={{ color: "white", borderColor: "white" }}
+                    value={textArea.remark}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
           </div>
 

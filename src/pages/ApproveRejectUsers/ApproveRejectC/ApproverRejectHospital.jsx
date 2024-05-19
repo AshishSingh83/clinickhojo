@@ -19,6 +19,7 @@ import emailjs from '@emailjs/browser';
 import Hbasicdetail from "../../ManageMent/MHomeC.jsx/Hbasicdetail.jsx";
 import Profile from "../../ManageMent/MHomeB/Profile.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
+import DoctorSessions from "./DoctorSessions.jsx";
 function ApproveRejectHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -348,6 +349,7 @@ function ApproveRejectHospital() {
                             radioData={formDataC.HospitalTimings}
                           />
                         </div> */}
+                        <DoctorSessions  showData={response.doctorSessions || []}/>
                       </div>
                       <hr/>
                       <div className=" ms-[-20px]">
