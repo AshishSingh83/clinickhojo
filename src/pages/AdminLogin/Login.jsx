@@ -159,15 +159,17 @@ export default function Login() {
           >
             Admin Login
           </a>
-          <a
+          {/* <a
             href="#"
             onClick={handleMe}
             className="font-medium text-[#E1E0E0] hover:text-blue-300"
           >
             Forgot password?
-          </a>
+          </a> */}
         </div>
-        <div className=" text-red-500 ms-16 mt-12 ">{message}</div>
+        <div className=" text-red-500 ms-16 mt-8 ">
+        <p className=" mb-4">{message}</p>
+        </div>
         <Button
           handleSubmit={handleSubmit}
           text="Login"

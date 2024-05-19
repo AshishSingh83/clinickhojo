@@ -195,7 +195,9 @@ export default function NewLogin() {
             Forgot password?
           </a>
         </div>
-        <div className=" text-red-500 ms-16 mt-4 mb-4">{message}</div>
+        <div className=" text-red-500 ms-16 mt-8">
+          <p className=" mb-4">{message}</p>
+        </div>
         <Button 
         handleSubmit={handleSubmit}
          text="Login"

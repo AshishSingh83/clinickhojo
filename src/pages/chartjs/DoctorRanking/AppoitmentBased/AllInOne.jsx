@@ -126,13 +126,7 @@ function AllInOne(){
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className=" text-black font-serif font-medium text-3xl">
-  //       Loading...
-  //     </div>
-  //   );
-  // }
+  
 
   return (
     <div className="flex flex-row  h-screen w-screen gap-48 bg-[#0529BB]">
@@ -186,7 +180,7 @@ function AllInOne(){
           {loading ? (
             renderSelectedComponent()
           ) : (
-            <div className="flex  items-center justify-center   bg-blue-600 opacity-70 ">
+            <div className="flex  items-center justify-center   bg-blue-600 opacity-70  ">
               {/* <Skeletonn count="18" width={700} /> */}
               <div className="">
               <Spinner height="h-[80px]" width="w-[80px]" fontSize="text-[1rem]"/>
