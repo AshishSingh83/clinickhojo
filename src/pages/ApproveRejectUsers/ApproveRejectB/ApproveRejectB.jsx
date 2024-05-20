@@ -104,11 +104,11 @@ function ApproveRejectB() {
   const handleSubmit = async (isApproved) => {
     if (isApproved == true) {
       setApproved(isApproved);
-      handleDialog("Are you sure you want to Delete Account?", true);
+      handleDialog("Are you sure you want to Approve Account?", true);
     }
     if (isApproved == false) {
       setApproved(isApproved);
-      handleDialog("Are you sure you want to Suspend Account?", true);
+      handleDialog("Are you sure you want to Reject Account?", true);
     }
   };
 
@@ -122,12 +122,6 @@ function ApproveRejectB() {
     const message = `You provided wrong ${keysWithNo.join(
       ", "
     )} so your account is rejected.`;
-    // const templateParams = {
-    //   to_name: fullName,
-    //   from_name: "ClinicKhojo",
-    //   message: message,
-    //   to_email: email,
-    // };
     if (choose) {
       setSniper(true);
       if (1) {

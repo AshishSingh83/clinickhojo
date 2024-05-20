@@ -27,8 +27,10 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
     const pdfUrl = `${BasicDetail.identityProof[0]}`;
     console.log(pdfUrl);
     setPdfURL(pdfUrl) ;
-    // window.open(pdfUrl, "_blank");
-    setIsPopupOpen(true) ;
+    if (pdfUrl) {
+      window.open(pdfUrl, "_blank");
+    }
+    // setIsPopupOpen(true) ;
   };
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);

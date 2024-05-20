@@ -5,7 +5,7 @@ import Lists from "./Lists/Lists.jsx";
 import NewUpdates from "./NewUpdates/NewUpdates.jsx";
 import "./AdminHome.css";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB.jsx";
-function AdminHome(){
+function AdminHome() {
   const mydata = {
     index: 0,
   };
@@ -25,30 +25,17 @@ function AdminHome(){
 
       <div className="flex flex-row ">
         <div className=" flex flex-col me-60 ">
-          {/* <div
-            className=" bg-[#FF0B0B]  w-52 mt-10   "
-          >
-            <p className=" text-white mt-2 mb-2 ms-16  ">Home</p>
-          </div> */}
-          <ClipBgB width='w-[200px]' height='h-[65px]'  bardervar="24px" 
-           text="Home" 
-         />
-          {/* <div class="container"  >
-            <div class="background"></div>
-            <p class="text">HOME</p>
-          </div> 
-          
-          */}
-         
-          {/* <div class="container"  >
-            <div class="background"></div>
-            <p class="text">HOME</p>
-          </div> */}
+          <ClipBgB
+            width="w-[200px]"
+            height="h-[65px]"
+            bardervar="24px"
+            text="Home"
+          />
           <div className=" mt-[-40px]  ">
             <Lists />
           </div>
         </div>
-        
+
         <NewUpdates />
       </div>
     </div>

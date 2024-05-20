@@ -10,12 +10,12 @@ export default function Input({
   customClass,
   my1,
   bg1,
-  disabled=false
+  disabled = false,
 }) {
   const inputClass = `${fixedInputClass} ${customClass || ""}`.trim();
 
   return (
-    <div className={`${my1} rounded-md`}>  
+    <div className={`${my1} rounded-md`}>
       <input
         onChange={handleChange}
         value={value}

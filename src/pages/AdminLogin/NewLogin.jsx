@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import FormExtra from "./FormExtra";
-import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import InputWithPassword from "../../components/ui/InputWithPassword";
-import { MdEmail } from "react-icons/md";
 import { FiKey } from "react-icons/fi";
-import { FaUber, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import Spinner from "../../components/ui/clipPath/Spinner";
+import instance from "../../axios";
+
 
 export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
@@ -62,7 +59,7 @@ export default function NewLogin() {
       setDisabled(true);
       const verifyToken = async () => {
         try {
-          const response = await axios.post(
+          const response = await instance.post(
             "api/admin/profile/subAdmin",
             {},
             {
@@ -89,7 +86,7 @@ export default function NewLogin() {
   const authenticateUser = async () => {
     setDisabled(true);
     try {
-      const response = await axios.post("api/admin/login/subAdmin", {
+      const response = await instance.post("api/admin/login/subAdmin", {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
@@ -129,7 +126,7 @@ export default function NewLogin() {
     setSpinner(true)
     const email = "ashishsingh822003@gmail.com";
     try{
-      const dataa = await axios.post("/api/admin/forgot-password", {
+      const dataa = await instance.post("/api/admin/forgot-password", {
         email: "ashishsingh822003@gmail.com",
       });
       setSpinner(false)

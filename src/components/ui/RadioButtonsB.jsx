@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function RadioButtonsB() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
   const options = [
-    { value: 'Doctors', label: 'Doctors' },
-    { value: 'Users', label: 'Users' },
-    { value: 'All', label: 'All' }
+    { value: "Doctors", label: "Doctors" },
+    { value: "Users", label: "Users" },
+    { value: "All", label: "All" },
   ];
 
   const handleChange = (event) => {
@@ -15,11 +15,11 @@ function RadioButtonsB() {
 
   return (
     <div className="flex items-center justify-center bg-white text-black">
-      <div className='flex flex-row font-serif gap-'>
+      <div className="flex flex-row font-serif gap-">
         <div>
           <span>Correct ?</span>
         </div>
-        {options.map(option => (
+        {options.map((option) => (
           <div className="flex items-center" key={option.value}>
             <input
               type="radio"

@@ -1,7 +1,5 @@
-
 import React from "react";
-
-function ConfirmBox({ open, closeDialog,title, deleteFunction }) {
+function ConfirmBox({ open, closeDialog, title, deleteFunction }) {
   const handleClose = () => {
     closeDialog();
   };

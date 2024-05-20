@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useMemo } from "react";
-import Input from "../../../components/ui/Input.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateSubAdminData } from "../../../data/features/registerSlice.js";
-import InputWithIcon from "../../../components/ui/InputWithIcon.jsx"
-import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
-import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
-import { FiLogOut } from "react-icons/fi";
+import InputWithIcon from "../../../components/ui/InputWithIcon.jsx";
+import { BiSearch } from "react-icons/bi";
 import Spinner from "../../../components/ui/clipPath/Spinner.jsx";
 const SubAdminProfile = () => {
   const [demoConstant, setDemoConstant] = useState([]);
@@ -18,7 +15,7 @@ const SubAdminProfile = () => {
       try {
         const response = await axios.get("api/admin/getAllSubAdmins");
         setDemoConstant(response.data.subAdmins);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching sub admins:", error);
       }
@@ -38,34 +35,33 @@ const SubAdminProfile = () => {
   }, [demoConstant, search]);
 
   if (loading) {
-    return <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-700 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
-      <div className=" flex flex-row justify-center items-center  gap-28 ms-10 mt-[-70px] opacity-65 ">
-      {/* <Skeletonn 
-      count="6" 
-      width={200}
-    />
-     <Skeletonn 
-      count="6" 
-      width={200}
-    />
-    <Skeletonn 
-      count="6" 
-      width={200}
-    /> */}
-    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
-    </div>
-    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
-    </div>
-    <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-    <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]"/>
-    </div>
-
-
+    return (
+      <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-700 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
+        <div className=" flex flex-row justify-center items-center  gap-28 ms-10 mt-[-70px] opacity-65 ">
+          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+            <Spinner
+              height="h-[65px]"
+              width="w-[65px]"
+              fontSize="text-[.9rem]"
+            />
+          </div>
+          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+            <Spinner
+              height="h-[65px]"
+              width="w-[65px]"
+              fontSize="text-[.9rem]"
+            />
+          </div>
+          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+            <Spinner
+              height="h-[65px]"
+              width="w-[65px]"
+              fontSize="text-[.9rem]"
+            />
+          </div>
+        </div>
       </div>
-    
-    </div>;
+    );
   }
   return (
     <div
@@ -86,13 +82,15 @@ const SubAdminProfile = () => {
             placeholder="Search Profiles ..."
             bg1="bg-[#F2EFEF]"
             handleChange={(e) => setSearch(e.target.value)}
-            iconData="BiSearch"
+            iconData={BiSearch}
           />
         </div>
-
       </div>
       <div className=" bg-[#0529BB]">
-        <div style={{ overflow: "auto", maxHeight: "450px", maxWidth:'1080px' }} className=" grid grid-cols-3 gap-4  bg-[#0529BB]">
+        <div
+          style={{ overflow: "auto", maxHeight: "450px", maxWidth: "1080px" }}
+          className=" grid grid-cols-3 gap-4  bg-[#0529BB]"
+        >
           {memoizedSubAdmins}
         </div>
       </div>
@@ -113,11 +111,10 @@ const SubAdminProfileItem = ({ update, index }) => {
       style={{ maxWidth: "300px" }}
     >
       <p className="text-black font-medium  ">
-      <div className=" font-semibold text-xl ms-20 m-2   ">
+        <div className=" font-semibold text-xl ms-20 m-2   ">
           {"SubAdmin "}
           {index + 1}
-      </div>
-        
+        </div>
         <span className="font-medium ">Name : </span>
         {update.fullName} <br />
         <span className="font-medium">Email Id : </span>

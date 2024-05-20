@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import FormExtra from "./FormExtra";
-import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
-import axios from "axios";
 import InputWithPassword from "../../components/ui/InputWithPassword";
-import { BiSearch } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
-import apiClient from "./api";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -62,7 +56,7 @@ export default function Login() {
       setDisabled(true);
       const verifyToken = async () => {
         try {
-          const response = await axios.post(
+          const response = await instance.post(
             "api/admin/profile/subAdmin",
             {},
             {
@@ -83,14 +77,14 @@ export default function Login() {
       verifyToken();
     }
   }, []);
-
   const authenticateUser = async () => {
     setDisabled(true);
     try {
-      const response = await axios.post("api/admin/login/subAdmin", {
+      const response = await instance.post("api/admin/login/subAdmin",{
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
+      console.log('congrats',response);
       if(response.data.role=='subAdmin'){
         const accessToken = response.data.token;
         saveDataToLocalStorage("SubAdminToken", accessToken);

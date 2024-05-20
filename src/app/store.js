@@ -3,7 +3,6 @@ import registerReducer from '../data/features/registerSlice'
 import storage from 'redux-persist/lib/storage';
 import {persistReducer} from 'redux-persist';
 import {combineReducers} from '@reduxjs/toolkit';
-import { version } from 'react';
 const persistConfig = {
     key :'root',
     version:1,

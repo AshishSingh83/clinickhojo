@@ -1,21 +1,21 @@
-import React from 'react';
-import { pdfjs, Document, Page } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import React from "react";
+import { pdfjs, Document, Page } from "react-pdf";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-function PdfPopup({ isOpen, onClose, pdfUrl='/pdf-proxy/1715706685712' }) {
+function PdfPopup({ isOpen, onClose, pdfUrl = "/pdf-proxy/1715706685712" }) {
   const [numPages, setNumPages] = React.useState(null);
   const [error, setError] = React.useState(null);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
-    setError(null); // Reset error on successful load
+    setError(null);
   };
 
   const onDocumentLoadError = (error) => {
-    console.error('Error loading document:', error);
-    setError('Failed to load PDF document.');
+    console.error("Error loading document:", error);
+    setError("Failed to load PDF document.");
   };
 
   if (!isOpen) return null;
@@ -49,5 +49,4 @@ function PdfPopup({ isOpen, onClose, pdfUrl='/pdf-proxy/1715706685712' }) {
     </div>
   );
 }
-
 export default PdfPopup;

@@ -9,6 +9,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaFilter } from 'react-icons/fa';
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
 import Spinner from "../../../components/ui/clipPath/Spinner";
+import { BiSearch } from "react-icons/bi";
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -82,7 +83,7 @@ const Demo = ({
                 placeholder="Search Profiles"
                 bg1="bg-[#F2EFEF]"
                 handleChange={(e) => setSearch(e.target.value)}
-                iconData="BiSearch"
+                iconData={BiSearch}
               />
             </div>
             <div className=" mt-6">

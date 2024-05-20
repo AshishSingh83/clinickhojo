@@ -91,9 +91,9 @@ const RegistrationDetail = React.memo(({ BasicDetail, onRadioChange, radioData }
 
   const handleViewProofClick = () => {
     const pdfUrl = `${BasicDetail.registrationProof[0]}`;
-    // if (pdfUrl) {
-    //   window.open(pdfUrl, "_blank");
-    // }
+    if (pdfUrl) {
+      window.open(pdfUrl, "_blank");
+    }
     console.log(pdfUrl);
   };
 

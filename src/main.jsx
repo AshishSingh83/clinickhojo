@@ -32,18 +32,9 @@ import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
 import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
 import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
-import ClipBg from "./components/ui/clipPath/ClipBgA.jsx";
-import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import { PersistGate } from "redux-persist/integration/react";
 import ApproveRejectHospital from "./pages/ApproveRejectUsers/ApproveRejectC/ApproverRejectHospital.jsx";
 import VerifiedHospital from "./pages/NormalProfiles/clinicProfile/verifiedHospital.jsx";
-import ClipBgA from "./components/ui/clipPath/ClipBgA.jsx";
-import ClipBgB from "./components/ui/clipPath/ClipBgB.jsx";
-import ClipBgC from "./components/ui/clipPath/ClipBgC.jsx";
-import Spinner from "./components/ui/clipPath/Spinner.jsx";
-import NewPopup from "./components/ui/NewPopup.jsx";
-
-
 
 
 let persistor = persistStore(store);
@@ -79,11 +70,7 @@ const router = createBrowserRouter(
       <Route path="ManagementHome" element={<ManagementHome />} />
       <Route path="MHomeB" element={<MHomeB />} />
       <Route path="BarChartD" element={<BarChartD />} />
-      <Route path="ClipBgA" element={<ClipBgA />} />
-      <Route path="ClipBgB" element={<ClipBgB />} />
-      <Route path="ClipBgC" element={<ClipBgC />} />
-      <Route path="Spinner" element={<Spinner />} />
-      <Route path="NewPopup" element={<NewPopup />} />
+     
 
 
       <Route path="VerifiedHospital" element={<VerifiedHospital/>}/>

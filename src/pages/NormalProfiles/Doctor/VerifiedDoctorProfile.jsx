@@ -166,7 +166,10 @@ function VerifiedDoctorProfile() {
             onRatingChange={handleRatingChange}
             email={email}
           />
+          <div className=" mt-5">
           <hr/>
+          </div>
+          
           <IdentityProof BasicDetail={update.identityDetails} />
           </div>
           <div className=" flex flex-col">
