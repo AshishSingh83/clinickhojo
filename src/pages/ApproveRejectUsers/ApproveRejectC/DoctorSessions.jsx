@@ -222,8 +222,8 @@ const DoctorSessions = ({
       <div className={`overflow-auto h-[300px]`}>
         {showData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-[#FFFFFF] mt-44 text-2xl font-medium">
-              'No Data Available'
+            <p className="text-[#FFFFFF]  text-2xl font-medium opacity-75">
+              No Data Available
             </p>
           </div>
         ) : (

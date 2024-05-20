@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NumberSelect from "../../ApproveRejectUsers/ApproveRejectB/NumberSelect";
 import { FaEdit, FaSave } from "react-icons/fa";
+import Button from "../../../components/ui/Button";
+import axios from "axios";
 const renderDetails = (BasicDetailConstant) => {
   return BasicDetailConstant.map((item, index) => {
     const [key, value] = Object.entries(item)[0];
@@ -18,18 +20,30 @@ const renderDetails = (BasicDetailConstant) => {
     );
   });
 };
-const BasicDetails = ({ BasicDetail, onRatingChange }) => {
+const BasicDetails = ({ BasicDetail, onRatingChange,email}) => {
   const [selectedRating, setSelectedRating] = useState("");
   const [isEditingC, setIsEditingC] = useState(false);
+  const [disabled,setDisabled] = useState(false);
   const rating = BasicDetail.rating;
 
   const handleRatingSelect = (rating) => {
     setSelectedRating(rating);
     onRatingChange(rating);
   };
-  const toggleEditC = () => {
+   async function toggleEditC () {
     if (isEditingC) {
-      console.log("hiiiii");
+      setDisabled(true);
+      console.log(email,selectedRating);
+      try {
+        await axios.post("api/admin/doctors/setRatings", {
+          doctorEmail: email,
+          rating: selectedRating,
+        });
+       setDisabled(false)
+      } catch (e) {
+        console.log(e.message);
+      }
+      setDisabled(false)
     }
     setIsEditingC(!isEditingC);
   };
@@ -67,7 +81,18 @@ const BasicDetails = ({ BasicDetail, onRatingChange }) => {
               className="flex justify-center items-center ms-3"
               onClick={toggleEditC}
             >
-              {isEditingC ? <FaSave /> : <FaEdit />}
+              {isEditingC ? (
+                <Button
+                  handleSubmit={toggleEditC}
+                  text="save"
+                  bgColor="bg-[#FFFFFF]"
+                  textColor="text-[#FA0808]"
+                  hoverColor="hover:bg-blue-200"
+                  disabled={disabled}
+                />
+              ) : (
+                <FaEdit />
+              )}
             </div>
           </div>
         </div>

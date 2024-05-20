@@ -164,6 +164,7 @@ function VerifiedDoctorProfile() {
           <BasicDetails
             BasicDetail={update}
             onRatingChange={handleRatingChange}
+            email={email}
           />
           <hr/>
           <IdentityProof BasicDetail={update.identityDetails} />

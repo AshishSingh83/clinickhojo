@@ -177,7 +177,7 @@ function VerifiedHospital() {
               </div>
 
               <div className=" flex flex-row">
-                <div className=" flex flex-col">
+                <div className=" flex flex-col ">
                   <Hbasicdetail BasicDetail={response} />
                   <hr />
                   <AppoitmentFee
@@ -188,12 +188,18 @@ function VerifiedHospital() {
                     BasicDetail={response.ratings}
                     onRatingChange={handleRatingChange}
                     rating={ratingg}
+                    hospitalClinicKhojoId={hospitalClinicKhojoId}
+                    managementEmail={managementEmail}
                   />
+                  <div className=" mt-7">
                   <hr />
+                  </div>
                   <HregistartionDetail
                     BasicDetail={response.registration || {}}
                   />
+                 
                   <hr />
+                  
                 </div>
 
                 <div className=" flex flex-col me-7">

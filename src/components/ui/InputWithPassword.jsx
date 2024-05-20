@@ -18,7 +18,7 @@ const InputWithPassword = ({
   const inputClass =
     'w-full py-2 pl-10 pr-12 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none text-black';
 
-  const iconClass = "h-6 w-6 absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 ps-2 "
+  const iconClass = "h-7 w-7 absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 ps-2 "
   const IconComponent = eval(iconData);
   const [showPassword, setShowPassword] = useState(false);
 

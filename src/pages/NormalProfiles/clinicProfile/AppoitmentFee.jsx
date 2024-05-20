@@ -95,7 +95,9 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../components/ui/Input";
 import NumberSelect from "../../ApproveRejectUsers/ApproveRejectB/NumberSelect";
-import { FaEdit, FaSave } from 'react-icons/fa';
+import { FaEdit, FaSave } from "react-icons/fa";
+import Button from "../../../components/ui/Button";
+import axios from "axios";
 
 const AppointmentFee = ({
   normalFee,
@@ -104,41 +106,85 @@ const AppointmentFee = ({
   setEmergencyFee,
   onRatingChange,
   rating,
+  hospitalClinicKhojoId,
+  managementEmail
+
 }) => {
   const [isEditingA, setIsEditingA] = useState(false);
   const [isEditingB, setIsEditingB] = useState(false);
   const [isEditingC, setIsEditingC] = useState(false);
-
+  const [disabledA, setDisabledA] = useState(false);
+  const [disabledB, setDisabledB] = useState(false);
+  const [disabledC, setDisabledC] = useState(false);
+  const [newRating,setNewRating] = useState(rating);
+  const [normal,setNormal] = useState(normalFee);
+  const [emergency,setEmergency] = useState(emergencyFee)
   const handleChangeA = (e) => {
     setNormalFee(e.target.value);
+    setNormal(e.target.value)
   };
-
   const handleChangeB = (e) => {
     setEmergencyFee(e.target.value);
+    setEmergency(e.target.value);
   };
 
   const handleRatingSelect = (rating) => {
     onRatingChange(rating);
+    setNewRating(rating);
   };
 
-  const toggleEditA = () => {
+  async function toggleEditA(){
     setIsEditingA(!isEditingA);
-    if(isEditingA){
-      console.log('hiiiii');
-     }
+    if (isEditingA) {
+      setDisabledA(true);
+      try {
+        await axios.post("api/admin/hospitals/setAppointmentFee", {
+          hospitalClinicKhojoId:hospitalClinicKhojoId,
+          managementEmail:managementEmail,
+          clinicKhojoAppointmentFeeNormal:normal,
+          clinicKhojoAppointmentFeeEmergency:emergencyFee
+         });
+       setDisabledA(false)
+      } catch (e) {
+        console.log(e.message);
+      }
+      setDisabledA(false)
+    }
   };
 
-  const toggleEditB = () => {
-   if(isEditingB){
-    console.log('hiiiii');
-   }
+  async function toggleEditB(){
+    if (isEditingB) {
+      setDisabledB(true);
+      try {
+        await axios.post("api/admin/hospitals/setAppointmentFee", {
+          hospitalClinicKhojoId:hospitalClinicKhojoId,
+          managementEmail:managementEmail,
+          clinicKhojoAppointmentFeeNormal:normalFee,
+          clinicKhojoAppointmentFeeEmergency:emergency
+         });
+       setDisabledB(false)
+      } catch (e) {
+        console.log(e.message);
+      }
+      setDisabledB(false)
+    }
     setIsEditingB(!isEditingB);
   };
 
-  const toggleEditC = () => {
-    if(isEditingC){
-      console.log('hiiiii');
-     }
+  async function toggleEditC (){
+    if (isEditingC) {
+      setDisabledC(true);
+      try {
+        await axios.post("api/admin/hospitals/setRatings",{
+          hospitalClinicKhojoId: hospitalClinicKhojoId,
+          rating: newRating,
+        });
+       setDisabledC(false)
+      } catch (e) {
+        console.log(e.message);
+      }
+      setDisabledC(false)
+    }
     setIsEditingC(!isEditingC);
   };
 
@@ -157,35 +203,59 @@ const AppointmentFee = ({
       <div>
         <div className="font-medium ms-2 mb-5 opacity-75">
           <div className="mt-3 flex flex-row">
-            <span className="font-sm">
-              Normal Appointment Booking Fee: Rs.
-            </span>
-            <div className="w-24 mt-[-7px] ms-2 flex flex-row">
+            <span className="font-sm">Normal Appointment Booking Fee: Rs.</span>
+            <div className="w-40  ms-2 flex flex-row justify-center items-center ">
               <Input
                 bg1="bg-[#F2EFEF]"
                 handleChange={handleChangeA}
                 value={normalFee}
                 disabled={!isEditingA}
               />
-              <div className="flex justify-center items-center ms-3" onClick={toggleEditA}>
-                {isEditingA ? <FaSave /> : <FaEdit />}
+              <div
+                className="flex justify-center items-center ms-3"
+                onClick={toggleEditA}
+              >
+                {isEditingA ? (
+                  <Button
+                    handleSubmit={toggleEditA}
+                    text="save"
+                    bgColor="bg-[#FFFFFF]"
+                    textColor="text-[#FA0808]"
+                    hoverColor="hover:bg-blue-200"
+                    disabled={disabledA}
+                  />
+                ) : (
+                  <FaEdit />
+                )}
               </div>
             </div>
             <br />
           </div>
           <div className="mt-4 flex flex-row">
-            <span className="font-sm">
-              Emergency Appointment Booking Fee:
-            </span>
-            <div className="w-24 mt-[-7px] ms-2 flex flex-row">
+            <span className="font-sm">Emergency Appointment Booking Fee: Rs.</span>
+            <div className=" w-40  ms-2 flex flex-row justify-center items-center ">
               <Input
                 bg1="bg-[#F2EFEF]"
                 handleChange={handleChangeB}
-                value={emergencyFee}
+                value={emergency}
                 disabled={!isEditingB}
               />
-              <div className="flex justify-center items-center ms-3 hover: " onClick={toggleEditB}>
-                {isEditingB ? <FaSave /> : <FaEdit />}
+              <div
+                className="flex justify-center items-center ms-2 cursor-pointer  "
+                onClick={toggleEditB}
+              >
+                {isEditingB ? (
+                  <Button
+                    handleSubmit={toggleEditB}
+                    text="save"
+                    bgColor="bg-[#FFFFFF]"
+                    textColor="text-[#FA0808]"
+                    hoverColor="hover:bg-blue-200"
+                    disabled={disabledB}
+                  />
+                ) : (
+                  <FaEdit />
+                )}
               </div>
             </div>
             <br />
@@ -199,8 +269,22 @@ const AppointmentFee = ({
                   rating={rating}
                   disabled={!isEditingC}
                 />
-                <div className="flex justify-center items-center ms-3" onClick={toggleEditC}>
-                  {isEditingC ? <FaSave /> : <FaEdit />}
+                <div
+                  className="flex justify-center items-center ms-3"
+                  onClick={toggleEditC}
+                >
+                  {isEditingC ? (
+                    <Button
+                      handleSubmit={toggleEditC}
+                      text="save"
+                      bgColor="bg-[#FFFFFF]"
+                      textColor="text-[#FA0808]"
+                      hoverColor="hover:bg-blue-200"
+                      disabled={disabledC}
+                    />
+                  ) : (
+                    <FaEdit />
+                  )}
                 </div>
               </div>
             </span>

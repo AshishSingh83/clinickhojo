@@ -8,9 +8,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import EnterPhone from "./pages/ForgetPassword/EnterPhone.jsx";
-import EnterOtp from "./pages/ForgetPassword/EnterOtp.jsx";
-import EnterPassword from "./pages/ForgetPassword/EnterPassword.jsx";
+import ResetPassword from "./pages/ForgetPassword/ResetPassword.jsx";
 import AdminHome from "./pages/AdminHome/AdminHome.jsx";
 import ApproveReject from "./pages/ApproveRejectUsers/ApproveRejectA/ApproveReject.jsx";
 import Buttons from "./pages/ApproveRejectUsers/ButtonRow/Buttons.jsx";
@@ -54,9 +52,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="" element={<MainAdminLogin />} />
-      <Route path="EnterPhone" element={<EnterPhone />} />
-      <Route path="EnterOtp" element={<EnterOtp />} />
-      <Route path="EnterPassword" element={<EnterPassword />} />
+      <Route path="ResetPassword/:token" element={<ResetPassword />} />
       <Route path="AdminHome" element={<AdminHome />} />
       <Route path="ApproveReject" element={<ApproveReject />} />
       <Route path="ApproveRejectB" element={<ApproveRejectB />} />

@@ -19,6 +19,8 @@ import axios from "axios";
 import Buttons from "../ButtonRow/Buttons.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
+import emailService from "../../../components/ui/emailService.js";
+
 function ApproveRejectB() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -120,12 +122,12 @@ function ApproveRejectB() {
     const message = `You provided wrong ${keysWithNo.join(
       ", "
     )} so your account is rejected.`;
-    const templateParams = {
-      to_name: fullName,
-      from_name: "ClinicKhojo",
-      message: message,
-      to_email: email,
-    };
+    // const templateParams = {
+    //   to_name: fullName,
+    //   from_name: "ClinicKhojo",
+    //   message: message,
+    //   to_email: email,
+    // };
     if (choose) {
       setSniper(true);
       if (1) {
@@ -137,16 +139,18 @@ function ApproveRejectB() {
             addRemark: textArea.remark,
           });
           if (!approved) {
-            try {
-              const eres = await emailjs.send(
-                serviceId,
-                templateId,
-                templateParams,
-                publicKey
-              );
-            } catch (e) {
-              console.log("error sending email", e);
-            }
+            // try {
+            //   const eres = await emailjs.send(
+            //     serviceId,
+            //     templateId,
+            //     templateParams,
+            //     publicKey
+            //   );
+            // } catch (e) {
+            //   console.log("error sending email", e);
+            // }
+            const isSent = await emailService({ message, fullName, email });
+            console.log(isSent ? 'Email sent successfully' : 'Failed to send email');
           } else {
             console.log("sent some good gmail");
             //set ratings

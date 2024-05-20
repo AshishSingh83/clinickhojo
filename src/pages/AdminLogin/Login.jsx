@@ -11,6 +11,7 @@ import InputWithPassword from "../../components/ui/InputWithPassword";
 import { BiSearch } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
 import { FiKey } from "react-icons/fi";
+import apiClient from "./api";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
@@ -151,21 +152,13 @@ export default function Login() {
             iconData={FiKey}
           />
         </div>
-        <div className="text-sm  flex flex-row justify-between  ">
-          <a
-            href="#"
+        <div className="text-sm  flex flex-row justify-between ms-2 ">
+          <p
             onClick={handleMe}
-            className="font-medium text-[#E1E0E0] hover:text-blue-300"
+            className="font-medium text-[#E1E0E0] hover:text-blue-300 cursor-pointer"
           >
-            Admin Login
-          </a>
-          {/* <a
-            href="#"
-            onClick={handleMe}
-            className="font-medium text-[#E1E0E0] hover:text-blue-300"
-          >
-            Forgot password?
-          </a> */}
+            Go to Admin Login
+          </p>
         </div>
         <div className=" text-red-500 ms-16 mt-8 ">
         <p className=" mb-4">{message}</p>
