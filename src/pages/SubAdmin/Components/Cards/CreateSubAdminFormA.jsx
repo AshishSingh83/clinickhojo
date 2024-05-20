@@ -48,7 +48,8 @@ function CreateSubAdminFormA({ formDataa }) {
   const [assignedUserId, setAssignedUserId] = useState("");
   const [assignedUserPassword, setAssignedUserPassword] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-
+  const [oldUserId, setOldUserId] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -61,6 +62,7 @@ function CreateSubAdminFormA({ formDataa }) {
       setDateOfBirth(formDataa.dateOfBirth || "");
       setAddress(formDataa.address || "");
       setAssignedUserId(formDataa.assignedUserId || "");
+      setOldUserId(formDataa.assignedUserId || "");
       setAssignedUserPassword(formDataa.assignedUserPassword || "");
     }
   }, [formDataa]);
@@ -69,25 +71,47 @@ function CreateSubAdminFormA({ formDataa }) {
       fullName,
       contactNumber,
       email,
-      gender: selectedOption,
+      gender: selectedOption, 
       dateOfBirth,
       address,
-      assignedUserId,
-      assignedUserPassword,
+      newAssignedUserId: assignedUserId,
+      newAssignedPassword: assignedUserPassword,
+      assignedUserId: oldUserId,
     };
+
     if (formDataa.length != 0) {
+      setDisabled(true);
       console.log(formData);
       try {
         const response = await axios.put("api/admin/editSubAdmin", formData);
+        setDisabled(false);
         navigate("../SubAdminMainProfile");
       } catch (error) {
+        setDisabled(false);
         console.error("Error editing sub-admin:", error.message);
       }
     } else {
+      const newFormData = {
+        fullName,
+        contactNumber,
+        email,
+        gender:selectedOption,
+        dateOfBirth,
+        address,
+        assignedUserId,
+        assignedUserPassword,
+      };
+      
+      setDisabled(true);
       try {
-        const response = await axios.post("api/admin/createSubAdmin", formData);
+        const response = await axios.post(
+          "api/admin/createSubAdmin",
+          newFormData
+        );
+        setDisabled(false);
         navigate("../SubAdminMainProfile");
       } catch (error) {
+        setDisabled(false);
         console.error("Error creating sub-admin:", error);
       }
     }
@@ -122,10 +146,7 @@ function CreateSubAdminFormA({ formDataa }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <div
-              label="Gender "
-              className="  flex flex-row gap-48 m-3"
-            >
+            <div label="Gender " className="  flex flex-row gap-48 m-3">
               <div className="  text-xl font-medium   ms-3">
                 <p className=" opacity-75 ms-2">Gender :</p>
               </div>
@@ -164,11 +185,12 @@ function CreateSubAdminFormA({ formDataa }) {
             />
 
             <div className="w-44 mt-6 ms-auto me-28 mb-2 ]">
-              <Button 
-              text="Save Profile" 
-              handleSubmit={createAdminButton}
-              bg="bg-[#229649]"
-               />
+              <Button
+                text="Save Profile"
+                handleSubmit={createAdminButton}
+                bg="bg-[#229649]"
+                disabled={disabled}
+              />
             </div>
           </div>
         </div>

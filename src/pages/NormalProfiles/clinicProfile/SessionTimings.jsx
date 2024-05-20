@@ -1,6 +1,7 @@
 import React from "react";
 
-const SessionTimings = ({ SessionTimings }) => {
+const SessionTimings = ({SessionTimings}) => {
+  console.log(SessionTimings);
   return (
     <div className=" bg-[#03229F]  w-[390px] h-[310px] mb-4 rounded-sm">
       <div className="flex flex-row ">

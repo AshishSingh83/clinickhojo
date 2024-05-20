@@ -39,14 +39,15 @@ function VerifiedClinic() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post("api/admin/getParticularClinic", {
-          doctorEmail: doctorEemail,
-          clinicUniqueId: uniqueClinicId,
+        const response = await axios.post("api/admin/getParticular/hospital", {
+          "managementEmail":"johndoe@hospital27.com",
+           "hospitalClinicKhojoId":"094210"
         });
-        setNormalFee(response.data.clinicKhojoAppointmentFeeEmergency);
-        setEmergencyFee(response.data.clinicKhojoAppointmentFeeEmergency);
-        setRatingg(response.data.rating);
-        setResponse(response.data);
+        console.log(response.data);
+        setNormalFee(response.data.clinicKhojoAppointmentFeeEmergency || null);
+        setEmergencyFee(response.data.clinicKhojoAppointmentFeeEmergency || null);
+        setRatingg(response.data.rating || null);
+        setResponse(response.data.hospital);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -145,7 +146,7 @@ function VerifiedClinic() {
               </div>
             </div>
             <div className="text-white  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
-              No clinic is available.
+              No Hospital is available.
             </div>
           </div>
         ) : (
@@ -171,11 +172,11 @@ function VerifiedClinic() {
                 <div className=" flex flex-col ms-52 bg-[#0529BB] me-6">
                   <div className="      flex flex-row justify-between ms-14 mt-5 ">
                     <div className=" bg-[#FF0B0B] h-14 w-44">
-                      <p className=" text-white mt-4 ms-7  ">Clinic Details</p>
+                      <p className=" text-white mt-4 ms-7  ">Hospital Details</p>
                     </div>
                     <div>
                       <p className=" text-white text-2xl underline mt-5 me-[800px]">
-                        Clinic Detail
+                        Hospital Detail
                       </p>
                     </div>
                   </div>
@@ -187,7 +188,7 @@ function VerifiedClinic() {
                         <Profile
                           fullName={response.name}
                           profileImage={response.profilePhoto}
-                          uniqueDoctorId={response.clinicUniqueId}
+                          uniqueDoctorId={response.hospitalClinicKhojoId}
                           accountAddedBy={null}
                           bool={true}
                         />
@@ -218,9 +219,9 @@ function VerifiedClinic() {
                         <div className=" flex flex-row gap-3">
 
                         <Address addData={response.address} />
-                        <SessionTimings
+                        {/* <SessionTimings
                             SessionTimings={response.timingsSlots}
-                          />
+                          /> */}
                         </div>
                         <hr/>
                         <div>
@@ -233,7 +234,7 @@ function VerifiedClinic() {
                     </div>
 
                     </div>
-                    <div className=" ms-56 mb-10 mt-7 ">
+                    {/* <div className=" ms-56 mb-10 mt-7 ">
                           <Buttons
                             bg="bg-[#0529BB]"
                             handleSubmita={() => handleSubmit(true)}
@@ -241,7 +242,7 @@ function VerifiedClinic() {
                             texta="Delete Account"
                             textb="Suspend Account"
                           />
-                        </div>
+                        </div> */}
                   </div>
                 </div>
               

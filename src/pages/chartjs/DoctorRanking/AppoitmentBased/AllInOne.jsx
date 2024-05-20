@@ -8,7 +8,9 @@ import Sidebar from "../../../AdminHome/Sidebar/Sidebar";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 import Skeletonn from "../../../../components/ui/SkeletonPage.jsx/Skeletonn";
-function AllInOne() {
+import ClipBgB from "../../../../components/ui/clipPath/ClipBgB";
+import Spinner from "../../../../components/ui/clipPath/Spinner";
+function AllInOne(){
   const [appointmentServed, setAppointmentServed] = useState([]);
   const [genderAppoitment, setGenderAppoitment] = useState([]);
   const [appointmentServedAge, setAppointmentServedAge] = useState([]);
@@ -124,13 +126,7 @@ function AllInOne() {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className=" text-black font-serif font-medium text-3xl">
-  //       Loading...
-  //     </div>
-  //   );
-  // }
+  
 
   return (
     <div className="flex flex-row  h-screen w-screen gap-48 bg-[#0529BB]">
@@ -148,11 +144,14 @@ function AllInOne() {
 
       <div className=" flex flex-col">
         <div className=" flex items-center ms-20">
-          <div className=" bg-[#FF0B0B] h-16 w-60">
+          {/* <div className=" bg-[#FF0B0B] h-16 w-60">
             <p className=" text-white mt-4 ms-7 text-2xl  ">
               statics & reports
             </p>
-          </div>
+          </div> */}
+          <ClipBgB width='w-[320px]' height='h-[60px]'  bardervar="35px" 
+           text="statics & reports" 
+         />
         </div>
 
         <div className="  w-80 ms-16 mt-4 ">
@@ -177,12 +176,16 @@ function AllInOne() {
             </select>
           </div>
         </div>
-        <div className="bg-blue-600 w-[980px] h-[580px] ms-20">
+        <div className="bg-blue-600 w-[960px] h-[540px] ms-20 flex justify-center items-center">
           {loading ? (
             renderSelectedComponent()
           ) : (
-            <div className=" flex  items-center justify-center mt-16  bg-blue-600 opacity-70 ">
-              <Skeletonn count="18" width={700} />
+            <div className="flex  items-center justify-center   bg-blue-600 opacity-70  ">
+              {/* <Skeletonn count="18" width={700} /> */}
+              <div className="">
+              <Spinner height="h-[80px]" width="w-[80px]" fontSize="text-[1rem]"/>
+              </div>
+             
             </div>
           )}
         </div>

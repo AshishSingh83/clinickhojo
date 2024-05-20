@@ -70,7 +70,7 @@
 // export default RegistrationDetail;
 import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons";
-
+import PdfPopup from "../../../components/ui/PopUpFile";
 const RegistrationDetail = React.memo(({ BasicDetail, onRadioChange, radioData }) => {
   const [doctorRegistrationDetail, setDoctorRegistrationDetail] = useState("");
   const [variable, setVariable] = useState('');
@@ -91,9 +91,10 @@ const RegistrationDetail = React.memo(({ BasicDetail, onRadioChange, radioData }
 
   const handleViewProofClick = () => {
     const pdfUrl = `${BasicDetail.registrationProof[0]}`;
-    if (pdfUrl) {
-      window.open(pdfUrl, "_blank");
-    }
+    // if (pdfUrl) {
+    //   window.open(pdfUrl, "_blank");
+    // }
+    console.log(pdfUrl);
   };
 
   return (

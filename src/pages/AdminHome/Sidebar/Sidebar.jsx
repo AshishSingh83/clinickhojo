@@ -68,6 +68,8 @@ import { SidebarData } from "./SidebarData.jsx";
 import { FiLogOut } from "react-icons/fi";
 import Button from "../../../components/ui/Button.jsx";
 import { useNavigate } from "react-router-dom";
+import ClipBgA from "../../../components/ui/clipPath/ClipBgA.jsx";
+import ClipBgC from "../../../components/ui/clipPath/ClipBgC.jsx";
 function Sidebar({ someData }) {
   const [sidebar, setSidebar] = useState(true);
   const [activeItem, setActiveItem] = useState(2);
@@ -84,8 +86,8 @@ function Sidebar({ someData }) {
 
   const handleSubmit = () => {};
   const handleLogout = () => {
-    if (localStorage.getItem("myDataAdmin") !== null) {
-      localStorage.removeItem("myDataAdmin");
+    if (localStorage.getItem("AdminToken") !== null) {
+      localStorage.removeItem("AdminToken");
     }
     if (localStorage.getItem("SubAdminToken") !== null) {
       localStorage.removeItem("SubAdminToken");
@@ -128,16 +130,17 @@ function Sidebar({ someData }) {
               })}
             </div>
             <div className=" flex flex-col">
-            <div className="flex flex-row text-black gap-7 mb-10  " onClick={handleLogout}>
+            <div className="flex flex-row text-black gap-7 mb-10 ms-8  " onClick={handleLogout}>
               <p className=" h-4 w-4">
                 <FiLogOut color="#FF0B0B"/>
               </p>
               <p className=" font-medium mt-1 text-lg text-[#FF0B0B]">Log Out</p>
             </div>
-            <div className="  h-[62px] bg-[#0529BB] text-sm bg-opacity-90 text-opacity-80  flex justify-center items-center flex-col ">
+            {/* <div className="  h-[62px] bg-[#0529BB] text-sm bg-opacity-90 text-opacity-80  flex justify-center items-center flex-col ">
             <p>Shamyani health services Pvt Ltd</p>
             <p>An ISO 9001:2015 certified company</p>
-            </div>
+            </div> */}
+            <ClipBgC/>
             </div>
            
             

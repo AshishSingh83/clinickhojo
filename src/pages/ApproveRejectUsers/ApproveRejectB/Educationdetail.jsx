@@ -164,11 +164,10 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
       window.open(proof, "_blank");
     }
   };
-
   const renderDetails =
     BasicDetail.length === 0 ? (
-      <div className="flex justify-center items-center h-[200px]">
-        <p className="text-xl text-black">No education details available</p>
+      <div className="flex justify-center items-center h-[200px] ">
+        <p className="text-xl text-white font-medium">No education details available</p>
       </div>
     ) : BasicDetail.length === 1 ? (
       <div className="h-[240px] items-center">

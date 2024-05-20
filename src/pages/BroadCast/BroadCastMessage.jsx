@@ -4,10 +4,12 @@ import { FiLogOut } from "react-icons/fi";
 import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../AdminHome/Sidebar/Sidebar";
+import ClipBgB from "../../components/ui/clipPath/ClipBgB";
 function BroadCastMessage() {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
+  const [disabled,setDisabled] = useState(false) ;
   const [formData, setFormData] = useState({
     remark: "",
   });
@@ -33,12 +35,12 @@ function BroadCastMessage() {
     setSelectedOption(event.target.value);
   };
 
-  const sendMessage = async () => {
-    console.log("hiiii");
-    if (!file) {
-      alert("Please select a file.");
-      return;
-    }
+  const sendMessage = async () =>{
+    // if (!file) {
+    //   alert("Please select a file.");
+    //   return;
+    // }
+    setDisabled(true)
     const formDataToSend = new FormData();
     formDataToSend.append("fileName", file);
     const messageData = {
@@ -47,13 +49,15 @@ function BroadCastMessage() {
       sendTo: selectedOption,
       fileName: formDataToSend,
     };
-    try {
+    try{
       const response = await axios.post(
         "api/admin/createBroadcastMessage",
         messageData
       );
+      setDisabled(false)
       navigate("../AdminHome");
-    } catch (error) {
+    } catch (error){
+      setDisabled(false)
       console.error("Error sending message:", error);
     }
   };
@@ -71,7 +75,16 @@ function BroadCastMessage() {
           />
         </div>
       </div>
-      <div className=" mt-40 me-96 bg-[#03229F] h-[450px]">
+      <div className="flex flex-col gap-24">
+      
+      <div>
+      <ClipBgB width='w-[320px]' height='h-[60px]'  bardervar="35px" 
+           text="Broadcast Message" 
+         />
+      </div>
+
+      <div className="  me-96 bg-[#03229F] h-[450px]  ">
+
         <div>
           <div className="flex  bg-[#03229F] text-black">
             <div className="flex flex-row text-xl   bg-[#D9D9D9] p-3 mb-10">
@@ -124,11 +137,17 @@ function BroadCastMessage() {
                 bgColor="bg-[#24C70A]"
                 hoverColor="hover:bg-[#39bd41]"
                 handleSubmit={sendMessage}
+                disabled={disabled}
               />
             </div>
           </div>
         </div>
       </div>
+
+      </div>
+    
+
+
     </div>
   );
 }

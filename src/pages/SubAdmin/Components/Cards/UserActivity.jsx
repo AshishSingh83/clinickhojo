@@ -1,6 +1,8 @@
 import React from "react";
 
 const UserActivity = ({ UserActivities }) => {
+  console.log(UserActivities);
+  UserActivities.length?console.log('hai'):console.log('nhi hai');
   return (
     <div className="bg-[#03229F] w-[500px] h-[430px] mb-4 rounded-sm text-white">
       <div className="p-1">
@@ -9,8 +11,8 @@ const UserActivity = ({ UserActivities }) => {
         </h1>
       </div>
       <div style={{ maxHeight: "300px", overflowY: "auto" }} >
-        <div className=" font-medium  ms-2 mb-5 gap-5 opacity-75 ">
-          {UserActivities ? (
+        <div className=" font-medium  ms-2 mb-5 gap-5 opacity-75  ">
+          {UserActivities.length ? (
             UserActivities.map((data, index) => (
               <div className="mt-1" key={index}>
                 <span
@@ -24,8 +26,8 @@ const UserActivity = ({ UserActivities }) => {
               </div>
             ))
           ) : (
-            <div className=" mt-7">
-              <div className=" h-44">No data available</div>
+            <div className=" flex justify-center items-center mt-40 text-2xl">
+              <div className=" h-44 text-white">No data available</div>
             </div>
           )}
         </div>

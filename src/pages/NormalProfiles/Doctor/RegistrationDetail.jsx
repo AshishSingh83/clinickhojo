@@ -12,8 +12,9 @@ const RegistrationDetail = React.memo(({ BasicDetail }) => {
 
   const handleViewProofClick = () => {
     const pdfUrl = `${BasicDetail.registrationProof[0]}`;
+    console.log(pdfUrl);
     if (pdfUrl) {
-      window.open(pdfUrl, "_blank");
+      // window.open(pdfUrl, "_blank");
     }
   };
 

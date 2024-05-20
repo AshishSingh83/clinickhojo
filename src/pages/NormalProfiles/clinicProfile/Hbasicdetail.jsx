@@ -33,8 +33,8 @@ const Hbasicdetail = ({ BasicDetail }) => {
     { "Alternate Contact Number": `${BasicDetail.alternateContactNumber}` },
     { "Email Id": `${BasicDetail.doctorEmail}` },
     { "Year of Establishment": `${BasicDetail.yearOfEstablishment}` },
-    { "Primary Specialization": formattedPrimarySpecialization },
-    { "Other Specializations": formattedOtherSpecializations.join(" / ") },
+    // { "Primary Specialization": formattedPrimarySpecialization },
+    // { "Other Specializations": formattedOtherSpecializations.join(" / ") },
     { "Clinic Description": `${BasicDetail.description}` },
   ];
   return (

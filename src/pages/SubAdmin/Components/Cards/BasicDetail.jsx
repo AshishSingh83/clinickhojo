@@ -14,6 +14,7 @@ const BasicDetail = ({ data }) => {
     message: "",
     isLoading: false,
   });
+  const [sniper,setSniper] = useState(false)
   const navigate = useNavigate();
   const handleSubmitaa = () => {
     navigate("../CreateSubAdmin", { state: { data } });
@@ -37,14 +38,17 @@ const BasicDetail = ({ data }) => {
   const handleDelete = () => {
     handleDialog("Are you sure you want to delete?", true, "ashish");
   };
-  const areUSureDelete = async (choose) => {
-    if (choose) {
+  const areUSureDelete = async (choose) =>{
+    if (choose){
+      setSniper(true)
       try {
         const response = await axios.post(`api/admin/delete/subAdmin`, {
           subAdminId: `${data.assignedUserId}`,
         });
+        setSniper(false)
         navigate("../SubAdminMainProfile");
       } catch (e) {
+        setSniper(false)
         console.log(e.message);
       }
     } else {
@@ -59,7 +63,7 @@ const BasicDetail = ({ data }) => {
             Basic Details :
           </h1>
         </div>
-        <div className=" font-medium  ms-2 mb-5 opacity-75">
+        <div className=" font-medium  ms-2 mb-5 opacity-75 overflow-auto">
           <DetailItem label="Full Name" value={data.fullName} />
           <DetailItem label="Contact Number" value={data.contactNumber} />
           <DetailItem label="Email Id" value={data.email} />
@@ -88,6 +92,7 @@ const BasicDetail = ({ data }) => {
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
           message={dialog.message}
+          sniper={sniper}
         />
       )}
     </>

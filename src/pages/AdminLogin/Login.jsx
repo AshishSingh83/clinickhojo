@@ -8,12 +8,17 @@ import instance from "../../axios";
 import InputWithIcon from "../../components/ui/InputWithIcon";
 import axios from "axios";
 import InputWithPassword from "../../components/ui/InputWithPassword";
+import { BiSearch } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
+import { FiKey } from "react-icons/fi";
+import apiClient from "./api";
 export default function Login() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
   const [emailLabel, setEmailLabel] = useState("Email Address");
   const [message, setMessage] = useState("");
   const [expiryTime, setExpiryTime] = useState(0);
+  const [disabled, setDisabled] = useState(false);
   const [data, setData] = useState({
     userName: "",
     password: "",
@@ -48,107 +53,53 @@ export default function Login() {
     e.preventDefault();
     authenticateUser();
   };
-  const handleAutoLogin = async (a, b) => {
-    try {
-      const response = await axios.post("api/admin/login/subAdmin", {
-        userName: a,
-        password: b,
-      });
-      if (response.data.user) {
-        console.log(response.data);
-       
-        const dataa = {
-          userName: a,
-          password: b,
-          label: "Username",
-        };
-        const currentTime = new Date().getTime();
-        const newTime = currentTime + 100 * 1000;
-        saveDataToLocalStorage("myData", { dataa, expiry: newTime });
-        setMessage("");
-        navigate("../AdminHome");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error.response.status);
-      if (error.response.status == 404) {
-        setMessage("User Not Found .....");
-      } else {
-        setEmailLabel("Internal Server Error");
-      }
-    }
-  };
+
   useEffect(() => {
     const savedData = getDataFromLocalStorage("SubAdminToken");
+    console.log("helo", savedData);
     if (savedData) {
-      //send token to backend and verify
-      // if(new Date().getTime() < savedData.expiry) {
-      //         console.log('yahan bhi kyun',savedData.expiry-new Date().getTime());
-      //         setLoginEmailVal(savedData.dataa.userName );
-      //         setLoginPasswordVal(savedData.dataa.password);
-      //         setLabel(savedData.dataa.label);
-      //         //authenticateUser()
-      //         handleAutoLogin(savedData.dataa.userName,savedData.dataa.password)
-      // }else{
-      //   console.log('data experied');
-      //   deleteDataFromLocalStorage('myData');
-      //   setLoginEmailVal('');
-      //   setLoginPasswordVal('');
-      // }
-      const verifyToken = async()=>{
+      console.log(savedData);
+      setDisabled(true);
+      const verifyToken = async () => {
         try {
-          const response = await axios.post("api/admin/profile/subAdmin", {
-            headers: {
-              "authorization ": savedData,
-            },
-          });
-          console.log(response.data);
-          saveDataToLocalStorage("SubAdminToken", response.data.token);
-          if(response.data){
+          const response = await axios.post(
+            "api/admin/profile/subAdmin",
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${savedData}`,
+              },
+            }
+          );
+          setDisabled(false);
+          if (response.data.authData.userData.user_role == "subAdmin") {
             navigate("../AdminHome");
           }
-        } catch (e) {
-          console.log('e hai',e.message);
+        } catch (error) {
+          setDisabled(false);
+          console.log("Error:", error.message);
         }
-      }
-      //  verifyToken()
-      console.log(savedData);
-      navigate("../AdminHome");
+      };
+      verifyToken();
     }
   }, []);
 
   const authenticateUser = async () => {
+    setDisabled(true);
     try {
       const response = await axios.post("api/admin/login/subAdmin", {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
-      const accessToken = response.data.token;
-      const secretKey = "CLINICKHOJO_ADMIN_LOGIN";
-      saveDataToLocalStorage("SubAdminToken", accessToken);
-      console.log(accessToken);
-      const customData = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjNmODM3OTczZjUwYWZmMTNiNmVhYjEiLCJpYXQiOjE3MTU1MjUxODUsImV4cCI6MTcxNTc4NDM4NX0.hgZYHJmZYU7Lv1_YWwpDxgKiOJ9SFRc9IgmGQ3DQUSY'
-      try {
-        const response = await axios.get("api/admin/profile/subAdmin", {
-          headers: {
-            "authorization ": `Bearer${accessToken}`,
-          },
-        });
-      } catch (e) {
-        console.log('e hai',e.message);
+      if(response.data.role=='subAdmin'){
+        const accessToken = response.data.token;
+        saveDataToLocalStorage("SubAdminToken", accessToken);
+        setDisabled(false);
+        navigate("../AdminHome");
+      }else{
+        setMessage('This userId related to Admin') ;
       }
-      navigate("../AdminHome");
-      // if (response.data.user){
-      //   const dataa = {
-      //     userName: loginEmailVal,
-      //     password: loginPasswordVal,
-      //     label: "Username",
-      //   };
-      //   const currentTime = new Date().getTime();
-      //   const newTime = currentTime + (100 * 1000);
-      //   saveDataToLocalStorage('myData', { dataa, expiry: newTime });
-      //   setMessage("");
-      //   navigate("../AdminHome");
-      // }
+      setDisabled(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response.status == 404) {
@@ -156,6 +107,7 @@ export default function Login() {
       } else {
         setMessage("Internal Server Error");
       }
+      setDisabled(false);
     }
   };
 
@@ -167,15 +119,15 @@ export default function Login() {
     setEmailLabel("Email Address");
     setMessage("");
   };
-  function handleMe(){
+  function handleMe() {
     navigate("../EnterPassword");
   }
-  function handleMe(){
+  function handleMe() {
     navigate("../");
   }
   return (
-    <div >
-      <form  onSubmit={handleSubmit} className=" overflow-hidden">
+    <div>
+      <form onSubmit={handleSubmit} className=" overflow-hidden">
         <div>
           <InputWithIcon
             handleChange={handleChangeEmail}
@@ -186,7 +138,7 @@ export default function Login() {
             labelFor="Email"
             my1="my-0"
             bg1="bg-[#FAEBEB]"
-            iconData="FaUser"
+            iconData={FaUser}
           />
 
           <InputWithPassword
@@ -197,32 +149,27 @@ export default function Login() {
             labelText="Enter Password"
             labelFor="Password"
             bg1="bg-[#FAEBEB]"
-            iconData="FiKey"
+            iconData={FiKey}
           />
         </div>
-        <div className="text-sm  flex flex-row justify-between  ">
-          <a
-            href="#"
+        <div className="text-sm  flex flex-row justify-between ms-2 ">
+          <p
             onClick={handleMe}
-            className="font-medium text-[#E1E0E0] hover:text-blue-300"
+            className="font-medium text-[#E1E0E0] hover:text-blue-300 cursor-pointer"
           >
-            Admin Login
-          </a>
-          <a
-            href="#"
-            onClick={handleMe}
-            className="font-medium text-[#E1E0E0] hover:text-blue-300"
-          >
-            Forgot password?
-          </a>
+            Go to Admin Login
+          </p>
         </div>
-        <div className=" text-red-500 ms-16 mt-12 ">{message}</div>
+        <div className=" text-red-500 ms-16 mt-8 ">
+        <p className=" mb-4">{message}</p>
+        </div>
         <Button
           handleSubmit={handleSubmit}
           text="Login"
           bgColor="bg-[#FFFFFF]"
           textColor="text-[#FA0808]"
           hoverColor="hover:bg-blue-200"
+          disabled={disabled}
         />
       </form>
     </div>

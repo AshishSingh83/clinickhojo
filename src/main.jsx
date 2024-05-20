@@ -8,9 +8,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import EnterPhone from "./pages/ForgetPassword/EnterPhone.jsx";
-import EnterOtp from "./pages/ForgetPassword/EnterOtp.jsx";
-import EnterPassword from "./pages/ForgetPassword/EnterPassword.jsx";
+import ResetPassword from "./pages/ForgetPassword/ResetPassword.jsx";
 import AdminHome from "./pages/AdminHome/AdminHome.jsx";
 import ApproveReject from "./pages/ApproveRejectUsers/ApproveRejectA/ApproveReject.jsx";
 import Buttons from "./pages/ApproveRejectUsers/ButtonRow/Buttons.jsx";
@@ -34,9 +32,16 @@ import VerifiedClinic from "./pages/NormalProfiles/clinicProfile/VerifiedClinic.
 import VerifiedDoctorProfile from "./pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx";
 import MainAdminLogin from "./pages/AdminLogin/MainAdminLogin.jsx";
 import SubAdminLogin from "./pages/AdminLogin/SubAdminLogin.jsx";
-import ClipBg from "./components/ui/clipPath/ClipBg.jsx";
+import ClipBg from "./components/ui/clipPath/ClipBgA.jsx";
 import Skeletonn from "./components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import { PersistGate } from "redux-persist/integration/react";
+import ApproveRejectHospital from "./pages/ApproveRejectUsers/ApproveRejectC/ApproverRejectHospital.jsx";
+import VerifiedHospital from "./pages/NormalProfiles/clinicProfile/verifiedHospital.jsx";
+import ClipBgA from "./components/ui/clipPath/ClipBgA.jsx";
+import ClipBgB from "./components/ui/clipPath/ClipBgB.jsx";
+import ClipBgC from "./components/ui/clipPath/ClipBgC.jsx";
+import Spinner from "./components/ui/clipPath/Spinner.jsx";
+import NewPopup from "./components/ui/NewPopup.jsx";
 
 
 
@@ -47,9 +52,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="" element={<MainAdminLogin />} />
-      <Route path="EnterPhone" element={<EnterPhone />} />
-      <Route path="EnterOtp" element={<EnterOtp />} />
-      <Route path="EnterPassword" element={<EnterPassword />} />
+      <Route path="ResetPassword/:token" element={<ResetPassword />} />
       <Route path="AdminHome" element={<AdminHome />} />
       <Route path="ApproveReject" element={<ApproveReject />} />
       <Route path="ApproveRejectB" element={<ApproveRejectB />} />
@@ -61,6 +64,7 @@ const router = createBrowserRouter(
       <Route path="ViewProfileMain" element={<ViewProfileMain />} />
       <Route path="VerifiedClinic" element={<VerifiedClinic />} />
       <Route path="VerifiedDoctorProfile" element={<VerifiedDoctorProfile />} />
+      <Route path="ApproveRejectHospital" element={<ApproveRejectHospital />} />
   
 
       <Route path="AllInOne" element={<AllInOne />} />
@@ -75,7 +79,14 @@ const router = createBrowserRouter(
       <Route path="ManagementHome" element={<ManagementHome />} />
       <Route path="MHomeB" element={<MHomeB />} />
       <Route path="BarChartD" element={<BarChartD />} />
-      <Route path="Skeletonn" element={<Skeletonn/>} />
+      <Route path="ClipBgA" element={<ClipBgA />} />
+      <Route path="ClipBgB" element={<ClipBgB />} />
+      <Route path="ClipBgC" element={<ClipBgC />} />
+      <Route path="Spinner" element={<Spinner />} />
+      <Route path="NewPopup" element={<NewPopup />} />
+
+
+      <Route path="VerifiedHospital" element={<VerifiedHospital/>}/>
 
     </Route>
   )
