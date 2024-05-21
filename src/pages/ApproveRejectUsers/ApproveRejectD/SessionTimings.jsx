@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons.jsx";
 
-
 const SessionTimings = ({ onRadioChange, SessionTimings, radioData }) => {
   const [hSessionTimingsOption, setHSessionTimingsOption] = useState("");
   useEffect(() => {

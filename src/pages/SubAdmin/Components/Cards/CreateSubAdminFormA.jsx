@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Input from "../../../../components/ui/Input";
 import Button from "../../../../components/ui/Button";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import RadioButtonsC from "../../../../components/ui/RadioButtonC";
+import instance from "../../../../axios";
 
 function FormGroup({ label, placeholder, type = "text", value, onChange }) {
   return (
@@ -71,7 +71,7 @@ function CreateSubAdminFormA({ formDataa }) {
       fullName,
       contactNumber,
       email,
-      gender: selectedOption, 
+      gender: selectedOption,
       dateOfBirth,
       address,
       newAssignedUserId: assignedUserId,
@@ -83,7 +83,7 @@ function CreateSubAdminFormA({ formDataa }) {
       setDisabled(true);
       console.log(formData);
       try {
-        const response = await axios.put("api/admin/editSubAdmin", formData);
+        const response = await instance.put("api/admin/editSubAdmin", formData);
         setDisabled(false);
         navigate("../SubAdminMainProfile");
       } catch (error) {
@@ -95,16 +95,16 @@ function CreateSubAdminFormA({ formDataa }) {
         fullName,
         contactNumber,
         email,
-        gender:selectedOption,
+        gender: selectedOption,
         dateOfBirth,
         address,
         assignedUserId,
         assignedUserPassword,
       };
-      
+
       setDisabled(true);
       try {
-        const response = await axios.post(
+        const response = await instance.post(
           "api/admin/createSubAdmin",
           newFormData
         );

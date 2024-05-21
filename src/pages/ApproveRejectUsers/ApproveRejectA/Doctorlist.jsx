@@ -6,7 +6,6 @@ import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaFilter } from 'react-icons/fa';
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -92,7 +91,6 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            
           </div>
         )}
       </div>
@@ -130,8 +128,6 @@ const Demo = ({
                     {update.address.locality}
                   </p>
                 </div>
-                {/* <span className="font-medium ">City : </span>
-                {update.address.city} */}
               </p>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}

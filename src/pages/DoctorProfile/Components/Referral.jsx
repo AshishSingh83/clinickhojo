@@ -22,9 +22,7 @@ const Referral = () => {
       style={{ backgroundColor: "#494D5F", width: "480px", height: "470px" }}
     >
       <div className="bg-[#845BB3] mt-[-12px] rounded-md">
-        <h2 className="text-xl  p-1 m-1 ml-5  font-medium">
-          Referrals Sent :
-        </h2>
+        <h2 className="text-xl  p-1 m-1 ml-5  font-medium">Referrals Sent :</h2>
       </div>
       <div style={{ overflow: "auto", maxHeight: "400px" }} className=" mt-4">
         {compo()}

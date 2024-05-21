@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Buttons from "../../../ApproveRejectUsers/ButtonRow/Buttons";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Dialog from "../../../../components/ui/Diloge/Dialog";
+import instance from "../../../../axios";
 const DetailItem = ({ label, value }) => (
   <div className="mt-1">
     <span className="font-sm">{label} :</span> {value}
@@ -14,14 +14,14 @@ const BasicDetail = ({ data }) => {
     message: "",
     isLoading: false,
   });
-  const [sniper,setSniper] = useState(false)
+  const [sniper, setSniper] = useState(false);
   const navigate = useNavigate();
   const handleSubmitaa = () => {
     navigate("../CreateSubAdmin", { state: { data } });
   };
   const handleSubmitbb = async () => {
     try {
-      const response = await axios.post(`api/admin/delete/subAdmin`, {
+      const response = await instance.post(`api/admin/delete/subAdmin`, {
         subAdminId: `${data.assignedUserId}`,
       });
       navigate("../SubAdminMainProfile");
@@ -38,17 +38,17 @@ const BasicDetail = ({ data }) => {
   const handleDelete = () => {
     handleDialog("Are you sure you want to delete?", true, "ashish");
   };
-  const areUSureDelete = async (choose) =>{
-    if (choose){
-      setSniper(true)
+  const areUSureDelete = async (choose) => {
+    if (choose) {
+      setSniper(true);
       try {
-        const response = await axios.post(`api/admin/delete/subAdmin`, {
+        const response = await instance.post(`api/admin/delete/subAdmin`, {
           subAdminId: `${data.assignedUserId}`,
         });
-        setSniper(false)
+        setSniper(false);
         navigate("../SubAdminMainProfile");
       } catch (e) {
-        setSniper(false)
+        setSniper(false);
         console.log(e.message);
       }
     } else {
@@ -59,9 +59,7 @@ const BasicDetail = ({ data }) => {
     <>
       <div className="bg-[#03229F] w-[500px] h-[430px] mb-4 rounded-sm text-white">
         <div className="p-1">
-          <h1 className="text-lg ms-5 m-1   font-semibold">
-            Basic Details :
-          </h1>
+          <h1 className="text-lg ms-5 m-1   font-semibold">Basic Details :</h1>
         </div>
         <div className=" font-medium  ms-2 mb-5 opacity-75 overflow-auto">
           <DetailItem label="Full Name" value={data.fullName} />

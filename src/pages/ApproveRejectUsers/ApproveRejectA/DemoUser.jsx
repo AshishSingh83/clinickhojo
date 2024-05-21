@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaFilter } from "react-icons/fa";
 import Input from "../../../components/ui/Input";
 
 const DemoUser = ({

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BarChartB from "../../component/Bar/BarChartB";
+import instance from "../../../../axios";
 
 function DoctorRanking() {
   const [appointmentServed, setAppointmentServed] = useState([]);
@@ -10,8 +10,8 @@ function DoctorRanking() {
     async function fetchData() {
       try {
         const [pendingResponse, changedResponse] = await Promise.all([
-          axios.get("api/admin/analytics/doctorRanking/appointmentsServed"),
-          axios.get("api/admin/analytics/doctorRanking/gender"),
+          instance.get("api/admin/analytics/doctorRanking/appointmentsServed"),
+          instance.get("api/admin/analytics/doctorRanking/gender"),
         ]);
         setAppointmentServed(pendingResponse.data.doctorRankings);
         setGenderAppoitment(changedResponse.data.doctorRankingsByGender);

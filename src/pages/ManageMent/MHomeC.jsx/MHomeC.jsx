@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import Hbasicdetail from "./Hbasicdetail";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
@@ -14,6 +13,7 @@ import SessionTimings from "../../ApproveRejectUsers/ApproveRejectD/SessionTimin
 import WrongInfo from "../../ApproveRejectUsers/ApproveRejectD/WrongInfo.jsx";
 import HregistartionDetail from "../../ApproveRejectUsers/ApproveRejectC/HregistrationDetail.jsx";
 import AppoitmentFee from "../../ApproveRejectUsers/ApproveRejectD/AppoitmentFee.jsx";
+import instance from "../../../axios.js";
 
 function MHomeC() {
   const dispatch = useDispatch();
@@ -84,7 +84,7 @@ function MHomeC() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post(
+        const response = await instance.post(
           "api/admin/whileApproval/getParticular/hospital",
           {
             managementEmail: managementEmail,
@@ -125,7 +125,7 @@ function MHomeC() {
     if (choose) {
       if (1) {
         try {
-          const response = await axios.put(
+          const response = await instance.put(
             "api/admin/approve/managementPersonnel",
             {
               managementUniqueId: "908269",
@@ -136,7 +136,7 @@ function MHomeC() {
           );
 
           if (approved) {
-            await axios.post("api/admin/hospitals/setAppointmentFee", {
+            await instance.post("api/admin/hospitals/setAppointmentFee", {
               hospitalClinicKhojoId: "117192",
               managementEmail: managementEmail,
               clinicKhojoAppointmentFeeNormal: normalFee,
@@ -144,7 +144,7 @@ function MHomeC() {
             });
           }
           if (approved) {
-            await axios.post("api/admin/hospitals/setRatings", {
+            await instance.post("api/admin/hospitals/setRatings", {
               hospitalClinicKhojoId: "062607",
               rating: rating,
             });
@@ -169,7 +169,7 @@ function MHomeC() {
             style={{ backgroundColor: "#c2c0bc" }}
           >
             <div className="me-7">
-              <Sidebar someData={{'index':6}}/>
+              <Sidebar someData={{ index: 6 }} />
             </div>
             <div>
               <FiLogOut
@@ -178,21 +178,18 @@ function MHomeC() {
               />
             </div>
           </div>
-          {/* <div className="text-black  font-medium text-3xl flex justify-center items-center h-screen me-[600px]">
-            No Hospital is available.
-          </div> */}
           <div className=" flex flex-col gap-9">
             <div className="text-black  font-medium text-3xl flex justify-center items-center  me-[600px]">
-            No Hospital is available.
+              No Hospital is available.
             </div>
-              <div className=" ">
-                <Buttons
-                  bg="bg-white"
-                  handleSubmita={() => handleSubmit(true)}
-                  handleSubmitb={() => handleSubmit(false)}
-                />
-              </div>
+            <div className=" ">
+              <Buttons
+                bg="bg-white"
+                handleSubmita={() => handleSubmit(true)}
+                handleSubmitb={() => handleSubmit(false)}
+              />
             </div>
+          </div>
         </div>
       ) : (
         response && (
@@ -206,7 +203,7 @@ function MHomeC() {
                 style={{ backgroundColor: "#c2c0bc" }}
               >
                 <div className="me-7">
-                  <Sidebar someData={{'index':6}}/>
+                  <Sidebar someData={{ index: 6 }} />
                 </div>
                 <div>
                   <FiLogOut

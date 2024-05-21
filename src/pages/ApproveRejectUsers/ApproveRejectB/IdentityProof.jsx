@@ -1,14 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons";
-import PdfPopup from "../../../components/ui/PopUpFile";
-
 
 const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
-  const [doctorIdentityProofOption, setDoctorIdentityProofOption] = useState("");
+  const [doctorIdentityProofOption, setDoctorIdentityProofOption] =
+    useState("");
   const [variable, setVariable] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [pdfURL,setPdfURL] = useState('') ;
+  const [pdfURL, setPdfURL] = useState("");
   const proof = BasicDetail.identityProof[0];
 
   useEffect(() => {
@@ -26,11 +24,11 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
   const handleViewProofClick = () => {
     const pdfUrl = `${BasicDetail.identityProof[0]}`;
     console.log(pdfUrl);
-    setPdfURL(pdfUrl) ;
+    setPdfURL(pdfUrl);
     if (pdfUrl) {
       window.open(pdfUrl, "_blank");
     }
-    // setIsPopupOpen(true) ;
+    
   };
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
@@ -80,7 +78,6 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
           </div>
         </div>
       </div>
-     
     </div>
   );
 };

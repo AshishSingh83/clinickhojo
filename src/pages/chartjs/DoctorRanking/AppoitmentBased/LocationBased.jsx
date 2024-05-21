@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BarChartB from "../../component/Bar/BarChartB";
-
+import instance from "../../../../axios";
 
 function LocationBased() {
   const [appointmentServed, setAppointmentServed] = useState([]);
@@ -9,7 +8,7 @@ function LocationBased() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
+        const response = await instance.get(
           "api/admin/analytics/appointments/locationWise"
         );
         setAppointmentServed(response.data.appointmentsByLocation);

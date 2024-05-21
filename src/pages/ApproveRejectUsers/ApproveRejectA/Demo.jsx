@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaFilter } from 'react-icons/fa';
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
 import Spinner from "../../../components/ui/clipPath/Spinner";
 import { BiSearch } from "react-icons/bi";
@@ -23,11 +21,10 @@ const Demo = ({
   normalVerified,
   newBg = "bg-[#229649]",
   newBga,
-  hwidth= 'w-[380px]',
-  hrad='35px',
-  spinner=false
+  hwidth = "w-[380px]",
+  hrad = "35px",
+  spinner = false,
 }) => {
-  console.log(spinner);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sortedData, setSortedData] = useState([...showData]);
@@ -66,9 +63,17 @@ const Demo = ({
     <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
       <div className={` mt-[-12px] text-black flex flex-col   `}>
         <div className=" h-14 flex items-center justify-center ">
-        <ClipBgB width={hwidth} height='h-[55px]'  bardervar={hrad} bg='bg-[#FFFFFF]' textColor="text-[#FA0808]"  textSize="text-2xl"  mt='mt-2' text={text}/>
+          <ClipBgB
+            width={hwidth}
+            height="h-[55px]"
+            bardervar={hrad}
+            bg="bg-[#FFFFFF]"
+            textColor="text-[#FA0808]"
+            textSize="text-2xl"
+            mt="mt-2"
+            text={text}
+          />
         </div>
-       
 
         {sortedData.length === 0 ? (
           ""
@@ -97,18 +102,22 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            
           </div>
         )}
       </div>
       <div className={`overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
-
           <div className="flex justify-center items-center h-full">
             <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
-            {
-              spinner?<Spinner height="h-[70px]" width="w-[70px]" fontSize="text-[.9rem]"/>:'No Data Available'
-            }
+              {spinner ? (
+                <Spinner
+                  height="h-[70px]"
+                  width="w-[70px]"
+                  fontSize="text-[.9rem]"
+                />
+              ) : (
+                "No Data Available"
+              )}
             </p>
           </div>
         ) : (
@@ -138,8 +147,6 @@ const Demo = ({
                     {update.address.locality}
                   </p>
                 </div>
-                {/* <span className="font-medium ">City : </span>
-                {update.address.city} */}
               </p>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}

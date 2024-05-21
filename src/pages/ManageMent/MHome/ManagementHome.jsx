@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
-import axios from "axios";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar";
 import Demo from "./Demo";
+import instance from "../../../axios";
 function ManagementHome() {
   const [pending, setPending] = useState([]);
   const [changed, setChanged] = useState([]);
@@ -22,8 +22,10 @@ function ManagementHome() {
     async function fetchData() {
       try {
         const [pendingResponse, changedResponse] = await Promise.all([
-          axios.get("api/admin/managementPersonnel/notApproved"),
-          axios.get("api/admin/getAll/managememntPersonnel/approved/updated"),
+          instance.get("api/admin/managementPersonnel/notApproved"),
+          instance.get(
+            "api/admin/getAll/managememntPersonnel/approved/updated"
+          ),
         ]);
         setPending(pendingResponse.data.management || []);
         setChanged(changedResponse.data || []);
@@ -44,7 +46,7 @@ function ManagementHome() {
     <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
-          <Sidebar someData={{'index':6}}/>
+          <Sidebar someData={{ index: 6 }} />
         </div>
         <div>
           <FiLogOut

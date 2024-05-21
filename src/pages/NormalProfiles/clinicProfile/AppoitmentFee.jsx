@@ -1,103 +1,10 @@
-// import React, { useEffect } from "react";
-// import Input from "../../../components/ui/Input";
-// import NumberSelect from "../../ApproveRejectUsers/ApproveRejectB/NumberSelect";
-// import { FaEdit } from 'react-icons/fa';
-// const AppointmentFee = ({
-//   normalFee,
-//   setNormalFee,
-//   emergencyFee,
-//   setEmergencyFee,
-//   onRatingChange,
-//   rating,
-//   disabledA = true,
-//   disabledB = true,
-//   disabledC = true,
-// }) => {
-//   const handleChangeA = (e) => {
-//     setNormalFee(e.target.value);
-//   };
-
-//   const handleChangeB = (e) => {
-//     setEmergencyFee(e.target.value);
-//   };
-
-//   const handleRatingSelect = (rating) => {
-//     onRatingChange(rating);
-//   };
-
-//   useEffect(() => {
-//     setNormalFee(normalFee);
-//     setEmergencyFee(emergencyFee);
-//   }, []);
-
-//   return (
-//     <div className="bg-[#03229F] w-[435px] h-[185] mb-4 rounded-sm">
-//       <div>
-//         <h1 className="text-lg ms-5 m-2 font-semibold">
-//           Appointment Fee Detail:
-//         </h1>
-//       </div>
-//       <div>
-//         <div className="font-medium ms-2 mb-5 opacity-75">
-//           <div className="mt-3 flex flex-row">
-//             <span className="font-sm">
-//               Normal Appointment Booking Fee: Rs.
-//             </span>
-//             <div className=" w-24 mt-[-7px] ms-2 flex flex-row">
-//               <Input
-//                 bg1="bg-[#F2EFEF]"
-//                 handleChange={handleChangeA}
-//                 value={normalFee}
-//                 disabled={disabledA}
-//               />
-//               <div className=" flex justify-center items-center ms-3">
-//                 <FaEdit />
-//               </div>
-//             </div>
-//             <br />
-//           </div>
-//           <div className="mt-4 flex flex-row">
-//             <span className="font-sm">
-//               Emergency Appointment Booking Fee:
-//             </span>
-//             <div className="w-24 mt-[-7px] ms-2 flex flex-row">
-//               <Input
-//                 bg1="bg-[#F2EFEF]"
-//                 handleChange={handleChangeB}
-//                 value={emergencyFee}
-//                 disabled={disabledB}
-//               />
-//                <div className=" flex justify-center items-center ms-3">
-//                 <FaEdit />
-//               </div>
-//             </div>
-//             <br />
-//           </div>
-//           <div className="mt-1">
-//             <span className="flex flex-row">
-//               <p className="text-lg">Provide Rating:</p>
-//               <div className="ms-10">
-//                 <NumberSelect
-//                   onSelect={handleRatingSelect}
-//                   rating={rating}
-//                   disabled={disabledC}
-//                 />
-//               </div>
-//             </span>
-//           </div>
-//           <div></div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-// export default AppointmentFee;
 import React, { useEffect, useState } from "react";
 import Input from "../../../components/ui/Input";
 import NumberSelect from "../../ApproveRejectUsers/ApproveRejectB/NumberSelect";
-import { FaEdit, FaSave } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import Button from "../../../components/ui/Button";
-import axios from "axios";
+import instance from "../../../axios";
+
 
 const AppointmentFee = ({
   normalFee,
@@ -107,8 +14,7 @@ const AppointmentFee = ({
   onRatingChange,
   rating,
   hospitalClinicKhojoId,
-  managementEmail
-
+  managementEmail,
 }) => {
   const [isEditingA, setIsEditingA] = useState(false);
   const [isEditingB, setIsEditingB] = useState(false);
@@ -116,12 +22,12 @@ const AppointmentFee = ({
   const [disabledA, setDisabledA] = useState(false);
   const [disabledB, setDisabledB] = useState(false);
   const [disabledC, setDisabledC] = useState(false);
-  const [newRating,setNewRating] = useState(rating);
-  const [normal,setNormal] = useState(normalFee);
-  const [emergency,setEmergency] = useState(emergencyFee)
+  const [newRating, setNewRating] = useState(rating);
+  const [normal, setNormal] = useState(normalFee);
+  const [emergency, setEmergency] = useState(emergencyFee);
   const handleChangeA = (e) => {
     setNormalFee(e.target.value);
-    setNormal(e.target.value)
+    setNormal(e.target.value);
   };
   const handleChangeB = (e) => {
     setEmergencyFee(e.target.value);
@@ -133,60 +39,60 @@ const AppointmentFee = ({
     setNewRating(rating);
   };
 
-  async function toggleEditA(){
+  async function toggleEditA() {
     setIsEditingA(!isEditingA);
     if (isEditingA) {
       setDisabledA(true);
       try {
-        await axios.post("api/admin/hospitals/setAppointmentFee", {
-          hospitalClinicKhojoId:hospitalClinicKhojoId,
-          managementEmail:managementEmail,
-          clinicKhojoAppointmentFeeNormal:normal,
-          clinicKhojoAppointmentFeeEmergency:emergencyFee
-         });
-       setDisabledA(false)
+        await instance.post("api/admin/hospitals/setAppointmentFee", {
+          hospitalClinicKhojoId: hospitalClinicKhojoId,
+          managementEmail: managementEmail,
+          clinicKhojoAppointmentFeeNormal: normal,
+          clinicKhojoAppointmentFeeEmergency: emergencyFee,
+        });
+        setDisabledA(false);
       } catch (e) {
         console.log(e.message);
       }
-      setDisabledA(false)
+      setDisabledA(false);
     }
-  };
+  }
 
-  async function toggleEditB(){
+  async function toggleEditB() {
     if (isEditingB) {
       setDisabledB(true);
       try {
-        await axios.post("api/admin/hospitals/setAppointmentFee", {
-          hospitalClinicKhojoId:hospitalClinicKhojoId,
-          managementEmail:managementEmail,
-          clinicKhojoAppointmentFeeNormal:normalFee,
-          clinicKhojoAppointmentFeeEmergency:emergency
-         });
-       setDisabledB(false)
+        await instance.post("api/admin/hospitals/setAppointmentFee", {
+          hospitalClinicKhojoId: hospitalClinicKhojoId,
+          managementEmail: managementEmail,
+          clinicKhojoAppointmentFeeNormal: normalFee,
+          clinicKhojoAppointmentFeeEmergency: emergency,
+        });
+        setDisabledB(false);
       } catch (e) {
         console.log(e.message);
       }
-      setDisabledB(false)
+      setDisabledB(false);
     }
     setIsEditingB(!isEditingB);
-  };
+  }
 
-  async function toggleEditC (){
+  async function toggleEditC() {
     if (isEditingC) {
       setDisabledC(true);
       try {
-        await axios.post("api/admin/hospitals/setRatings",{
+        await instance.post("api/admin/hospitals/setRatings", {
           hospitalClinicKhojoId: hospitalClinicKhojoId,
           rating: newRating,
         });
-       setDisabledC(false)
+        setDisabledC(false);
       } catch (e) {
         console.log(e.message);
       }
-      setDisabledC(false)
+      setDisabledC(false);
     }
     setIsEditingC(!isEditingC);
-  };
+  }
 
   useEffect(() => {
     setNormalFee(normalFee);
@@ -232,12 +138,14 @@ const AppointmentFee = ({
             <br />
           </div>
           <div className="mt-4 flex flex-row">
-            <span className="font-sm">Emergency Appointment Booking Fee: Rs.</span>
+            <span className="font-sm">
+              Emergency Appointment Booking Fee: Rs.
+            </span>
             <div className=" w-40  ms-2 flex flex-row justify-center items-center ">
               <Input
                 bg1="bg-[#F2EFEF]"
                 handleChange={handleChangeB}
-                value={emergency}
+                value={emergencyFee}
                 disabled={!isEditingB}
               />
               <div

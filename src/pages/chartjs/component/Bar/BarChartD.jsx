@@ -52,7 +52,6 @@ function BarChartD({ newData }) {
             }
             return null;
           },
-          // Customize tooltip to show uniqueDoctorId on hover
           afterLabel: function (context) {
             return `Doctor ID: ${newData[context.dataIndex].uniqueDoctorId}`;
           },

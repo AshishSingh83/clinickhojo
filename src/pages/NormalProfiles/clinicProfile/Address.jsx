@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 
 const Address = ({ addData }) => {
   const [hAddressOption, setHAddressOption] = useState("");
 
   return (
-    <div className="bg-[#03229F] w-[380px] h-[310px] mb-4 rounded-sm text-white">
+    <div className="bg-[#03229F] w-[380px] h-[360px] mb-4 rounded-sm text-white">
       <div className="flex flex-row">
         <h1 className="text-lg ms-5 m-2 font-semibold">Address :</h1>
       </div>
@@ -37,6 +37,16 @@ const Address = ({ addData }) => {
               value={addData.locality}
               readOnly
               className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+            />
+            <br />
+          </div>
+          <div className="mt-2 flex flex-row gap-1">
+            <label className="font-sm">Clinic Address:</label>
+            <input
+              type="text"
+              value={addData.clinicAddress}
+              readOnly
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 w-64 p-1 h-8 flex justify-center items-center"
             />
             <br />
           </div>

@@ -1,14 +1,15 @@
 import emailjs from "@emailjs/browser";
 
 const emailService = async ({ message, toName, toEmail }) => {
+  console.log(message);
   const serviceId = "service_om433u9";
-  const templateId = "template_zzith2l";
+  const templateId = "template_zsmcl3v";
   const publicKey = "9BN6G8lDUWm0rzkqZ";
 
   const templateParams = {
     to_name: toName,
     from_name: "ClinicKhojo",
-    reset_url: message,
+    message: message,
     to_email: toEmail,
   };
 
@@ -19,7 +20,7 @@ const emailService = async ({ message, toName, toEmail }) => {
       templateParams,
       publicKey
     );
-    console.log("email sent");
+    console.log('emailSent success fully');
     return true;
   } catch (e) {
     console.log("error sending email", e);

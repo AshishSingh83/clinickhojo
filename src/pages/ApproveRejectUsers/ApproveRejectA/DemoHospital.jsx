@@ -1,12 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { updateHospitalData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaFilter } from 'react-icons/fa';
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB";
 import Spinner from "../../../components/ui/clipPath/Spinner";
 import { BiSearch } from "react-icons/bi";
@@ -23,12 +21,12 @@ const DemoHospital = ({
   normalVerified,
   newBg = "bg-[#229649]",
   newBga,
-  hwidth= 'w-[380px]',
-  hrad='35px',
-  spinner=false
+  hwidth = "w-[380px]",
+  hrad = "35px",
+  spinner = false,
 }) => {
   const dispatch = useDispatch();
-  console.log('demo hos',showData);
+  console.log("demo hos", showData);
   const navigate = useNavigate();
   console.log(showData);
   const [sortedData, setSortedData] = useState([...showData]);
@@ -46,12 +44,12 @@ const DemoHospital = ({
     setSortedData(sorted);
   };
   const handleMe = (update) => {
-    console.log('normal verified',normalVerified);
+    console.log("normal verified", normalVerified);
     dispatch(updateHospitalData(update));
-    if(normalVerified=='true'){
-      console.log('nanananaaaaah');
+    if (normalVerified == "true") {
+      console.log("nanananaaaaah");
       navigate("../VerifiedHospital");
-    }else{
+    } else {
       if (localStorage.getItem(`${update.hospitalClinicKhojoId}a`) === null) {
         const myVal = "ashish";
         localStorage.setItem(`${update.hospitalClinicKhojoId}a`, myVal);
@@ -60,18 +58,15 @@ const DemoHospital = ({
       navigate("../ApproveRejectHospital");
     }
   };
-  // const filteredData = sortedData.filter((update) =>
-  //   update.name.toLowerCase().includes(search.toLowerCase())
-  // );
 
   const filteredData = useMemo(() => {
-    if(search!=''){
-      console.log('andar bandar',search);
+    if (search != "") {
+      console.log("andar bandar", search);
       return sortedData.filter((update) =>
         update.name.toLowerCase().includes(search.toLowerCase())
       );
-    }else{
-      return sortedData
+    } else {
+      return sortedData;
     }
   }, [sortedData, search]);
 
@@ -79,7 +74,16 @@ const DemoHospital = ({
     <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
       <div className={` mt-[-12px] text-black flex flex-col `}>
         <div className=" h-14 flex items-center justify-center ">
-        <ClipBgB width={hwidth} height='h-[55px]'  bardervar={hrad} bg='bg-[#FFFFFF]' textColor="text-[#FA0808]"  textSize="text-2xl"  mt='mt-2' text={text}/>
+          <ClipBgB
+            width={hwidth}
+            height="h-[55px]"
+            bardervar={hrad}
+            bg="bg-[#FFFFFF]"
+            textColor="text-[#FA0808]"
+            textSize="text-2xl"
+            mt="mt-2"
+            text={text}
+          />
         </div>
 
         {sortedData.length === 0 ? (
@@ -116,9 +120,15 @@ const DemoHospital = ({
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
             <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
-            {
-              spinner?<Spinner height="h-[70px]" width="w-[70px]" fontSize="text-[.9rem]"/>:'No Data Available'
-            }
+              {spinner ? (
+                <Spinner
+                  height="h-[70px]"
+                  width="w-[70px]"
+                  fontSize="text-[.9rem]"
+                />
+              ) : (
+                "No Data Available"
+              )}
             </p>
           </div>
         ) : (
@@ -148,8 +158,6 @@ const DemoHospital = ({
                     {update.address.city}
                   </p>
                 </div>
-                {/* <span className="font-medium ">City : </span>
-                {update.address.city} */}
               </p>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}

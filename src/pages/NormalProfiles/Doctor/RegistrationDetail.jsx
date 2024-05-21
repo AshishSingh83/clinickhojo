@@ -14,12 +14,15 @@ const RegistrationDetail = React.memo(({ BasicDetail }) => {
     const pdfUrl = `${BasicDetail.registrationProof[0]}`;
     console.log(pdfUrl);
     if (pdfUrl) {
-      // window.open(pdfUrl, "_blank");
+      window.open(pdfUrl, "_blank");
     }
   };
 
   return (
-    <div className="w-[450px] h-[180px] mb-4 rounded-sm bg-[#03229F] text-white" style={{ width: `${BasicDetail.boxWidth}` }}>
+    <div
+      className="w-[450px] h-[180px] mb-4 rounded-sm bg-[#03229F] text-white"
+      style={{ width: `${BasicDetail.boxWidth}` }}
+    >
       <div className="flex flex-row">
         <h1 className="text-lg ms-4 font-semibold">Registration Detail :</h1>
       </div>

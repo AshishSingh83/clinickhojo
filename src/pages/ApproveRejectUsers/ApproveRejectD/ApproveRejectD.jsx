@@ -4,9 +4,8 @@ import WrongInfo from "./WrongInfo.jsx";
 import Buttons from "../ButtonRow/Buttons.jsx";
 import AppoitmentFee from "./AppoitmentFee.jsx";
 import SessionTimings from "./SessionTimings.jsx";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import instance from "../../../axios.js";
 function ApproveRejectD() {
   const location = useLocation();
   const { data } = location.state;
@@ -24,7 +23,7 @@ function ApproveRejectD() {
 
   const handleSubmit = async (doctorsUniqueId, isApproved) => {
     try {
-      const response = await axios.put("api/admin/approveDoctors", {
+      const response = await instance.put("api/admin/approveDoctors", {
         doctorsUniqueId,
         approvedBy: "Rahul123",
         isApproved,

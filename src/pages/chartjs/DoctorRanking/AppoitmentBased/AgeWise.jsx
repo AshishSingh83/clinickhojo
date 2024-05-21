@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BarChartC from "../../component/Bar/BarChartC";
+import instance from "../../../../axios";
 
 function AgeWise() {
   const [appointmentServed, setAppointmentServed] = useState([]);
@@ -8,7 +8,7 @@ function AgeWise() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
+        const response = await instance.get(
           "api/admin/analytics/appointments/ageWise"
         );
         setAppointmentServed(response.data.appointmentsByAge);

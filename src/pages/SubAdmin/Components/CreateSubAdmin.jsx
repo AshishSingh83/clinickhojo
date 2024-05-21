@@ -14,15 +14,13 @@ function CreateSubAdmin() {
     }
   }, []);
   return (
-    <div
-      className="flex flex-row justify-between h-screen w-screen bg-[#0529BB] "
-    >
+    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB] ">
       <div
         className=" bg-white flex flex-col justify-between"
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar someData={{'index':1}}/>
+          <Sidebar someData={{ index: 1 }} />
         </div>
         <div>
           <FiLogOut
@@ -34,15 +32,14 @@ function CreateSubAdmin() {
 
       <div className=" flex flex-col">
         <div className=" flex flex-row gap-80">
-          {/* <div className="bg-[#D9D9D9] h-12 w-48 mt-3 ms-[-300px] ">
-            <p className="text-black mt-3 ms-7 ">User Management</p>
-          </div> */}
           <div className=" ms-[-200px]">
-          <ClipBgB width='w-[290px]' height='h-[55px]'  bardervar="32px" 
-           text="User Management" 
-         />
+            <ClipBgB
+              width="w-[290px]"
+              height="h-[55px]"
+              bardervar="32px"
+              text="User Management"
+            />
           </div>
-         
 
           <div className="bg-[#229649] h-12 w-64 mt-3 ms-[-220px] rounded-2xl">
             <p className="text-black mt-3 ms-7 ">

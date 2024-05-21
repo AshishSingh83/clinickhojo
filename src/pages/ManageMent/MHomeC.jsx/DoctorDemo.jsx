@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../../components/ui/Input";
 import { useDispatch } from "react-redux";
 import { updateDoctorData } from "../../../data/features/registerSlice";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 import { BiSolidUserDetail } from "react-icons/bi";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaFilter } from 'react-icons/fa';
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
   Width = "h-[500px]",
@@ -22,7 +19,7 @@ const Demo = ({
   newBga,
 }) => {
   const dispatch = useDispatch();
-  console.log('hos data',showData);
+  console.log("hos data", showData);
   const navigate = useNavigate();
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
@@ -94,7 +91,6 @@ const Demo = ({
                 <option value="recent">Sort by Recent</option>
               </select>
             </div>
-            
           </div>
         )}
       </div>
@@ -123,17 +119,6 @@ const Demo = ({
                     #{update.doctorsClinicKhojoId}
                   </p>
                 </div>
-                {/* <div className=" flex flex-row ms-7 gap-2 mt-">
-                  <p className=" mt-[7px]">
-                    <FaMapMarkerAlt size="15px" color="red" />
-                  </p>
-                  <p className=" font-medium text-[#535252]  ">
-                    {" "}
-                    {update.address.locality}
-                  </p>
-                </div> */}
-                {/* <span className="font-medium ">City : </span>
-                {update.address.city} */}
               </p>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}

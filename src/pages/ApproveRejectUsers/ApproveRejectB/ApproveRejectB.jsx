@@ -5,21 +5,13 @@ import BasicDetails from "./BasicDetails";
 import IdentityProof from "./IdentityProof";
 import Educationdetail from "./Educationdetail";
 import RegistrationDetail from "./RegistrrationDetail";
-import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import emailjs from "@emailjs/browser";
-import {
-  updateDoctorEmail,
-  updateUniqueClinicId,
-  updateUniqueDoctorId,
-  updateDoctorName,
-} from "../../../data/features/registerSlice.js";
-import axios from "axios";
 import Buttons from "../ButtonRow/Buttons.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import emailService from "../../../components/ui/emailService.js";
+import instance from "../../../axios.js";
 
 function ApproveRejectB() {
   const dispatch = useDispatch();
@@ -42,7 +34,9 @@ function ApproveRejectB() {
     clinicUniqueId,
     accountAddedBy,
     rating,
-  } = update || {};
+    marketingInternId
+
+  } = update || '';
 
   const handleRadioChange = (name, option) => {
     setFormData((prevData) => ({ ...prevData, [name]: option }));
@@ -55,6 +49,7 @@ function ApproveRejectB() {
     isLoading: false,
   });
   const [approved, setApproved] = useState("");
+  const [message,setMessage] = useState('') ;
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
   };
@@ -68,26 +63,7 @@ function ApproveRejectB() {
   useEffect(() => {
     localStorage.setItem(`${uniqueDoctorId}a`, JSON.stringify(formData));
   }, [formData]);
-  // const manageme = async () => {
-  //   const ratingToUse = ratingg === "" ? rating : ratingg;
-  //   dispatch(updateDoctorEmail(email));
-  //   dispatch(updateUniqueClinicId(clinicUniqueId[0]));
-  //   dispatch(updateUniqueDoctorId(uniqueDoctorId));
-  //   dispatch(updateDoctorName(fullName));
-  //   if (ratingg != "" && rating != ratingg){
-  //     console.log('hiiiiiiiiiiiidelete');
-  //     try{
-  //       await axios.post("api/admin/doctors/setRatings", {
-  //         doctorEmail: email,
-  //         rating: ratingToUse,
-  //       });
-  //       navigate("../ApproveRejectC");
-  //     } catch (e) {
-  //       console.log(e.message);
-  //     }
-  //   }
-  //   navigate("../ApproveRejectC");
-  // };
+ 
   const handleDialog = (message, isLoading) => {
     setDialog({
       message,
@@ -102,57 +78,56 @@ function ApproveRejectB() {
     }));
   };
   const handleSubmit = async (isApproved) => {
-    if (isApproved == true) {
-      setApproved(isApproved);
-      handleDialog("Are you sure you want to Approve Account?", true);
-    }
-    if (isApproved == false) {
-      setApproved(isApproved);
-      handleDialog("Are you sure you want to Reject Account?", true);
+   
+    const counttt = Object.values(formData).filter(value => value !== "").length;
+    if(counttt===4 && ratingg!=='' ){
+      setMessage('')
+      if (isApproved == true) {
+        setApproved(isApproved);
+        handleDialog("Are you sure you want to Approve Account?", true);
+      }
+      if (isApproved == false) {
+        setApproved(isApproved);
+        handleDialog("Are you sure you want to Reject Account?", true);
+      }
+    }else{
+     setMessage('Please Verify All Document(tick radioButtons) and choose ratings')
     }
   };
 
   const areUSureDelete = async (choose) => {
-    const serviceId = "service_om433u9";
-    const templateId = "template_zzith2l";
-    const publicKey = "9BN6G8lDUWm0rzkqZ";
     const keysWithNo = Object.keys(formData).filter(
       (key) => formData[key] === "No"
     );
     const message = `You provided wrong ${keysWithNo.join(
       ", "
-    )} so your account is rejected.`;
+    )} so your account is rejected.
+    remark :${textArea.remark}
+    `;
+    const successMessage = `We are thrilled to inform you that your account has been successfully approved! Welcome to the ClinicKhojo community.
+    remark :${textArea.remark}
+    `
     if (choose) {
       setSniper(true);
       if (1) {
         try {
-          const response = await axios.put("api/admin/approveDoctors", {
+          const response = await instance.put("api/admin/approveDoctors", {
             doctorsUniqueId: uniqueDoctorId,
             approvedBy: "Test123",
             isApproved: approved,
             addRemark: textArea.remark,
           });
           if (!approved) {
-            // try {
-            //   const eres = await emailjs.send(
-            //     serviceId,
-            //     templateId,
-            //     templateParams,
-            //     publicKey
-            //   );
-            // } catch (e) {
-            //   console.log("error sending email", e);
-            // }
+            
             const isSent = await emailService({ message, fullName, email });
             console.log(isSent ? 'Email sent successfully' : 'Failed to send email');
           } else {
-            console.log("sent some good gmail");
-            //set ratings
             try {
-              await axios.post("api/admin/doctors/setRatings", {
+              await instance.post("api/admin/doctors/setRatings", {
                 doctorEmail: email,
                 rating: rating,
               });
+              await emailService({ message:successMessage, fullName, email });
               setSniper(false);
               navigate("../ApproveReject");
             } catch (e) {
@@ -182,9 +157,6 @@ function ApproveRejectB() {
       <div className="flex flex-row  bg-[#0529BB] me-28">
         <div className="flex flex-col h-auto ">
           <div className=" ">
-            {/* <div className="bg-[#FF0B0B] h-14 w-52 ">
-              <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
-            </div> */}
             <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
           </div>
 
@@ -195,11 +167,10 @@ function ApproveRejectB() {
                   fullName={fullName}
                   profileImage={profileImage}
                   uniqueDoctorId={uniqueDoctorId}
-                  accountAddedBy={accountAddedBy}
+                  accountAddedBy={marketingInternId}
                   bool={true}
                 />
               </div>
-
               <BasicDetails
                 BasicDetail={update}
                 onRadioChange={(option) =>
@@ -255,29 +226,25 @@ function ApproveRejectB() {
               </div>
             </div>
           </div>
+          <div className=" flex flex-row">
+          <div className="flex flex-row mt-9  mb-5 justify-center items-center ">
+           
+           <div className=" mb-5 mt-3 ms-12">
+             <Buttons
+               bg="bg-[#0529BB]"
+               handleSubmita={() => handleSubmit(true)}
+               handleSubmitb={() => handleSubmit(false)}
+               texta="Approve Account"
+               textb="Reject Account"
+             />
+           </div>
+         </div>
+          <p className=" text-red-600 ms-20 text-lg mt-12">
+           {message}
+          </p>
+          </div>
 
-          <div className="flex flex-row mt-9 ms-80 mb-5 ">
-            {/* <div className="">
-            <Button
-              text=" Next >> "
-              bgColor="bg-[#24C70A]"
-              hoverColor="hover:bg-green-800"
-              handleSubmit={manageme}
-            />
-          </div>
-          <div className=" ">
-            <span className="text-white   text-3xl">Clinic Detail</span>
-          </div> */}
-            <div className=" mb-5 mt-3 ">
-              <Buttons
-                bg="bg-[#0529BB]"
-                handleSubmita={() => handleSubmit(true)}
-                handleSubmitb={() => handleSubmit(false)}
-                texta="Approve Account"
-                textb="Reject Account"
-              />
-            </div>
-          </div>
+          
         </div>
       </div>
 

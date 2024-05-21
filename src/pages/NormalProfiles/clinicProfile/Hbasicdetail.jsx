@@ -18,7 +18,7 @@ const Hbasicdetail = ({ BasicDetail }) => {
   const otherSpecializations = BasicDetail.specializations.slice(1);
 
   const formatSpecialization = (spec) => {
-    return `${spec.name} (fees:${spec.fee})`; 
+    return `${spec.name} (fees:${spec.fee})`;
   };
 
   const formattedPrimarySpecialization =
@@ -33,16 +33,12 @@ const Hbasicdetail = ({ BasicDetail }) => {
     { "Alternate Contact Number": `${BasicDetail.alternateContactNumber}` },
     { "Email Id": `${BasicDetail.doctorEmail}` },
     { "Year of Establishment": `${BasicDetail.yearOfEstablishment}` },
-    // { "Primary Specialization": formattedPrimarySpecialization },
-    // { "Other Specializations": formattedOtherSpecializations.join(" / ") },
     { "Clinic Description": `${BasicDetail.description}` },
   ];
   return (
     <div className="bg-[#03229F] w-[435px] min-h-[310px]  mb-4 rounded-sm">
       <div className="flex flex-row">
-        <h1 className="text-lg ms-5 m-1   font-semibold">
-          Basic Details :
-        </h1>
+        <h1 className="text-lg ms-5 m-1   font-semibold">Basic Details :</h1>
       </div>
       <div>
         <div className=" font-medium  ms-2 mb-5 opacity-75">

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateSubAdminData } from "../../../data/features/registerSlice.js";
 import InputWithIcon from "../../../components/ui/InputWithIcon.jsx";
 import { BiSearch } from "react-icons/bi";
 import Spinner from "../../../components/ui/clipPath/Spinner.jsx";
+import instance from "../../../axios.js";
 const SubAdminProfile = () => {
   const [demoConstant, setDemoConstant] = useState([]);
   const [search, setSearch] = useState("");
@@ -13,7 +13,7 @@ const SubAdminProfile = () => {
   useEffect(() => {
     async function getAllSubAdmins() {
       try {
-        const response = await axios.get("api/admin/getAllSubAdmins");
+        const response = await instance.get("api/admin/getAllSubAdmins");
         setDemoConstant(response.data.subAdmins);
         setLoading(false);
       } catch (error) {

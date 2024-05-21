@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
-import Referral from "./Components/Referral";
 import Sidebar from "../AdminHome/Sidebar/Sidebar";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import ProfileUser from "./Components/ProfileUser";
 import Appoiment from "./Components/Appoitment";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB";
+import instance from "../../axios";
 function UserProfile() {
   const [appoitments, setAppoitments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,10 +14,10 @@ function UserProfile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post("api/admin/user-getAllAppointments", {
+        const response = await instance.post("api/admin/user-getAllAppointments", {
           userMobileNumber: mobileNumber,
         });
-        console.log('appoitments hahahahaaaaa',response.data);
+        console.log("appoitments hahahahaaaaa", response.data);
         setAppoitments(response.data);
         setLoading(false);
       } catch (error) {
@@ -29,55 +28,53 @@ function UserProfile() {
   }, []);
 
   if (loading) {
-    return <div className="flex flex-row  h-screen w-screen bg-[#0529BB] gap-[249.5px]">
-    <div className="flex flex-col justify-between bg-[#c2c0bc]">
-      <div className="">
-        <Sidebar someData={{'index':5}}/>
-      </div>
-      <div>
-        <FiLogOut
-          className="ms-8"
-          style={{ color: "#061ba1", fontSize: "40px" }}
-        />
-      </div>
-    </div>
-    <div className=" flex flex-col gap-16">
-
-      <div
-        className="text-black   font-medium flex flex-row justify-between gap-40  "
-        style={{ fontSize: "18px" }}
-      >
-        <div className=" flex flex-row gap-24  ">
-
-        <div>
-        <ClipBgB
-            width="w-[290px]"
-            height="h-[55px]"
-            bardervar="32px"
-            text="View Profile"
-          />
-        </div>
-
-            <p className="text-white mt-3 underline text-2xl    ">
-              User Profile
-            </p>
+    return (
+      <div className="flex flex-row  h-screen w-screen bg-[#0529BB] gap-[249.5px]">
+        <div className="flex flex-col justify-between bg-[#c2c0bc]">
+          <div className="">
+            <Sidebar someData={{ index: 5 }} />
           </div>
-         
-      </div>
-      <div className=" mt-12  ">
+          <div>
+            <FiLogOut
+              className="ms-8"
+              style={{ color: "#061ba1", fontSize: "40px" }}
+            />
+          </div>
+        </div>
+        <div className=" flex flex-col gap-16">
+          <div
+            className="text-black   font-medium flex flex-row justify-between gap-40  "
+            style={{ fontSize: "18px" }}
+          >
+            <div className=" flex flex-row gap-24  ">
+              <div>
+                <ClipBgB
+                  width="w-[290px]"
+                  height="h-[55px]"
+                  bardervar="32px"
+                  text="View Profile"
+                />
+              </div>
 
-        <div className=" ">
-          <Appoiment loading={loading}/>
+              <p className="text-white mt-3 underline text-2xl    ">
+                User Profile
+              </p>
+            </div>
+          </div>
+          <div className=" mt-12  ">
+            <div className=" ">
+              <Appoiment loading={loading} />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>;
+    );
   }
   return (
     <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between bg-[#c2c0bc]">
         <div className="me-7">
-          <Sidebar someData={{'index':5}}/>
+          <Sidebar someData={{ index: 5 }} />
         </div>
         <div>
           <FiLogOut
@@ -92,27 +89,24 @@ function UserProfile() {
           style={{ fontSize: "18px" }}
         >
           <div className=" flex flex-row gap-24  ">
-
-          <div>
-          <ClipBgB
-              width="w-[290px]"
-              height="h-[55px]"
-              bardervar="32px"
-              text="View Profile"
-            />
-          </div>
-
-              <p className="text-white mt-3 underline text-2xl    ">
-                User Profile
-              </p>
+            <div>
+              <ClipBgB
+                width="w-[290px]"
+                height="h-[55px]"
+                bardervar="32px"
+                text="View Profile"
+              />
             </div>
-           
+
+            <p className="text-white mt-3 underline text-2xl    ">
+              User Profile
+            </p>
+          </div>
         </div>
 
         <div className=" flex flex-row gap-32">
-
           <div className=" ">
-            <Appoiment dataa={appoitments} loading={loading}/>
+            <Appoiment dataa={appoitments} loading={loading} />
           </div>
           <div className="  ">
             <ProfileUser
@@ -123,9 +117,6 @@ function UserProfile() {
             />
           </div>
         </div>
-
-
-
       </div>
     </div>
   );

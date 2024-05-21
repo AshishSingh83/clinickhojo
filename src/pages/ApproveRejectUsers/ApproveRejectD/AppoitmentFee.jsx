@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "../../../components/ui/Input";
 import NumberSelect from "../ApproveRejectB/NumberSelect";
 const AppoitmentFee = ({
@@ -6,7 +6,6 @@ const AppoitmentFee = ({
   setNormalFee,
   emergencyFee,
   setEmergencyFee,
-  BasicDetail,
   onRatingChange,
 }) => {
   const handleChangeA = (e) => {

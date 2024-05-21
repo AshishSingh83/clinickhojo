@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import Profile from "./Profile.jsx";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
 import Button from "../../../components/ui/Button.jsx";
@@ -12,6 +11,7 @@ import {
   updateManagementContactNumber,
   updateManagementEmail,
 } from "../../../data/features/registerSlice.js";
+import instance from "../../../axios.js";
 
 function MHomeB() {
   const dispatch = useDispatch();
@@ -38,9 +38,9 @@ function MHomeB() {
   const navigate = useNavigate();
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
-    console.log(ratingValue,ratingg);
+    console.log(ratingValue, ratingg);
   };
-  console.log('new rating',ratingg);
+  console.log("new rating", ratingg);
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${contactNumber}a`);
     if (savedDataString != "ashish") {
@@ -56,10 +56,10 @@ function MHomeB() {
     dispatch(updateManagementEmail(email));
     dispatch(updateManagementContactNumber(contactNumber));
     dispatch(updateManagementContactNumber(contactNumber));
-    if (ratingg !== "" && rating !== ratingg){
-      console.log('mai andar kyun',rating,ratingToUse,ratingg);
-      try{
-        await axios.post("api/admin/managementPersonnel/setRatings", {
+    if (ratingg !== "" && rating !== ratingg) {
+      console.log("mai andar kyun", rating, ratingToUse, ratingg);
+      try {
+        await instance.post("api/admin/managementPersonnel/setRatings", {
           managementUniqueId: email,
           rating: ratingToUse,
         });
@@ -77,7 +77,7 @@ function MHomeB() {
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar someData={{'index':6}}/>
+          <Sidebar someData={{ index: 6 }} />
         </div>
         <div>
           <FiLogOut

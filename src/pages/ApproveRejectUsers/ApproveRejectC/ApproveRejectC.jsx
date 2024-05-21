@@ -5,7 +5,6 @@ import Hbasicdetail from "./Hbasicdetail";
 import Photos from "./Photos";
 import Profile from "../ApproveRejectB/Profile";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Buttons from "../ButtonRow/Buttons";
 import Address from "../ApproveRejectD/Address";
 import SessionTimings from "../ApproveRejectD/SessionTimings";
@@ -15,7 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import HregistartionDetail from "./HregistrationDetail";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import instance from "../../../axios.js";
 function ApproveRejectC() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -59,7 +59,6 @@ function ApproveRejectC() {
     }
   }, []);
 
-
   useEffect(() => {
     if (formDataC !== null) {
       localStorage.setItem(`${uniqueDoctorId}b`, JSON.stringify(formDataC));
@@ -78,20 +77,19 @@ function ApproveRejectC() {
     }));
   };
 
-
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log(doctorEemail,uniqueClinicId);
-        const response = await axios.post("api/admin/getParticularClinic", {
+        console.log(doctorEemail, uniqueClinicId);
+        const response = await instance.post("api/admin/getParticularClinic", {
           doctorEmail: doctorEemail,
           clinicUniqueId: uniqueClinicId,
         });
         setResponse(response.data);
         setLoading(false);
-      } catch (error){
+      } catch (error) {
         console.error("Error fetching data:", error);
         setLoading(false);
         setNoClinic(true);
@@ -119,42 +117,51 @@ function ApproveRejectC() {
       handleDialog("Are you sure you want to Reject?", true);
     }
   };
-  const areUSureDelete = async (choose) =>{
-    const serviceId = 'service_om433u9' ;
-    const templateId = 'template_zzith2l';
-    const publicKey = '9BN6G8lDUWm0rzkqZ';
-    const keysWithNo = Object.keys(formDataC).filter(key => formDataC[key] === "No");
-    const message = `You provided wrong ${keysWithNo.join(', ')} so your account is rejected.`;
-    const templateParams={
-      to_name:doctorName,
-      from_name:'ClinicKhojo',
-      message:message,
-      to_email:doctorEemail
-    }
+  const areUSureDelete = async (choose) => {
+    const serviceId = "service_om433u9";
+    const templateId = "template_zzith2l";
+    const publicKey = "9BN6G8lDUWm0rzkqZ";
+    const keysWithNo = Object.keys(formDataC).filter(
+      (key) => formDataC[key] === "No"
+    );
+    const message = `You provided wrong ${keysWithNo.join(
+      ", "
+    )} so your account is rejected.`;
+    const templateParams = {
+      to_name: doctorName,
+      from_name: "ClinicKhojo",
+      message: message,
+      to_email: doctorEemail,
+    };
     if (choose) {
-      console.log(choose,approved);
+      console.log(choose, approved);
       if (1) {
-        try{
-          const response = await axios.put("api/admin/approveDoctors",{
+        try {
+          const response = await instance.put("api/admin/approveDoctors", {
             doctorsUniqueId: uniqueDoctorId,
             approvedBy: "Rahul123",
             isApproved: approved,
             addRemark: formData.remark,
           });
-          if(!approved){
-            console.log('email bhej');
-            try{
-              const eres = await emailjs.send(serviceId,templateId,templateParams,publicKey)
+          if (!approved) {
+            console.log("email bhej");
+            try {
+              const eres = await emailjs.send(
+                serviceId,
+                templateId,
+                templateParams,
+                publicKey
+              );
               console.log(eres);
-            }catch(e){
-              console.log('error sending email',e);
+            } catch (e) {
+              console.log("error sending email", e);
             }
-          }else{
-            console.log('sent some good gmail');
+          } else {
+            console.log("sent some good gmail");
           }
-          if(!noClinic){
-            if (approved){
-              await axios.post("api/admin/doctors/clinics/setAppointmentFee", {
+          if (!noClinic) {
+            if (approved) {
+              await instance.post("api/admin/doctors/clinics/setAppointmentFee", {
                 clinicKhojoAppointmentFeeNormal: normalFee,
                 clinicKhojoAppointmentFeeEmergency: emergencyFee,
                 clinicUniqueId: uniqueClinicId,
@@ -162,7 +169,7 @@ function ApproveRejectC() {
               });
             }
             if (approved) {
-              await axios.post("api/admin/doctors/clinic/setRatings", {
+              await instance.post("api/admin/doctors/clinic/setRatings", {
                 clinicUniqueId: uniqueClinicId,
                 rating: rating,
               });
@@ -183,30 +190,26 @@ function ApproveRejectC() {
     <>
       {loading && (
         <div className=" text-black  font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600 ">
-    <div className="flex flex-col justify-between ">
-        <div className="me-7">
-          <Sidebar someData={{ index: 2 }}/>
+          <div className="flex flex-col justify-between ">
+            <div className="me-7">
+              <Sidebar someData={{ index: 2 }} />
+            </div>
+            <div>
+              <FiLogOut
+                className="ms-8"
+                style={{ color: "#061ba1", fontSize: "40px" }}
+              />
+            </div>
+          </div>
+          <div className=" flex  items-center ms-60 mt-16 opacity-60 ">
+            <Skeletonn count="9" width={800} />
+          </div>
         </div>
-        <div>
-          <FiLogOut className="ms-8" style={{ color: "#061ba1", fontSize: "40px" }} />
-        </div>
-      </div>
-      <div className=" flex  items-center ms-60 mt-16 opacity-60 ">
-      <Skeletonn 
-      count="9" 
-      width={800}
-    />
-      </div>
-    
-    </div>
       )}
       {!loading &&
         (noClinic ? (
           <div className="flex flex-row justify-between h-screen w-screen bg-[#03229F] ">
-            <div
-              className="  flex flex-col justify-between bg-[#03229F]"
-              
-            >
+            <div className="  flex flex-col justify-between bg-[#03229F]">
               <div className="me-7">
                 <Sidebar someData={{ index: 2 }} />
               </div>
@@ -218,9 +221,9 @@ function ApproveRejectC() {
               </div>
             </div>
             <div className=" flex flex-col gap-9 self-center">
-            <div className="text-white  font-medium text-3xl flex justify-center items-center  me-[600px]">
-              No clinic is available.
-            </div>
+              <div className="text-white  font-medium text-3xl flex justify-center items-center  me-[600px]">
+                No clinic is available.
+              </div>
               <div className=" ms-5">
                 <Buttons
                   bg="bg-[#03229F]"
@@ -233,11 +236,7 @@ function ApproveRejectC() {
         ) : (
           response && (
             <>
-              <div
-                className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] "
-                
-              >
-
+              <div className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] ">
                 <div
                   className=" bg-[#03229F] flex flex-col justify-between"
                   style={{ backgroundColor: "#c2c0bc" }}
@@ -277,7 +276,7 @@ function ApproveRejectC() {
                           bool={true}
                         />
                       </div>
-                     
+
                       <Hbasicdetail
                         BasicDetail={response}
                         onRadioChange={(option) =>
@@ -285,7 +284,7 @@ function ApproveRejectC() {
                         }
                         radioData={formDataC.HospitalBasicDetail}
                       />
-                      <hr/>
+                      <hr />
                       <AppoitmentFee
                         normalFee={normalFee}
                         setNormalFee={setNormalFee}
@@ -294,7 +293,7 @@ function ApproveRejectC() {
                         BasicDetail={response.ratings}
                         onRatingChange={handleRatingChange}
                       />
-                      <hr/>
+                      <hr />
 
                       <HregistartionDetail
                         BasicDetail={response.registration}
@@ -303,28 +302,23 @@ function ApproveRejectC() {
                         }
                         radioData={formDataC.HospitalRegistration}
                       />
-                      <hr/>
+                      <hr />
                       <WrongInfo data={formDataC} />
-                     
 
                       <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-12">
                         <div className="h-[130px] border-zinc-100 ">
                           <textarea
                             id="inputTextArea"
                             name="remark"
-                            className=" placeholder-white w-full h-full p-2 resize-none bg-[#335af2] text-white border-white" 
+                            className=" placeholder-white w-full h-full p-2 resize-none bg-[#335af2] text-white border-white"
                             placeholder="Add Remark..."
-                            style={{ color: "white",borderColor: "white"  }}
+                            style={{ color: "white", borderColor: "white" }}
                             value={formData.remark}
                             onChange={handleChange}
                           />
                         </div>
                       </div>
-
-
                     </div>
-
-
 
                     <div className="  flex flex-col gap-4 mt-[157px] ">
                       <div className=" flex flex-row gap- ms-[-20px]  ">
@@ -347,7 +341,7 @@ function ApproveRejectC() {
                           />
                         </div>
                       </div>
-                      <hr/>
+                      <hr />
                       <div className=" ms-[-20px]">
                         <Photos
                           onRadioChange={(option) =>
@@ -355,23 +349,18 @@ function ApproveRejectC() {
                           }
                           radioData={formDataC.HospitalPhotos}
                         />
-                        <hr/>
+                        <hr />
                       </div>
-
-
-
                     </div>
-
                   </div>
 
-
                   <div className=" mt-5 mb-5 ms-80 bg-[#0529BB]">
-                          <Buttons
-                            bg="bg-[#0529BB]"
-                            handleSubmita={() => handleSubmit(true)}
-                            handleSubmitb={() => handleSubmit(false)}
-                          />
-                        </div>
+                    <Buttons
+                      bg="bg-[#0529BB]"
+                      handleSubmita={() => handleSubmit(true)}
+                      handleSubmitb={() => handleSubmit(false)}
+                    />
+                  </div>
                 </div>
               </div>
             </>
@@ -386,6 +375,6 @@ function ApproveRejectC() {
         />
       )}
     </>
-  )
+  );
 }
 export default ApproveRejectC;

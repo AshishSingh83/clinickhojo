@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Input from "../../../../components/ui/Input";
 import Button from "../../../../components/ui/Button";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import instance from "../../../../axios";
 
 function FormGroup({ label, placeholder, type = "text", value, onChange }) {
   return (
@@ -47,7 +46,7 @@ function CreateSubAdminForm({ formDataa }) {
       setAssignedUserId(formDataa.assignedUserId || "");
       setAssignedUserPassword(formDataa.assignedUserPassword || "");
     }
-  }, [formDataa]); 
+  }, [formDataa]);
 
   const createAdminButton = async () => {
     const formData = {
@@ -62,14 +61,14 @@ function CreateSubAdminForm({ formDataa }) {
     };
     if (formDataa.length != 0) {
       try {
-        const response = await axios.put("api/admin/editSubAdmin", formData);
+        const response = await instance.put("api/admin/editSubAdmin", formData);
         navigate("../SubAdminMainProfile");
       } catch (error) {
         console.error("Error creating sub-admin:", error);
       }
     } else {
       try {
-        const response = await axios.post("api/admin/createSubAdmin", formData);
+        const response = await instance.post("api/admin/createSubAdmin", formData);
         navigate("../SubAdminMainProfile");
       } catch (error) {
         console.error("Error creating sub-admin:", error);
@@ -138,11 +137,11 @@ function CreateSubAdminForm({ formDataa }) {
           />
 
           <div className="w-44 mt-9 ms-auto me-28 mb-">
-            <Button 
-            text="Save Profile"
-            handleSubmit={createAdminButton}
-            bgColor="bg-[#229649]"
-             />
+            <Button
+              text="Save Profile"
+              handleSubmit={createAdminButton}
+              bgColor="bg-[#229649]"
+            />
           </div>
         </div>
       </div>

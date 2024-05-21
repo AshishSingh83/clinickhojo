@@ -29,9 +29,12 @@ function SubAdminMainProfile() {
       <div className="flex flex-col  gap-16  ">
         <div className="   flex flex-row justify-between ">
           <div className=" h-12 w-48  ms-[290px]  ">
-            <ClipBgB width='w-[300px]' height='h-[60px]'  bardervar="32px" 
-           text="User Management" 
-         />
+            <ClipBgB
+              width="w-[300px]"
+              height="h-[60px]"
+              bardervar="32px"
+              text="User Management"
+            />
           </div>
 
           <div

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import PieChartB from "../../component/Pie/PieChartB";
+import instance from "../../../../axios";
 
 function GenderBased() {
   const [appointmentServed, setAppointmentServed] = useState([]);
@@ -8,7 +8,7 @@ function GenderBased() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
+        const response = await instance.get(
           "api/admin/analytics/appointmentRanking/gender"
         );
         setAppointmentServed(response.data.appointmentsRankingsByGender);

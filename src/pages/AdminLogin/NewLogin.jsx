@@ -8,22 +8,13 @@ import { FaUser } from "react-icons/fa";
 import Spinner from "../../components/ui/clipPath/Spinner";
 import instance from "../../axios";
 
-
 export default function NewLogin() {
   const [loginEmailVal, setLoginEmailVal] = useState("");
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
-  const [emailLabel, setEmailLabel] = useState("Email Address");
   const [message, setMessage] = useState("");
-  const [expiryTime, setExpiryTime] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [spinner, setSpinner] = useState(false);
 
-  const [data, setData] = useState({
-    userName: "",
-    password: "",
-    label: "",
-  });
-  const [label, setLabel] = useState("");
   const navigate = useNavigate();
   const saveDataToLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
@@ -34,10 +25,6 @@ export default function NewLogin() {
   };
   const deleteDataFromLocalStorage = (key) => {
     localStorage.removeItem(key);
-  };
-  const setExpiry = (timeInSeconds) => {
-    const currentTime = new Date().getTime();
-    setExpiryTime(currentTime + timeInSeconds * 1000);
   };
   const handleChangeEmail = (e) => {
     setMessage("");
@@ -123,18 +110,18 @@ export default function NewLogin() {
   };
   async function handleMe(e) {
     e.preventDefault();
-    setSpinner(true)
+    setSpinner(true);
     const email = "ashishsingh822003@gmail.com";
-    try{
+    try {
       const dataa = await instance.post("/api/admin/forgot-password", {
         email: "ashishsingh822003@gmail.com",
       });
-      setSpinner(false)
+      setSpinner(false);
       alert("Password reset email sent");
     } catch (error) {
       console.error("Error requesting password reset", error.message);
     }
-    setSpinner(false)
+    setSpinner(false);
   }
   function handleMea() {
     navigate("../SubAdminLogin");
@@ -171,7 +158,11 @@ export default function NewLogin() {
             Go to Subadmin Login
           </p>
           {spinner ? (
-            <Spinner height="h-[30px]" width="w-[30px]" fontSize="text-[.44rem]"/>
+            <Spinner
+              height="h-[30px]"
+              width="w-[30px]"
+              fontSize="text-[.44rem]"
+            />
           ) : (
             <p
               onClick={handleMe}

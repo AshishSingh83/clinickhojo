@@ -21,12 +21,11 @@ function Profile({
           Dr.{fullName}{" "}
         </span>
         <br />
-        <span className=" opacity-80">UniqueId : </span>
-        #{uniqueDoctorId} <br />
+        <span className=" opacity-80">UniqueId : </span>#{uniqueDoctorId} <br />
         {bool && (
           <div>
             <span className=" opacity-80">Account added by: </span>
-            {accountAddedBy || 'null'}
+            {accountAddedBy || "null"}
             <br />
           </div>
         )}

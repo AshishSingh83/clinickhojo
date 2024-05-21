@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BarChartB from "../../component/Bar/BarChartB";
 import BarChartC from "../../component/Bar/BarChartC";
-import PieChartB from "../../component/Pie/PieChartB";
 import BarChartD from "../../component/Bar/BarChartD";
 import Sidebar from "../../../AdminHome/Sidebar/Sidebar";
-import { RiArrowDownSLine } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
-import Skeletonn from "../../../../components/ui/SkeletonPage.jsx/Skeletonn";
 import ClipBgB from "../../../../components/ui/clipPath/ClipBgB";
 import Spinner from "../../../../components/ui/clipPath/Spinner";
-function AllInOne(){
+import instance from "../../../../axios";
+function AllInOne() {
   const [appointmentServed, setAppointmentServed] = useState([]);
   const [genderAppoitment, setGenderAppoitment] = useState([]);
   const [appointmentServedAge, setAppointmentServedAge] = useState([]);
@@ -36,8 +33,7 @@ function AllInOne(){
       console.log("pahle", a, b, loading);
       setLoading(false);
       try {
-        const requireData = await axios.get(a);
-        console.log("le data require", requireData.data);
+        const requireData = await instance.get(a);
         setRequireData(requireData.data[b]);
         setLoading(true);
       } catch (error) {
@@ -81,11 +77,9 @@ function AllInOne(){
   const filterChange = (e) => {
     setLoading(false);
     setSortOption(e.target.value);
-    console.log("Sorting by", e.target.value);
   };
 
   const renderSelectedComponent = () => {
-    console.log("hiiiiiiiiii", sortOption, requireData, loading);
     switch (sortOption) {
       case "A":
         return (
@@ -126,8 +120,6 @@ function AllInOne(){
     }
   };
 
-  
-
   return (
     <div className="flex flex-row  h-screen w-screen gap-48 bg-[#0529BB]">
       <div className=" bg-[#0529BB] flex flex-col justify-between">
@@ -144,14 +136,12 @@ function AllInOne(){
 
       <div className=" flex flex-col">
         <div className=" flex items-center ms-20">
-          {/* <div className=" bg-[#FF0B0B] h-16 w-60">
-            <p className=" text-white mt-4 ms-7 text-2xl  ">
-              statics & reports
-            </p>
-          </div> */}
-          <ClipBgB width='w-[320px]' height='h-[60px]'  bardervar="35px" 
-           text="statics & reports" 
-         />
+          <ClipBgB
+            width="w-[320px]"
+            height="h-[60px]"
+            bardervar="35px"
+            text="statics & reports"
+          />
         </div>
 
         <div className="  w-80 ms-16 mt-4 ">
@@ -181,64 +171,20 @@ function AllInOne(){
             renderSelectedComponent()
           ) : (
             <div className="flex  items-center justify-center   bg-blue-600 opacity-70  ">
-              {/* <Skeletonn count="18" width={700} /> */}
               <div className="">
-              <Spinner height="h-[80px]" width="w-[80px]" fontSize="text-[1rem]"/>
+                <Spinner
+                  height="h-[80px]"
+                  width="w-[80px]"
+                  fontSize="text-[1rem]"
+                />
               </div>
-             
             </div>
           )}
         </div>
-
-        {/* <div className="flex flex-row">
-          <div className=" mt-24">
-            <BarChartC />
-          </div>
-          <div className=" ms-10">
-            <PieChartB
-              userAppointments={appointmentServedGender}
-              ylabel="totalAppointments"
-              xlabel="_id"
-              xxlabel="_id"
-            />
-          </div>
-        </div>
-
-        <div className=" flex flex-row mt-24">
-          <BarChartD newData={genderAppoitment}/>
-          <BarChartB
-            userData={appointmentServedLocation}
-            ylabel="totalAppointments"
-            xlabel="_id"
-            xxlabel="_id"
-            title="ranking on the basis of location"
-          />
-        </div>
-
-        <div className=" mt-24 mb-8 flex flex-row">
-          <BarChartB
-            userData={appointmentServedUser}
-            ylabel="totalAppointments"
-            xlabel="_id"
-            xxlabel="rank"
-            title="user ranking on the basis of appointmemnts made"
-          />
-          <BarChartB
-            userData={appointmentServedUser}
-            ylabel="totalAppointments"
-            xlabel="_id"
-            xxlabel="rank"
-            title="Doctor ranking on the basis of appointmemnts made"
-          />
-        </div> */}
       </div>
     </div>
   );
 }
 {
-  /* <Skeletonn 
-      count="9" 
-      width={800}
-    /> */
 }
 export default AllInOne;

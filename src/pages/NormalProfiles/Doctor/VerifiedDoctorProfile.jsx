@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import IdentityProof from "./IdentityProof";
 import { useNavigate } from "react-router-dom";
@@ -8,16 +8,16 @@ import {
   updateUniqueClinicId,
   updateUniqueDoctorId,
 } from "../../../data/features/registerSlice.js";
-import axios from "axios";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar.jsx";
 import Profile from "../../ApproveRejectUsers/ApproveRejectB/Profile.jsx";
 import BasicDetails from "./BasicDetails.jsx";
 import RegistrationDetail from "./RegistrationDetail.jsx";
 import Educationdetail from "./Educationdetail.jsx";
-import Button from "../../../components/ui/Button.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import Buttons from "../../ApproveRejectUsers/ButtonRow/Buttons.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
+import instance from "../../../axios.js";
+
 function VerifiedDoctorProfile() {
   const dispatch = useDispatch();
   const update = useSelector((state) => state.register.doctorData);
@@ -37,7 +37,7 @@ function VerifiedDoctorProfile() {
   });
   const [ratingg, setRating] = useState("");
   const [approved, setApproved] = useState("");
-  const [sniper,setSniper] = useState(false) ;
+  const [sniper, setSniper] = useState(false);
 
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
@@ -50,7 +50,7 @@ function VerifiedDoctorProfile() {
     dispatch(updateUniqueDoctorId(uniqueDoctorId));
     if (ratingg != "" && rating != ratingg) {
       try {
-        await axios.post("api/admin/doctors/setRatings", {
+        await instance.post("api/admin/doctors/setRatings", {
           doctorEmail: email,
           rating: ratingToUse,
         });
@@ -79,19 +79,19 @@ function VerifiedDoctorProfile() {
   };
 
   const areUSureDelete = async (choose) => {
-    setSniper(true)
+    setSniper(true);
     if (choose) {
       if (approved == true) {
         try {
-          await axios.post("api/admin/delete/doctor", {
+          await instance.post("api/admin/delete/doctor", {
             doctorUniqueId: uniqueDoctorId,
           });
           if (localStorage.getItem(`${uniqueDoctorId}a`) !== null) {
             localStorage.removeItem(`${uniqueDoctorId}a`);
-        }
-        if (localStorage.getItem(`${uniqueDoctorId}b`) !== null) {
+          }
+          if (localStorage.getItem(`${uniqueDoctorId}b`) !== null) {
             localStorage.removeItem(`${uniqueDoctorId}b`);
-        }
+          }
           navigate("../ViewProfileMain");
         } catch (error) {
           console.error("Error:", error);
@@ -99,7 +99,7 @@ function VerifiedDoctorProfile() {
       }
       if (approved == false) {
         try {
-          await axios.post("api/admin/doctors/suspend", {
+          await instance.post("api/admin/doctors/suspend", {
             uniqueDoctorId: uniqueDoctorId,
           });
           localStorage.removeItem(`${uniqueDoctorId}a`);
@@ -112,7 +112,7 @@ function VerifiedDoctorProfile() {
     } else {
       handleDialog("", false);
     }
-    setSniper(false)
+    setSniper(false);
   };
   return (
     <div className="flex flex-row justify-between w-screen bg-[#0529BB]">
@@ -121,7 +121,7 @@ function VerifiedDoctorProfile() {
         style={{ backgroundColor: "#c2c0bc" }}
       >
         <div className="me-7">
-          <Sidebar someData={{ index: 5 }}/>
+          <Sidebar someData={{ index: 5 }} />
         </div>
         <div>
           <FiLogOut
@@ -131,23 +131,17 @@ function VerifiedDoctorProfile() {
         </div>
       </div>
 
-      {/* <div className="flex flex-row  "> */}
+      <div className="flex flex-col me-36   ">
+        <div className="flex flex-row justify-between">
+          <ClipBgB
+            width="w-[290px]"
+            height="h-[55px]"
+            bardervar="32px"
+            text="View Profile"
+          />
+        </div>
 
-
-        <div className="flex flex-col me-36   ">
-
-
-          <div className="flex flex-row justify-between">
-            {/* <div className="bg-[#FF0B0B] h-14 w-52">
-              <p className="text-white mt-4 ms-7 ">Approve/Reject User</p>
-            </div> */}
-            <ClipBgB width='w-[290px]' height='h-[55px]'  bardervar="32px" 
-           text="View Profile" 
-         />
-          </div>
-
-          <div className="bg-[#03229F] mt-16 ">
-
+        <div className="bg-[#03229F] mt-16 ">
           <div className=" mb-7 ms-6 bg-[#03229F] mt-5">
             <Profile
               fullName={fullName}
@@ -159,59 +153,39 @@ function VerifiedDoctorProfile() {
           </div>
 
           <div className=" flex flex-row gap-24">
+            <div className=" flex flex-col">
+              <BasicDetails
+                BasicDetail={update}
+                onRatingChange={handleRatingChange}
+                email={email}
+              />
+              <div className=" mt-5">
+                <hr />
+              </div>
 
-          <div className=" flex flex-col">
-          <BasicDetails
-            BasicDetail={update}
-            onRatingChange={handleRatingChange}
-            email={email}
-          />
-          <div className=" mt-5">
-          <hr/>
+              <IdentityProof BasicDetail={update.identityDetails} />
+            </div>
+            <div className=" flex flex-col">
+              <Educationdetail BasicDetail={update.education} />
+              <hr />
+              <RegistrationDetail BasicDetail={update.registration} />
+            </div>
           </div>
-          
-          <IdentityProof BasicDetail={update.identityDetails} />
-          </div>
-          <div className=" flex flex-col">
-          <Educationdetail BasicDetail={update.education} />
-          <hr/>
-          <RegistrationDetail BasicDetail={update.registration} />
-          </div>
+        </div>
 
-          </div>
-
-          </div>
-
-         
-
-
-          <div className="flex flex-row mt-9  mb-5 ">
+        <div className="flex flex-row mt-9  mb-5 ">
           <div className=" ms-40 mb-10 mt-7 ">
-                          <Buttons
-                            bg="bg-[#0529BB]"
-                            handleSubmita={() => handleSubmit(true)}
-                            handleSubmitb={() => handleSubmit(false)}
-                            texta="Delete Account"
-                            textb="Suspend Account"
-                          />
-                        </div>
-          {/* <div className=" flex flex-row gap-5 mt-7 ms-24">
-          <div>
-          <Button
-              text=" Next >> "
-              bgColor="bg-[#24C70A]"
-              hoverColor="hover:bg-green-800"
-              handleSubmit={manageme}
+            <Buttons
+              bg="bg-[#0529BB]"
+              handleSubmita={() => handleSubmit(true)}
+              handleSubmitb={() => handleSubmit(false)}
+              texta="Delete Account"
+              textb="Suspend Account"
             />
           </div>
-            <div className="text-white   text-3xl">Hospital Detail</div>
-          </div>
-           */}
         </div>
-
-          
-        </div>
-        {dialog.isLoading && (
+      </div>
+      {dialog.isLoading && (
         <Dialog
           nameProduct={dialog.nameProduct}
           onDialog={areUSureDelete}
@@ -219,7 +193,7 @@ function VerifiedDoctorProfile() {
           sniper={sniper}
         />
       )}
-      </div>
+    </div>
   );
 }
 

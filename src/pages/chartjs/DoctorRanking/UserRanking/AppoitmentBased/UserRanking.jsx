@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import BarChartB from "../../../component/Bar/BarChartB";
+import instance from "../../../../../axios";
 
 function UserRanking() {
   const [appointmentServed, setAppointmentServed] = useState([]);
@@ -8,7 +8,7 @@ function UserRanking() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("api/admin/analytics/userRanking");
+        const response = await instance.get("api/admin/analytics/userRanking");
 
         setAppointmentServed(response.data.userAppointments);
         setLoading(false);

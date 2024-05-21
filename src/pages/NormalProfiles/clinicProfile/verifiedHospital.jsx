@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar";
 import { FiLogOut } from "react-icons/fi";
 import Hbasicdetail from "./Hbasicdetail";
-import Photos from "./Photos";
 import Profile from "../../ApproveRejectUsers/ApproveRejectB/Profile";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Buttons from "../../ApproveRejectUsers/ButtonRow/Buttons.jsx";
 import Address from "./Address";
-import SessionTimings from "./SessionTimings";
 import AppoitmentFee from "./AppoitmentFee";
 import { useSelector, useDispatch } from "react-redux";
 import HregistartionDetail from "./HregistartionDetail.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
-import Skeletonn from "../../../components/ui/SkeletonPage.jsx/Skeletonn.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import DoctorSessions from "../../ApproveRejectUsers/ApproveRejectC/DoctorSessions.jsx";
+import Photos from "../../ApproveRejectUsers/ApproveRejectC/Photos.jsx";
+import instance from "../../../axios.js";
+
 function VerifiedHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -37,32 +36,6 @@ function VerifiedHospital() {
   const hospitalClinicKhojoId = response.hospitalClinicKhojoId;
   const managementEmail = response.managementEmail;
 
-  //   const uniqueClinicId = useSelector((state) => state.register.uniqueClinicId);
-  //   const doctorEemail = useSelector((state) => state.register.doctorEmail);
-  //   const uniqueDoctorId = useSelector((state) => state.register.uniqueDoctorId);
-
-  //   const [response, setResponse] = useState(null);
-
-  //   useEffect(() => {
-  //     async function fetchData() {
-  //       try {
-  //         const response = await axios.post("api/admin/getParticularClinic", {
-  //           doctorEmail: doctorEemail,
-  //           clinicUniqueId: uniqueClinicId,
-  //         });
-  //         setNormalFee(response.data.clinicKhojoAppointmentFeeEmergency);
-  //         setEmergencyFee(response.data.clinicKhojoAppointmentFeeEmergency);
-  //         setRatingg(response.data.rating);
-  //         setResponse(response.data);
-  //         setLoading(false);
-  //       } catch (error) {
-  //         console.error("Error fetching data:", error);
-  //         setLoading(false);
-  //         setNoClinic(true);
-  //       }
-  //     }
-  //     fetchData();
-  //   }, []);
   useEffect(() => {
     setNormalFee(response.clinicKhojoAppointmentFeeNormal);
     setEmergencyFee(response.clinicKhojoAppointmentFeeEmergency);
@@ -95,7 +68,7 @@ function VerifiedHospital() {
     if (choose) {
       if (approved == true) {
         try {
-          await axios.post("api/admin/hospitals/delete", {
+          await instance.post("api/admin/hospitals/delete", {
             hospitalClinicKhojoId: hospitalClinicKhojoId,
             managementEmail: managementEmail,
           });
@@ -108,7 +81,7 @@ function VerifiedHospital() {
       }
       if (approved == false) {
         try {
-          await axios.post("api/admin/hospitals/suspend", {
+          await instance.post("api/admin/hospitals/suspend", {
             hospitalClinicKhojoId,
             managementEmail,
           });
@@ -148,9 +121,6 @@ function VerifiedHospital() {
         </div>
         <div className=" flex flex-col ms-52 bg-[#0529BB] me-6">
           <div className="      flex flex-row  ms-14   ">
-            {/* <div className=" bg-[#FF0B0B] h-14 w-44">
-                      <p className=" text-white mt-4 ms-7  ">Hospitals Details</p>
-                    </div> */}
             <ClipBgB
               width="w-[290px]"
               height="h-[55px]"
@@ -192,27 +162,24 @@ function VerifiedHospital() {
                     managementEmail={managementEmail}
                   />
                   <div className=" mt-7">
-                  <hr />
+                    <hr />
                   </div>
                   <HregistartionDetail
                     BasicDetail={response.registration || {}}
                   />
-                 
+
                   <hr />
-                  
                 </div>
 
                 <div className=" flex flex-col me-7">
                   <div className=" flex flex-row gap-3">
                     <Address addData={response.address} />
-                    {/* <SessionTimings
-                            SessionTimings={response.timingsSlots}
-                          /> */}
+
                     <DoctorSessions showData={response.doctorSessions || []} />
                   </div>
                   <hr />
                   <div>
-                    <Photos />
+                    <Photos photosUrl={response.photos.photoUrls || []} />
                   </div>
                 </div>
               </div>

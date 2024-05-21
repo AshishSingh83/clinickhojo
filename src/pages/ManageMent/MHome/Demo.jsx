@@ -1,10 +1,7 @@
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateManagementData } from "../../../data/features/registerSlice";
-import Input from "../../../components/ui/Input";
 import InputWithIcon from "../../../components/ui/InputWithIcon";
 const Demo = ({
   text = "Pending Profiles Of Doctors ...",
@@ -19,14 +16,12 @@ const Demo = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [sortedData, setSortedData] = useState([...showData]); // State to hold sorted data
-  const [sortOption, setSortOption] = useState(""); // Default sort option is by name
-  const [search, setSearch] = useState(""); // State to hold search input value
+  const [sortedData, setSortedData] = useState([...showData]);
+  const [sortOption, setSortOption] = useState("");
+  const [search, setSearch] = useState("");
 
-
-  
   const filterChange = (e) => {
-    setSortOption(e.target.value)
+    setSortOption(e.target.value);
     console.log("Sorting by", e.target.value);
     let sorted = [...showData];
     if (e.target.value === "name") {
@@ -36,12 +31,12 @@ const Demo = ({
     }
     setSortedData(sorted);
   };
-  const handleMe = (update) =>{
+  const handleMe = (update) => {
     dispatch(updateManagementData(update));
-    if(localStorage.getItem(`${update.contactNumber}a`)===null){
-      const myVal = 'ashish' ;
-      localStorage.setItem(`${update.contactNumber}a`,myVal)
-      localStorage.setItem(`${update.contactNumber}b`,myVal)
+    if (localStorage.getItem(`${update.contactNumber}a`) === null) {
+      const myVal = "ashish";
+      localStorage.setItem(`${update.contactNumber}a`, myVal);
+      localStorage.setItem(`${update.contactNumber}b`, myVal);
     }
     navigate("../MHomeB");
   };
@@ -51,17 +46,18 @@ const Demo = ({
   return (
     <div className={` ${Width} ${Height} bg-[#03229F]  `}>
       <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col`}>
+        <div className=" h-14 flex items-center ">
+          <h3
+            className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}
+          >
+            {text}
+          </h3>
+        </div>
 
-
-      <div className=" h-14 flex items-center ">
-      <h3 className={`${text1} font-medium ${p1} ${m1} text-center text-[#FA0808] `}>
-          {text}
-        </h3>
-      </div>
-
-        {sortedData.length === 0 ? "" : (
+        {sortedData.length === 0 ? (
+          ""
+        ) : (
           <div className=" flex flex-row bg-[#03229F] gap-3">
-           
             <div className="ms-4 mt-3 w-64">
               <InputWithIcon
                 labelText="Search Profiles"
@@ -73,7 +69,6 @@ const Demo = ({
                 handleChange={(e) => setSearch(e.target.value)}
                 iconData="BiSearch"
               />
-              {/* <InputWithIcon/> */}
             </div>
 
             <div className=" mt-3">
@@ -127,4 +122,3 @@ const Demo = ({
 };
 
 export default Demo;
-

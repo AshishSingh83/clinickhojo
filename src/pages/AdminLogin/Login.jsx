@@ -11,14 +11,7 @@ export default function Login() {
   const [loginPasswordVal, setLoginPasswordVal] = useState("");
   const [emailLabel, setEmailLabel] = useState("Email Address");
   const [message, setMessage] = useState("");
-  const [expiryTime, setExpiryTime] = useState(0);
   const [disabled, setDisabled] = useState(false);
-  const [data, setData] = useState({
-    userName: "",
-    password: "",
-    label: "",
-  });
-  const [label, setLabel] = useState("");
   const navigate = useNavigate();
   const saveDataToLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
@@ -80,18 +73,18 @@ export default function Login() {
   const authenticateUser = async () => {
     setDisabled(true);
     try {
-      const response = await instance.post("api/admin/login/subAdmin",{
+      const response = await instance.post("api/admin/login/subAdmin", {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
-      console.log('congrats',response);
-      if(response.data.role=='subAdmin'){
+      console.log("congrats", response);
+      if (response.data.role == "subAdmin") {
         const accessToken = response.data.token;
         saveDataToLocalStorage("SubAdminToken", accessToken);
         setDisabled(false);
         navigate("../AdminHome");
-      }else{
-        setMessage('This userId related to Admin') ;
+      } else {
+        setMessage("This userId related to Admin");
       }
       setDisabled(false);
     } catch (error) {
@@ -155,7 +148,7 @@ export default function Login() {
           </p>
         </div>
         <div className=" text-red-500 ms-16 mt-8 ">
-        <p className=" mb-4">{message}</p>
+          <p className=" mb-4">{message}</p>
         </div>
         <Button
           handleSubmit={handleSubmit}

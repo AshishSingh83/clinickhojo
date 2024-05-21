@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons.jsx";
 
@@ -36,7 +35,7 @@ const Hbasicdetail = ({ BasicDetail, onRadioChange, radioData }) => {
   const otherSpecializations = BasicDetail.specializations.slice(1);
 
   const formatSpecialization = (spec) => {
-    return `${spec.name} (fees: ${spec.fee})`; 
+    return `${spec.name} (fees: ${spec.fee})`;
   };
 
   const formattedPrimarySpecialization =

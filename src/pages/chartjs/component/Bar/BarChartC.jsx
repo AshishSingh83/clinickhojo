@@ -86,9 +86,9 @@ function BarChartC() {
         title: {
           display: true,
           text: "Age Between",
-          color: "black", 
+          color: "black",
           font: {
-            size: 20, 
+            size: 20,
           },
         },
       },
@@ -98,7 +98,7 @@ function BarChartC() {
           text: "Appointments Booked",
           color: "black",
           font: {
-            size: 20, 
+            size: 20,
           },
         },
       },
