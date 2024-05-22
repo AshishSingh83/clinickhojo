@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { FiLogOut } from "react-icons/fi";
 import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import Demo from "../ApproveRejectUsers/ApproveRejectA/Demo";
 import DemoHospital from "../ApproveRejectUsers/ApproveRejectA/DemoHospital";
@@ -7,7 +6,6 @@ import { useSelector } from "react-redux";
 import DemoUser from "./Components/DemoUser";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB";
 import instance from "../../axios";
-import { useNavigate } from "react-router-dom";
 function ViewProfileMain() {
   const [allUsers, setAllUsers] = useState([]);
   const [approveDoctors, setApproveDoctors] = useState([]);
@@ -17,7 +15,6 @@ function ViewProfileMain() {
   const ApprovedHospitals = useSelector(
     (state) => state.register.approvedHospitals
   );
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -112,6 +109,7 @@ function ViewProfileMain() {
                     hwidth="w-[480px]"
                     hrad="45px"
                     spinner={true}
+                    msa="ms-3"
                   />
                 </div>
                 <div className="me-32">

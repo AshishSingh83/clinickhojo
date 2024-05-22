@@ -8,7 +8,7 @@ const UserActivity = ({ UserActivities }) => {
       </div>
       <div style={{ maxHeight: "300px", overflowY: "auto" }}>
         <div className=" font-medium  ms-2 mb-5 gap-5 opacity-75  ">
-          {UserActivities.length ? (
+          {UserActivities[0] ? (
             UserActivities.map((data, index) => (
               <div className="mt-1" key={index}>
                 <span
