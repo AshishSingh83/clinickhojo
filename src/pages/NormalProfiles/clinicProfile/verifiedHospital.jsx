@@ -12,16 +12,17 @@ import HregistartionDetail from "./HregistartionDetail.jsx";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import DoctorSessions from "../../ApproveRejectUsers/ApproveRejectC/DoctorSessions.jsx";
-import Photos from "../../ApproveRejectUsers/ApproveRejectC/Photos.jsx";
 import instance from "../../../axios.js";
-
+import emailService from "../../../components/ui/emailService.js";
+import ManagementProfile from "../../ApproveRejectUsers/ApproveRejectC/ManagementProfile.jsx";
+import checkAdmin from "../../Protected/checkAdmin.js";
+import Photos from "./Photos.jsx";
 function VerifiedHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
     message: "",
     isLoading: false,
   });
-
   const [normalFee, setNormalFee] = useState("");
   const [emergencyFee, setEmergencyFee] = useState("");
   const [ratingg, setRatingg] = useState("");
@@ -30,11 +31,11 @@ function VerifiedHospital() {
   const [loading, setLoading] = useState(false);
   const [approved, setApproved] = useState("");
   const [sniper, setSniper] = useState(false);
-
+  const [message, setMessage] = useState("");
   const response = useSelector((state) => state.register.hospitalData);
-  console.log("hos res", response);
   const hospitalClinicKhojoId = response.hospitalClinicKhojoId;
   const managementEmail = response.managementEmail;
+  const fullName = response.name;
 
   useEffect(() => {
     setNormalFee(response.clinicKhojoAppointmentFeeNormal);
@@ -53,8 +54,13 @@ function VerifiedHospital() {
   };
   const handleSubmit = async (isApproved) => {
     if (isApproved == true) {
-      setApproved(isApproved);
-      handleDialog("Are you sure you want to Delete Account?", true);
+      const check = await checkAdmin();
+      if (check) {
+        setApproved(isApproved);
+        handleDialog("Are you sure you want to Delete Account?", true);
+      } else {
+        setMessage("SubAdmin can not Delete account");
+      }
     }
     if (isApproved == false) {
       setApproved(isApproved);
@@ -63,7 +69,6 @@ function VerifiedHospital() {
   };
 
   const areUSureDelete = async (choose) => {
-    console.log(hospitalClinicKhojoId, managementEmail);
     setSniper(true);
     if (choose) {
       if (approved == true) {
@@ -72,9 +77,15 @@ function VerifiedHospital() {
             hospitalClinicKhojoId: hospitalClinicKhojoId,
             managementEmail: managementEmail,
           });
+          const message = "your Hospital profile deleted";
+          await emailService({
+            message,
+            toName: fullName,
+            email: managementEmail,
+          });
           localStorage.removeItem(`${hospitalClinicKhojoId}a`);
           localStorage.removeItem(`${hospitalClinicKhojoId}b`);
-          navigate("../ViewProfileMain");
+          navigate("../ApproveReject");
         } catch (error) {
           console.error("Error:", error.message);
         }
@@ -85,6 +96,13 @@ function VerifiedHospital() {
             hospitalClinicKhojoId,
             managementEmail,
           });
+
+          const message = "your Hospital profile suspended";
+          await emailService({
+            message,
+            toName: fullName,
+            email: managementEmail,
+          });
           if (localStorage.getItem(`${hospitalClinicKhojoId}a`) !== null) {
             localStorage.removeItem(`${hospitalClinicKhojoId}a`);
           }
@@ -92,7 +110,7 @@ function VerifiedHospital() {
           if (localStorage.getItem(`${hospitalClinicKhojoId}b`) !== null) {
             localStorage.removeItem(`${hospitalClinicKhojoId}b`);
           }
-          navigate("../ViewProfileMain");
+          navigate("../ApproveReject");
         } catch (error) {
           console.error("Error:", error);
         }
@@ -133,7 +151,6 @@ function VerifiedHospital() {
               </p>
             </div>
           </div>
-
           <div className="flex flex-row  mt-6 bg-[#03229F] w-[1233px]">
             <div className="flex flex-col ">
               <div className="m-11">
@@ -148,6 +165,10 @@ function VerifiedHospital() {
 
               <div className=" flex flex-row">
                 <div className=" flex flex-col ">
+                  <ManagementProfile />
+                  <div className=" mb-4">
+                    <hr />
+                  </div>
                   <Hbasicdetail BasicDetail={response} />
                   <hr />
                   <AppoitmentFee
@@ -185,15 +206,19 @@ function VerifiedHospital() {
               </div>
             </div>
           </div>
-          <div className=" ms-56 mb-10 mt-7 ">
-            <Buttons
-              bg="bg-[#0529BB]"
-              handleSubmita={() => handleSubmit(true)}
-              handleSubmitb={() => handleSubmit(false)}
-              texta="Delete Account"
-              textb="Suspend Account"
-            />
+          <div className=" flex flex-row">
+            <div className=" ms-56 mb-10 mt-7 ">
+              <Buttons
+                bg="bg-[#0529BB]"
+                handleSubmita={() => handleSubmit(true)}
+                handleSubmitb={() => handleSubmit(false)}
+                texta="Delete Account"
+                textb="Suspend Account"
+              />
+            </div>
+            <p className=" text-red-600 ms-20 text-lg mt-8">{message}</p>
           </div>
+          ----
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const Address = ({ addData }) => {
   const [hAddressOption, setHAddressOption] = useState("");
@@ -40,13 +40,18 @@ const Address = ({ addData }) => {
             />
             <br />
           </div>
-          <div className="mt-2 flex flex-row gap-1">
+          <div className="mt-2 flex  gap-1 ms-4">
             <label className="font-sm">Clinic Address:</label>
-            <input
+            {/* <input
               type="text"
               value={addData.clinicAddress}
               readOnly
               className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 w-64 p-1 h-8 flex justify-center items-center"
+            /> */}
+            <textarea
+              value={addData.clinicAddress}
+              readOnly
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
             />
             <br />
           </div>

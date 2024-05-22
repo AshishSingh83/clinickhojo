@@ -1,18 +1,28 @@
+
 import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons.jsx";
 
 const renderDetails = (Hbasicdetailconst) => {
   return Hbasicdetailconst.map((item, index) => {
     const [key, value] = Object.entries(item)[0];
+    const isLargeField = key === "Full Name" || key === "Clinic Description";
     return (
       <div className="mt-2" key={key}>
         <label className="font-sm">{key} : </label>
-        <input
-          type="text"
-          value={value}
-          readOnly
-          className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
-        />
+        {isLargeField ? (
+          <textarea
+            value={value}
+            readOnly
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+          />
+        ) : (
+          <input
+            type="text"
+            value={value}
+            readOnly
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+          />
+        )}
         <br />
       </div>
     );
@@ -53,6 +63,7 @@ const Hbasicdetail = ({ BasicDetail, onRadioChange, radioData }) => {
     { "Year of Establishment": `${BasicDetail.yearOfEstablishment}` },
     { "Clinic Description": `${BasicDetail.description}` },
   ];
+
   return (
     <div className="bg-[#03229F] w-[435px] min-h-[270px] mb-4 rounded-sm">
       <div className="flex flex-row">
@@ -74,4 +85,5 @@ const Hbasicdetail = ({ BasicDetail, onRadioChange, radioData }) => {
     </div>
   );
 };
+
 export default Hbasicdetail;

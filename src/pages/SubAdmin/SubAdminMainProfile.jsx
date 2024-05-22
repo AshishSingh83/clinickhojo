@@ -3,7 +3,7 @@ import SubAdminProfile from "./Components/SubAdminProfile";
 import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB";
-function SubAdminMainProfile() {
+function SubAdminMainProfile(){
   const navigate = useNavigate();
   const mydata = {
     index: 1,
@@ -17,7 +17,6 @@ function SubAdminMainProfile() {
         <div className="">
           <Sidebar someData={{ index: 1 }} />
         </div>
-        
       </div>
 
       <div className="flex flex-col  gap-16  ">
@@ -40,7 +39,7 @@ function SubAdminMainProfile() {
           </div>
         </div>
 
-        <div className=" me-9 md:me-16 bg-[#0529BB]">
+        <div className=" me-2 md:me-16 bg-[#0529BB]">
           <SubAdminProfile />
         </div>
       </div>

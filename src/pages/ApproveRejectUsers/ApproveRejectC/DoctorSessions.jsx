@@ -1,12 +1,8 @@
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  updateDoctorSession,
-} from "../../../data/features/registerSlice";
+import { updateDoctorSession } from "../../../data/features/registerSlice";
 import { BiSolidUserDetail } from "react-icons/bi";
 import SessionTimings from "../../NormalProfiles/clinicProfile/SessionTimings";
-
 
 const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
   const dispatch = useDispatch();
@@ -17,12 +13,10 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
     setModalContent(update.timingSlots);
     setIsModalOpen(true);
   };
-
   const closeModal = () => {
     setIsModalOpen(false);
     setModalContent(null);
   };
-
   return (
     <div className={` h-[310px] w-[390px] overflow-hidden bg-[#03229F] `}>
       <div className={` text-white flex flex-col `}>
@@ -43,7 +37,7 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
               key={index}
               className={`p-4 mb-4 bg-[#8299ed] flex flex-row  justify-between ml-6 w-[340px] h-20 mt-3 cursor-pointer rounded-lg`}
             >
-              <p className="text-black font-semibold">
+              <div className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
                 {update.doctorName} <br />
                 <div className="flex flex-row ms-7 gap-2">
@@ -55,7 +49,7 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
                     #{update.doctorsClinicKhojoId}
                   </p>
                 </div>
-              </p>
+              </div>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 text-sm text-white mt-2 pt-2 bg-blue-700`}
                 onClick={() => handleMe(update)}
@@ -75,7 +69,7 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
               </button>
             </div>
             <div className=" flex justify-center items-center">
-              <SessionTimings SessionTimings={modalContent} notshow={true}/>
+              <SessionTimings SessionTimings={modalContent} notshow={true} />
             </div>
           </div>
         </div>

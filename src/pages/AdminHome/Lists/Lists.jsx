@@ -43,12 +43,12 @@ function Lists() {
       <div className="flex flex-wrap items-center  gap-8 mt-10 md:w-[550px] md:mt-28 justify-center md:justify-start ">
         {constant.map((field, index) => (
           <div
-            className=" max-w-sm md:w-64 rounded-lg overflow-hidden shadow-lg h-40 bg-[#FFFFFF] hover:opacity-75 cursor-pointer "
+            className=" max-w-sm md:w-64 rounded-lg overflow-hidden shadow-lg md:h-40 bg-[#FFFFFF] hover:opacity-75 cursor-pointer "
             key={index}
           >
             <Link to={field.path}>
               <span>
-                <div className="px-4 py-2">
+                <div className="px-4 md:py-2">
                   <div className="font-medium text-lg mt-3 text-black text-center">
                     {field.title}
                   </div>

@@ -49,21 +49,8 @@ const DemoUser = ({
   );
 
   return (
-    <div className={`md:w-[500px] h-[500px] bg-[#03229F] overflow-hidden`}>
+    <div className={`md:w-[500px] h-[500px] bg-[#03229F] overflow-auto`}>
       <div className={`  text-black flex flex-col`}>
-        {/* <div className=" flex items-center justify-center">
-          <ClipBgB
-            width={hwidth}
-            height="h-[50px]"
-            bardervar={hrad}
-            bg="bg-[#FFFFFF]"
-            textColor="text-[#FA0808]"
-            textSize="text-2xl"
-            mt="mt-0"
-            text={text}
-          />
-        </div> */}
-       
       <div className={` h-14   items-center justify-center hidden md:block ms-20  `}>
       <ClipBgB
             width={hwidth}
@@ -110,7 +97,7 @@ const DemoUser = ({
       <div className={` overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-white mt-44 text-2xl font-medium">
+            <div className="text-white mt-44 text-2xl font-medium">
               {spinner ? (
                 <Spinner
                   height="h-[70px]"
@@ -120,7 +107,7 @@ const DemoUser = ({
               ) : (
                 "No Data Available"
               )}
-            </p>
+            </div>
           </div>
         ) : (
           filteredData.map((user, index) => (
@@ -128,7 +115,7 @@ const DemoUser = ({
               key={index}
               className={`p-4 mb-4 me-6  bg-[#E7ECFF] flex flex-row justify-between ml-6  md:h-28 md:w-[450px] mt-3 cursor-pointer rounded-md  `}
             >
-              <p className="text-black font-semibold">
+              <div className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
                 Name: {user.name} <br />
                 <div className=" flex  ms-3 gap-3">
@@ -139,7 +126,7 @@ const DemoUser = ({
                   <AiOutlineMail size="25px" color="red" />{" "}
                   <p className="text-[#535252]">{user.email}</p>
                 </div>
-              </p>
+              </div>
               <span
                 className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 text-sm w-20 text-white mt-5 pt-2"
                 style={{ backgroundColor: "#03229F" }}

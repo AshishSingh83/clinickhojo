@@ -72,6 +72,10 @@ function ApproveRejectHospital() {
   const handleRadioChange = (name, option) => {
     setFormDataC((prevData) => ({ ...prevData, [name]: option }));
   };
+  const getDataFromLocalStorage = (key) => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : null;
+  };
 
   const handleChange = (event) => {
     console.log(formData);
@@ -130,11 +134,12 @@ function ApproveRejectHospital() {
     if (choose) {
       console.log(choose, approved);
       if (1) {
+        const userId = getDataFromLocalStorage('UserId');
         try {
           const response = await instance.post("api/admin/hospital/approve", {
             isApproved: approved,
             hospitalClinicKhojoId: hospitalClinicKhojoId,
-            approvedBy: "Test123",
+            approvedBy:userId,
             addRemark: formData.remark,
           });
           if (!approved) {

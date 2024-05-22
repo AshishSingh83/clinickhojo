@@ -1,9 +1,9 @@
+
 import React, { useState } from "react";
 
-const ButtonRow = () => {
+const ButtonRow = ({ onButtonClick }) => {
   const [hoveredButton, setHoveredButton] = useState(null);
-  const [clickedButton, setClickedButton] = useState(null);
-  console.log(hoveredButton, clickedButton);
+
   const buttons = [
     { id: 1, label: "All Photos" },
     { id: 2, label: "Infrastructure" },
@@ -18,7 +18,7 @@ const ButtonRow = () => {
         <button
           key={button.id}
           className={`py-1 px-4 border border-gray-300 ${
-            clickedButton === button.id
+            onButtonClick === button.id
               ? "bg-blue-700 text-white"
               : hoveredButton === button.id
               ? "bg-blue-500 text-white"
@@ -26,7 +26,7 @@ const ButtonRow = () => {
           } hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out`}
           onMouseEnter={() => setHoveredButton(button.id)}
           onMouseLeave={() => setHoveredButton(null)}
-          onClick={() => setClickedButton(button.id)}
+          onClick={() => onButtonClick(button.id)}
         >
           {button.label}
         </button>

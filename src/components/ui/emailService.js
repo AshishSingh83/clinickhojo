@@ -1,7 +1,7 @@
 import emailjs from "@emailjs/browser";
 
 const emailService = async ({ message, toName, toEmail }) => {
-  console.log(message);
+  console.log('toname',toName);
   const serviceId = "service_om433u9";
   const templateId = "template_zsmcl3v";
   const publicKey = "9BN6G8lDUWm0rzkqZ";

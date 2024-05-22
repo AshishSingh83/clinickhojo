@@ -15,7 +15,6 @@ function SubAdminEdit() {
         <div className="me-7 ">
           <Sidebar someData={{ index: 1 }} />
         </div>
-       
       </div>
       <div className="flex flex-col w-full md:w-auto ms-0 md:ms-16    ">
         <div className="flex justify-center md:justify-normal mb-5 md:mb-0  ">

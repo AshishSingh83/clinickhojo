@@ -17,6 +17,8 @@ import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import Buttons from "../../ApproveRejectUsers/ButtonRow/Buttons.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import instance from "../../../axios.js";
+import emailService from "../../../components/ui/emailService.js";
+import checkAdmin from "../../Protected/checkAdmin.js";
 
 function VerifiedDoctorProfile() {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ function VerifiedDoctorProfile() {
   const [ratingg, setRating] = useState("");
   const [approved, setApproved] = useState("");
   const [sniper, setSniper] = useState(false);
-
+  const [message, setMessage] = useState("");
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
   };
@@ -69,8 +71,13 @@ function VerifiedDoctorProfile() {
   };
   const handleSubmit = async (isApproved) => {
     if (isApproved == true) {
-      setApproved(isApproved);
-      handleDialog("Are you sure you want to Delete Account?", true);
+      const check = await checkAdmin();
+      if (check) {
+        setApproved(isApproved);
+        handleDialog("Are you sure you want to Delete Account?", true);
+      } else {
+        setMessage("SubAdmin can not Delete/Suspend account");
+      }
     }
     if (isApproved == false) {
       setApproved(isApproved);
@@ -83,9 +90,12 @@ function VerifiedDoctorProfile() {
     if (choose) {
       if (approved == true) {
         try {
-          await instance.post("api/admin/delete/doctor", {
+          const response = await instance.post("api/admin/delete/doctor", {
             doctorUniqueId: uniqueDoctorId,
           });
+          const message = "your doctor profile deleted";
+          console.log("response", response.data);
+          await emailService({ message, toName: fullName, email });
           if (localStorage.getItem(`${uniqueDoctorId}a`) !== null) {
             localStorage.removeItem(`${uniqueDoctorId}a`);
           }
@@ -102,6 +112,8 @@ function VerifiedDoctorProfile() {
           await instance.post("api/admin/doctors/suspend", {
             uniqueDoctorId: uniqueDoctorId,
           });
+          const message = "your doctor profile suspended";
+          await emailService({ message, toName: fullName, email });
           localStorage.removeItem(`${uniqueDoctorId}a`);
           localStorage.removeItem(`${uniqueDoctorId}b`);
           navigate("../ViewProfileMain");
@@ -159,7 +171,7 @@ function VerifiedDoctorProfile() {
                 onRatingChange={handleRatingChange}
                 email={email}
               />
-              <div className=" mt-5">
+              <div className=" mt-14">
                 <hr />
               </div>
 
@@ -167,22 +179,27 @@ function VerifiedDoctorProfile() {
             </div>
             <div className=" flex flex-col">
               <Educationdetail BasicDetail={update.education} />
-              <hr />
+              <div className=" mt-5 mb-4">
+                <hr />
+              </div>
               <RegistrationDetail BasicDetail={update.registration} />
             </div>
           </div>
         </div>
 
-        <div className="flex flex-row mt-9  mb-5 ">
-          <div className=" ms-40 mb-10 mt-7 ">
-            <Buttons
-              bg="bg-[#0529BB]"
-              handleSubmita={() => handleSubmit(true)}
-              handleSubmitb={() => handleSubmit(false)}
-              texta="Delete Account"
-              textb="Suspend Account"
-            />
+        <div className=" flex flex-row">
+          <div className="flex flex-row mt-9  mb-5 ">
+            <div className=" ms-40 mb-10 mt-7 ">
+              <Buttons
+                bg="bg-[#0529BB]"
+                handleSubmita={() => handleSubmit(true)}
+                handleSubmitb={() => handleSubmit(false)}
+                texta="Delete Account"
+                textb="Suspend Account"
+              />
+            </div>
           </div>
+          <p className=" text-red-600 ms-20 text-lg mt-16">{message}</p>
         </div>
       </div>
       {dialog.isLoading && (

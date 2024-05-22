@@ -18,28 +18,24 @@ const renderDetails = (
     const [key, value] = Object.entries(item)[0];
     if (key === "Bio") {
       return (
-        <div className="mt-2" key={key}>
+        <div className="mt-2 flex" key={key}>
           <label className="font-sm">{key}:</label>
-          <input
-            type="text"
-            value={bioValue}
+          <textarea
+            value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 h-8 text-opacity-100"
-            style={{ width: "80%", resize: "none" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
           />
           <br />
         </div>
       );
     } else if (key === "Address") {
       return (
-        <div className="mt-2" key={key}>
+        <div className="mt-2 flex " key={key}>
           <label className="font-sm">{key}:</label>
-          <input
-            type="text"
-            value={addressValue}
+          <textarea
+            value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
-            style={{ width: "80%", resize: "none" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
           />
           <br />
         </div>

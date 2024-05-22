@@ -16,8 +16,8 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-9 flex justify-center items-center"
-            style={{ width: "85%", resize: "none" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+           
           />
           <br />
         </div>
@@ -29,8 +29,8 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%", resize: "none" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            
           />
           <br />
         </div>
@@ -138,7 +138,6 @@ const BasicDetails = ({
     onRatingChange(rating);
   };
 
-  console.log(BasicDetail);
   const BasicDetailConstant = [
     { Title: `${BasicDetail.title}` },
     { "Full Name": `${BasicDetail.fullName}` },

@@ -62,6 +62,7 @@ export default function NewLogin() {
           }
         } catch (error) {
           setDisabled(false);
+          deleteDataFromLocalStorage('AdminToken')
           console.log("Error:", error.message);
         }
       };
@@ -77,10 +78,10 @@ export default function NewLogin() {
         userName: loginEmailVal,
         password: loginPasswordVal,
       });
-      console.log(response);
       if (response.data.role == "admin") {
         const accessToken = response.data.token;
         saveDataToLocalStorage("AdminToken", accessToken);
+        saveDataToLocalStorage("UserId",loginEmailVal);
         setMessage("");
         setDisabled(false);
         navigate("../AdminHome");

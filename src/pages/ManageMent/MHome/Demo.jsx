@@ -44,7 +44,7 @@ const Demo = ({
     update.fullName.toLowerCase().includes(search.toLowerCase())
   );
   return (
-    <div className={` ${Width} ${Height} bg-[#03229F]  `}>
+    <div className={` ${Width} ${Height} bg-[#03229F] overflow-auto  `}>
       <div className={`bg-[#FFFFFF] mt-[-12px] text-black flex flex-col`}>
         <div className=" h-14 flex items-center ">
           <h3

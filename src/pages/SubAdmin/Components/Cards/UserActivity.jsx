@@ -1,8 +1,6 @@
 import React from "react";
 
 const UserActivity = ({ UserActivities }) => {
-  console.log(UserActivities);
-  UserActivities.length ? console.log("hai") : console.log("nhi hai");
   return (
     <div className="bg-[#03229F] w-[400px] md:w-[500px] h-[430px] mb-4 rounded-sm text-white">
       <div className="p-1">

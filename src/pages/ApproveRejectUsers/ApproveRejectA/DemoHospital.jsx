@@ -10,13 +10,7 @@ import Spinner from "../../../components/ui/clipPath/Spinner";
 import { BiSearch } from "react-icons/bi";
 const DemoHospital = ({
   text = "Pending Profiles Of Doctors ...",
-  Width = "h-[500px]",
-  Height = "w-[500px]",
-  p1 = "p-3",
-  m1 = "m-3",
-  text1 = "text-2xl",
   mh2 = "max-h-[400px]",
-  mw3 = "max-w-[450px]",
   showData,
   normalVerified,
   newBg = "bg-[#229649]",
@@ -27,13 +21,10 @@ const DemoHospital = ({
   msa="ms-10"
 }) => {
   const dispatch = useDispatch();
-  console.log("demo hos", showData);
   const navigate = useNavigate();
-  console.log(showData);
   const [sortedData, setSortedData] = useState([...showData]);
   const [sortOption, setSortOption] = useState("");
   const [search, setSearch] = useState("");
-  console.log("object", showData);
   const filterChange = (e) => {
     setSortOption(e.target.value);
     let sorted = [...showData];
@@ -45,10 +36,8 @@ const DemoHospital = ({
     setSortedData(sorted);
   };
   const handleMe = (update) => {
-    console.log("normal verified", normalVerified);
     dispatch(updateHospitalData(update));
     if (normalVerified == "true") {
-      console.log("nanananaaaaah");
       navigate("../VerifiedHospital");
     } else {
       if (localStorage.getItem(`${update.hospitalClinicKhojoId}a`) === null) {
@@ -62,7 +51,6 @@ const DemoHospital = ({
 
   const filteredData = useMemo(() => {
     if (search != "") {
-      console.log("andar bandar", search);
       return sortedData.filter((update) =>
         update.name.toLowerCase().includes(search.toLowerCase())
       );
@@ -72,20 +60,8 @@ const DemoHospital = ({
   }, [sortedData, search]);
 
   return (
-    <div className={` md:w-[500px] h-[500px] bg-[#03229F] overflow-hidden   `}>
+    <div className={` md:w-[500px] h-[500px] bg-[#03229F] overflow-auto   `}>
       <div className={` mt-[-12px] text-black flex flex-col `}>
-        {/* <div className=" h-14 flex items-center justify-center ">
-          <ClipBgB
-            width={hwidth}
-            height="h-[55px]"
-            bardervar={hrad}
-            bg="bg-[#FFFFFF]"
-            textColor="text-[#FA0808]"
-            textSize="text-2xl"
-            mt="mt-2"
-            text={text}
-          />
-        </div> */}
         <div className="h-14 flex items-center bg-[#FFFFFF] text-center  text-[#FA0808] text-2xl justify-center font-medium  md:hidden">
         <h3 >{text}</h3>
       </div>
@@ -135,7 +111,7 @@ const DemoHospital = ({
       <div className={`overflow-auto ${mh2} me-5 md:me-0 rounded-md`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
-            <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
+            <div className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
               {spinner ? (
                 <Spinner
                   height="h-[70px]"
@@ -145,7 +121,7 @@ const DemoHospital = ({
               ) : (
                 "No Data Available"
               )}
-            </p>
+            </div>
           </div>
         ) : (
           filteredData.map((update, index) => (
@@ -153,7 +129,7 @@ const DemoHospital = ({
               key={index}
               className={`p-4 mb-4 me-6  bg-[#E7ECFF] flex flex-row justify-between ml-6  md:h-28 md:w-[450px] mt-3 cursor-pointer rounded-md `}
             >
-              <p className="text-black font-semibold ">
+              <div className="text-black font-semibold ">
                 <span className="font-bold ">{index + 1}. </span>
                 {update.name} <br />
                 <div className="    flex ">
@@ -174,7 +150,7 @@ const DemoHospital = ({
                     {update.address.city}
                   </p>
                 </div>
-              </p>
+              </div>
               <span
                 className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1 w-20  text-sm   text-white mt-2 md:mt-5 pt-2 ${newBg}`}
                 onClick={() => handleMe(update)}
@@ -188,5 +164,4 @@ const DemoHospital = ({
     </div>
   );
 };
-
 export default DemoHospital;

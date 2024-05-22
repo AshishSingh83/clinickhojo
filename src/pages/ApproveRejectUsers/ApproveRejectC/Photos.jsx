@@ -5,7 +5,6 @@ import ImageGrid from "../ButtonRow/ImageGrid";
 import RadioButtons from "../../../components/ui/RadioButtons";
 
 const Photos = ({ onRadioChange, radioData, photosUrl }) => {
-  console.log(photosUrl);
   const [hPhotosOption, setHPhotosOption] = useState("");
   useEffect(() => {
     setHPhotosOption(radioData);

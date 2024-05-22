@@ -12,9 +12,7 @@ import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import emailService from "../../../components/ui/emailService.js";
 import instance from "../../../axios.js";
-
 function ApproveRejectB() {
-  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     doctorBasicDetail: "",
     doctorIdentityProof: "",
@@ -34,9 +32,8 @@ function ApproveRejectB() {
     clinicUniqueId,
     accountAddedBy,
     rating,
-    marketingInternId
-
-  } = update || '';
+    marketingInternId,
+  } = update || "";
 
   const handleRadioChange = (name, option) => {
     setFormData((prevData) => ({ ...prevData, [name]: option }));
@@ -49,9 +46,13 @@ function ApproveRejectB() {
     isLoading: false,
   });
   const [approved, setApproved] = useState("");
-  const [message,setMessage] = useState('') ;
+  const [message, setMessage] = useState("");
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
+  };
+  const getDataFromLocalStorage = (key) => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : null;
   };
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${uniqueDoctorId}a`);
@@ -63,7 +64,7 @@ function ApproveRejectB() {
   useEffect(() => {
     localStorage.setItem(`${uniqueDoctorId}a`, JSON.stringify(formData));
   }, [formData]);
- 
+
   const handleDialog = (message, isLoading) => {
     setDialog({
       message,
@@ -78,10 +79,11 @@ function ApproveRejectB() {
     }));
   };
   const handleSubmit = async (isApproved) => {
-   
-    const counttt = Object.values(formData).filter(value => value !== "").length;
-    if(counttt===4 && ratingg!=='' ){
-      setMessage('')
+    const counttt = Object.values(formData).filter(
+      (value) => value !== ""
+    ).length;
+    if (counttt === 4 && ratingg !== "") {
+      setMessage("");
       if (isApproved == true) {
         setApproved(isApproved);
         handleDialog("Are you sure you want to Approve Account?", true);
@@ -90,8 +92,10 @@ function ApproveRejectB() {
         setApproved(isApproved);
         handleDialog("Are you sure you want to Reject Account?", true);
       }
-    }else{
-     setMessage('Please Verify All Document(tick radioButtons) and choose ratings')
+    } else {
+      setMessage(
+        "Please Verify All Document(tick radioButtons) and choose ratings"
+      );
     }
   };
 
@@ -106,28 +110,30 @@ function ApproveRejectB() {
     `;
     const successMessage = `We are thrilled to inform you that your account has been successfully approved! Welcome to the ClinicKhojo community.
     remark :${textArea.remark}
-    `
+    `;
     if (choose) {
       setSniper(true);
       if (1) {
+        const userId = getDataFromLocalStorage("UserId");
         try {
           const response = await instance.put("api/admin/approveDoctors", {
             doctorsUniqueId: uniqueDoctorId,
-            approvedBy: "Test123",
+            approvedBy: userId,
             isApproved: approved,
             addRemark: textArea.remark,
           });
           if (!approved) {
-            
             const isSent = await emailService({ message, fullName, email });
-            console.log(isSent ? 'Email sent successfully' : 'Failed to send email');
+            console.log(
+              isSent ? "Email sent successfully" : "Failed to send email"
+            );
           } else {
             try {
               await instance.post("api/admin/doctors/setRatings", {
                 doctorEmail: email,
                 rating: rating,
               });
-              await emailService({ message:successMessage, fullName, email });
+              await emailService({ message: successMessage, fullName, email });
               setSniper(false);
               navigate("../ApproveReject");
             } catch (e) {
@@ -210,7 +216,7 @@ function ApproveRejectB() {
                 }
                 radioData={formData.doctorRegistration}
               />
-              <hr/>
+              <hr />
               <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-">
                 <div className="h-[130px] border-zinc-100  ">
                   <textarea
@@ -227,24 +233,19 @@ function ApproveRejectB() {
             </div>
           </div>
           <div className=" flex flex-row">
-          <div className="flex flex-row mt-9  mb-5 justify-center items-center ">
-           
-           <div className=" mb-5 mt-3 ms-12">
-             <Buttons
-               bg="bg-[#0529BB]"
-               handleSubmita={() => handleSubmit(true)}
-               handleSubmitb={() => handleSubmit(false)}
-               texta="Approve Account"
-               textb="Reject Account"
-             />
-           </div>
-         </div>
-          <p className=" text-red-600 ms-20 text-lg mt-12">
-           {message}
-          </p>
+            <div className="flex flex-row mt-9  mb-5 justify-center items-center ">
+              <div className=" mb-5 mt-3 ms-12">
+                <Buttons
+                  bg="bg-[#0529BB]"
+                  handleSubmita={() => handleSubmit(true)}
+                  handleSubmitb={() => handleSubmit(false)}
+                  texta="Approve Account"
+                  textb="Reject Account"
+                />
+              </div>
+            </div>
+            <p className=" text-red-600 ms-20 text-lg mt-12">{message}</p>
           </div>
-
-          
         </div>
       </div>
 

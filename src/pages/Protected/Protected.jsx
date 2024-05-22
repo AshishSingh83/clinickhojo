@@ -6,16 +6,21 @@ import Spinner from '../../components/ui/clipPath/Spinner';
 
 function Protected(props) {
     const Component = props.Component; 
+    const [val,setVal] = useState('') ;
     const getDataFromLocalStorage = (key) => {
         const item = localStorage.getItem(key);
         return item ? JSON.parse(item) : null;
+      };
+      const deleteDataFromLocalStorage = (key) => {
+        localStorage.removeItem(key);
       };
     const navigate = useNavigate();
     const [value, setValue] = useState(false);
 
     useEffect(() => {
         let savedData = getDataFromLocalStorage('AdminToken');
-        if (savedData === null) {
+        if (savedData === null){
+            setVal('sub') ;
             savedData = getDataFromLocalStorage('SubAdminToken');
         }
         if (savedData) {
@@ -34,6 +39,11 @@ function Protected(props) {
                         setValue(true);
                     }
                 } catch (error){
+                    if(val === 'sub'){
+                        deleteDataFromLocalStorage('SubAdminToken');
+                    }else{
+                        deleteDataFromLocalStorage('AdminToken');
+                    }
                     navigate('/');
                     console.log("Error:", error.message);
                 }
@@ -43,7 +53,6 @@ function Protected(props) {
             navigate('/');
         }
     }, []);
-
     return (
         <>
             {value ? (

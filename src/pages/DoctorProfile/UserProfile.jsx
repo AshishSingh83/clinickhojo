@@ -13,10 +13,12 @@ function UserProfile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await instance.post("api/admin/user-getAllAppointments", {
-          userMobileNumber: mobileNumber,
-        });
-        console.log("appoitments hahahahaaaaa", response.data);
+        const response = await instance.post(
+          "api/admin/user-getAllAppointments",
+          {
+            userMobileNumber: mobileNumber,
+          }
+        );
         setAppoitments(response.data);
         setLoading(false);
       } catch (error) {
@@ -33,7 +35,6 @@ function UserProfile() {
           <div className="">
             <Sidebar someData={{ index: 5 }} />
           </div>
-         
         </div>
         <div className=" flex flex-col gap-16">
           <div
@@ -70,7 +71,6 @@ function UserProfile() {
         <div className="me-7">
           <Sidebar someData={{ index: 5 }} />
         </div>
-       
       </div>
       <div className=" flex flex-col gap-28">
         <div
@@ -87,16 +87,15 @@ function UserProfile() {
               />
             </div>
             <div className=" flex justify-center">
-            <p className="text-white mt-3 underline text-2xl   ">
-              User Profile
-            </p>
+              <p className="text-white mt-3 underline text-2xl   ">
+                User Profile
+              </p>
             </div>
-            
           </div>
         </div>
 
         <div className=" flex flex-row gap-8 md:gap-28 md:me-9">
-        <div className="  md:ms-0">
+          <div className="  md:ms-0">
             <ProfileUser
               fullName={name}
               profileImage={profilePicture}
@@ -107,7 +106,6 @@ function UserProfile() {
           <div className=" ">
             <Appoiment dataa={appoitments} loading={loading} />
           </div>
-          
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons.jsx";
 
 const Address = ({ addData, onRadioChange, radioData }) => {
-  console.log(addData);
   const [hAddressOption, setHAddressOption] = useState("");
 
   const handleChange = (event) => {

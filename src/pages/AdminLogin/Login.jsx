@@ -23,10 +23,6 @@ export default function Login() {
   const deleteDataFromLocalStorage = (key) => {
     localStorage.removeItem(key);
   };
-  const setExpiry = (timeInSeconds) => {
-    const currentTime = new Date().getTime();
-    setExpiryTime(currentTime + timeInSeconds * 1000);
-  };
   const handleChangeEmail = (e) => {
     setMessage("");
     setLoginEmailVal(e.target.value);
@@ -43,7 +39,6 @@ export default function Login() {
 
   useEffect(() => {
     const savedData = getDataFromLocalStorage("SubAdminToken");
-    console.log("helo", savedData);
     if (savedData) {
       console.log(savedData);
       setDisabled(true);
@@ -64,6 +59,7 @@ export default function Login() {
           }
         } catch (error) {
           setDisabled(false);
+          deleteDataFromLocalStorage('SubAdminToken') ;
           console.log("Error:", error.message);
         }
       };
@@ -81,6 +77,7 @@ export default function Login() {
       if (response.data.role == "subAdmin") {
         const accessToken = response.data.token;
         saveDataToLocalStorage("SubAdminToken", accessToken);
+        saveDataToLocalStorage("UserId",loginEmailVal);
         setDisabled(false);
         navigate("../AdminHome");
       } else {

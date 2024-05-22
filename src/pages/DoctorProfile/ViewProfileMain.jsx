@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import DemoUser from "./Components/DemoUser";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB";
 import instance from "../../axios";
-
+import { useNavigate } from "react-router-dom";
 function ViewProfileMain() {
   const [allUsers, setAllUsers] = useState([]);
   const [approveDoctors, setApproveDoctors] = useState([]);
@@ -27,7 +27,6 @@ function ViewProfileMain() {
             instance.get("api/admin/getApprovedDoctors"),
             instance.get("api/admin/delete/getAllDoctors"),
           ]);
-
         setAllUsers(pendingResponse.data.user || []);
         setApproveDoctors(changedResponse.data.doctors || []);
         setDeleteRequest(doctorDeleteRequest.data.doctors || []);
@@ -44,7 +43,7 @@ function ViewProfileMain() {
         }
 
         setLoading(false);
-      } catch (error) {
+      } catch (error){
         console.error("Error fetching data:", error);
       }
     }
@@ -186,7 +185,7 @@ function ViewProfileMain() {
             </div>
           </div>
 
-          <div className="flex flex-row gap-28 mt-16">
+          <div className="flex flex-row gap-10 md:gap-28 mt-16">
             <div>
               <Demo
                 bg1="bg-[#845BB3]"
