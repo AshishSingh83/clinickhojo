@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -6,10 +7,12 @@ import InputWithIcon from "../../../components/ui/InputWithIcon.jsx";
 import { BiSearch } from "react-icons/bi";
 import Spinner from "../../../components/ui/clipPath/Spinner.jsx";
 import instance from "../../../axios.js";
+
 const SubAdminProfile = () => {
   const [demoConstant, setDemoConstant] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function getAllSubAdmins() {
       try {
@@ -22,60 +25,36 @@ const SubAdminProfile = () => {
     }
     getAllSubAdmins();
   }, []);
+
   const memoizedSubAdmins = useMemo(() => {
-    return demoConstant
-      .filter((item) => {
-        return search.toLowerCase() === ""
-          ? item
-          : item.fullName.toLowerCase().includes(search);
-      })
-      .map((update, index) => (
-        <SubAdminProfileItem key={index} update={update} index={index} />
-      ));
+    return demoConstant.filter((item) => {
+      return search.toLowerCase() === ""
+        ? item
+        : item.fullName.toLowerCase().includes(search);
+    });
   }, [demoConstant, search]);
 
   if (loading) {
     return (
-      <div className=" text-black  font-medium text-3xl flex flex-row gap-28  h-[500px] bg-blue-700 bg-opacity-85 mt-[88px] w-[1470px]  justify-center items-center ">
-        <div className=" flex flex-row justify-center items-center  gap-28 ms-10 mt-[-70px] opacity-65 ">
-          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-            <Spinner
-              height="h-[65px]"
-              width="w-[65px]"
-              fontSize="text-[.9rem]"
-            />
+      <div className="text-black font-medium text-3xl flex flex-wrap gap-6 me-72 mb-10 h-[500px] bg-blue-700 bg-opacity-85 mt-[88px] w-full justify-center items-center">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
+            <Spinner height="h-[65px]" width="w-[65px]" fontSize="text-[.9rem]" />
           </div>
-          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-            <Spinner
-              height="h-[65px]"
-              width="w-[65px]"
-              fontSize="text-[.9rem]"
-            />
-          </div>
-          <div className="bg-[#E7ECFF] flex justify-center items-center h-36 w-52 rounded-lg">
-            <Spinner
-              height="h-[65px]"
-              width="w-[65px]"
-              fontSize="text-[.9rem]"
-            />
-          </div>
-        </div>
+        ))}
       </div>
     );
   }
+
   return (
-    <div
-      style={{ width: "1080px", height: "450px" }}
-      className=" ms-64 bg-[#0529BB] mt-[-30px]"
-    >
-      <div className="bg-[#0529BB]  rounded-md flex flex-row justify-between ">
-        <h2 className="text-xl p-3 ms-6 m-3  font-medium underline">
+    <div className="w-full max-w-5xl mx-auto p-4 bg-[#0529BB] mt-5 rounded-md">
+      <div className="flex flex-col md:flex-row justify-between items-center">
+        <h2 className="text-2xl p-3 font-medium underline text-center md:text-left ms-5 mb-4">
           Existing Admin User Profiles
         </h2>
-
-        <div className="w-80  mt-1 py-3 bg-[#0529BB] mb-9  ">
+        <div className="w-full md:w-80 mt-1 py-3 mb-6">
           <InputWithIcon
-            labelText=" Search Profiles"
+            labelText="Search Profiles"
             labelFor="Search Profiles"
             type="Search Profiles"
             autoComplete="current-password"
@@ -86,13 +65,16 @@ const SubAdminProfile = () => {
           />
         </div>
       </div>
-      <div className=" bg-[#0529BB]">
-        <div
-          style={{ overflow: "auto", maxHeight: "450px", maxWidth: "1080px" }}
-          className=" grid grid-cols-3 gap-4  bg-[#0529BB]"
-        >
-          {memoizedSubAdmins}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-auto md:max-h-[450px] min-h-[300px]">
+        {memoizedSubAdmins.length > 0 ? (
+          memoizedSubAdmins.map((update, index) => (
+            <SubAdminProfileItem key={index} update={update} index={index} />
+          ))
+        ) : (
+          <div className=" h-full w-full text-center text-white text-xl flex justify-center items-center me-40 mt-2">
+            No Subadmin found
+          </div>
+        )}
       </div>
     </div>
   );
@@ -101,29 +83,30 @@ const SubAdminProfile = () => {
 const SubAdminProfileItem = ({ update, index }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleEdit = () => {
     dispatch(updateSubAdminData(update));
     navigate("../SubAdminEdit", { state: { update } });
   };
+
   return (
     <div
-      className="  mb-4 bg-[#E7ECFF] flex flex-col justify-between ml-9 rounded-lg"
-      style={{ maxWidth: "300px" }}
+      className="mb-4 bg-[#E7ECFF] flex flex-col justify-between ml-9 rounded-lg"
+      style={{ minWidth: "300px" , maxHeight:'195px'  }}
     >
-      <p className="text-black font-medium  ">
-        <div className=" font-semibold text-xl ms-20 m-2   ">
-          {"SubAdmin "}
-          {index + 1}
+      <p className="text-black font-medium">
+        <div className="font-semibold text-xl ms-20 m-2">
+          {"SubAdmin "} {index + 1}
         </div>
-        <span className="font-medium ">Name : </span>
+        <span className="font-medium">Name: </span>
         {update.fullName} <br />
-        <span className="font-medium">Email Id : </span>
+        <span className="font-medium">Email Id: </span>
         {update.email} <br />
-        <span className="font-medium">Contact Number : </span>
+        <span className="font-medium">Contact Number: </span>
         {update.contactNumber}
       </p>
       <div
-        className="ms-12  cursor-pointer h-9 px-7 py-1 text-sm  text-white mt-4  bg-[#0032FF] w-44 rounded-2xl flex items-center mb-2 "
+        className="ms-12 cursor-pointer h-9 px-7 py-1 text-sm text-white mt-4 bg-[#0032FF] w-44 rounded-2xl flex items-center  mb-2"
         onClick={handleEdit}
       >
         View / Edit Profile
@@ -131,4 +114,5 @@ const SubAdminProfileItem = ({ update, index }) => {
     </div>
   );
 };
+
 export default SubAdminProfile;

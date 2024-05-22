@@ -57,7 +57,7 @@ const BasicDetail = ({ data }) => {
   };
   return (
     <>
-      <div className="bg-[#03229F] w-[500px] h-[430px] mb-4 rounded-sm text-white">
+      <div className="bg-[#03229F] w-[400px] md:w-[500px] h-[460px] md:h-[430px] mb-4 rounded-sm text-white">
         <div className="p-1">
           <h1 className="text-lg ms-5 m-1   font-semibold">Basic Details :</h1>
         </div>
@@ -75,7 +75,7 @@ const BasicDetail = ({ data }) => {
             value={data.assignedUserPassword}
           />
         </div>
-        <div className="mt-6 ms-14 bg-[#03229F]">
+        <div className=" mt-6 ms-16 md:ms-14 bg-[#03229F] w-64 md:w-auto">
           <Buttons
             bg="bg-[#03229F]"
             texta="Edit Profile"
@@ -98,3 +98,4 @@ const BasicDetail = ({ data }) => {
 };
 
 export default BasicDetail;
+

@@ -58,16 +58,11 @@ function ViewProfileMain() {
           <div className="me-7">
             <Sidebar someData={{ index: 5 }} />
           </div>
-          <div>
-            <FiLogOut
-              className="ms-8"
-              style={{ color: "#061ba1", fontSize: "40px" }}
-            />
-          </div>
+         
         </div>
         <div className="flex flex-row justify-center items-center ms-28 mt-28  gap-28">
           <div>
-            <div className=" flex flex-row justify-between">
+            <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
               <ClipBgB
                 width="w-[290px]"
                 height="h-[55px]"
@@ -112,7 +107,7 @@ function ViewProfileMain() {
                     bg1="bg-[#845BB3]"
                     bg2="bg-blue-300"
                     bg3="bg-[#f089a4]"
-                    text="Doctors Requested for delete profiles"
+                    text="Doctors Requested for delete profile"
                     showData={[]}
                     normalVerified={true}
                     hwidth="w-[480px]"
@@ -146,19 +141,14 @@ function ViewProfileMain() {
 
   return (
     <div className="flex flex-row justify-between w-screen bg-[#0529BB]">
-      <div className="flex flex-col justify-between bg-[#c2c0bc]">
-        <div className="me-7">
+      <div className="flex flex-col justify-between ">
+        <div className="me-7 ">
           <Sidebar someData={{ index: 5 }} />
         </div>
-        <div>
-          <FiLogOut
-            className="ms-8"
-            style={{ color: "#061ba1", fontSize: "40px" }}
-          />
-        </div>
+        
       </div>
       <div>
-        <div className=" flex flex-row justify-between">
+        <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
           <ClipBgB
             width="w-[290px]"
             height="h-[55px]"
@@ -173,24 +163,25 @@ function ViewProfileMain() {
                 bg1="bg-[#845BB3]"
                 bg2="bg-blue-300"
                 bg3="bg-[#f089a4]"
-                text="All verified Doctors Profiles ..."
+                text="All verified Doctor Profiles .."
                 showData={approveDoctors}
                 normalVerified={true}
                 hrad="36px"
               />
             </div>
-            <div className="me-32">
+            <div className="md:me-32">
               <DemoHospital
                 bg1="bg-[#845BB3]"
                 bg2="bg-blue-300"
                 bg3="bg-[#f089a4]"
-                text="All Approved Profiles Of Hospital ..."
+                text="Approved Profiles Of Hospital "
                 showData={approvedHospital}
                 newBg="bg-[#229649]"
                 newBga="#229649"
                 normalVerified="true"
                 hwidth="w-[430px]"
                 hrad="42px"
+            
               />
             </div>
           </div>
@@ -201,14 +192,15 @@ function ViewProfileMain() {
                 bg1="bg-[#845BB3]"
                 bg2="bg-blue-300"
                 bg3="bg-[#f089a4]"
-                text="Doctors Requested for delete profiles"
+                text="Doctors Requested for delete"
                 showData={deleteRequest}
                 normalVerified={true}
                 hwidth="w-[480px]"
                 hrad="45px"
+                msa="ms-3"
               />
             </div>
-            <div className="me-32">
+            <div className="md:me-32">
               <DemoUser
                 bg1="bg-[#845BB3]"
                 bg2="bg-blue-300"

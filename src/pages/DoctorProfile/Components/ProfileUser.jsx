@@ -2,9 +2,9 @@ import React from "react";
 function ProfileUser({ fullName, profileImage, uniqueDoctorId, email }) {
   return (
     <div
-      className={` flex flex-row gap-12 text-white bg-[#03229F] ms-9 me-10 rounded-lg `}
+      className={` flex md:flex-row gap-0 md:gap-5 text-white bg-[#03229F] md:ms-9 md:me-10 rounded-lg md:w-[470px] h-[144px] `}
     >
-      <div className=" w-20 h-20  flex justify-center items-center m-8 ">
+      <div className=" w-20 h-20  flex justify-center items-center mt-8  md:m-8 ">
         <img
           src={profileImage}
           alt="Placeholder"

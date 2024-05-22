@@ -61,16 +61,10 @@ function ApproveReject() {
 
   if (loading) {
     return (
-      <div className="text-black font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600">
-        <div className="flex flex-col justify-between">
-          <div className="me-7">
+      <div className="text-black font-medium text-3xl flex flex-row justify-between gap-28 h-screen w-screen bg-blue-600">
+        <div className=" ">
+          <div className="me-8 ">
             <Sidebar someData={mydata} />
-          </div>
-          <div>
-            <FiLogOut
-              className="ms-8"
-              style={{ color: "#061ba1", fontSize: "40px" }}
-            />
           </div>
         </div>
 
@@ -105,24 +99,19 @@ function ApproveReject() {
     );
   }
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
-      <div className="flex flex-col justify-between bg-[#c2c0bc]">
+    <div className="flex flex-row  h-screen  bg-[#0529BB]">
+      <div className="flex flex-col justify-between w-[300px] ">
         <div className="me-7">
           <Sidebar someData={mydata} />
         </div>
-        <div>
-          <FiLogOut
-            className="ms-8"
-            style={{ color: "#061ba1", fontSize: "40px" }}
-          />
-        </div>
+        
       </div>
-      <div>
-        <div className=" flex flex-row justify-between">
+      <div className=" w-full ms-0 md:ms-16">
+        <div className=" flex justify-center md:justify-normal mb-5 md:mb-0 ms-0 md:ms-6">
           <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
         </div>
-        <div className="flex flex-row gap-28 mt-16">
-          <div className="bg-[#D9D9D9]">
+        <div className="flex flex-row md:gap-28 mt-16 w-full justify-center">
+          <div >
             <Demo
               bg1="bg-[#F75990]"
               bg2="bg-[#bf9ee6]"
@@ -133,7 +122,7 @@ function ApproveReject() {
               spinner={false}
             />
           </div>
-          <div className="me-32">
+          <div className="md:me-32">
             <DemoHospital
               bg1="bg-[#845BB3]"
               bg2="bg-blue-300"

@@ -7,7 +7,7 @@ const NewUpdates = () => {
   return (
     <div
       style={{ overflow: "scroll", position: "relative" }}
-      className="bg-[#03229F]"
+      className="bg-[#03229F] overflow-auto h-screen"
     >
       <div style={{ position: "sticky", top: 0, zIndex: 1 }}>
         <div className="bg-[#FFFFFF] mt-[-12px] rounded-md mb-14 ">

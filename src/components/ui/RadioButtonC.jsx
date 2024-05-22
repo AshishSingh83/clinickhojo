@@ -7,7 +7,7 @@ function RadioButtonsC({ handleChange, selectedOption }) {
   ];
   return (
     <div className="flex items-center justify-center bg-[#D9D9D9] text-black opacity-75">
-      <div className="flex flex-row font-serif gap-">
+      <div className="flex  font-serif gap-">
         {options.map((option) => (
           <div
             className="flex items-center mx-2 bg-[#D9D9D9]"

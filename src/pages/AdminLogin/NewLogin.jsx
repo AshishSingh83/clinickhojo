@@ -128,8 +128,8 @@ export default function NewLogin() {
   }
   return (
     <div>
-      <form className=" " onSubmit={handleSubmit}>
-        <div className="-space-y-px">
+      <form className=" overflow-hidden " onSubmit={handleSubmit}>
+        <div>
           <InputWithIcon
             handleChange={handleChangeEmail}
             value={loginEmailVal}
@@ -150,7 +150,7 @@ export default function NewLogin() {
             iconData={FiKey}
           />
         </div>
-        <div className="text-sm  flex flex-row justify-between ms-2  ">
+        <div className="text-sm  flex justify-between ms-2 ">
           <p
             onClick={handleMea}
             className="font-medium text-[#E1E0E0] hover:text-blue-300 cursor-pointer"
@@ -187,3 +187,4 @@ export default function NewLogin() {
     </div>
   );
 }
+

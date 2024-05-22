@@ -24,7 +24,9 @@ const Demo = ({
   hwidth = "w-[380px]",
   hrad = "35px",
   spinner = false,
+  msa="ms-16"
 }) => {
+  console.log(msa);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sortedData, setSortedData] = useState([...showData]);
@@ -60,9 +62,9 @@ const Demo = ({
   );
 
   return (
-    <div className={` ${Width} ${Height} bg-[#03229F] overflow-hidden  `}>
+    <div className={` md:w-[500px] h-[500px] bg-[#03229F] overflow-hidden  `}>
       <div className={` mt-[-12px] text-black flex flex-col   `}>
-        <div className=" h-14 flex items-center justify-center ">
+        {/* <div className=" h-14 flex  items-center justify-center  ">
           <ClipBgB
             width={hwidth}
             height="h-[55px]"
@@ -74,7 +76,22 @@ const Demo = ({
             text={text}
           />
         </div>
-
+        */}
+        <div className="h-14 flex items-center bg-[#FFFFFF] text-[#FA0808] text-2xl justify-center font-medium md:hidden">
+        <h3>{text}</h3>
+      </div>
+      <div className={` h-14   items-center justify-center hidden md:block ${msa} `}>
+      <ClipBgB
+            width={hwidth}
+            height="h-[55px]"
+            bardervar={hrad}
+            bg="bg-[#FFFFFF]"
+            textColor="text-[#FA0808]"
+            textSize="text-2xl"
+            mt="mt-2"
+            text={text}
+          />
+        </div>
         {sortedData.length === 0 ? (
           ""
         ) : (
@@ -91,7 +108,7 @@ const Demo = ({
                 iconData={BiSearch}
               />
             </div>
-            <div className=" mt-6">
+            <div className=" mt-6  ms-6 md:ms-0">
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}
@@ -105,7 +122,7 @@ const Demo = ({
           </div>
         )}
       </div>
-      <div className={`overflow-auto ${mh2}`}>
+      <div className={`overflow-auto ${mh2} me-5 md:me-0 rounded-md`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
             <p className="text-[#FFFFFF]  mt-44 text-2xl font-medium">
@@ -124,21 +141,21 @@ const Demo = ({
           filteredData.map((update, index) => (
             <div
               key={index}
-              className={`p-4 mb-4  bg-[#E7ECFF] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer`}
+              className={`p-4 mb-4 me-6  bg-[#E7ECFF] flex flex-row justify-between ml-6  md:h-28 md:w-[450px] mt-3 cursor-pointer rounded-md `}
             >
               <p className="text-black font-semibold ">
                 <span className="font-bold ">{index + 1}. </span>
                 {update.name} <br />
-                <div className=" flex flex-row ms-7 gap-2">
-                  <p>
+                <div className=" flex ms-4 gap-2">
+                  <span>
                     <BiSolidUserDetail size="25px" color={`${newBga}`} />
-                  </p>
-                  <p className=" font-medium text-[#535252] ">
+                  </span>
+                  <span className=" font-medium text-[#535252] ">
                     {" "}
                     #{update.uniqueDoctorId}
-                  </p>
+                  </span>
                 </div>
-                <div className=" flex flex-row ms-7 gap-2 mt-">
+                <div className=" flex  ms-8 gap-2 mt-">
                   <p className=" mt-[7px]">
                     <FaMapMarkerAlt size="15px" color="red" />
                   </p>
@@ -149,7 +166,7 @@ const Demo = ({
                 </div>
               </p>
               <span
-                className={`inline-block rounded-md cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-5 pt-2 ${newBg}`}
+                className={`inline-block rounded-md w-20 cursor-pointer h-9 px-4 py-1  text-sm   text-white mt-2 md:mt-5 pt-2 ${newBg}`}
                 onClick={() => handleMe(update)}
               >
                 View...

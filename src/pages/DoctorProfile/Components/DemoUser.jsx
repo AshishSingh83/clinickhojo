@@ -49,9 +49,9 @@ const DemoUser = ({
   );
 
   return (
-    <div className={`${Width} ${Height} bg-[#03229F]`}>
+    <div className={`md:w-[500px] h-[500px] bg-[#03229F] overflow-hidden`}>
       <div className={`  text-black flex flex-col`}>
-        <div className=" flex items-center justify-center">
+        {/* <div className=" flex items-center justify-center">
           <ClipBgB
             width={hwidth}
             height="h-[50px]"
@@ -62,10 +62,26 @@ const DemoUser = ({
             mt="mt-0"
             text={text}
           />
+        </div> */}
+       
+      <div className={` h-14   items-center justify-center hidden md:block ms-20  `}>
+      <ClipBgB
+            width={hwidth}
+            height="h-[55px]"
+            bardervar={hrad}
+            bg="bg-[#FFFFFF]"
+            textColor="text-[#FA0808]"
+            textSize="text-2xl"
+            mt="mt-0"
+            text={text}
+          />
         </div>
+        <div className="h-14 flex items-center bg-[#FFFFFF] text-[#FA0808] text-2xl justify-center font-medium md:hidden">
+        <h3>{text}</h3>
+      </div>
         {showData.length !== 0 && (
           <div className=" flex flex-row bg-[#03229F] gap-3">
-            <div className="ms-4 mt-3 w-64">
+            <div className="ms-4 mt-3 ">
               <InputWithIcon
                 labelText="Search Profiles"
                 labelFor="searchProfiles"
@@ -77,11 +93,11 @@ const DemoUser = ({
                 iconData={BiSearch}
               />
             </div>
-            <div className=" mt-6">
+            <div className=" mt-6 ms-6 md:ms-0">
               <select
                 value={sortOption}
                 onChange={(e) => filterChange(e)}
-                className="bg-white h-8 ps-3 text-black"
+                className="bg-white h-8 ps-3 text-black rounded-lg"
               >
                 <option value="okay">Sort by</option>
                 <option value="name">Sort by Name</option>
@@ -91,7 +107,7 @@ const DemoUser = ({
           </div>
         )}
       </div>
-      <div className={`overflow-auto ${mh2}`}>
+      <div className={` overflow-auto ${mh2}`}>
         {filteredData.length === 0 ? (
           <div className="flex justify-center items-center h-full">
             <p className="text-white mt-44 text-2xl font-medium">
@@ -110,22 +126,22 @@ const DemoUser = ({
           filteredData.map((user, index) => (
             <div
               key={index}
-              className={`p-4 mb-4 bg-[#FFFCFC] flex flex-row justify-between ml-6 ${mw3} mt-3 cursor-pointer overflow-auto`}
+              className={`p-4 mb-4 me-6  bg-[#E7ECFF] flex flex-row justify-between ml-6  md:h-28 md:w-[450px] mt-3 cursor-pointer rounded-md  `}
             >
               <p className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
                 Name: {user.name} <br />
-                <div className=" flex flex-row ms-3 gap-3">
+                <div className=" flex  ms-3 gap-3">
                   <AiOutlinePhone size="25px" color="green" />{" "}
                   <p className="text-[#535252]">{user.mobileNumber}</p>
                 </div>
-                <div className=" flex flex-row ms-3 gap-3">
+                <div className=" flex  ms-3 gap-3">
                   <AiOutlineMail size="25px" color="red" />{" "}
                   <p className="text-[#535252]">{user.email}</p>
                 </div>
               </p>
               <span
-                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 text-sm text-white mt-5 pt-2"
+                className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 text-sm w-20 text-white mt-5 pt-2"
                 style={{ backgroundColor: "#03229F" }}
                 onClick={() => handleViewProfile(user)}
               >
