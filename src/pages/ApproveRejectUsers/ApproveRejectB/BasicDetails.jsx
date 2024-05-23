@@ -11,12 +11,12 @@ const renderDetails = (
     const [key, value] = Object.entries(item)[0];
     if (key === "Bio") {
       return (
-        <div className="mt-2 flex flex-row gap-2" key={key}>
+        <div className="mt-2 flex flex-col md:flex-row gap-2" key={key}>
           <label className="font-sm me-2 mt-2">{key}:</label>
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  h-10  w-full"
            
           />
           <br />
@@ -29,7 +29,7 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  w-full h-10"
             
           />
           <br />
@@ -42,8 +42,8 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+           
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -61,8 +61,8 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+           
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -80,8 +80,8 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -93,7 +93,7 @@ const renderDetails = (
       );
     } else {
       return (
-        <div className="mt-2" key={key}>
+        <div className="mt-2 flex flex-col md:flex-row" key={key}>
           <label className="font-sm">{key}:</label>
           <input
             type="text"
@@ -154,8 +154,8 @@ const BasicDetails = ({
   ];
 
   return (
-    <div className="bg-[#03229F] w-[500px] h-[460px] mb-4 rounded-sm text-white">
-      <div className="flex flex-row gap-20">
+    <div className="bg-[#03229F] md:w-[500px] md:h-[460px] mb-4 rounded-sm text-white">
+      <div className="flex flex-row md:gap-20">
         <h1 className="text-lg font-semibold ms-6">Basic Details:</h1>
         <div className="mt-1">
           <RadioButtons
@@ -171,9 +171,9 @@ const BasicDetails = ({
             specializationValue,
             setSpecializationValue
           )}
-          <div className="flex flex-row">
+          <div className="flex flex-col md:flex-row">
             <p className="text-lg mt-2">Provide Rating:</p>
-            <div className="ms-10 mt-1">
+            <div className="md:ms-10 mt-1">
               <NumberSelect onSelect={handleRatingSelect} rating={rating} />
             </div>
           </div>

@@ -154,21 +154,21 @@ function ApproveRejectB() {
   };
   return (
     <div className="flex flex-row   bg-[#0529BB] w-screen justify-end  ">
-      <div className="bg-[#0529BB] w-96">
+      <div className="bg-[#0529BB] flex flex-col md:w-1/4 lg:w-1/5">
         <div className="me-7">
           <Sidebar someData={{ index: 2 }} />
         </div>
       </div>
 
-      <div className="flex flex-row  bg-[#0529BB] me-28">
+      <div className="  bg-[#0529BB] ms-3 me-3 md:me-28">
         <div className="flex flex-col h-auto ">
-          <div className=" ">
+          <div className="flex justify-center md:justify-normal mb-5 md:mb-0 ">
             <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
           </div>
 
-          <div className=" flex flex-row bg-[#03229F] mt-14  ">
-            <div className=" ms-9">
-              <div className="  mb-7 ms-6 bg-[#03229F] mt-5">
+          <div className=" bg-[#03229F] flex flex-col md:flex-row mt-4 p-4 md:p-8 rounded-lg  ">
+            <div className=" md:ms-9">
+              <div className="  mb-7 md:ms-6 bg-[#03229F] mt-5">
                 <Profile
                   fullName={fullName}
                   profileImage={profileImage}
@@ -186,7 +186,7 @@ function ApproveRejectB() {
                 radioData={formData.doctorBasicDetail}
               />
 
-              <div className=" mt-14">
+              <div className=" mt-16 mb-6">
                 <hr />
               </div>
               <div className=" mt-9">
@@ -200,7 +200,7 @@ function ApproveRejectB() {
               </div>
             </div>
 
-            <div className=" flex flex-col gap-4 mt-[142px] ms-16">
+            <div className=" flex flex-col gap-4 md:mt-[142px] md:ms-16">
               <Educationdetail
                 BasicDetail={update.education}
                 onRadioChange={(option) =>
@@ -217,7 +217,7 @@ function ApproveRejectB() {
                 radioData={formData.doctorRegistration}
               />
               <hr />
-              <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm me-">
+              <div className=" bg-[#a9a9ab] md:w-[438px] h-[130px] mb-4 rounded-sm me-">
                 <div className="h-[130px] border-zinc-100  ">
                   <textarea
                     id="inputTextArea"
@@ -234,7 +234,7 @@ function ApproveRejectB() {
           </div>
           <div className=" flex flex-row">
             <div className="flex flex-row mt-9  mb-5 justify-center items-center ">
-              <div className=" mb-5 mt-3 ms-12">
+              <div className=" md:mb-5 md:mt-3 md:ms-12">
                 <Buttons
                   bg="bg-[#0529BB]"
                   handleSubmita={() => handleSubmit(true)}
@@ -244,7 +244,7 @@ function ApproveRejectB() {
                 />
               </div>
             </div>
-            <p className=" text-red-600 ms-20 text-lg mt-12">{message}</p>
+            <p className=" text-red-600 ms-20 text-lg md:mt-12">{message}</p>
           </div>
         </div>
       </div>

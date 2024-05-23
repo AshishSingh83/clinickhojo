@@ -104,16 +104,16 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
       BasicDetail.map((update) => (
         <div
           key={update.degreeName}
-          className="w-[420px] h-[185px] mb-4 rounded-sm ms-3 text-white opacity-75"
+          className="md:w-[420px] md:h-[185px] mb-4 rounded-sm ms-3 text-white opacity-75"
         >
-          <div className="font-medium ms-2 mb-5">
+          <div className="font-medium md:ms-2 mb-5">
             <div className="mt-2 flex flex-row gap-3">
               <label className="font-sm">College:</label>
               <input
                 type="text"
                 value={update.collegeName}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
@@ -122,7 +122,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
                 type="text"
                 value={update.degreeName}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
@@ -131,7 +131,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
                 type="text"
                 value={update.fieldOfStudy}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
@@ -140,7 +140,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
                 type="text"
                 value={update.startDate}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
@@ -149,12 +149,12 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
                 type="text"
                 value={update.passingYear}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div>
               <div
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-2 ms-72 text-sm text-white pt-2 bg-[#0032FF] `}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-2 md:ms-72 text-sm text-white pt-2 bg-[#0032FF] `}
                 onClick={() => handleViewProofClick(update.certificates[0])}
               >
                 View Proof
@@ -166,8 +166,8 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
     );
 
   return (
-    <div style={{ width: "450px" }} className="bg-[#03229F] text-white">
-      <div className="mt-[-12px] rounded-md flex flex-row gap-14">
+    <div className="bg-[#03229F] text-white md:w-[450px]">
+      <div className="mt-[-12px] rounded-md flex flex-row md:gap-14">
         <h2 className="text-lg p-2 font-medium">Education Details</h2>
         <div className="mt-3">
           <RadioButtons

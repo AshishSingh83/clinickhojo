@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../AdminHome/Sidebar/Sidebar";
-import { FiLogOut } from "react-icons/fi";
 import Hbasicdetail from "./Hbasicdetail";
 import Profile from "../../ApproveRejectUsers/ApproveRejectB/Profile";
 import { useNavigate } from "react-router-dom";
@@ -125,16 +124,9 @@ function VerifiedHospital() {
       <div className="flex flex-row justify-end max-h-[1500px] w-screen bg-[#0529BB]">
         <div
           className=" bg-white flex flex-col justify-between"
-          style={{ backgroundColor: "#c2c0bc" }}
         >
           <div className="me-7">
             <Sidebar someData={{ index: 5 }} />
-          </div>
-          <div>
-            <FiLogOut
-              className="ms-8"
-              style={{ color: "#061ba1", fontSize: "40px" }}
-            />
           </div>
         </div>
         <div className=" flex flex-col ms-52 bg-[#0529BB] me-6">

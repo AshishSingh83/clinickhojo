@@ -20,7 +20,7 @@ function Sidebar({ someData }) {
   } 
 
   useEffect(() => {
-    const handleResize = () => setSidebar(window.innerWidth > 768);
+    const handleResize = () => setSidebar(window.innerWidth > 1400);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

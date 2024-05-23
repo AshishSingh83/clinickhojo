@@ -18,7 +18,7 @@ const renderDetails = (
     const [key, value] = Object.entries(item)[0];
     if (key === "Bio") {
       return (
-        <div className="mt-2 flex" key={key}>
+        <div className="mt-2 flex  flex-col md:flex-row" key={key}>
           <label className="font-sm">{key}:</label>
           <textarea
             value={value}
@@ -30,7 +30,7 @@ const renderDetails = (
       );
     } else if (key === "Address") {
       return (
-        <div className="mt-2 flex " key={key}>
+        <div className="mt-2 flex flex-col md:flex-row " key={key}>
           <label className="font-sm">{key}:</label>
           <textarea
             value={value}
@@ -42,13 +42,12 @@ const renderDetails = (
       );
     } else if (key === "Specialization") {
       return (
-        <div className="mt-2 flex flex-row gap-2" key={key}>
-          <label className="font-sm me-2 mt-2">{key}:</label>
+        <div className="mt-2 flex flex-col md:flex-row gap-2" key={key}>
+          <label className="font-sm md:me-2 mt-2">{key}:</label>
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -66,8 +65,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -84,8 +82,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center"
-            style={{ width: "80%" }}
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -97,7 +94,7 @@ const renderDetails = (
       );
     } else {
       return (
-        <div className="mt-2" key={key}>
+        <div className="mt-2 flex flex-col md:flex-row" key={key}>
           <label className="font-sm">{key}:</label>
           <input
             type="text"
@@ -163,7 +160,7 @@ const BasicDetails = ({ BasicDetail, onRatingChange, email }) => {
   ];
 
   return (
-    <div className="bg-[#03229F] w-[500px] h-[465px] mb-4 rounded-sm text-white">
+    <div className="bg-[#03229F] w-full md:w-[500px] md:h-[465px] mb-4 rounded-sm text-white">
       <div className="flex flex-row gap-20">
         <h1 className="text-lg font-semibold ms-6">Basic Details:</h1>
       </div>
@@ -178,9 +175,9 @@ const BasicDetails = ({ BasicDetail, onRatingChange, email }) => {
           addressValue,
           setAddressValue
         )}
-        <div className="flex flex-row mt-3">
+        <div className="flex flex-col md:flex-row mt-3 gap-3 md:gap-0">
           <p className="text-lg">Provided Rating:</p>
-          <div className="ms-10 flex flex-row">
+          <div className="md:ms-10 flex md:flex-row gap-3 md:gap-0">
             <NumberSelect
               onSelect={handleRatingSelect}
               rating={rating}

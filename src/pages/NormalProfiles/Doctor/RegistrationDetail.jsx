@@ -20,7 +20,7 @@ const RegistrationDetail = React.memo(({ BasicDetail }) => {
 
   return (
     <div
-      className="w-[450px] h-[180px] mb-4 rounded-sm bg-[#03229F] text-white"
+      className="md:w-[450px] md:h-[180px] mb-4 rounded-sm bg-[#03229F] text-white"
       style={{ width: `${BasicDetail.boxWidth}` }}
     >
       <div className="flex flex-row">
@@ -60,7 +60,7 @@ const RegistrationDetail = React.memo(({ BasicDetail }) => {
           </div>
           <div className="justify-end mt-2">
             <span
-              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
+              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 mt-2 md:mt-0 md:ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
               onClick={handleViewProofClick}
             >
               View Proof

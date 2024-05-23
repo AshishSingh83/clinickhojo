@@ -30,12 +30,12 @@ const RegistrationDetail = React.memo(
 
     return (
       <div
-        className="bg-[#03229F] w-[450px] h-[180px] mb-4 rounded-sm text-white"
+        className="bg-[#03229F] md:w-[450px] md:h-[180px] mb-4 rounded-sm text-white"
         style={{ width: `${BasicDetail.boxWidth}` }}
       >
         <div className="flex flex-row">
           <h1 className="text-lg ms-4 font-semibold">Registration Detail:</h1>
-          <div className="mt-1 ms-10">
+          <div className="mt-1 md:ms-10">
             <RadioButtons
               handleChange={handleChange}
               selectedOption={doctorRegistrationDetail}
@@ -50,7 +50,7 @@ const RegistrationDetail = React.memo(
                 type="text"
                 value={BasicDetail.registrationNumber}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="mt-2 flex flex-row">
@@ -59,7 +59,7 @@ const RegistrationDetail = React.memo(
                 type="text"
                 value={BasicDetail.yearOfRegistration}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-200"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-200"
               />
             </div>
             <div className="mt-2 flex flex-row">
@@ -68,12 +68,12 @@ const RegistrationDetail = React.memo(
                 type="text"
                 value={BasicDetail.registrationAuthority}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
             </div>
             <div className="justify-end mt-3">
               <span
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 md:ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
                 onClick={handleViewProofClick}
               >
                 View Proof

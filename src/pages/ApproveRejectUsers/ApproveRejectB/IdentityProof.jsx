@@ -35,12 +35,12 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
   };
 
   return (
-    <div className="bg-[#03229F] w-[500px] h-[158px] mb-4 rounded-sm text-white">
+    <div className="bg-[#03229F] md:w-[500px] md:h-[158px] mb-4 rounded-sm text-white">
       <div className="flex flex-row">
         <h1 className="text-lg ms-5 font-semibold mt-1 text-white">
           Identity Proof:
         </h1>
-        <div className="mt-1 ms-20">
+        <div className="mt-1 md:ms-20 ">
           <RadioButtons
             handleChange={handleChange}
             selectedOption={doctorIdentityProofOption}
@@ -49,27 +49,27 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
       </div>
       <div className="opacity-75">
         <div className="font-medium ms-2 mb-5">
-          <div className="mt-3 flex flex-row">
-            <label className="font-sm p">Type of Id:</label>
+          <div className="mt-3 flex flex-col md:flex-row">
+            <label className="font-sm ">Type of Id:</label>
             <input
               type="text"
               value={BasicDetail.identityType || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
           </div>
-          <div className="mt-2 flex flow-row">
-            <label className="font-sm">Unique Id number:</label>
+          <div className="mt-3 flex flex-col md:flex-row">
+            <label className="font-sm ">Unique Id number:</label>
             <input
               type="text"
               value={BasicDetail.uniqueIdNumber || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 "
             />
           </div>
           <div className="justify-end mt-2">
             <span
-              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 ms-72 text-sm text-white pt-2`}
+              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 md:ms-72 text-sm text-white pt-2`}
               style={{ backgroundColor: "#0032FF" }}
               onClick={handleViewProofClick}
             >

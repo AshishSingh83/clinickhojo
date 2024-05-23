@@ -9,7 +9,7 @@ const Buttons = ({
   handleSubmitb,
 }) => {
   return (
-    <div className={`${bg}   h-[40px] flex flex-row content-center gap-7 `}>
+    <div className={`${bg}   h-[40px] flex content-center gap-1 md:gap-7  `}>
       <div>
         <Button
           handleSubmit={handleSubmita}

@@ -7,7 +7,7 @@ function Profile({
   bool,
 }) {
   return (
-    <div className={` flex flex-row gap-12 text-white `}>
+    <div className={` flex  gap-12 text-white `}>
       <div className=" w-20 h-20 bg-[#03229F] flex justify-center items-center ">
         <img
           src={profileImage}
