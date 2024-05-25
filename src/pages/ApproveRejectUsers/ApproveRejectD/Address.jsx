@@ -59,11 +59,10 @@ const Address = ({ addData, onRadioChange, radioData }) => {
           </div>
           <div className="mt-2 flex flex-col md:flex-row gap-1">
             <label className="font-sm">Clinic Address:</label>
-            <input
-              type="text"
+            <textarea
               value={addData.clinicAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 md:w-64 p-1 h-8 flex justify-center items-center"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
             />
             <br />
           </div>

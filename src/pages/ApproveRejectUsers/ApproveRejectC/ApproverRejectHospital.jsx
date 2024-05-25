@@ -16,7 +16,7 @@ import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import DoctorSessions from "./DoctorSessions.jsx";
 import ManagementProfile from "./ManagementProfile.jsx";
 import instance from "../../../axios.js";
-import Address from "../../NormalProfiles/clinicProfile/Address.jsx";
+import Address from "../ApproveRejectD/Address.jsx";
 function ApproveRejectHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
