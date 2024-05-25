@@ -11,7 +11,7 @@ export default function ResetPassword() {
                 <img
                   alt=""
                   className="h-24 w-40 self-center  rounded-none"
-                  src="newcliniclogo.png"
+                  src="/newcliniclogo.png"
                 />
               </div>
               <h6 className="mt-2 text-center text-2xl font-medium text-white">

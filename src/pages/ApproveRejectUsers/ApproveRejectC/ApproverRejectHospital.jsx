@@ -40,7 +40,7 @@ function ApproveRejectHospital() {
   const [loading, setLoading] = useState(false);
   const [approved, setApproved] = useState("");
   const [sniper, setSniper] = useState(false);
-  const [message,setMessage] = useState('') ;
+  const [message, setMessage] = useState("");
   const response = useSelector((state) => state.register.hospitalData);
   const {
     name,
@@ -49,7 +49,7 @@ function ApproveRejectHospital() {
     managementEmail,
     clinicUniqueId,
     marketingInternId,
-  } = response || '';
+  } = response || "";
 
   useEffect(() => {
     const savedDataString = localStorage.getItem(`${hospitalClinicKhojoId}a`);
@@ -59,7 +59,6 @@ function ApproveRejectHospital() {
     }
   }, [hospitalClinicKhojoId]);
 
- 
   useEffect(() => {
     if (formDataC !== null) {
       localStorage.setItem(
@@ -86,7 +85,6 @@ function ApproveRejectHospital() {
     }));
   };
 
-  
   const navigate = useNavigate();
   const handleRatingChange = (ratingValue) => {
     setRating(ratingValue);
@@ -98,9 +96,16 @@ function ApproveRejectHospital() {
     });
   };
   const handleSubmit = async (isApproved) => {
-    const counttt = Object.values(formDataC).filter(value => value !== "").length;
-    if(counttt===4 && normalFee!=='' && emergencyFee!=='' && rating!=='' ){
-      setMessage('')
+    const counttt = Object.values(formDataC).filter(
+      (value) => value !== ""
+    ).length;
+    if (
+      counttt === 4 &&
+      normalFee !== "" &&
+      emergencyFee !== "" &&
+      rating !== ""
+    ) {
+      setMessage("");
       if (isApproved == true) {
         setApproved(isApproved);
         handleDialog("Are you sure you want to Approve?", true);
@@ -109,12 +114,13 @@ function ApproveRejectHospital() {
         setApproved(isApproved);
         handleDialog("Are you sure you want to Reject?", true);
       }
-    }else{
-     setMessage('Please Verify All Document(tick radioButtons) and Fill Appoitment fees and ratings')
+    } else {
+      setMessage(
+        "Please Verify All Document(tick radioButtons) and Fill Appoitment fees and ratings"
+      );
     }
-   
   };
-  const areUSureDelete = async (choose) =>{
+  const areUSureDelete = async (choose) => {
     setSniper(true);
     const serviceId = "service_om433u9";
     const templateId = "template_zzith2l";
@@ -134,12 +140,12 @@ function ApproveRejectHospital() {
     if (choose) {
       console.log(choose, approved);
       if (1) {
-        const userId = getDataFromLocalStorage('UserId');
+        const userId = getDataFromLocalStorage("UserId");
         try {
           const response = await instance.post("api/admin/hospital/approve", {
             isApproved: approved,
             hospitalClinicKhojoId: hospitalClinicKhojoId,
-            approvedBy:userId,
+            approvedBy: userId,
             addRemark: formData.remark,
           });
           if (!approved) {
@@ -223,11 +229,11 @@ function ApproveRejectHospital() {
                   bool={true}
                 />
               </div>
-              <ManagementProfile/>
+              <ManagementProfile />
               <div className=" mb-4">
-              <hr/>
+                <hr />
               </div>
-             
+
               <Hbasicdetail
                 BasicDetail={response}
                 onRadioChange={(option) =>
@@ -244,8 +250,8 @@ function ApproveRejectHospital() {
                 BasicDetail={response.ratings}
                 onRatingChange={handleRatingChange}
               />
-             <div className=" mb-3">
-              <hr/>
+              <div className=" mb-3">
+                <hr />
               </div>
 
               <HregistartionDetail
@@ -255,12 +261,10 @@ function ApproveRejectHospital() {
                 }
                 radioData={formDataC.HospitalRegistration}
               />
-             <div className=" mb-3">
-              <hr/>
+              <div className=" mb-3">
+                <hr />
               </div>
               <WrongInfo data={formDataC} />
-
-              
             </div>
 
             <div className="  flex flex-col gap-4 md:mt-[157px] ">
@@ -284,7 +288,7 @@ function ApproveRejectHospital() {
                     handleRadioChange("HospitalPhotos", option)
                   }
                   radioData={formDataC.HospitalPhotos}
-                  photosUrl = {response.photos.photoUrls}
+                  photosUrl={response.photos.photoUrls}
                 />
                 <hr />
               </div>
@@ -304,18 +308,15 @@ function ApproveRejectHospital() {
             </div>
           </div>
           <div className=" mt-5 flex flex-row">
-          <div className=" ms-8 md:ms-60 mb-5 bg-[#0529BB]">
-            <Buttons
-              bg="bg-[#0529BB]"
-              handleSubmita={() => handleSubmit(true)}
-              handleSubmitb={() => handleSubmit(false)}
-            />
+            <div className=" ms-8 md:ms-60 mb-5 bg-[#0529BB]">
+              <Buttons
+                bg="bg-[#0529BB]"
+                handleSubmita={() => handleSubmit(true)}
+                handleSubmitb={() => handleSubmit(false)}
+              />
+            </div>
+            <p className=" text-red-600 ms-20 text-lg mt-1">{message}</p>
           </div>
-          <p className=" text-red-600 ms-20 text-lg mt-1">
-           {message}
-          </p>
-          </div>
-         
         </div>
       </div>
       {dialog.isLoading && (
@@ -324,6 +325,8 @@ function ApproveRejectHospital() {
           onDialog={areUSureDelete}
           message={dialog.message}
           sniper={sniper}
+          bga="bg-green-500"
+          bgb="bg-red-500"
         />
       )}
     </>

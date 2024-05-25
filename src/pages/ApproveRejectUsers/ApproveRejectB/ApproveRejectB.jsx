@@ -255,10 +255,11 @@ function ApproveRejectB() {
           onDialog={areUSureDelete}
           message={dialog.message}
           sniper={sniper}
+          bga="bg-green-500"
+          bgb="bg-red-500"
         />
       )}
     </div>
   );
 }
-
 export default ApproveRejectB;

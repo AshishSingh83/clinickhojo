@@ -102,7 +102,7 @@ function AllInOne() {
   };
 
   return (
-    <div className="flex flex-row  h-screen w-screen gap-48 bg-[#0529BB]">
+    <div className="flex flex-row  h-screen w-screen md:gap-48 bg-[#0529BB]">
       <div className=" bg-[#0529BB] flex flex-col justify-between">
         <div className="">
           <Sidebar someData={{ index: 4 }} />

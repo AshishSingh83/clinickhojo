@@ -79,7 +79,7 @@ import SubAdminEdit from './pages/SubAdmin/SubAdminEdit.jsx';
 import BroadCastMessage from './pages/BroadCast/BroadCastMessage.jsx';
 import AllInOne from './pages/chartjs/DoctorRanking/AppoitmentBased/AllInOne.jsx';
 import { store } from './app/store.js';
-import { persistStore } from 'redux-persist'; // Ensure correct import here
+import { persistStore } from 'redux-persist'; 
 import ViewProfileMain from './pages/DoctorProfile/ViewProfileMain.jsx';
 import UserProfile from './pages/DoctorProfile/UserProfile.jsx';
 import VerifiedDoctorProfile from './pages/NormalProfiles/Doctor/VerifiedDoctorProfile.jsx';
@@ -90,9 +90,7 @@ import ApproveRejectHospital from './pages/ApproveRejectUsers/ApproveRejectC/App
 import VerifiedHospital from './pages/NormalProfiles/clinicProfile/verifiedHospital.jsx';
 import Protected from './pages/Protected/Protected.jsx';
 import ProtectedAdmin from './pages/Protected/ProtectedAdmin.jsx';
-import TotalServed from './pages/chartjs/component/Bar/TotalServed.jsx';
-import BarChartE from './pages/chartjs/component/Bar/BarChartE.jsx';
-let persistor = persistStore(store); // Initialize persistor
+let persistor = persistStore(store); 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -112,10 +110,6 @@ const router = createBrowserRouter(
       <Route path="SubAdminEdit" element={<ProtectedAdmin Component={SubAdminEdit} />} />
       <Route path="CreateSubAdmin" element={<ProtectedAdmin Component={CreateSubAdmin} />} />
       <Route path="VerifiedHospital" element={<Protected Component={VerifiedHospital} />} />
-
-
-      <Route path="TotalServed" element={<Protected Component={TotalServed} />} />
-      <Route path="BarChartE" element={<Protected Component={BarChartE} />} />
     </Route>
   )
 );
