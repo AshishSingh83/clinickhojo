@@ -4,7 +4,6 @@ import { FiLogOut } from "react-icons/fi";
 import Photos from "./Photos";
 import { useNavigate } from "react-router-dom";
 import Buttons from "../ButtonRow/Buttons";
-import Address from "../ApproveRejectD/Address";
 import AppoitmentFee from "../ApproveRejectD/AppoitmentFee";
 import WrongInfo from "../ApproveRejectD/WrongInfo";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,6 +16,7 @@ import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import DoctorSessions from "./DoctorSessions.jsx";
 import ManagementProfile from "./ManagementProfile.jsx";
 import instance from "../../../axios.js";
+import Address from "../../NormalProfiles/clinicProfile/Address.jsx";
 function ApproveRejectHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({
@@ -185,7 +185,7 @@ function ApproveRejectHospital() {
   };
   return (
     <>
-      <div className="flex flex-row justify-between max-h-[1500px] w-screen  bg-[#0529BB] gap-9 ">
+      <div className="flex flex-row  md:max-h-[1500px] w-screen  bg-[#0529BB] gap-9 md:gap-0 ">
         <div className=" bg-[#03229F] flex flex-col justify-between ">
           <div className="">
             <Sidebar someData={{ index: 2 }} />
@@ -198,23 +198,23 @@ function ApproveRejectHospital() {
           </div>
         </div>
 
-        <div className=" flex flex-col gap-8 ">
-          <div className="      flex flex-row justify-between   ">
+        <div className=" flex flex-col md:ms-48 bg-[#0529BB] ms-2 me-2 md:me-16">
+          <div className="  flex flex-col items-center justify-center md:justify-normal mb-5 md:mb-0   ">
             <div className=" flex flex-row gap-5">
               <div className="">
                 <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
               </div>
 
               <div>
-                <p className=" text-white text-2xl underline mt-5 ms-24 ">
+                <p className=" text-white text-2xl underline mt-5 md:ms-24 ">
                   Hospital Detail
                 </p>
               </div>
             </div>
           </div>
-          <div className="flex flex-row  mt-6 bg-[#03229F] me-3  ">
-            <div className="flex flex-col ms-3 mb-7 ">
-              <div className="m-2 mb-10 mt-6">
+          <div className="flex flex-col md:flex-row  mt-6 bg-[#03229F] md:me-3  ">
+            <div className="flex flex-col ms-2 mb-7 gap-5 ">
+              <div className=" w-full md:m-2 md:mb-10 md:mt-6">
                 <Profile
                   fullName={response.name}
                   profileImage={response.profilePhoto}
@@ -263,8 +263,8 @@ function ApproveRejectHospital() {
               
             </div>
 
-            <div className="  flex flex-col gap-4 mt-[157px] ">
-              <div className=" flex flex-row gap- ms-[-20px]  ">
+            <div className="  flex flex-col gap-4 md:mt-[157px] ">
+              <div className=" flex flex-row gap- md:ms-[-20px]   ">
                 <div>
                   <Address
                     addData={response.address}
@@ -288,7 +288,7 @@ function ApproveRejectHospital() {
                 />
                 <hr />
               </div>
-              <div className=" bg-[#a9a9ab] w-[438px] h-[130px] mb-4 rounded-sm ms-12 mt-7">
+              <div className=" bg-[#a9a9ab] md:w-[438px] md:h-[130px] mb-4 rounded-sm md:ms-12 mt-7">
                 <div className="h-[130px] border-zinc-100 ">
                   <textarea
                     id="inputTextArea"
@@ -303,8 +303,8 @@ function ApproveRejectHospital() {
               </div>
             </div>
           </div>
-          <div className=" flex flex-row">
-          <div className=" ms-60 mb-5 bg-[#0529BB]">
+          <div className=" mt-5 flex flex-row">
+          <div className=" ms-8 md:ms-60 mb-5 bg-[#0529BB]">
             <Buttons
               bg="bg-[#0529BB]"
               handleSubmita={() => handleSubmit(true)}

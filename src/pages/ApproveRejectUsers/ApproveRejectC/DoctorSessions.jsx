@@ -18,9 +18,9 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
     setModalContent(null);
   };
   return (
-    <div className={` h-[310px] w-[390px] overflow-hidden bg-[#03229F] `}>
-      <div className={` text-white flex flex-col `}>
-        <div className="text-lg font-semibold ms-6 ">
+    <div className={` md:h-[310px] md:w-[390px] overflow-auto bg-[#03229F] `}>
+      <div className={` text-white flex flex-col top-0 z-10 sticky`}>
+        <div className="text-lg font-semibold ms-6  ">
           <p>Doctor Sessions :</p>
         </div>
       </div>
@@ -35,12 +35,12 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
           showData.map((update, index) => (
             <div
               key={index}
-              className={`p-4 mb-4 bg-[#8299ed] flex flex-row  justify-between ml-6 w-[340px] h-20 mt-3 cursor-pointer rounded-lg`}
+              className={`p-4 mb-4 bg-[#8299ed] flex flex-row  justify-between ml-6 md:w-[340px] md:h-20 mt-3 cursor-pointer rounded-lg`}
             >
               <div className="text-black font-semibold">
                 <span className="font-bold">{index + 1}. </span>
                 {update.doctorName} <br />
-                <div className="flex flex-row ms-7 gap-2">
+                <div className="flex  ms-7 gap-2">
                   <p>
                     <BiSolidUserDetail size="25px" color="black" />
                   </p>
@@ -51,7 +51,7 @@ const DoctorSessions = ({ showData = [], newBg = "bg-[#229649]" }) => {
                 </div>
               </div>
               <span
-                className={`inline-block rounded-md cursor-pointer h-9 px-4 text-sm text-white mt-2 pt-2 bg-blue-700`}
+                className={`inline-block rounded-md cursor-pointer w-16 h-9 px-4 text-sm text-white mt-2 pt-2 bg-blue-700`}
                 onClick={() => handleMe(update)}
               >
                 View...

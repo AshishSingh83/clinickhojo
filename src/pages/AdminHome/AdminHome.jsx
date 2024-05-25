@@ -11,17 +11,15 @@ function AdminHome() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#0529BB]">
+    <div className="flex flex-col w-screen md:flex-row h-screen bg-[#0529BB]">
      
       <div className=" md:w-1/5">
         <div className="me-7">
           <Sidebar someData={mydata} />
         </div>
       </div>
-
-     
       <div className="md:w-3/4 flex flex-col gap-8 md:ms-20 ">
-        <div className="flex flex-col md:flex-row md:justify-between md:gap-8">
+        <div className="flex flex-col md:flex-row md:justify-around md:gap-8">
           <div className="flex flex-col">
           <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
           <ClipBgB
@@ -36,7 +34,7 @@ function AdminHome() {
               <Lists />
             </div>
           </div>
-          <div className=" justify-center items-center flex mt-5 md:mt-0">
+          <div className=" justify-center items-center flex mt-5 md:mt-0 ms-auto">
           <NewUpdates />
           </div>
         </div>

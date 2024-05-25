@@ -131,7 +131,7 @@ function ApproveRejectB() {
             try {
               await instance.post("api/admin/doctors/setRatings", {
                 doctorEmail: email,
-                rating: rating,
+                rating: ratingg,
               });
               await emailService({ message: successMessage, fullName, email });
               setSniper(false);

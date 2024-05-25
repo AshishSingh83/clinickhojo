@@ -90,9 +90,9 @@ import ApproveRejectHospital from './pages/ApproveRejectUsers/ApproveRejectC/App
 import VerifiedHospital from './pages/NormalProfiles/clinicProfile/verifiedHospital.jsx';
 import Protected from './pages/Protected/Protected.jsx';
 import ProtectedAdmin from './pages/Protected/ProtectedAdmin.jsx';
-
+import TotalServed from './pages/chartjs/component/Bar/TotalServed.jsx';
+import BarChartE from './pages/chartjs/component/Bar/BarChartE.jsx';
 let persistor = persistStore(store); // Initialize persistor
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -112,6 +112,10 @@ const router = createBrowserRouter(
       <Route path="SubAdminEdit" element={<ProtectedAdmin Component={SubAdminEdit} />} />
       <Route path="CreateSubAdmin" element={<ProtectedAdmin Component={CreateSubAdmin} />} />
       <Route path="VerifiedHospital" element={<Protected Component={VerifiedHospital} />} />
+
+
+      <Route path="TotalServed" element={<Protected Component={TotalServed} />} />
+      <Route path="BarChartE" element={<Protected Component={BarChartE} />} />
     </Route>
   )
 );

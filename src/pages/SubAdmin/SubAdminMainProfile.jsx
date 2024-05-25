@@ -3,7 +3,7 @@ import SubAdminProfile from "./Components/SubAdminProfile";
 import Sidebar from "../AdminHome/Sidebar/Sidebar";
 import { useNavigate } from "react-router-dom";
 import ClipBgB from "../../components/ui/clipPath/ClipBgB";
-function SubAdminMainProfile(){
+function SubAdminMainProfile() {
   const navigate = useNavigate();
   const mydata = {
     index: 1,
@@ -12,13 +12,12 @@ function SubAdminMainProfile(){
     navigate("../CreateSubAdmin");
   };
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
+    <div className="flex flex-row justify-between lg:justify-around  h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between ">
         <div className="">
           <Sidebar someData={{ index: 1 }} />
         </div>
       </div>
-
       <div className="flex flex-col  gap-16  ">
         <div className="   flex flex-row justify-between ">
           <div className=" flex justify-center md:justify-normal mb-5 md:mb-0 ">
@@ -38,7 +37,6 @@ function SubAdminMainProfile(){
             Create Additional User Profile
           </div>
         </div>
-
         <div className=" me-2 md:me-16 bg-[#0529BB]">
           <SubAdminProfile />
         </div>

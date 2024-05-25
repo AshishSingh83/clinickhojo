@@ -8,7 +8,7 @@ const WrongInfo = ({ data, newData }) => {
   }, [data]);
 
   return (
-    <div className="bg-[#03229F] w-[438px] mb-4 rounded-sm">
+    <div className="bg-[#03229F] md:w-[438px] mb-4 rounded-sm">
       <div>
         <span className="ms-5 m-2  text-black font-medium bg-red-700">
           WRONG INFO

@@ -121,16 +121,16 @@ function VerifiedHospital() {
   };
   return (
     <>
-      <div className="flex flex-row justify-end max-h-[1500px] w-screen bg-[#0529BB]">
+      <div className="flex flex-row justify-end md:max-h-[1500px] w-screen bg-[#0529BB]">
         <div
-          className=" bg-white flex flex-col justify-between"
+          className="  flex flex-col justify-between"
         >
           <div className="me-7">
             <Sidebar someData={{ index: 5 }} />
           </div>
         </div>
-        <div className=" flex flex-col ms-52 bg-[#0529BB] me-6">
-          <div className="      flex flex-row  ms-14   ">
+        <div className=" flex flex-col  md:ms-52 bg-[#0529BB] ms-2 me-2 md:me-6">
+          <div className=" flex flex-col md:flex-row items-center justify-center md:justify-normal mb-5 md:mb-0">
             <ClipBgB
               width="w-[290px]"
               height="h-[55px]"
@@ -138,14 +138,14 @@ function VerifiedHospital() {
               text="View Profile"
             />
             <div>
-              <p className=" text-white text-2xl underline mt-5 ms-20">
+              <p className=" text-white text-2xl underline mt-5 md:ms-20">
                 Hospital Detail
               </p>
             </div>
           </div>
-          <div className="flex flex-row  mt-6 bg-[#03229F] w-[1233px]">
+          <div className="flex flex-col  md:flex-row  mt-6 bg-[#03229F] md:w-[1233px]">
             <div className="flex flex-col ">
-              <div className="m-11">
+              <div className="md:m-11">
                 <Profile
                   fullName={response.name}
                   profileImage={response.profilePhoto}
@@ -154,11 +154,13 @@ function VerifiedHospital() {
                   bool={false}
                 />
               </div>
-
+              <div className=" mt-3 mb-3">
+                <br/>
+              </div>
               <div className=" flex flex-row">
                 <div className=" flex flex-col ">
                   <ManagementProfile />
-                  <div className=" mb-4">
+                  <div className=" mb-4 mt-3">
                     <hr />
                   </div>
                   <Hbasicdetail BasicDetail={response} />
@@ -199,7 +201,7 @@ function VerifiedHospital() {
             </div>
           </div>
           <div className=" flex flex-row">
-            <div className=" ms-56 mb-10 mt-7 ">
+            <div className=" ms-5 md:ms-56 mb-4 md:mb-10 mt-7 ">
               <Buttons
                 bg="bg-[#0529BB]"
                 handleSubmita={() => handleSubmit(true)}
@@ -208,7 +210,7 @@ function VerifiedHospital() {
                 textb="Suspend Account"
               />
             </div>
-            <p className=" text-red-600 ms-20 text-lg mt-8">{message}</p>
+            <p className=" text-red-600  ms-5 md:ms-20 text-lg md:mt-8">{message}</p>
           </div>
           ----
         </div>

@@ -18,45 +18,26 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const processAndPrepareData = async (appointments) => {
-  const doctorData = {};
-  appointments.forEach((appointment) => {
-    const { doctor, patient } = appointment;
-    if (!doctorData[doctor]) {
-      doctorData[doctor] = { male: 0, female: 0, total: 0 };
-    }
-    if (patient.gender === "male") {
-      doctorData[doctor].male += 1;
-    } else if (patient.gender === "female") {
-      doctorData[doctor].female += 1;
-    }
-    doctorData[doctor].total += 1;
+function TotalServed({userData}) {
+  const [barChartData, setBarChartData] = useState({
+    labels: ["Normal", "Emergency"],
+    datasets: [],
   });
-  const sortedDoctors = Object.entries(doctorData).sort(
-    (a, b) => b[1].total - a[1].total
-  );
-
-  const labels = sortedDoctors.map((_, index) => `Rank ${index + 1}`);
-  const maleData = sortedDoctors.map(([, data]) => data.male);
-  const femaleData = sortedDoctors.map(([, data]) => data.female);
-  return { labels, maleData, femaleData, sortedDoctors };
-};
-
-const BarChartD = ({userData}) => {
+  const [pending, setPending] = useState(true);
   const appointmentData = {
     totalAppointments: 10,
     allAppointments: [
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
           gender: "male",
           mobileNumber: "243",
         },
         _id: "6617afd3e73807f8ccf15af2",
         type: "emergency",
-        doctor: "661398a2ec3fcffe5c052da711",
-        block: "A",
+        doctor: "661398a2ec3fcffe5c052da7",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: true,
         createdBy: "1237767890",
@@ -68,15 +49,15 @@ const BarChartD = ({userData}) => {
       },
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
           gender: "male",
           mobileNumber: "243",
         },
         _id: "6617b024e73807f8ccf15aff",
         type: "normal",
-        doctor: "661398a2ec3fcffe5c052da7a",
-        block: "A",
+        doctor: "661398a2ec3fcffe5c052da7",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: true,
         createdBy: "243",
@@ -87,15 +68,15 @@ const BarChartD = ({userData}) => {
       },
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
-          gender: "female",
+          gender: "male",
           mobileNumber: "243",
         },
         _id: "6617b166884f3ed8ffb384da",
         type: "normal",
-        doctor: "661398a2ec3fcffe5c052da7a",
-        block: "A",
+        doctor: "661398a2ec3fcffe5c052da7",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: false,
         createdBy: "243",
@@ -106,15 +87,15 @@ const BarChartD = ({userData}) => {
       },
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
-          gender: "female",
+          gender: "male",
           mobileNumber: "243",
         },
         _id: "66190e32c71f9ceced24d1af",
         type: "normal",
         doctor: "661398a2ec3fcffe5c052da7",
-        block: "A",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: true,
         createdBy: "243",
@@ -125,7 +106,7 @@ const BarChartD = ({userData}) => {
       },
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
           gender: "male",
           mobileNumber: "243",
@@ -133,7 +114,7 @@ const BarChartD = ({userData}) => {
         _id: "661970d7a32c7cf15f163b0b",
         type: "normal",
         doctor: "66196a579e044b0dba29a740",
-        block: "A",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: true,
         createdBy: "243",
@@ -144,7 +125,7 @@ const BarChartD = ({userData}) => {
       },
       {
         patient: {
-          name: "Alice",
+          name: "Alicsdxvcxvvdve",
           age: 31,
           gender: "male",
           mobileNumber: "243",
@@ -152,7 +133,7 @@ const BarChartD = ({userData}) => {
         _id: "661970daa32c7cf15f163b10",
         type: "normal",
         doctor: "66196a579e044b0dba29a740",
-        block: "A",
+        block: "Asdfdf",
         timing: "2024-04-05T10:00:00.000Z",
         arrived: false,
         createdBy: "243",
@@ -164,44 +145,88 @@ const BarChartD = ({userData}) => {
     ],
   };
 
-  const [chartData, setChartData] = useState(null);
-  const [sortedDoctors, setSortedDoctors] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { labels, maleData, femaleData, sortedDoctors } =
-        await processAndPrepareData(userData);
-      setChartData({
-        labels,
-        datasets: [
-          {
-            label: "Male",
-            data: maleData,
-            backgroundColor: "rgb(75, 29, 192,1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Female",
-            data: femaleData,
-            backgroundColor: "rgb(255, 9, 132,1)",
-            borderWidth: 1,
-          },
-        ],
-      });
-      setSortedDoctors(sortedDoctors);
+  const calculateAppointmentData = async (data) => {
+    const appointmentCounts = {
+      emergency: { total: 0, arrived: 0, accepted: 0 },
+      normal: { total: 0, arrived: 0, accepted: 0 },
     };
-    fetchData();
+
+    await data.forEach((appointment) => {
+      const type = appointment.type;
+      appointmentCounts[type].total += 1;
+      if (appointment.arrived) {
+        appointmentCounts[type].arrived += 1;
+      }
+      if (appointment.isAccepted) {
+        appointmentCounts[type].accepted += 1;
+      }
+    });
+    setPending(false);
+    return appointmentCounts;
+  };
+  useEffect(() => {
+    const fetchAppointmentData = async () => {
+      try {
+        const appointmentCounts = await calculateAppointmentData(
+          userData
+        );
+        const normalData = [
+          appointmentCounts.normal.total,
+          appointmentCounts.normal.arrived,
+          appointmentCounts.normal.accepted,
+        ];
+
+        const emergencyData = [
+          appointmentCounts.emergency.total,
+          appointmentCounts.emergency.arrived,
+          appointmentCounts.emergency.accepted,
+        ];
+
+        const chartData = {
+          labels: ["Normal Appoitments", "Emergency Appoitments"],
+          datasets: [
+            {
+              label: "Total",
+              data: [normalData[0], emergencyData[0]],
+              backgroundColor: ["rgba(355, 9, 132, 1)", "rgba(355, 9, 132, 1)"],
+              borderColor: ["rgba(75, 192, 192, 1)", "rgba(100, 99, 132, 1)"],
+              borderWidth: 1,
+            },
+            {
+              label: "Arrived",
+              data: [normalData[1], emergencyData[1]],
+              backgroundColor: ["rgba(255, 30, 86, 1)", "rgba(255, 30, 86, 1)"],
+              borderColor: ["rgba(75, 192, 192, 1)", "rgba(255, 206, 86, 1)"],
+              borderWidth: 1,
+            },
+            {
+              label: "Accepted",
+              data: [normalData[2], emergencyData[2]],
+              backgroundColor: ["rgba(75, 12, 192, 1)", "rgba(75, 12, 192, 1)"],
+              borderColor: ["rgba(75, 192, 192, 1)", "rgba(75, 192, 192, 1)"],
+              borderWidth: 1,
+            },
+          ],
+        };
+        setBarChartData(chartData);
+      } catch (error) {
+        console.error("Error fetching appointment data:", error);
+      }
+    };
+
+    fetchAppointmentData();
   }, []);
 
   const options = {
     scales: {
-      x: {
+      y: {
+        beginAtZero: true,
         title: {
           display: true,
-          text: "Doctor Rank based on gender",
+          text: "Total Appointments",
           color: "black",
           font: {
-            size: 16,
+            size: 16, 
           },
         },
         ticks: {
@@ -211,10 +236,10 @@ const BarChartD = ({userData}) => {
           color: "#808a9c",
         },
       },
-      y: {
+      x: {
         title: {
           display: true,
-          text: "Appointments Served",
+          text: "Categories",
           color: "black",
           font: {
             size: 16,
@@ -241,9 +266,10 @@ const BarChartD = ({userData}) => {
       tooltip: {
         callbacks: {
           label: function (context) {
-            const doctorIndex = context.dataIndex;
-            const doctor = sortedDoctors[doctorIndex][0];
-            return `${context.dataset.label} Appointments: ${context.raw} (Doctor ID: ${doctor})`;
+            const dataset = context.dataset;
+            const index = context.dataIndex;
+            const label = context.label;
+            return `${dataset.label} ${label}: ${dataset.data[index]}`;
           },
         },
       },
@@ -252,13 +278,7 @@ const BarChartD = ({userData}) => {
 
   return (
     <div className=" w-full">
-      {chartData ? (
-        <div className="w-full md:max-w-[960px] mx-auto bg-white">
-          <div className="w-full h-full md:h-[540px]">
-            <Bar data={chartData} options={options} />
-          </div>
-        </div>
-      ) : (
+      {pending ? (
         <div className="flex items-center justify-center min-h-screen bg-blue-600 bg-opacity-70">
           <div className="">
             <Spinner
@@ -268,9 +288,15 @@ const BarChartD = ({userData}) => {
             />
           </div>
         </div>
+      ) : (
+        <div className="w-full md:max-w-[960px] mx-auto ">
+          <div className="w-full h-full md:h-[540px] bg-white">
+            <Bar data={barChartData} options={options} />
+          </div>
+        </div>
       )}
     </div>
   );
-};
+}
 
-export default BarChartD;
+export default TotalServed;

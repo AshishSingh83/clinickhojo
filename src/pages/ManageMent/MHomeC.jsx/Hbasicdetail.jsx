@@ -7,20 +7,20 @@ const renderDetails = (Hbasicdetailconst) => {
     const [key, value] = Object.entries(item)[0];
     const isLargeField = key === "Full Name" || key === "Clinic Description";
     return (
-      <div className="mt-2" key={key}>
-        <label className="font-sm">{key} : </label>
+      <div className="mt-2 flex flex-col md:flex-row" key={key}>
+        <label className="font-sm ">{key} : </label>
         {isLargeField ? (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
           />
         ) : (
           <input
             type="text"
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 "
           />
         )}
         <br />
@@ -65,12 +65,12 @@ const Hbasicdetail = ({ BasicDetail, onRadioChange, radioData }) => {
   ];
 
   return (
-    <div className="bg-[#03229F] w-[435px] min-h-[270px] mb-4 rounded-sm">
+    <div className="bg-[#03229F] md:w-[435px] md:min-h-[270px] mb-4 rounded-sm">
       <div className="flex flex-row">
-        <h1 className="text-lg ms-5 m-1 font-semibold text-white">
+        <h1 className="text-lg md:ms-5 m-1 font-semibold text-white">
           Basic Details :
         </h1>
-        <div className="mt-1 ms-8">
+        <div className="mt-1 md:ms-8">
           <RadioButtons
             handleChange={handleChange}
             selectedOption={hbasicdetailOption}

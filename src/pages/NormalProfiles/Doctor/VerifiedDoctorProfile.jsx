@@ -344,7 +344,6 @@ function VerifiedDoctorProfile() {
           <Sidebar someData={{ index: 5 }} />
         </div>
       </div>
-
       <div className="flex flex-col md:flex-1 p-4 md:p-8 lg:p-12">
         <div className="flex justify-center md:justify-start mb-5 md:mb-0">
           <ClipBgB

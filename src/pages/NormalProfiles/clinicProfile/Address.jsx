@@ -4,7 +4,7 @@ const Address = ({ addData }) => {
   const [hAddressOption, setHAddressOption] = useState("");
 
   return (
-    <div className="bg-[#03229F] w-[380px] h-[360px] mb-4 rounded-sm text-white">
+    <div className="bg-[#03229F] md:w-[380px] md:h-[360px] mb-4 rounded-sm text-white ">
       <div className="flex flex-row">
         <h1 className="text-lg ms-5 m-2 font-semibold">Address :</h1>
       </div>
@@ -16,7 +16,7 @@ const Address = ({ addData }) => {
               type="text"
               value={addData.streetAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -26,7 +26,7 @@ const Address = ({ addData }) => {
               type="text"
               value={addData.city}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -36,11 +36,11 @@ const Address = ({ addData }) => {
               type="text"
               value={addData.locality}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
-          <div className="mt-2 flex  gap-1 ms-4">
+          <div className="mt-2 flex flex-col md:flex-row  gap-1 md:ms-4">
             <label className="font-sm">Clinic Address:</label>
             {/* <input
               type="text"
@@ -51,7 +51,7 @@ const Address = ({ addData }) => {
             <textarea
               value={addData.clinicAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
             />
             <br />
           </div>
@@ -59,8 +59,8 @@ const Address = ({ addData }) => {
             <span className="font-sm">Location in MAP : </span>
             <br />
           </div>
-          <div className="mt-2 ms-4">
-            <div className="w-[350px] h-[120px] bg-[#F2EFEF] rounded-md"></div>
+          <div className="mt-2 md:ms-4">
+            <div className="md:w-[350px] h-[120px] bg-[#F2EFEF] rounded-md"></div>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const Photos = ({ photosUrl })=>{
     setClickedButton(id);
   };
   return (
-    <div className="bg-[#03229F] w-[777px] h-[510px] mb-4 rounded-sm text-white">
+    <div className="bg-[#03229F] md:w-[777px] h-[510px] mb-4 rounded-sm text-white">
       <div className="flex flex-row">
         <h1 className="text-lg ms-5 m-2 font-medium">View Photos :</h1>
       </div>

@@ -100,7 +100,7 @@ const AppointmentFee = ({
   }, []);
 
   return (
-    <div className="bg-[#03229F] w-[435px] h-[185px] mb-4 rounded-sm">
+    <div className="bg-[#03229F] md:w-[435px] md:h-[185px] mb-4 rounded-sm">
       <div>
         <h1 className="text-lg ms-5 m-2 font-semibold">
           Appointment Fee Detail:
@@ -110,7 +110,7 @@ const AppointmentFee = ({
         <div className="font-medium ms-2 mb-5 opacity-75">
           <div className="mt-3 flex flex-row">
             <span className="font-sm">Normal Appointment Booking Fee: Rs.</span>
-            <div className="w-40  ms-2 flex flex-row justify-center items-center ">
+            <div className="w-40  ms-2 flex  justify-center items-center ">
               <Input
                 bg1="bg-[#F2EFEF]"
                 handleChange={handleChangeA}
@@ -141,7 +141,7 @@ const AppointmentFee = ({
             <span className="font-sm">
               Emergency Appointment Booking Fee: Rs.
             </span>
-            <div className=" w-40  ms-2 flex flex-row justify-center items-center ">
+            <div className=" w-40  ms-2 flex  justify-center items-center ">
               <Input
                 bg1="bg-[#F2EFEF]"
                 handleChange={handleChangeB}
@@ -171,7 +171,7 @@ const AppointmentFee = ({
           <div className="mt-1">
             <span className="flex flex-row">
               <p className="text-lg">Provide Rating:</p>
-              <div className="ms-10 flex flex-row">
+              <div className="md:ms-10 flex ">
                 <NumberSelect
                   onSelect={handleRatingSelect}
                   rating={rating}

@@ -243,7 +243,7 @@ function ApproveReject() {
   }
 
   return (
-    <div className="flex flex-row h-screen bg-[#0529BB]">
+    <div className="flex flex-row md:justify-around w-screen h-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between w-[300px]">
         <div className="me-7">
           <Sidebar someData={mydata} />
@@ -253,7 +253,7 @@ function ApproveReject() {
         <div className="flex justify-center md:justify-normal mb-5 md:mb-0 ms-0 md:ms-6">
           <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
         </div>
-        <div className="flex flex-row md:gap-28 mt-16 w-full justify-center">
+        <div className="flex flex-col lg:flex-row md:gap-28 mt-16 w-full justify-center">
           <div>
             <Demo
               bg1="bg-[#F75990]"

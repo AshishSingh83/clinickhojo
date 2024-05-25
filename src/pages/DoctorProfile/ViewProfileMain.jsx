@@ -137,14 +137,14 @@ function ViewProfileMain() {
   }
 
   return (
-    <div className="flex flex-row justify-between w-screen bg-[#0529BB]">
+    <div className="flex flex-col lg:flex-row justify-between w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between ">
         <div className="me-7 ">
           <Sidebar someData={{ index: 5 }} />
         </div>
         
       </div>
-      <div>
+      <div className=" flex flex-col  md:items-center lg:items-start md:flex  lg:flex-col">
         <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
           <ClipBgB
             width="w-[290px]"
@@ -153,8 +153,8 @@ function ViewProfileMain() {
             text="View Profile"
           />
         </div>
-        <div>
-          <div className="flex flex-row gap-28 mt-16">
+        <div >
+          <div className="flex  flex-col lg:flex-row lg:gap-28 mt-16">
             <div>
               <Demo
                 bg1="bg-[#845BB3]"
@@ -166,7 +166,7 @@ function ViewProfileMain() {
                 hrad="36px"
               />
             </div>
-            <div className="md:me-32">
+            <div className="lg:me-32">
               <DemoHospital
                 bg1="bg-[#845BB3]"
                 bg2="bg-blue-300"
@@ -183,7 +183,7 @@ function ViewProfileMain() {
             </div>
           </div>
 
-          <div className="flex flex-row gap-10 md:gap-28 mt-16">
+          <div className="flex flex-col lg:flex-row  lg:gap-28 mt-16">
             <div>
               <Demo
                 bg1="bg-[#845BB3]"

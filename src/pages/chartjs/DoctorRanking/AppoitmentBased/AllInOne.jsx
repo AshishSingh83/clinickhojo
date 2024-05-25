@@ -3,38 +3,32 @@ import BarChartB from "../../component/Bar/BarChartB";
 import BarChartC from "../../component/Bar/BarChartC";
 import BarChartD from "../../component/Bar/BarChartD";
 import Sidebar from "../../../AdminHome/Sidebar/Sidebar";
-import { FiLogOut } from "react-icons/fi";
 import ClipBgB from "../../../../components/ui/clipPath/ClipBgB";
 import Spinner from "../../../../components/ui/clipPath/Spinner";
 import instance from "../../../../axios";
+import TotalServed from "../../component/Bar/TotalServed";
+import BarChartE from "../../component/Bar/BarChartE";
 function AllInOne() {
-  const [appointmentServed, setAppointmentServed] = useState([]);
-  const [genderAppoitment, setGenderAppoitment] = useState([]);
-  const [appointmentServedAge, setAppointmentServedAge] = useState([]);
-  const [appointmentServedGender, setAppointmentServedGender] = useState([]);
-  const [appointmentServedLocation, setAppointmentServedLocation] = useState(
-    []
-  );
   const [requireData, setRequireData] = useState([]);
-  const [newLoading, setNewLoading] = useState("");
   const [sortOption, setSortOption] = useState("");
-  const [appointmentServedUser, setAppointmentServedUser] = useState([]);
+  const [sendData, setSendData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showData, setShowData] = useState("");
   const obj = {
-    A: "api/admin/analytics/doctorRanking/appointmentsServed",
+    A: "",
     B: "",
     C: "api/admin/analytics/userRanking",
-    D: "api/admin/analytics/doctorRanking/gender",
+    D: "",
     E: "api/admin/analytics/appointments/ageWise",
   };
   useEffect(() => {
     async function fetchData(a, b) {
-      console.log("pahle", a, b, loading);
       setLoading(false);
       try {
-        const requireData = await instance.get(a);
-        setRequireData(requireData.data[b]);
+        const requireDataa = await instance.get(a);
+        if (!sortOption) {
+          setSendData(requireDataa.data[b]);
+        }
+        setRequireData(requireDataa.data[b]);
         setLoading(true);
       } catch (error) {
         setLoading(false);
@@ -42,23 +36,14 @@ function AllInOne() {
       }
     }
     if (sortOption == "A") {
-      console.log(1);
-      fetchData(
-        "api/admin/analytics/doctorRanking/appointmentsServed",
-        "doctorRankings"
-      );
+      setLoading(true);
     } else if (sortOption == "B") {
-      console.log(2);
-      fetchData("");
+      setLoading(true);
     } else if (sortOption == "C") {
       console.log(3);
       fetchData("api/admin/analytics/userRanking", "userAppointments");
     } else if (sortOption == "D") {
-      console.log(4);
-      fetchData(
-        "api/admin/analytics/doctorRanking/gender",
-        "doctorRankingsByGender"
-      );
+      setLoading(true);
     } else if (sortOption == "E") {
       console.log(5);
       fetchData(
@@ -66,11 +51,8 @@ function AllInOne() {
         "appointmentsByAge"
       );
     } else {
-      console.log(6);
-      fetchData(
-        "api/admin/analytics/doctorRanking/appointmentsServed",
-        "doctorRankings"
-      );
+      console.log(6, sortOption);
+      fetchData("api/admin/analytics/totalAppointments", "allAppointments");
     }
   }, [sortOption]);
 
@@ -78,13 +60,12 @@ function AllInOne() {
     setLoading(false);
     setSortOption(e.target.value);
   };
-
   const renderSelectedComponent = () => {
     switch (sortOption) {
       case "A":
         return (
-          <BarChartB
-            userData={requireData}
+          <BarChartE
+            userData={sendData}
             ylabel="totalAppointments"
             xlabel="_id"
             xxlabel="rank"
@@ -92,7 +73,7 @@ function AllInOne() {
           />
         );
       case "B":
-        return <BarChartC />;
+        return <TotalServed userData={sendData} />;
       case "C":
         return (
           <BarChartB
@@ -100,16 +81,16 @@ function AllInOne() {
             ylabel="totalAppointments"
             xlabel="_id"
             xxlabel="rank"
-            title="user ranking on the basis of appointmemnts made"
+            title="User's ranking "
           />
         );
       case "D":
-        return <BarChartD newData={requireData} />;
+        return <BarChartD userData={sendData} />;
       case "E":
-        return <BarChartC />;
+        return <BarChartC userData={requireData} />;
       default:
         return (
-          <BarChartB
+          <BarChartE
             userData={requireData}
             ylabel="totalAppointments"
             xlabel="_id"
@@ -126,25 +107,19 @@ function AllInOne() {
         <div className="">
           <Sidebar someData={{ index: 4 }} />
         </div>
-        <div>
-          <FiLogOut
-            className="ms-8"
-            style={{ color: "#061ba1", fontSize: "40px" }}
-          />
-        </div>
       </div>
 
-      <div className=" flex flex-col">
-        <div className=" flex items-center ms-20">
+      <div className=" flex flex-col ms-0 md:ms-16">
+        <div className=" flex justify-center md:justify-normal mb-5 md:mb-0 ms-0 md:ms-20">
           <ClipBgB
             width="w-[320px]"
             height="h-[60px]"
             bardervar="35px"
-            text="statics & reports"
+            text="statistics & reports"
           />
         </div>
 
-        <div className="  w-80 ms-16 mt-4 ">
+        <div className=" w-full  md:w-80 ms-0 md:ms-16 mt-4  ">
           <div
             style={{ position: "relative", display: "inline-block" }}
             className="p-3"
@@ -152,7 +127,7 @@ function AllInOne() {
             <select
               value={sortOption}
               onChange={(e) => filterChange(e)}
-              className="p-3 w-[430px] bg-[#E7ECFF] text-[#0529BB] text-lg rounded-lg "
+              className="p-3 md:w-[430px] bg-[#E7ECFF] text-[#0529BB] text-base md:text-lg rounded-lg "
             >
               <option value="A">
                 Doctors Ranking based on appointments served
@@ -162,11 +137,11 @@ function AllInOne() {
                 Users ranking based on no. of appointments made
               </option>
               <option value="D">No. of appointments based on Gender</option>
-              <option value="E">No. of appointments based on AGE</option>
+              <option value="E">No. of appointments based on Age</option>
             </select>
           </div>
         </div>
-        <div className="bg-blue-600 w-[960px] h-[540px] ms-20 flex justify-center items-center">
+        <div className="bg-blue-600 md:w-[960px] md:h-[540px] mt-10 md:mt-5 md:ms-20 flex justify-center items-center">
           {loading ? (
             renderSelectedComponent()
           ) : (
@@ -184,7 +159,5 @@ function AllInOne() {
       </div>
     </div>
   );
-}
-{
 }
 export default AllInOne;
