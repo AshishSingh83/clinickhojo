@@ -2,10 +2,10 @@
 import EnterPasswordForm from "./EnterPasswordForm";
 export default function ResetPassword() {
   return (
-    <div className="  flex justify-between w-screen h-screen   bg-[#0529BB] flex-col items-center    ">
-      <div className="bg-[#0529BB] w-[590px] h-[600px]  ">
-        <div className=" m-10  pb-12 p-5">
-          <div className=" mb-5">
+    <div className="  flex  w-screen md:h-screen   bg-[#0529BB] flex-col items-center gap-2 md:gap-10 mt-0 md:mt-10    ">
+      <div className="bg-[#0529BB] md:w-[590px] gap-2 md:gap-10   ">
+        <div className="   md:pb-12 p-5">
+          <div className="">
             <div>
               <div className="flex justify-center flex-col">
                 <img
@@ -19,7 +19,7 @@ export default function ResetPassword() {
               </h6>
             </div>
           </div>
-          <div className=" mt-16">
+          <div className=" mt-5 md:mt-11 ">
             <EnterPasswordForm />
           </div>
         </div>
