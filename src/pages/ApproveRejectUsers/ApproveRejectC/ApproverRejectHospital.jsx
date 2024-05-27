@@ -41,6 +41,8 @@ function ApproveRejectHospital() {
   const [approved, setApproved] = useState("");
   const [sniper, setSniper] = useState(false);
   const [message, setMessage] = useState("");
+  const [bga,SetBga] = useState('bg-green-500');
+  const [bgb,SetBgb] = useState('bg-red-500');
   const response = useSelector((state) => state.register.hospitalData);
   const {
     name,
@@ -95,7 +97,14 @@ function ApproveRejectHospital() {
       isLoading,
     });
   };
-  const handleSubmit = async (isApproved) => {
+  const handleSubmit = async (isApproved) =>{
+    if(!isApproved){
+      SetBga('bg-red-500');
+      SetBgb('bg-green-500');
+    }else{
+      SetBga('bg-green-500');
+      SetBgb('bg-red-500')
+    }
     const counttt = Object.values(formDataC).filter(
       (value) => value !== ""
     ).length;
@@ -325,8 +334,8 @@ function ApproveRejectHospital() {
           onDialog={areUSureDelete}
           message={dialog.message}
           sniper={sniper}
-          bga="bg-green-500"
-          bgb="bg-red-500"
+          bga={bga}
+          bgb={bgb}
         />
       )}
     </>
