@@ -287,7 +287,7 @@ function VerifiedDoctorProfile() {
         setApproved(isApproved);
         handleDialog("Are you sure you want to Delete Account?", true);
       } else {
-        setMessage("SubAdmin can not Delete/Suspend account");
+        setMessage("SubAdmin can not Delete account");
       }
     }
     if (isApproved == false) {
