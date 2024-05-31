@@ -14,11 +14,10 @@ function Profile({
       <div className=" md:w-20 md:h-20 bg-[#03229F] flex justify-center items-center ">
         <img
           src={profileImage}
-          alt="Placeholder"
+          alt="noImage"
           className=" w-16 h-16 md:w-20 md:h-20 max-h-full rounded-full "
         />
       </div>
-
       <div className=" md:w-[330px] opacity-85">
         <div className=" font-medium  ">
           <span className=" font-medium " style={{ fontSize: "20px" }}>

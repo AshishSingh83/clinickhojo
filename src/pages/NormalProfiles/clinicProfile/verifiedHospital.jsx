@@ -159,7 +159,7 @@ function VerifiedHospital() {
               </div>
               <div className=" flex flex-row">
                 <div className=" flex flex-col ">
-                  <ManagementProfile />
+                  <ManagementProfile managementData={response.managementPersonnel}/>
                   <div className=" mb-4 mt-3">
                     <hr />
                   </div>

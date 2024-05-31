@@ -238,7 +238,7 @@ function ApproveRejectHospital() {
                   bool={true}
                 />
               </div>
-              <ManagementProfile />
+              <ManagementProfile managementData={response.managementPersonnel}/>
               <div className=" mb-4">
                 <hr />
               </div>

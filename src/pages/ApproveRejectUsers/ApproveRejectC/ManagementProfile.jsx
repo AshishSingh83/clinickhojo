@@ -2,14 +2,15 @@
 import React from "react";
 import Profile from "../../ManageMent/MHomeB/Profile";
 
-function ManagementProfile() {
-    const uniqueDoctorId = '345435';
-    const fullName = 'Ashish Singh';
-    const ProfilImg = 'myLogo.jpeg';
-    const email = 'ashishsingh822003@gmail.com';
-    const gender = 'male';
-    const dob = '01-01-2004';
-
+function ManagementProfile({managementData}) {
+    console.log(managementData);
+    const uniqueDoctorId =  managementData.clinicKhojoId ;
+    const fullName =  managementData.fullName ;
+    const ProfilImg = managementData.profilePhoto ;
+    const email = managementData.email || '';
+    const gender = managementData.gender || '';
+    const dob = managementData.dateOfBirth||'';
+    console.log(ProfilImg);
     return (
       <div className=" flex flex-col bg-[#03229F] md:w-[435px]  md:min-h-[250px]">
        <div className="">
@@ -23,7 +24,7 @@ function ManagementProfile() {
                     uniqueDoctorId={uniqueDoctorId}
                     accountAddedBy={null}
                     bool={false}
-                />``
+                />
             </div>
             <div className="flex flex-col text-xl opacity-75 w-full px-4">
                 <div className="mt-1 flex flex-row items-center">

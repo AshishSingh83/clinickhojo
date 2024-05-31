@@ -15,7 +15,6 @@ function Profile({
           className=" w-20 h-20 max-h-full rounded-full "
         />
       </div>
-
       <div className="text-white font-normal   ">
         <span className=" font-medium " style={{ fontSize: "25px" }}>
           Dr.{fullName}{" "}
@@ -25,7 +24,7 @@ function Profile({
         {bool && (
           <div>
             <span className=" opacity-80">Account added by: </span>
-            {accountAddedBy || "null"}
+            {accountAddedBy}
             <br />
           </div>
         )}
