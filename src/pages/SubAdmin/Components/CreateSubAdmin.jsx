@@ -14,14 +14,10 @@ function CreateSubAdmin() {
   }, []);
   return (
     <div className="flex flex-row justify-normal md:justify-between h-screen w-screen bg-[#0529BB] ">
-      <div
-      
-       
-      >
+      <div>
         <div className="me-7">
           <Sidebar someData={{ index: 1 }} />
         </div>
-       
       </div>
 
       <div className=" flex flex-col">

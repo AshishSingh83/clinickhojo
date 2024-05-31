@@ -35,10 +35,10 @@ const Educationdetail = ({ BasicDetail }) => {
             <br />
           </div>
           <div className="mt-2  flex flex-col md:flex-row">
-            <label className="font-sm">Field Of Study:</label>{" "}
+            <label className="font-sm">Passing Year::</label>{" "}
             <input
               type="text"
-              value={update.fieldOfStudy}
+              value={update.passingYear}
               readOnly
               className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
@@ -58,7 +58,7 @@ const Educationdetail = ({ BasicDetail }) => {
             <label className="font-sm">End Date:</label>{" "}
             <input
               type="text"
-              value={update.passingYear}
+              value={update.endDate}
               readOnly
               className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />

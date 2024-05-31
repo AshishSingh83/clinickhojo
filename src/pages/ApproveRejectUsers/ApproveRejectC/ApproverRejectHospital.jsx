@@ -5,18 +5,18 @@ import Photos from "./Photos";
 import { useNavigate } from "react-router-dom";
 import Buttons from "../ButtonRow/Buttons";
 import AppoitmentFee from "../ApproveRejectD/AppoitmentFee";
-import WrongInfo from "../ApproveRejectD/WrongInfo";
+import WrongInfo from "./WrongInfo";
 import { useSelector, useDispatch } from "react-redux";
 import HregistartionDetail from "./HregistrationDetail";
 import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import emailjs from "@emailjs/browser";
-import Hbasicdetail from "../../ManageMent/MHomeC.jsx/Hbasicdetail.jsx";
-import Profile from "../../ManageMent/MHomeB/Profile.jsx";
+import Profile from "./Profile.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import DoctorSessions from "./DoctorSessions.jsx";
 import ManagementProfile from "./ManagementProfile.jsx";
 import instance from "../../../axios.js";
 import Address from "../ApproveRejectD/Address.jsx";
+import Hbasicdetail from "../ApproveRejectB/Hbasicdetail.jsx";
 function ApproveRejectHospital() {
   const dispatch = useDispatch();
   const [dialog, setDialog] = useState({

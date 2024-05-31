@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RadioButtons from "../../../components/ui/RadioButtons.jsx";
 
 const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
+  console.log(BasicDetail);
   const [doctorEducationDetailOption, setDoctorEducationDetailOption] =
     useState("");
   const [variable, setVariable] = useState("");
@@ -61,10 +62,10 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
-              <label className="font-sm">Field Of Study:</label>
+              <label className="font-sm">Passing Year:</label>
               <input
                 type="text"
-                value={BasicDetail[0].fieldOfStudy}
+                value={BasicDetail[0].passingYear}
                 readOnly
                 className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
               />
@@ -82,7 +83,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
               <label className="font-sm">End Date:</label>
               <input
                 type="text"
-                value={BasicDetail[0].passingYear}
+                value={BasicDetail[0].endDate}
                 readOnly
                 className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
               />
@@ -126,10 +127,10 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
               />
             </div>
             <div className="mt-2 flex flex-row gap-3">
-              <label className="font-sm">Field Of Study:</label>
+              <label className="font-sm">Passing Year:</label>
               <input
                 type="text"
-                value={update.fieldOfStudy}
+                value={update.passingYear}
                 readOnly
                 className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />
@@ -147,7 +148,7 @@ const Educationdetail = ({ BasicDetail, onRadioChange, radioData }) => {
               <label className="font-sm">End Date:</label>
               <input
                 type="text"
-                value={update.passingYear}
+                value={update.endDate}
                 readOnly
                 className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
               />

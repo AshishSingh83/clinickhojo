@@ -49,7 +49,7 @@ const Appoiment = ({ dataa = { appointments: [] }, loading }) => {
       <div className="h-14 flex items-center bg-[#FFFFFF] text-[#FA0808] text-2xl justify-center font-medium md:hidden">
         <h3>Appointments Booked:</h3>
       </div>
-      <div className=" h-14 ms-20  items-center justify-center hidden md:block  ">
+      <div className=" h-14 ms-10 me-10  items-center justify-center hidden md:block  ">
           <ClipBgB
             width={"w-[380px]"}
             height="h-[55px]"

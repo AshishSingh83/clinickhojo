@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { updateConstant } from "./updateConstant";
 const NewUpdates = () => {
-  const [loading, setLoading] = useState(true);
-  const [updates, setUpdates] = useState([]);
 
   return (
     <div

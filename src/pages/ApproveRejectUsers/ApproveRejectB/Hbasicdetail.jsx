@@ -28,7 +28,6 @@ const renderDetails = (Hbasicdetailconst) => {
     );
   });
 };
-
 const Hbasicdetail = ({ BasicDetail, onRadioChange, radioData }) => {
   const [hbasicdetailOption, setHbasicdetailOption] = useState("");
   const handleChange = (event) => {

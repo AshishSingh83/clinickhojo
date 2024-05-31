@@ -1,16 +1,13 @@
 
 import React from "react";
-import Profile from "../../ManageMent/MHomeB/Profile";
-
+import Profile from "./Profile";
 function ManagementProfile({managementData}) {
-    console.log(managementData);
     const uniqueDoctorId =  managementData.clinicKhojoId ;
     const fullName =  managementData.fullName ;
     const ProfilImg = managementData.profilePhoto ;
     const email = managementData.email || '';
     const gender = managementData.gender || '';
     const dob = managementData.dateOfBirth||'';
-    console.log(ProfilImg);
     return (
       <div className=" flex flex-col bg-[#03229F] md:w-[435px]  md:min-h-[250px]">
        <div className="">

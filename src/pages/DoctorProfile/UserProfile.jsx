@@ -27,7 +27,6 @@ function UserProfile() {
     }
     fetchData();
   }, []);
-
   if (loading) {
     return (
       <div className="flex flex-row  h-screen w-screen bg-[#0529BB] gap-[249.5px]">

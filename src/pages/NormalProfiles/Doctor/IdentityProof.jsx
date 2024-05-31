@@ -32,16 +32,6 @@ const IdentityProof = ({ BasicDetail }) => {
             />
             <br />
           </div>
-          {/* <div className="mt-2 flex   md:flow-row">
-            <label className="font-sm">Unique Id number :</label>{" "}
-            <input
-              type="text"
-              value={BasicDetail.uniqueIdNumber || "null"}
-              readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
-            />
-            <br />
-          </div> */}
           <div className="mt-3 flex flex-col md:flex-row">
             <label className="font-sm p">Unique Id number : :</label>{" "}
             <input

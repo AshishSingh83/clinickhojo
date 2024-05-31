@@ -1,5 +1,4 @@
 import React from "react";
-
 function Profile({
   fullName,
   profileImage,
@@ -38,5 +37,4 @@ function Profile({
     </div>
   );
 }
-
 export default Profile;
