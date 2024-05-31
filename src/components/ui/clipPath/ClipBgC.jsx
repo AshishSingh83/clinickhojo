@@ -20,9 +20,9 @@ function ClipBgC({
       className={`okay flex justify-center items-center text-[13px] font-medium text-white  md:w-[250px] h-[64px] bg-[#0032FF] text-opacity-85`}
       style={{ borderRadius: "44px 44px 0 0" }}
     >
-      <div className=" flex flex-col">
-        <p className=" ms-2">Shamyani health services Pvt Ltd </p>
-        <p>An ISO 9001:2015 certified company</p>
+      <div className=" flex flex-col mt-2">
+        <p className=" ms-1 text-[14.7px]">Shamyani Health Services Pvt Ltd </p>
+        <p className=" ms-2">An ISO 9001:2015 certified company</p>
       </div>
     </div>
   );

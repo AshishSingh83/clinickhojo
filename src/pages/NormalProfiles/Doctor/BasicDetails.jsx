@@ -23,7 +23,7 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-[80%] h-8"
           />
           <br />
         </div>
@@ -35,7 +35,7 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center ms-3 text-opacity-100  w-[90%] h-8"
           />
           <br />
         </div>
@@ -47,7 +47,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[50%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -65,7 +65,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[50%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -82,7 +82,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[50%]"
           >
             {value.map((spec, index) => (
               <option key={index} value={spec}>
@@ -100,7 +100,7 @@ const renderDetails = (
             type="text"
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+            className="bg-[#FFFFFF] bg-opacity-90 h-7  border-none text-black rounded-sm text-center ms-3 text-opacity-100"
           />
           <br />
         </div>
@@ -164,7 +164,7 @@ const BasicDetails = ({ BasicDetail, onRatingChange, email }) => {
       <div className="flex flex-row gap-20">
         <h1 className="text-lg font-semibold ms-6">Basic Details:</h1>
       </div>
-      <div className="font-medium ms-2 mb-5 opacity-75">
+      <div className="font-medium ms-2 mb-5 opacity-90">
         {renderDetails(
           BasicDetailConstant,
           isEditingC,

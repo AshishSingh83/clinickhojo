@@ -11,7 +11,7 @@ const Educationdetail = ({ BasicDetail }) => {
     return BasicDetail.map((update) => (
       <div
         key={update.degreeName}
-        className="bg-[#03229F] w-full md:w-[420px] md:h-[185px] mb-4 rounded-sm ms-3 opacity-75 "
+        className="bg-[#03229F] w-full md:w-[420px] md:h-[185px] mb-4 rounded-sm ms-3 opacity-90 "
       >
         <div className="font-medium ms-2 mb-5 bg-[#03229F]">
           <div className="mt-1 flex flex-col md:flex-row">
@@ -20,7 +20,7 @@ const Educationdetail = ({ BasicDetail }) => {
               type="text"
               value={update.collegeName}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 "
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100 "
             />
             <br />
           </div>
@@ -30,7 +30,7 @@ const Educationdetail = ({ BasicDetail }) => {
               type="text"
               value={update.degreeName}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -40,7 +40,7 @@ const Educationdetail = ({ BasicDetail }) => {
               type="text"
               value={update.passingYear}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -50,7 +50,7 @@ const Educationdetail = ({ BasicDetail }) => {
               type="text"
               value={update.startDate}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -60,13 +60,13 @@ const Educationdetail = ({ BasicDetail }) => {
               type="text"
               value={update.endDate}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
           <div>
             <span
-              className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 mt-2 md:mt-0 md:ms-72 text-sm text-white pt-2 bg-[#0032FF] `}"
+              className="inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 mt-2 md:mt-0 md:ms-72 text-sm text-white pt-2 bg-[green] `}"
               onClick={() => handleViewProofClick(update.certificates[0])}
             >
               View Proof

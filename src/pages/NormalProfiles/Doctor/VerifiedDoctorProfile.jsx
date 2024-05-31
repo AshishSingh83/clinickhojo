@@ -161,14 +161,14 @@ function VerifiedDoctorProfile() {
                 onRatingChange={handleRatingChange}
                 email={email}
               />
-              <div className="md:mt-12 mb-2">
+              <div className="md:mt-16 mb-2">
                 <hr />
               </div>
               <IdentityProof BasicDetail={update.identityDetails} />
             </div>
             <div className="flex flex-col w-full md:w-1/2">
               <Educationdetail BasicDetail={update.education} />
-              <div className="mt-4">
+              <div className="mt-4 mb-4">
                 <hr />
               </div>
               <RegistrationDetail BasicDetail={update.registration} />

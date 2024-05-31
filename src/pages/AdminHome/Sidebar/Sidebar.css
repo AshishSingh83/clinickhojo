@@ -216,4 +216,13 @@
       transition: 350ms;
     }
   }
+  .nav-text.active-item a {
+    color: white !important;
+  }
   
+  .filter-white {
+    filter: brightness(0) invert(1);
+  }
+  .nav-text a:hover {
+    color: white !important;
+  }

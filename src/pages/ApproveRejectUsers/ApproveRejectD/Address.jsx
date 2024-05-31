@@ -26,14 +26,14 @@ const Address = ({ addData, onRadioChange, radioData }) => {
         </div>
       </div>
       <div>
-        <div className="font-medium ms-2 mb-5 opacity-75">
+        <div className="font-medium ms-2 mb-5 opacity-90">
           <div className=" flex flex-col md:flex-row mt-3">
             <label className="font-sm p">Street:</label>
             <input
               type="text"
               value={addData.streetAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
             />
             <br />
           </div>
@@ -43,7 +43,7 @@ const Address = ({ addData, onRadioChange, radioData }) => {
               type="text"
               value={addData.city}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
             />
             <br />
           </div>
@@ -53,7 +53,7 @@ const Address = ({ addData, onRadioChange, radioData }) => {
               type="text"
               value={addData.locality}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
             />
             <br />
           </div>
@@ -62,7 +62,7 @@ const Address = ({ addData, onRadioChange, radioData }) => {
             <textarea
               value={addData.clinicAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
+              className="bg-[#FFFFFF] bg-opacity-90  border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  w-[90%] h-8"
             />
             <br />
           </div>

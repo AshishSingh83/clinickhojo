@@ -23,14 +23,14 @@ function ManagementProfile({managementData}) {
                     bool={false}
                 />
             </div>
-            <div className="flex flex-col text-xl opacity-75 w-full px-4">
+            <div className="flex flex-col text-lg opacity-90 w-full px-4">
                 <div className="mt-1 flex flex-row items-center">
                     <label className="font-sm w-24">Email:</label>
                     <input 
                         type="text" 
                         value={email} 
                         readOnly 
-                        className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center  text-opacity-100 w-72 "
+                        className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center  text-opacity-100 "
                     />
                 </div>
                 <div className="mt-1 flex flex-row items-center">
@@ -39,7 +39,7 @@ function ManagementProfile({managementData}) {
                         type="text" 
                         value={gender} 
                         readOnly 
-                        className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center  text-opacity-100 "
+                        className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center  text-opacity-100 "
                     />
                 </div>
                 <div className="mt-1 flex flex-row items-center">
@@ -48,7 +48,7 @@ function ManagementProfile({managementData}) {
                         type="text" 
                         value={dob} 
                         readOnly 
-                        className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center  text-opacity-100  "
+                        className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center  text-opacity-100  "
                     />
                 </div>
             </div>

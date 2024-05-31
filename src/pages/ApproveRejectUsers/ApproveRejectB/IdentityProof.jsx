@@ -47,7 +47,7 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
           />
         </div>
       </div>
-      <div className="opacity-75">
+      <div className=" opacity-95">
         <div className="font-medium ms-2 mb-5">
           <div className="mt-3 flex flex-col md:flex-row">
             <label className="font-sm ">Type of Id:</label>
@@ -55,7 +55,7 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
               type="text"
               value={BasicDetail.identityType || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-7 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
           </div>
           <div className="mt-3 flex flex-col md:flex-row">
@@ -64,16 +64,17 @@ const IdentityProof = ({ BasicDetail, onRadioChange, radioData }) => {
               type="text"
               value={BasicDetail.uniqueIdNumber || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 "
+              className="bg-[#FFFFFF] bg-opacity-90 h-7 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 "
             />
           </div>
-          <div className="justify-end mt-2">
+          <div className="justify-end mt-2 opacity-100">
             <span
-              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 md:ms-72 text-sm text-white pt-2`}
-              style={{ backgroundColor: "#0032FF" }}
+              className={`${variable}  inline-block  rounded-md cursor-pointer  h-10 px-4 py-1 m-1 md:ms-72   text-white pt-2`}
+              style={{ backgroundColor: "green" }}
               onClick={handleViewProofClick}
             >
-              View Proof
+
+              <p className=" text-white">View Proof</p>
             </span>
           </div>
         </div>

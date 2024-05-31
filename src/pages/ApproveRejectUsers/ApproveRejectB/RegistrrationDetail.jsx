@@ -43,14 +43,14 @@ const RegistrationDetail = React.memo(
           </div>
         </div>
         <div>
-          <div className="font-medium ms-2 mb-5 opacity-75">
+          <div className="font-medium ms-2 mb-5 opacity-90">
             <div className="mt-3 flex flex-row">
               <label className="font-sm p">Registration Number:</label>
               <input
                 type="text"
                 value={BasicDetail.registrationNumber}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="mt-2 flex flex-row">
@@ -59,7 +59,7 @@ const RegistrationDetail = React.memo(
                 type="text"
                 value={BasicDetail.yearOfRegistration}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-200"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="mt-2 flex flex-row">
@@ -68,12 +68,12 @@ const RegistrationDetail = React.memo(
                 type="text"
                 value={BasicDetail.registrationAuthority}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="justify-end mt-3">
               <span
-                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 md:ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
+                className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 md:ms-72 text-sm text-white pt-2 bg-[green]`}
                 onClick={handleViewProofClick}
               >
                 View Proof

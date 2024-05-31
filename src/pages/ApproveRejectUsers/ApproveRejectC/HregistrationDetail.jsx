@@ -43,14 +43,14 @@ const HregistartionDetail = React.memo(
           </div>
         </div>
         <div>
-          <div className="font-medium ms-2 mb-5 opacity-75">
+          <div className="font-medium ms-2 mb-5 opacity-90">
             <div className="mt-3 flex flex-col md:flex-row">
               <label className="font-sm p">Registration Number:</label>
               <input
                 type="text"
                 value={BasicDetail.registrationNumber || "null"}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="mt-2 flex flex-col md:flex-row">
@@ -59,7 +59,7 @@ const HregistartionDetail = React.memo(
                 type="text"
                 value={BasicDetail.yearOfRegistration || "null"}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="mt-2 flex flex-col md:flex-row">
@@ -68,7 +68,7 @@ const HregistartionDetail = React.memo(
                 type="text"
                 value={BasicDetail.registrationAuthority || "null"}
                 readOnly
-                className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+                className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 h-7"
               />
             </div>
             <div className="justify-end mt-3">

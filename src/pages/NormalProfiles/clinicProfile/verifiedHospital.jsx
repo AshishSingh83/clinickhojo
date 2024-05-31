@@ -192,7 +192,9 @@ function VerifiedHospital() {
 
                     <DoctorSessions showData={response.doctorSessions || []} />
                   </div>
-                  <hr />
+                  <div className=" mt-7 mb-4">
+                    <hr />
+                  </div>
                   <div>
                     <Photos photosUrl={response.photos.photoUrls || []} />
                   </div>

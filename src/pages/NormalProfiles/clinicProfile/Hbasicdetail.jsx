@@ -11,14 +11,14 @@ const renderDetails = (Hbasicdetailconst) => {
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-[66%] h-8"
           />
         ) : (
           <input
             type="text"
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 h-7 text-opacity-100"
           />
         )}
         <br />
@@ -63,7 +63,7 @@ const Hbasicdetail = ({ BasicDetail }) => {
        
       </div>
       <div>
-        <div className="font-medium ms-2 mb-5 opacity-75 text-white">
+        <div className="font-medium ms-2 mb-5 opacity-90 text-white">
           {renderDetails(Hbasicdetailconst)}
         </div>
       </div>

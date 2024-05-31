@@ -9,14 +9,14 @@ const Address = ({ addData }) => {
         <h1 className="text-lg ms-5 m-2 font-semibold">Address :</h1>
       </div>
       <div>
-        <div className="font-medium ms-2 mb-5 opacity-75">
+        <div className="font-medium ms-2 mb-5 opacity-90">
           <div className="mt-3 flex flex-row">
             <span className="font-sm p">Street : </span>
             <input
               type="text"
               value={addData.streetAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -26,7 +26,7 @@ const Address = ({ addData }) => {
               type="text"
               value={addData.city}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -36,22 +36,16 @@ const Address = ({ addData }) => {
               type="text"
               value={addData.locality}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100"
             />
             <br />
           </div>
           <div className="mt-2 flex flex-col md:flex-row  gap-1 md:ms-4">
             <label className="font-sm">Clinic Address:</label>
-            {/* <input
-              type="text"
-              value={addData.clinicAddress}
-              readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 w-64 p-1 h-8 flex justify-center items-center"
-            /> */}
             <textarea
               value={addData.clinicAddress}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full h-10"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100 w-full "
             />
             <br />
           </div>

@@ -21,14 +21,14 @@ const IdentityProof = ({ BasicDetail }) => {
         <h1 className="text-lg ms-5 font-semibold mt-1">Identity Proof :</h1>
       </div>
       <div>
-        <div className="font-medium ms-2 mb-5 opacity-75">
+        <div className="font-medium ms-2 mb-5 opacity-90">
           <div className="mt-3 flex flex-col md:flex-row">
             <label className="font-sm p">Type of Id :</label>{" "}
             <input
               type="text"
               value={BasicDetail.identityType || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
@@ -38,13 +38,13 @@ const IdentityProof = ({ BasicDetail }) => {
               type="text"
               value={BasicDetail.uniqueIdNumber || "null"}
               readOnly
-              className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+              className="bg-[#FFFFFF] bg-opacity-90 h-8 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
             />
             <br />
           </div>
           <div className="justify-end mt-2">
             <span
-              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 mt-2 md:mt-0  md:ms-72 text-sm text-white pt-2 bg-[#0032FF]`}
+              className={`${variable} inline-block rounded-md cursor-pointer h-9 px-4 py-1 m-1 mt-2 md:mt-0  md:ms-72 text-sm text-white pt-2 bg-[green]`}
               onClick={handleViewProofClick}
             >
               View Proof

@@ -11,7 +11,7 @@ const renderDetails = (Hbasicdetailconst) => {
           type="text"
           value={value}
           readOnly
-          className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+          className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100 h-7"
         />
         <br />
       </div>

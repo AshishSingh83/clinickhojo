@@ -25,7 +25,7 @@ const AppoitmentFee = ({
         </h1>
       </div>
       <div>
-        <div className=" font-medium  ms-2 mb-5 opacity-75">
+        <div className=" font-medium  ms-2 mb-5 opacity-90">
           <div className="mt-3 flex flex-col md:flex-row">
             <span className=" font-sm   ">
               Normal Appointment Booking Fee : Rs.

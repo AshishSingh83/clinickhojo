@@ -16,7 +16,7 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  h-10  w-full"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  h-8  w-[80%]"
            
           />
           <br />
@@ -29,7 +29,7 @@ const renderDetails = (
           <textarea
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  w-full h-10"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center md:ms-3 text-opacity-100  w-[90%] h-8"
             
           />
           <br />
@@ -42,7 +42,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-opacity-100 p-1  text-center md:w-[50%] "
            
           >
             {value.map((spec, index) => (
@@ -61,7 +61,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-opacity-100 p-1  text-center md:w-[50%] "
            
           >
             {value.map((spec, index) => (
@@ -80,7 +80,7 @@ const renderDetails = (
           <select
             value={specializationValue}
             onChange={(e) => setSpecializationValue(e.target.value)}
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-opacity-100 p-1 h-8 text-center md:w-[80%]"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-opacity-100 p-1  text-center md:w-[50%]"
             
           >
             {value.map((spec, index) => (
@@ -99,7 +99,7 @@ const renderDetails = (
             type="text"
             value={value}
             readOnly
-            className="bg-[#FFFFFF] bg-opacity-80 border-none text-black rounded-sm text-center ms-3 text-opacity-100"
+            className="bg-[#FFFFFF] bg-opacity-90 border-none text-black rounded-sm text-center ms-3 text-opacity-100 h-7"
           />
           <br />
         </div>
@@ -164,7 +164,7 @@ const BasicDetails = ({
           />
         </div>
       </div>
-      <div className="opacity-75">
+      <div className="opacity-90">
         <div className="font-medium mb-5">
           {renderDetails(
             BasicDetailConstant,
