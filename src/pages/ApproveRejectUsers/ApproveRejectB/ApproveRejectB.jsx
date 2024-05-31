@@ -12,6 +12,7 @@ import Dialog from "../../../components/ui/Diloge/Dialog.jsx";
 import ClipBgB from "../../../components/ui/clipPath/ClipBgB.jsx";
 import emailService from "../../../components/ui/emailService.js";
 import instance from "../../../axios.js";
+import WrongInfo from "../ApproveRejectC/WrongInfo.jsx";
 function ApproveRejectB() {
   const [formData, setFormData] = useState({
     doctorBasicDetail: "",
@@ -207,6 +208,10 @@ function ApproveRejectB() {
                   radioData={formData.doctorIdentityProof}
                 />
               </div>
+              <div className=" mb-3">
+                <hr />
+              </div>
+              <WrongInfo data={formData} />
             </div>
 
             <div className=" flex flex-col gap-4 md:mt-[142px] md:ms-16">
