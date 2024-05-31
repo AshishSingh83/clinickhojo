@@ -121,7 +121,7 @@ function VerifiedHospital() {
   };
   return (
     <>
-      <div className="flex flex-row justify-end md:max-h-[1500px] w-screen bg-[#0529BB]">
+      <div className="flex flex-row justify-end 2xl:justify-center md:max-h-[1500px] w-screen bg-[#0529BB]">
         <div
           className="  flex flex-col justify-between"
         >
@@ -129,7 +129,7 @@ function VerifiedHospital() {
             <Sidebar someData={{ index: 5 }} />
           </div>
         </div>
-        <div className=" flex flex-col  md:ms-52 bg-[#0529BB] ms-2 me-2 md:me-6">
+        <div className=" flex flex-col md:ms-64 bg-[#0529BB] ms-2 me-2 md:me-6">
           <div className=" flex flex-col md:flex-row items-center justify-center md:justify-normal mb-5 md:mb-0">
             <ClipBgB
               width="w-[290px]"

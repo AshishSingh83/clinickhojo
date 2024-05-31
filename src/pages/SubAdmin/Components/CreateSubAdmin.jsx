@@ -13,16 +13,16 @@ function CreateSubAdmin() {
     }
   }, []);
   return (
-    <div className="flex flex-row justify-normal md:justify-between h-screen w-screen bg-[#0529BB] ">
+    <div className="flex flex-row justify-center xl:justify-around 2xl:justify-center h-screen w-full bg-[#0529BB] ">
       <div>
         <div className="me-7">
           <Sidebar someData={{ index: 1 }} />
         </div>
       </div>
 
-      <div className=" flex flex-col">
+      <div className=" flex flex-col ms-0 2xl:ms-16">
         <div className=" flex flex-row gap-7 md:gap-80">
-          <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
+          <div className=" flex justify-center xl:justify-normal mb-5 md:mb-0">
             <ClipBgB
               width="w-[290px]"
               height="h-[55px]"
@@ -38,7 +38,7 @@ function CreateSubAdmin() {
           </div>
         </div>
 
-        <div className=" mt-5 me-64">
+        <div className=" mt-5 ">
           <CreateSubAdminFormA formDataa={formData} />
         </div>
       </div>

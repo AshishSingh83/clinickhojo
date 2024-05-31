@@ -127,13 +127,13 @@ function VerifiedDoctorProfile() {
     setSniper(false);
   };
   return (
-    <div className="flex flex-col md:flex-row w-screen bg-[#0529BB]">
+    <div className="flex flex-col md:flex-row justify-around 2xl:justify-center w-screen bg-[#0529BB]">
       <div className="bg-[#0529BB] flex flex-col md:w-1/4 lg:w-1/5">
         <div className="me-7">
           <Sidebar someData={{ index: 5 }} />
         </div>
       </div>
-      <div className="flex flex-col md:flex-1 p-4 md:p-8 lg:p-12">
+      <div className="flex flex-col 2xl:justify-center md:flex-1  ">
         <div className="flex justify-center md:justify-start mb-5 md:mb-0">
           <ClipBgB
             width="w-[290px]"
@@ -143,7 +143,7 @@ function VerifiedDoctorProfile() {
           />
         </div>
 
-        <div className="bg-[#03229F] mt-4 p-4 md:p-8 rounded-lg">
+        <div className="bg-[#03229F]  p-4 md:p-8 rounded-lg mt-9">
           <div className="mb-7">
             <Profile
               fullName={fullName}

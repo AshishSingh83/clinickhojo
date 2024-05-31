@@ -49,7 +49,7 @@ function ViewProfileMain() {
 
   if (loading) {
     return (
-      <div className="text-black font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600">
+      <div className="text-black font-medium text-3xl flex flex-row gap-28 h-screen w-screen bg-blue-600 2xl:justify-center">
         <div className="flex flex-col justify-between">
           <div className="me-7">
             <Sidebar someData={{ index: 5 }} />
@@ -137,15 +137,15 @@ function ViewProfileMain() {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between w-screen bg-[#0529BB]">
+    <div className="flex flex-col lg:flex-row justify-between 2xl:justify-center w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between ">
         <div className="me-7 ">
           <Sidebar someData={{ index: 5 }} />
         </div>
         
       </div>
-      <div className=" flex flex-col  md:items-center lg:items-start md:flex  lg:flex-col">
-        <div className=" flex justify-center md:justify-normal mb-5 md:mb-0">
+      <div className=" flex flex-col   2xl:ms-60 2xl:justify-center    lg:flex-col">
+        <div className="  mb-5 md:mb-0 md:ms-10">
           <ClipBgB
             width="w-[290px]"
             height="h-[55px]"
@@ -154,7 +154,7 @@ function ViewProfileMain() {
           />
         </div>
         <div >
-          <div className="flex  flex-col lg:flex-row lg:gap-28 mt-16">
+          <div className="flex  flex-col lg:flex-row  lg:gap-28 mt-16">
             <div>
               <Demo
                 bg1="bg-[#845BB3]"

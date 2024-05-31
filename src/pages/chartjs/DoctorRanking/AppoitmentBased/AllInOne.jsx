@@ -102,7 +102,7 @@ function AllInOne() {
   };
 
   return (
-    <div className="flex flex-row  h-screen w-screen md:gap-48 bg-[#0529BB]">
+    <div className="flex flex-row 2xl:justify-center  h-screen w-screen md:gap-48 bg-[#0529BB]">
       <div className=" bg-[#0529BB] flex flex-col justify-between">
         <div className="">
           <Sidebar someData={{ index: 4 }} />
@@ -141,7 +141,7 @@ function AllInOne() {
             </select>
           </div>
         </div>
-        <div className="bg-blue-600 md:w-[960px] md:h-[540px] mt-10 md:mt-5 md:ms-20 flex justify-center items-center">
+        <div className="bg-blue-600 md:w-[960px] md:h-[540px] mt-10 md:mt-5 md:ms-20 2xl:me-28 flex justify-center items-center">
           {loading ? (
             renderSelectedComponent()
           ) : (

@@ -63,7 +63,7 @@ export default function NewLogin() {
         } catch (error) {
           setDisabled(false);
           deleteDataFromLocalStorage('AdminToken')
-          console.log("Error:", error.message);
+          console.log("Hi Error:", error.message);
         }
       };
       verifyToken();

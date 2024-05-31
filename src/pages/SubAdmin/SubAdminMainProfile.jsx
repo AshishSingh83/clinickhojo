@@ -12,13 +12,13 @@ function SubAdminMainProfile() {
     navigate("../CreateSubAdmin");
   };
   return (
-    <div className="flex flex-row justify-between lg:justify-around  h-screen w-screen bg-[#0529BB]">
+    <div className="flex flex-row xl:justify-around 2xl:justify-center  h-screen w-screen bg-[#0529BB]">
       <div className="flex flex-col justify-between ">
         <div className="">
           <Sidebar someData={{ index: 1 }} />
         </div>
       </div>
-      <div className="flex flex-col  gap-16  ">
+      <div className="flex flex-col  gap-16 ms-0 2xl:ms-16  ">
         <div className="   flex flex-row justify-between ">
           <div className=" flex justify-center md:justify-normal mb-5 md:mb-0 ">
             <ClipBgB
@@ -37,7 +37,7 @@ function SubAdminMainProfile() {
             Create Additional User Profile
           </div>
         </div>
-        <div className=" me-2 md:me-16 bg-[#0529BB]">
+        <div className="    bg-[#0529BB]">
           <SubAdminProfile />
         </div>
       </div>

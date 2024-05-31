@@ -30,7 +30,7 @@ function AdminHome() {
             />
           </div>
            
-            <div className="mt-[-40px]">
+            <div className="mt-[-40px] flex justify-center items-center">
               <Lists />
             </div>
           </div>

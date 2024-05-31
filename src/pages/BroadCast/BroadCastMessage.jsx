@@ -60,17 +60,12 @@ function BroadCastMessage() {
   };
 
   return (
-    <div className="flex flex-row justify-between h-screen w-screen bg-[#0529BB]">
-      <div className="flex flex-col justify-between bg-[#c2c0bc]">
+    <div className="flex flex-row justify-between 2xl:justify-center h-screen w-screen bg-[#0529BB]">
+      <div className="flex flex-col justify-between ">
         <div className="me-7">
           <Sidebar someData={{ index: 3 }} />
         </div>
-        <div>
-          <FiLogOut
-            className="ms-8"
-            style={{ color: "#061ba1", fontSize: "40px" }}
-          />
-        </div>
+        
       </div>
       <div className="flex flex-col gap-24">
         <div>

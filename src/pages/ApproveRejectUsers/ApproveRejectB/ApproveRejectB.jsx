@@ -163,16 +163,16 @@ function ApproveRejectB() {
     }
   };
   return (
-    <div className="flex flex-row   bg-[#0529BB] w-screen justify-end  ">
+    <div className="flex flex-row   bg-[#0529BB] w-screen justify-end 2xl:justify-center  ">
       <div className="bg-[#0529BB] flex flex-col md:w-1/4 lg:w-1/5">
         <div className="me-7">
           <Sidebar someData={{ index: 2 }} />
         </div>
       </div>
 
-      <div className="  bg-[#0529BB] ms-3 me-3 md:me-28">
+      <div className="  bg-[#0529BB] ms-3 me-3 md:me-28  2xl:me-40">
         <div className="flex flex-col h-auto ">
-          <div className="flex justify-center md:justify-normal mb-5 md:mb-0 ">
+          <div className="flex justify-center md:justify-normal mb-5 md:mb-10 ">
             <ClipBgB width="w-[340px]" height="h-[65px]" bardervar="37px" />
           </div>
 
